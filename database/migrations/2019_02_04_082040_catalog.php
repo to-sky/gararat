@@ -14,12 +14,17 @@ class Catalog extends Migration
     public function up()
     {
         Schema::create('catalog', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('cid');
             $table->integer('cat_number')->default(0);
             $table->integer('parent_cat')->default(0);
-            $table->string('cat_name');
-            $table->string('cat_title')->nullable();
-            $table->text('cat_description')->nullable();
+            // English names
+            $table->string('cat_name_en');
+            $table->string('cat_title_en')->nullable();
+            $table->text('cat_description_en')->nullable();
+            // Arabic names
+            $table->string('cat_name_ar')->nullable();
+            $table->string('cat_title_ar')->nullable();
+            $table->text('cat_description_ar')->nullable();
             $table->dateTime('created_at');
             $table->dateTime('updated_at')->nullable();
 
