@@ -26,6 +26,7 @@ class Nodes extends Migration
             $table->text('n_description_ar')->nullable();
             $table->dateTime('created_at');
             $table->dateTime('updated_at')->nullable();
+
             $table->index('created_at');
         });
     }
