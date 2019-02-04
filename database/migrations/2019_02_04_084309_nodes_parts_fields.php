@@ -14,8 +14,24 @@ class NodesPartsFields extends Migration
     public function up()
     {
         Schema::create('nodes_parts_fields', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('npf_id');
+            $table->integer('node')->unsigned()->default(0);
+            $table->integer('group')->nullable();
+            $table->integer('fig_no')->nullable();
+            $table->integer('pos_no')->nullable();
+            $table->integer('qty')->nullable();
+            $table->string('producer_id')->nullable();
+            $table->string('our_id')->nullable();
+            // English names
+            $table->text('fig_name_en')->nullable();
+            $table->string('npf_name_en')->nullable();
+            // Arabic names
+            $table->text('fig_name_ar')->nullable();
+            $table->string('npf_name_ar')->nullable();
+
+            $table->foreign('node')->references('nid')->on('nodes');
+
+            $table->index('node');
         });
     }
 

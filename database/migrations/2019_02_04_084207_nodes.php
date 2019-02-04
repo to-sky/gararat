@@ -15,6 +15,7 @@ class Nodes extends Migration
     {
         Schema::create('nodes', function (Blueprint $table) {
             $table->increments('nid');
+            $table->decimal('price', 8, 2)->default(0);
             // English names
             $table->string('n_name_en');
             $table->string('n_title_en')->nullable();
@@ -25,10 +26,7 @@ class Nodes extends Migration
             $table->text('n_description_ar')->nullable();
             $table->dateTime('created_at');
             $table->dateTime('updated_at')->nullable();
-
             $table->index('created_at');
-            $table->index('n_name_en');
-            $table->index('n_name_ar');
         });
     }
 

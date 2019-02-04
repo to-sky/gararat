@@ -14,8 +14,12 @@ class NodesMachineryFields extends Migration
     public function up()
     {
         Schema::create('nodes_machinery_fields', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('nmf_id');
+            $table->integer('node')->unsigned()->default(0);
+
+            $table->foreign('node')->references('nid')->on('nodes');
+
+            $table->index('node');
         });
     }
 
