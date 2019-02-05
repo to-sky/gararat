@@ -12,7 +12,7 @@
             <span class="arrow"><i class="ti-angle-right"></i></span>
         </a>
         <ul class="dropdown-menu">
-            <li><a class="sidebar-link" href="">Add</a></li>
+            <li><a class="sidebar-link" href="{{ route('securedAddCatalogItemPage') }}">Add</a></li>
             <li><a class="sidebar-link" href="{{ route('securedCatalogListPage') }}">List</a></li>
         </ul>
     </li>
