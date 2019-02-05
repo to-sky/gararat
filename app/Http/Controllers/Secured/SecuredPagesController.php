@@ -10,9 +10,14 @@ class SecuredPagesController extends Controller
     //======================================================================
     // PAGES
     //======================================================================
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function securedDashboardPage()
     {
-        dd('Dashboard');
+        $data['pageTitle'] = 'Dashboard';
+
+        return view('secured.dashboard', $data);
     }
     //======================================================================
     // API

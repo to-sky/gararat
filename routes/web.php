@@ -10,11 +10,40 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
+Route::get('/home', function() {
+    return redirect()->route('homePage');
+})->name('home');
+//======================================================================
+// WEBSITE
+//======================================================================
+########################################################################
+# Public routes
+########################################################################
+Route::get('/', 'Website\PagesController@homePage')->name('homePage');
+########################################################################
+# Auth routes
+########################################################################
+Route::group(['middleware' => 'auth'], function() {
+    Route::group(['middleware' => 'auth.active'], function() {
 
-Route::get('/home', 'HomeController@index')->name('home');
+    });
+});
+//======================================================================
+// ADMIN PANEL
+//======================================================================
+Route::group(['middleware' => 'auth'], function() {
+    Route::group(['middleware' => 'auth.admin'], function() {
+        ########################################################################
+        # Pages
+        ########################################################################
+        // Dashboard
+        Route::get('/secured/admin', 'Secured\SecuredPagesController@securedDashboardPage')->name('securedDashboardPage');
+        // Catalog
+        Route::get('/secured/admin/catalog', 'Secured\SecuredCatalogController@securedCatalogListPage')->name('securedCatalogListPage');
+        ########################################################################
+        # API
+        ########################################################################
+
+    });
+});
