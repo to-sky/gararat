@@ -16,10 +16,10 @@ class AdminAccess
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->user_role == 159) {
+        if(Auth::user()->user_role == 159 && Auth::user()->user_status == 1) {
             return $next($request);
         } else {
-            return redirect()->route('login');
+            return redirect()->route('homePage');
         }
     }
 }
