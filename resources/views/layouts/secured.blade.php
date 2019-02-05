@@ -18,7 +18,15 @@
                 </div>
             </div>
             <div class="page-container">
-
+                <div class="header navbar">
+                    @include('includes.secured.layout.header')
+                </div>
+                <main class="main-content bgc-grey-100">
+                    <div id="mainContent">
+                        @yield('content')
+                    </div>
+                </main>
+                <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600"><span>Copyright © {{ \Carbon\Carbon::now()->format('Y') }} Developed by <a href="https://www.protus.by" target="_blank" title="Protus" rel="noopener noreferrer">Protus</a>. All rights reserved.</span></footer>
             </div>
         </div>
         <!-- Scripts -->
