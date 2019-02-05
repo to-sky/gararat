@@ -36,7 +36,7 @@ class SecuredCatalogController extends Controller
 
         $data['pageTitle'] = 'New Catalog Item';
         $getCatalogArray = $helper->convertQueryBuilderToArray($catalogModel->getAllCatalogItems());
-        $data['catalogs'] = $helper->buildCatalogOptionsWithLevels($getCatalogArray, 0);
+        $data['catalogs'] = $helper->buildCatalogOptionsWithLevels($getCatalogArray, 0, '---');
 
         return view('secured.catalog.add', $data);
     }
