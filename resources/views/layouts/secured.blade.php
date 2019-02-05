@@ -9,8 +9,18 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('admin-panel/style.css') }}">
 </head>
-    <body>
+    <body class="app">
+        <div id="appRoot">
+            <div class="sidebar">
+                <div class="sidebar-inner">
+                    @include('includes.secured.layout.top-sidebar')
+                    @include('includes.secured.layout.sidebar')
+                </div>
+            </div>
+            <div class="page-container">
 
+            </div>
+        </div>
         <!-- Scripts -->
         <script src="{{ asset('admin-panel/vendor.js') }}"></script>
         <script src="{{ asset('admin-panel/bundle.js') }}"></script>
