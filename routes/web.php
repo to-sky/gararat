@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function() {
         ########################################################################
         // Dashboard
         Route::get('/secured/admin', 'Secured\SecuredPagesController@securedDashboardPage')->name('securedDashboardPage');
+        // Catalog
         Route::get('/secured/admin/catalog', 'Secured\SecuredCatalogController@securedCatalogListPage')->name('securedCatalogListPage');
         ########################################################################
         # API
