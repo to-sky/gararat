@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use \App\Models\Catalog;
+use \App\Models\Helpers;
 
 class SecuredCatalogController extends Controller
 {
@@ -17,7 +18,11 @@ class SecuredCatalogController extends Controller
      */
     public function securedCatalogListPage()
     {
+        $catalogModel = new Catalog;
+        $helper = new Helpers;
+
         $data['pageTitle'] = 'Catalog';
+        $data['catalogs'] = $helper->buildCatalogWithLevels($catalogModel->getAllCatalogItems());
 
         return view('secured.catalog.list', $data);
     }
@@ -27,7 +32,11 @@ class SecuredCatalogController extends Controller
      */
     public function securedAddCatalogItemPage()
     {
+        $catalogModel = new Catalog;
+        $helper = new Helpers;
+
         $data['pageTitle'] = 'New Catalog Item';
+        $data['catalogs'] = $helper->buildCatalogWithLevels($catalogModel->getAllCatalogItems());
 
         return view('secured.catalog.add', $data);
     }

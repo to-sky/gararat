@@ -40,6 +40,14 @@ class Catalog extends Model
     {
         return DB::table('catalog')->where('cat_number', $catId)->count();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAllCatalogItems()
+    {
+        return DB::table('catalog')->get();
+    }
     //======================================================================
     // UPDATE
     //======================================================================

@@ -18,6 +18,9 @@
                         <label for="catalogParent">Catalog Parent</label>
                         <select name="catalogParent" id="catalogParent" class="form-control" autocomplete="off">
                             <option value="0">Root Element</option>
+                            @foreach($catalogs as $catalog)
+                                <option value="{{ $catalog->cat_number }}">{{ $catalog->cat_name_en }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
