@@ -34,11 +34,20 @@ class SecuredCatalogController extends Controller
     //======================================================================
     // API
     //======================================================================
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function saveNewCatalogItemAPI(Request $request)
     {
         $catalogModel = new Catalog;
         $data = $request->all();
-        dd($data);
-        return redirect()->route('securedCatalogListPage');
+        $findDublicatesCatId = $catalogModel->findCatalogItemByCatId($data['catalogNumber']);
+        if($findDublicatesCatId == 0) {
+            $catalogModel->saveNewCatalogItem($data);
+            return redirect()->route('securedCatalogListPage');
+        } else {
+            return redirect()->back()->withErrors('Catalog number must be unique');
+        }
     }
 }

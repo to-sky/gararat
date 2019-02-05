@@ -11,7 +11,24 @@ class Catalog extends Model
     //======================================================================
     // CREATE
     //======================================================================
-
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function saveNewCatalogItem($data)
+    {
+        return DB::table('catalog')->insert([
+            'cat_number' => $data['catalogNumber'],
+            'parent_cat' => $data['catalogParent'],
+            'cat_name_en' => $data['catalogNameEn'],
+            'cat_title_en' => $data['catalogSeoTitleEn'],
+            'cat_description_en' => $data['catalogSeoDescriptionEn'],
+            'cat_name_ar' => $data['catalogNameAr'],
+            'cat_title_ar' => $data['catalogSeoTitleAr'],
+            'cat_description_ar' => $data['catalogSeoDescriptionAr'],
+            'created_at' => Carbon::now()
+        ]);
+    }
     //======================================================================
     // READ
     //======================================================================
