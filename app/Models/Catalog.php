@@ -48,12 +48,38 @@ class Catalog extends Model
     {
         return DB::table('catalog')->get();
     }
+
+    /**
+     * @param $cid
+     * @return mixed
+     */
+    public function getCatalogItemParentId($cid)
+    {
+        return DB::table('catalog')->where('cid', $cid)->select('parent_cat')->first();
+    }
     //======================================================================
     // UPDATE
     //======================================================================
-
+    /**
+     * @param $oldParent
+     * @param $newParent
+     * @return mixed
+     */
+    public function changeParentCategory($oldParent, $newParent)
+    {
+        return DB::table('catalog')->where('parent_cat', $oldParent)->update([
+            'parent_cat' => $newParent
+        ]);
+    }
     //======================================================================
     // DELETE
     //======================================================================
-
+    /**
+     * @param $cid
+     * @return mixed
+     */
+    public function deleteCategoryItem($cid)
+    {
+        return DB::table('catalog')->where('cid', $cid)->delete(); // TODO: before delete category linked nodes should be deleted or hide
+    }
 }

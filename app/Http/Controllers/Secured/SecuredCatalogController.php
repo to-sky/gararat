@@ -61,4 +61,17 @@ class SecuredCatalogController extends Controller
             return redirect()->back()->withErrors('Catalog number must be unique');
         }
     }
+
+    /**
+     * @param $cid
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function securedDeleteCatalogItemPage($cid)
+    {
+        $catalogModel = new Catalog;
+        $getCurrentCatalogItemsParent = $catalogModel->getCatalogItemParentId($cid);
+        $catalogModel->changeParentCategory($cid, $getCurrentCatalogItemsParent->parent_cat);
+        $catalogModel->deleteCategoryItem($cid);
+        return redirect()->back();
+    }
 }
