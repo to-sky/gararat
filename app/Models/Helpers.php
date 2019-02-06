@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Helpers extends Model
 {
+    //======================================================================
+    // Catalog Menu Builder
+    //======================================================================
     /**
      * @param $qb_result
      * @return mixed
