@@ -49,5 +49,6 @@ Route::group(['middleware' => 'auth'], function() {
         ########################################################################
         // Catalog
         Route::post('/api/v1.0/catalog/new/save', 'Secured\SecuredCatalogController@saveNewCatalogItemAPI')->name('saveNewCatalogItemAPI');
+        Route::post('/api/v1.0/catalog/edit/update', 'Secured\SecuredCatalogController@updateCatalogItemAPI')->name('updateCatalogItemAPI');
     });
 });

@@ -38,9 +38,27 @@ class SecuredCatalogController extends Controller
 
         $data['pageTitle'] = 'New Catalog Item';
         $getCatalogArray = $helper->convertQueryBuilderToArray($catalogModel->getAllCatalogItems());
-        $data['catalogs'] = $helper->buildCatalogOptionsWithLevels($getCatalogArray, 0, '---');
+        $data['catalogs'] = $helper->buildCatalogOptionsWithLevels($getCatalogArray, 0, '---', NULL);
 
         return view('secured.catalog.add', $data);
+    }
+
+    /**
+     * @param $cid
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function securedEditCatalogItemPage($cid)
+    {
+        $catalogModel = new Catalog;
+        $helper = new Helpers;
+        $getCatalogItem = $catalogModel->getCatalogItemById($cid);
+
+        $data['pageTitle'] = 'Edit Catalog: ' . $getCatalogItem->cat_name_en;
+        $getCatalogArray = $helper->convertQueryBuilderToArray($catalogModel->getAllCatalogItems());
+        $data['catalogs'] = $helper->buildCatalogOptionsWithLevels($getCatalogArray, 0, '---', $getCatalogItem->parent_cat);
+        $data['catalogItem'] = $getCatalogItem;
+
+        return view('secured.catalog.edit', $data);
     }
     //======================================================================
     // API
@@ -56,6 +74,23 @@ class SecuredCatalogController extends Controller
         $findDublicatesCatId = $catalogModel->findCatalogItemByCatId($data['catalogNumber']);
         if($findDublicatesCatId == 0) {
             $catalogModel->saveNewCatalogItem($data);
+            return redirect()->route('securedCatalogListPage');
+        } else {
+            return redirect()->back()->withErrors('Catalog number must be unique');
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateCatalogItemAPI(Request $request)
+    {
+        $catalogModel = new Catalog;
+        $data = $request->all();
+        $findDublicatesCatId = $catalogModel->findCatalogItemByCatIdAndCid($data['catalogNumber'], $data['cid']);
+        if($findDublicatesCatId == 0) {
+            $catalogModel->updateCatalogItem($data);
             return redirect()->route('securedCatalogListPage');
         } else {
             return redirect()->back()->withErrors('Catalog number must be unique');

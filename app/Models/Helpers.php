@@ -21,14 +21,18 @@ class Helpers extends Model
      * @param $i
      * @return string
      */
-    public function buildCatalogOptionsWithLevels($array, $parent, $i)
+    public function buildCatalogOptionsWithLevels($array, $parent, $i, $activeItemId)
     {
         $result = '';
         foreach($array as $key => $value) {
             if($value['parent_cat'] == $parent) {
-                $result .= '<option value="' . $value['cat_number'] . '">' . $i . ' ' . $value['cat_name_en'] . '</option>';
+                $selected = '';
+                if($activeItemId !== NULL && $value['cat_number'] == $activeItemId) {
+                    $selected = 'selected';
+                }
+                $result .= '<option ' .  $selected . ' value="' . $value['cat_number'] . '">' . $i . ' ' . $value['cat_name_en'] . '</option>';
                 $i .= '---';
-                $result .= $this->buildCatalogOptionsWithLevels($array, $value['cat_number'], $i);
+                $result .= $this->buildCatalogOptionsWithLevels($array, $value['cat_number'], $i, $activeItemId);
             }
         }
         return $result;
