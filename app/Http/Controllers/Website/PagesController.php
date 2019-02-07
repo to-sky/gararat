@@ -12,7 +12,10 @@ class PagesController extends Controller
     //======================================================================
     public function homePage()
     {
-        return view('home');
+        $data['pageTitle'] = 'Home';
+        $data['pageDescription'] = 'Description';
+
+        return view('website.home', $data);
     }
     //======================================================================
     // API
