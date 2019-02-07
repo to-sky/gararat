@@ -5249,8 +5249,135 @@ html body {
   }
 }
 
+a {
+  text-decoration: none !important;
+  outline: none !important;
+}
+
 .header__top {
   width: 100%;
   background: #191a1c;
+}
+
+.header__top .header__top-contacts {
+  padding: 12px 0px;
+}
+
+.header__top .header__top-contacts a {
+  margin-right: 30px;
+  line-height: 1;
+  color: #ffffff;
+  font-size: 1.4rem;
+  transition: 0.3s all ease;
+}
+
+.header__top .header__top-contacts a i {
+  padding-right: 5px;
+}
+
+.header__top .header__top-contacts a:last-child {
+  margin-right: 0;
+}
+
+.header__top .header__top-search {
+  padding: 8px 0;
+  margin-right: 30px;
+}
+
+.header__top .header__top-search form {
+  position: relative;
+  z-index: 5;
+}
+
+.header__top .header__top-search form input,
+.header__top .header__top-search form button {
+  outline: none !important;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.4rem;
+}
+
+.header__top .header__top-search form input {
+  background: #777777;
+  line-height: 18px;
+  padding: 2px 5px;
+  padding-right: 15px;
+}
+
+.header__top .header__top-search form button {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  z-index: 6;
+}
+
+.header__top .header__top-auth {
+  margin-right: 30px;
+  padding: 12px 0;
+}
+
+.header__top .header__top-auth a {
+  line-height: 1;
+  color: #ffffff;
+  font-size: 1.4rem;
+  transition: 0.3s all ease;
+}
+
+.header__top .header__top-auth a i {
+  padding-right: 5px;
+}
+
+.header__top .header__top-lang {
+  padding: 8px 0;
+}
+
+.header__top .header__top-lang select {
+  outline: none !important;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.header__top .header__top-lang select option {
+  color: #777777;
+}
+
+.header__main {
+  padding-top: 26px;
+}
+
+.header__main .header__main-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.header__main .header__main-menu ul li a {
+  text-transform: uppercase;
+  font-family: MoolBoran, Roboto;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: #616161;
+  transition: 0.3s all ease;
+}
+
+.header__main .header__main-menu ul li a:hover {
+  color: #2d7dd2;
+  transition: 0.3s all ease;
+}
+
+.header__main .header__main-menu ul .active a {
+  color: #2d7dd2;
 }
 
