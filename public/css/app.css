@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,600);@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);*,
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,600);*,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -5241,5 +5241,16 @@ body {
 
 html body {
   background: #ffffff;
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1250px;
+  }
+}
+
+.header__top {
+  width: 100%;
+  background: #191a1c;
 }
 
