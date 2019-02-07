@@ -42,8 +42,8 @@
             @include('includes.website.layout.header')
         </header>
         <!-- /.header -->
-        <main class="main" style="min-height: 600px;">
-
+        <main class="main">
+            @yield('content')
         </main>
         <!-- /.main -->
         <footer class="footer">

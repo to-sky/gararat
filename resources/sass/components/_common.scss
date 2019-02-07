@@ -16,8 +16,7 @@ html {
     }
 }
 
-@media (min-width: 1280px) {
-    .container {
-        max-width: 1250px;
-    }
+img.image {
+    max-width: 100%;
+    height: auto;
 }
