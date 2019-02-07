@@ -109,14 +109,21 @@
 
         .section__news-item {
             background: $white;
+            overflow: hidden;
 
             .news-item__image {
+                overflow: hidden;
 
                 a {
                     display: block;
                     width: 100%;
                     position: relative;
                     color: $primary_color;
+                    transition: $default_transition;
+
+                    img {
+                        transition: $default_transition;
+                    }
 
                     .news-item__date {
                         position: absolute;
@@ -179,6 +186,22 @@
                     font-size: 1.2rem;
                     line-height: 1.1;
                     margin-bottom: 0;
+                }
+            }
+
+            &:hover {
+
+                .news-item__image {
+                    transition: $default_transition;
+
+                    a {
+                        transition: $default_transition;
+
+                        img {
+                            transform: scale(1.15);
+                            transition: $default_transition;
+                        }
+                    }
                 }
             }
         }

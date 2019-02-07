@@ -5416,6 +5416,11 @@ p {
 
 .section .section__news .section__news-item {
   background: #ffffff;
+  overflow: hidden;
+}
+
+.section .section__news .section__news-item .news-item__image {
+  overflow: hidden;
 }
 
 .section .section__news .section__news-item .news-item__image a {
@@ -5423,6 +5428,11 @@ p {
   width: 100%;
   position: relative;
   color: #191a1c;
+  transition: 0.3s all ease;
+}
+
+.section .section__news .section__news-item .news-item__image a img {
+  transition: 0.3s all ease;
 }
 
 .section .section__news .section__news-item .news-item__image a .news-item__date {
@@ -5485,6 +5495,20 @@ p {
   font-size: 1.2rem;
   line-height: 1.1;
   margin-bottom: 0;
+}
+
+.section .section__news .section__news-item:hover .news-item__image {
+  transition: 0.3s all ease;
+}
+
+.section .section__news .section__news-item:hover .news-item__image a {
+  transition: 0.3s all ease;
+}
+
+.section .section__news .section__news-item:hover .news-item__image a img {
+  -webkit-transform: scale(1.15);
+          transform: scale(1.15);
+  transition: 0.3s all ease;
 }
 
 .bg-section {
