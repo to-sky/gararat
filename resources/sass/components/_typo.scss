@@ -25,14 +25,14 @@ h2 {
     line-height: 1;
     margin-top: 0;
     margin-bottom: 0;
-    padding-bottom: 30px;
+    padding-bottom: 33px;
     font-weight: 400;
     color: $primary_color;
 
     &:after {
         content: '';
         position: absolute;
-        bottom: 15px;
+        bottom: 12px;
         left: 0;
         width: 40px;
         height: 3px;
@@ -43,6 +43,11 @@ h2 {
 a {
     text-decoration: none !important;
     outline: none !important;
+    transition: $default_transition;
+
+    &:hover {
+        transition: $default_transition;
+    }
 }
 
 p {
