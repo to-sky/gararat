@@ -42,7 +42,7 @@
             @include('includes.website.layout.header')
         </header>
         <!-- /.header -->
-        <main class="main">
+        <main class="main" style="min-height: 600px;">
 
         </main>
         <!-- /.main -->
