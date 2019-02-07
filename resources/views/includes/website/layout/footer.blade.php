@@ -28,6 +28,9 @@
                             <a href="#">Services</a>
                         </li>
                         <li>
+                            <a href="#">News</a>
+                        </li>
+                        <li>
                             <a href="#">Contacts</a>
                         </li>
                     </ul>
