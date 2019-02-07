@@ -36,7 +36,18 @@
     <meta name="msapplication-TileColor" content="#191a1c">
     <meta name="theme-color" content="#191a1c">
 </head>
-<body>
+    <body>
+        <header class="header">
+            @include('includes.website.layout.header')
+        </header>
+        <!-- /.header -->
+        <main class="main">
 
-</body>
+        </main>
+        <!-- /.main -->
+        <footer class="footer">
+            @include('includes.website.layout.footer')
+        </footer>
+        <!-- /.footer -->
+    </body>
 </html>
