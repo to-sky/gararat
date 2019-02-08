@@ -66,6 +66,13 @@
         margin-right: 30px;
         padding: 12px 0;
 
+        span {
+            padding: 0 5px;
+            line-height: 1;
+            color: $white;
+            font-size: 1.4rem;
+        }
+
         a {
             line-height: 1;
             color: $white;

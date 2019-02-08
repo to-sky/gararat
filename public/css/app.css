@@ -5268,7 +5268,8 @@ h1.homepage .red {
   color: #fc0203;
 }
 
-h2 {
+h2,
+h1.page-title {
   position: relative;
   font-size: 4rem;
   line-height: 1;
@@ -5279,10 +5280,11 @@ h2 {
   color: #191a1c;
 }
 
-h2:after {
+h2:after,
+h1.page-title:after {
   content: "";
   position: absolute;
-  bottom: 12px;
+  bottom: 18px;
   left: 0;
   width: 40px;
   height: 3px;
@@ -5581,6 +5583,13 @@ p {
 .header__top .header__top-auth {
   margin-right: 30px;
   padding: 12px 0;
+}
+
+.header__top .header__top-auth span {
+  padding: 0 5px;
+  line-height: 1;
+  color: #ffffff;
+  font-size: 1.4rem;
 }
 
 .header__top .header__top-auth a {
