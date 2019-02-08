@@ -14,7 +14,7 @@
                     <div class="col-12 col-md-4">
                         <div class="section__block">
                             <img src="{{ asset('assets/sections/2.jpg') }}" alt="Tractors">
-                            <a href="#"><span>Tractors</span></a>
+                            <a href="#"><span>Equipment</span></a>
                         </div>
                         <!-- /.section__block -->
                     </div>
