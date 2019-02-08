@@ -17,6 +17,7 @@ class Catalog extends Migration
             $table->increments('cid');
             $table->integer('cat_number')->unique();
             $table->integer('parent_cat')->default(0);
+            $table->integer('cat_type')->default(0)->comment('0 - Equipment, 1 - Parts');
             // English names
             $table->string('cat_name_en');
             $table->string('cat_title_en')->nullable();
