@@ -43,7 +43,24 @@
         </header>
         <!-- /.header -->
         <main class="main">
-            @yield('content')
+            @if(in_array(\Request::route()->getName(), ['catalogPage']))
+                <div class="container mb-5">
+                    <div class="row">
+                        <div class="col-12 col-lg-3">
+                            @include('includes.website.layout.sidebar')
+                        </div>
+                        <!-- /.col-12 col-lg-3 -->
+                        <div class="col-12 col-lg-9">
+                            @yield('content')
+                        </div>
+                        <!-- /.col-12 col-lg-9 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container -->
+            @else
+                @yield('content')
+            @endif
         </main>
         <!-- /.main -->
         <footer class="footer">

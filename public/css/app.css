@@ -5291,6 +5291,10 @@ h1.page-title:after {
   background: #fc0203;
 }
 
+h1.page-title {
+  margin-top: 30px;
+}
+
 a {
   text-decoration: none !important;
   outline: none !important;

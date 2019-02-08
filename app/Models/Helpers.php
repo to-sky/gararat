@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use \App\Models\Catalog;
+
 class Helpers extends Model
 {
     //======================================================================
@@ -58,5 +60,13 @@ class Helpers extends Model
             }
         }
         return $result ? '<ul>' . $result . '</ul>' . "\n" : '';
+    }
+
+    //======================================================================
+    // Breadcrumbs Builder
+    //======================================================================
+    public function buildCatalogBreadcrumbs($currentCatalog)
+    {
+        $breadcrumbsArray = [];
     }
 }

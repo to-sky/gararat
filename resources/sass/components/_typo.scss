@@ -40,6 +40,10 @@ h1.page-title {
         background: $secondary_color_muted;
     }
 }
+
+h1.page-title {
+    margin-top: 30px;
+}
 // Links and paragraphs
 a {
     text-decoration: none !important;

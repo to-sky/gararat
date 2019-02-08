@@ -14,7 +14,7 @@
                     <div class="col-12 col-md-4">
                         <div class="section__block">
                             <img src="{{ asset('assets/sections/2.jpg') }}" alt="Tractors">
-                            <a href="#"><span>Equipment</span></a>
+                            <a href="{{ route('catalogPage', 1) }}"><span>Equipment</span></a>
                         </div>
                         <!-- /.section__block -->
                     </div>
@@ -22,7 +22,7 @@
                     <div class="col-12 col-md-4">
                         <div class="section__block">
                             <img src="{{ asset('assets/sections/4.jpg') }}" alt="Parts">
-                            <a href="#"><span>Parts</span></a>
+                            <a href="{{ route('catalogPage', 2) }}"><span>Parts</span></a>
                         </div>
                         <!-- /.section__block -->
                     </div>

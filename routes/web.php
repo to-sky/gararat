@@ -22,7 +22,7 @@ Route::get('/home', function() {
 ########################################################################
 Route::get('/', 'Website\PagesController@homePage')->name('homePage');
 // Catalog
-Route::get('/{cat_number}', 'Website\CatalogController@catalogPage')->name('catalogPage');
+Route::get('/catalog/{cat_number}', 'Website\CatalogController@catalogPage')->name('catalogPage');
 ########################################################################
 # Auth routes
 ########################################################################
