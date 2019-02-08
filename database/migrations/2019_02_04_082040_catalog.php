@@ -15,7 +15,7 @@ class Catalog extends Migration
     {
         Schema::create('catalog', function (Blueprint $table) {
             $table->increments('cid');
-            $table->integer('cat_number')->default(0);
+            $table->integer('cat_number')->unique();
             $table->integer('parent_cat')->default(0);
             // English names
             $table->string('cat_name_en');
