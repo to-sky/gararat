@@ -1,7 +1,7 @@
 @extends('layouts.secured')
 
 @section('content')
-    <form action="{{ route('saveNewCatalogItemAPI') }}" method="post" autocomplete="off" enctype="multipart/form-data">
+    <form action="{{ route('saveNewEquipmentAPI') }}" method="post" autocomplete="off" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <!-- Basic Fields -->
@@ -32,7 +32,7 @@
                             <h6 class="c-grey-900">Common</h6>
                             <div class="form-group">
                                 <label for="catalog">Catalog</label>
-                                <select name="catalog" id="catalog" class="form-control" multiple style="min-height: 150px;" autocomplete="off">
+                                <select name="catalog[]" id="catalog" class="form-control" multiple style="min-height: 150px;" autocomplete="off">
                                     {!! $catalog !!}
                                 </select>
                             </div>
@@ -72,11 +72,11 @@
                             <div class="form-group row">
                                 <div class="col-6">
                                     <label for="mainImage">Main Image</label>
-                                    <input type="file" class="form-control" name="mainImage" id="mainImage" value="0.00">
+                                    <input type="file" class="form-control" name="mainImage" id="mainImage">
                                 </div>
                                 <div class="col-6">
                                     <label for="additionalImages">Additional Images</label>
-                                    <input type="file" class="form-control" name="additionalImages" id="additionalImages" value="0.00">
+                                    <input type="file" class="form-control" multiple name="additionalImages" id="additionalImages">
                                 </div>
                             </div>
                         </div>

@@ -40,12 +40,26 @@ class SecuredProductsController extends Controller
                 return view('secured.nodes.parts.add', $data);
                 break;
             default:
-                return redirect()->route('securedDashboardPage');
+                return redirect()->route('productsListSecuredPage');
                 break;
         }
+    }
+
+    public function productsListSecuredPage()
+    {
+        
     }
     //======================================================================
     // API
     //======================================================================
-    
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function saveNewEquipmentAPI(Request $request)
+    {
+        $data = $request->all();
+        dd($data);
+        return redirect()->route('productsListSecuredPage');
+    }
 }
