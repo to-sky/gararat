@@ -115,6 +115,60 @@ class Catalog extends Model
     {
         return DB::table('catalog')->where('cat_number', $catNumber)->get();
     }
+
+    public function getAllChildsCategories($category)
+    {
+        $allCategories = $this->getAllCatalogItems();
+        $categories = json_decode(json_encode($allCategories), true);
+        $array = [];
+        if($category != 1 && $category != 2) {
+            $parent = $category;
+        } else {
+            $parent = 0;
+        }
+        $get = $this->buildChildsCategories($categories, $parent, $category);
+        $explodedCatalog = explode(',', $get);
+        foreach ($explodedCatalog as $catalog) {
+            if($catalog !== '') {
+                if(!in_array($catalog, $array)) {
+                    $array[] = $catalog;
+                }
+            }
+        }
+        return $array;
+    }
+
+    /**
+     * @param $catalog
+     * @param $parent
+     * @param $neededCategory
+     * @return string
+     */
+    public function buildChildsCategories($catalog, $parent, $neededCategory)
+    {
+        $array = '';
+        foreach($catalog as $key => $value) {
+            if($value['parent_cat'] == $parent) {
+                if($neededCategory !== NULL) {
+                    if($neededCategory != 1 && $neededCategory != 2) {
+                        if($neededCategory == $value['parent_cat']) {
+                            $array .= $value['cid'] . ',';
+                            $array .= $this->buildChildsCategories($catalog, $value['cat_number'], NULL);
+                        }
+                    } else {
+                        if($neededCategory == $value['cat_number']) {
+                            $array .= $value['cid'] . ',';
+                            $array .= $this->buildChildsCategories($catalog, $value['cat_number'], NULL);
+                        }
+                    }
+                } else {
+                    $array .= $value['cid'] . ',';
+                    $array .= $this->buildChildsCategories($catalog, $value['cat_number'], NULL);
+                }
+            }
+        }
+        return $array;
+    }
     //======================================================================
     // UPDATE
     //======================================================================

@@ -14,6 +14,30 @@ class SecuredProductsController extends Controller
     //======================================================================
     // PAGES
     //======================================================================
+    public function productsListSecuredPage($product_type)
+    {
+        $nodesModel = new Nodes;
+        $catalogModel = new Catalog;
+        $getAllChildsCategories = $catalogModel->getAllChildsCategories($product_type);
+        $getNodes = $nodesModel->getNodesForProductType($getAllChildsCategories);
+
+        switch($product_type) {
+            case 1:
+                $data['pageTitle'] = 'Equipment nodes';
+                break;
+            case 2:
+                $data['pageTitle'] = 'Equipment nodes';
+                break;
+            default:
+                $data['pageTitle'] = 'Nodes';
+                break;
+        }
+
+        $data['products'] = $nodesModel->getNodesByType($getNodes, $product_type);
+        dd($data['products']);
+
+        return view('secured.nodes.list', $data);
+    }
     /**
      * @param $product_type
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
@@ -22,7 +46,6 @@ class SecuredProductsController extends Controller
     {
         $helpersModel = new Helpers;
         $catalogModel = new Catalog;
-        $nodesModel = new Nodes;
         // Catalog operations
         $getCatalog = $catalogModel->getAllCatalogItems();
         $getCatalogArray = $helpersModel->convertQueryBuilderToArray($getCatalog);
@@ -40,14 +63,9 @@ class SecuredProductsController extends Controller
                 return view('secured.nodes.parts.add', $data);
                 break;
             default:
-                return redirect()->route('productsListSecuredPage');
+                return redirect()->route('productsListSecuredPage', 1);
                 break;
         }
-    }
-
-    public function productsListSecuredPage()
-    {
-        
     }
     //======================================================================
     // API
@@ -77,6 +95,6 @@ class SecuredProductsController extends Controller
                 $nodesModel->saveNewNodeImage($saveNode, $image, 0);
             }
         }
-        return redirect()->route('productsListSecuredPage');
+        return redirect()->route('productsListSecuredPage', 1);
     }
 }
