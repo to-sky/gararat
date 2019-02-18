@@ -89,8 +89,12 @@
                 <div class="bgc-white p-20 bd">
                     <h6 class="c-grey-900">Equipment</h6>
                     <div class="form-group">
-                        <label for="nodeDescription">Body</label>
-                        <textarea name="nodeDescription" id="nodeDescription" class="summernote"></textarea>
+                        <label for="nodeBody">Body</label>
+                        <textarea name="nodeBody" id="nodeBody" class="summernote"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="nodeShortBody">Short Body</label>
+                        <textarea name="nodeShortBody" id="nodeShortBody" class="summernote"></textarea>
                     </div>
                 </div>
             </div>
