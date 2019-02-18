@@ -62,11 +62,11 @@
                         <li @if(in_array(\Request::route()->getName(), ['homePage'])) class="active" @endif>
                             <a href="{{ route('homePage') }}">Home</a>
                         </li>
-                        <li>
-                            <a href="#">Products</a>
+                        <li @if(in_array(\Request::route()->getName(), ['catalogPage'])) class="active" @endif>
+                            <a href="{{ route('catalogPage', 1) }}">Equipments</a>
                         </li>
-                        <li>
-                            <a href="#">Parts</a>
+                        <li @if(in_array(\Request::route()->getName(), ['catalogPage'])) class="active" @endif>
+                            <a href="{{ route('catalogPage', 2) }}">Parts</a>
                         </li>
                         <li>
                             <a href="#">Services</a>

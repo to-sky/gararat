@@ -79,6 +79,42 @@ class Catalog extends Model
     {
         return DB::table('catalog')->where('cid', $cid)->first();
     }
+
+    /**
+     * @param $catNumber
+     * @return mixed
+     */
+    public function getCatalogByCatNumber($catNumber)
+    {
+        return DB::table('catalog')->where('cat_number', $catNumber)->first();
+    }
+
+    /**
+     * @param $catNumber
+     * @return mixed
+     */
+    public function getCatalogChilds($catNumber)
+    {
+        return DB::table('catalog')->where('parent_cat', $catNumber)->get();
+    }
+
+    /**
+     * @param $catParent
+     * @return mixed
+     */
+    public function getCatalogParent($catParent)
+    {
+        return DB::table('catalog')->where('cat_number', $catParent)->first();
+    }
+
+    /**
+     * @param $catNumber
+     * @return mixed
+     */
+    public function getCatalogListByCatalogNumber($catNumber)
+    {
+        return DB::table('catalog')->where('cat_number', $catNumber)->get();
+    }
     //======================================================================
     // UPDATE
     //======================================================================

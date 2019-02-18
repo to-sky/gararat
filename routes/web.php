@@ -22,7 +22,7 @@ Route::get('/home', function() {
 ########################################################################
 Route::get('/', 'Website\PagesController@homePage')->name('homePage');
 // Catalog
-Route::get('/{cat_number}', 'Website\CatalogController@catalogPage')->name('catalogPage');
+Route::get('/catalog/{cat_number}', 'Website\CatalogController@catalogPage')->name('catalogPage');
 ########################################################################
 # Auth routes
 ########################################################################
@@ -46,11 +46,18 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/catalog/add', 'Secured\SecuredCatalogController@securedAddCatalogItemPage')->name('securedAddCatalogItemPage');
         Route::get('/secured/admin/catalog/edit/{cid}', 'Secured\SecuredCatalogController@securedEditCatalogItemPage')->name('securedEditCatalogItemPage');
         Route::get('/secured/admin/catalog/delete/{cid}', 'Secured\SecuredCatalogController@securedDeleteCatalogItemPage')->name('securedDeleteCatalogItemPage');
+        // Products
+        Route::get('/secured/admin/products', 'Secured\SecuredProductsController@productsListSecuredPage')->name('productsListSecuredPage');
+        Route::get('/secured/admin/products/{product_type}/add', 'Secured\SecuredProductsController@addNewProduct')->name('addNewProduct');
+        Route::get('/secured/admin/products/{product_type}/add', 'Secured\SecuredProductsController@addNewProduct')->name('addNewProduct');
         ########################################################################
         # API
         ########################################################################
         // Catalog
         Route::post('/api/v1.0/catalog/new/save', 'Secured\SecuredCatalogController@saveNewCatalogItemAPI')->name('saveNewCatalogItemAPI');
         Route::post('/api/v1.0/catalog/edit/update', 'Secured\SecuredCatalogController@updateCatalogItemAPI')->name('updateCatalogItemAPI');
+        // Products
+        Route::post('/api/v1.0/products/equipment/save', 'Secured\SecuredProductsController@saveNewEquipmentAPI')->name('saveNewEquipmentAPI');
+        Route::post('/api/v1.0/products/parts/save', 'Secured\SecuredProductsController@saveNewPartsAPI')->name('saveNewPartsAPI');
     });
 });
