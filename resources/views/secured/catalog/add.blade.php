@@ -35,7 +35,7 @@
                         <input type="text" class="form-control" id="catalogSeoTitleEn" name="catalogSeoTitleEn" placeholder="Input catalog SEO title" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <label for="catalogSeoDescriptionEn">Catalog Number</label>
+                        <label for="catalogSeoDescriptionEn">Catalog SEO Description</label>
                         <textarea class="form-control" id="catalogSeoDescriptionEn" name="catalogSeoDescriptionEn"></textarea>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         <input type="text" class="form-control" id="catalogSeoTitleAr" name="catalogSeoTitleAr" placeholder="Input catalog SEO title" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <label for="catalogSeoDescriptionAr">Catalog Number</label>
+                        <label for="catalogSeoDescriptionAr">Catalog Catalog SEO Description</label>
                         <textarea class="form-control" id="catalogSeoDescriptionAr" name="catalogSeoDescriptionAr"></textarea>
                     </div>
                 </div>

@@ -20,9 +20,9 @@ class SecuredProductsController extends Controller
         $catalogModel = new Catalog;
         $nodesModel = new Nodes;
         // Catalog operations
-        $getCatalog = $catalogModel->getCatalogListByCatalogNumber($product_type);
+        $getCatalog = $catalogModel->getAllCatalogItems();
         $getCatalogArray = $helpersModel->convertQueryBuilderToArray($getCatalog);
-        $buildCatalogOptions = $helpersModel->buildCatalogOptionsWithLevels($getCatalogArray, 0, '---', NULL);
+        $buildCatalogOptions = $helpersModel->buildCatalogOptionsWithLevels($getCatalogArray, 0, '---', NULL, $product_type);
 
         $data['catalog'] = $buildCatalogOptions;
 

@@ -26,7 +26,7 @@ class Helpers extends Model
      * @param $i
      * @return string
      */
-    public function buildCatalogOptionsWithLevels($array, $parent, $i, $activeItemId)
+    public function buildCatalogOptionsWithLevels($array, $parent, $i, $activeItemId, $protectId)
     {
         $result = '';
         foreach($array as $key => $value) {
@@ -35,9 +35,17 @@ class Helpers extends Model
                 if($activeItemId !== NULL && $value['cat_number'] == $activeItemId) {
                     $selected = 'selected';
                 }
-                $result .= '<option ' .  $selected . ' value="' . $value['cat_number'] . '">' . $i . ' ' . $value['cat_name_en'] . '</option>';
-                $i .= '---';
-                $result .= $this->buildCatalogOptionsWithLevels($array, $value['cat_number'], $i, $activeItemId);
+                $option = '<option ' .  $selected . ' value="' . $value['cat_number'] . '">' . $value['cat_number'] . ' ' . $value['cat_name_en'] . '</option>';
+                // $i .= '---';
+                if($protectId !== NULL) {
+                    if($value['cat_number'] == $protectId) {
+                        $result .= $option;
+                        $result .= $this->buildCatalogOptionsWithLevels($array, $value['cat_number'], $i, $activeItemId, NULL);
+                    }
+                } else {
+                    $result .= $option;
+                    $result .= $this->buildCatalogOptionsWithLevels($array, $value['cat_number'], $i, $activeItemId, NULL);
+                }
             }
         }
         return $result;
