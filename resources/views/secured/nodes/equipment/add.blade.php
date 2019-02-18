@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="col-6">
                                     <label for="additionalImages">Additional Images</label>
-                                    <input type="file" class="form-control" multiple name="additionalImages" id="additionalImages">
+                                    <input type="file" class="form-control" multiple name="additionalImages[]" id="additionalImages">
                                 </div>
                             </div>
                         </div>
