@@ -1,7 +1,7 @@
 @extends('layouts.secured')
 
 @section('content')
-    <form action="{{ route('saveNewCatalogItemAPI') }}" method="post" autocomplete="off">
+    <form action="{{ route('saveNewCatalogItemAPI') }}" method="post" autocomplete="off" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <!-- Basic Fields -->
@@ -32,9 +32,52 @@
                             <h6 class="c-grey-900">Common</h6>
                             <div class="form-group">
                                 <label for="catalog">Catalog</label>
-                                <select name="catalog" id="catalog" class="form-control" multiple style="min-height: 150px;">
+                                <select name="catalog" id="catalog" class="form-control" multiple style="min-height: 150px;" autocomplete="off">
                                     {!! $catalog !!}
                                 </select>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-4">
+                                    <label for="hasPhoto">Has photo</label>
+                                    <select name="hasPhoto" id="hasPhoto" class="form-control" autocomplete="off">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label for="inStock">In stock</label>
+                                    <select name="inStock" id="inStock" class="form-control" autocomplete="off">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label for="isSpecial">Is Special</label>
+                                    <select name="isSpecial" id="isSpecial" class="form-control" autocomplete="off">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-6">
+                                    <label for="nodePrice">Price*</label>
+                                    <input type="number" class="form-control" name="nodePrice" id="nodePrice" required>
+                                </div>
+                                <div class="col-6">
+                                    <label for="nodeSpecialPrice">Special Price</label>
+                                    <input type="number" class="form-control" name="nodeSpecialPrice" id="nodeSpecialPrice" value="0.00">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-6">
+                                    <label for="mainImage">Main Image</label>
+                                    <input type="file" class="form-control" name="mainImage" id="mainImage" value="0.00">
+                                </div>
+                                <div class="col-6">
+                                    <label for="additionalImages">Additional Images</label>
+                                    <input type="file" class="form-control" name="additionalImages" id="additionalImages" value="0.00">
+                                </div>
                             </div>
                         </div>
                     </div>

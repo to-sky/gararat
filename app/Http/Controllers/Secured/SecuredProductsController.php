@@ -14,6 +14,10 @@ class SecuredProductsController extends Controller
     //======================================================================
     // PAGES
     //======================================================================
+    /**
+     * @param $product_type
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function addNewProduct($product_type)
     {
         $helpersModel = new Helpers;
