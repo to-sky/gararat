@@ -106,6 +106,15 @@ class Catalog extends Model
     {
         return DB::table('catalog')->where('cat_number', $catParent)->first();
     }
+
+    /**
+     * @param $catNumber
+     * @return mixed
+     */
+    public function getCatalogListByCatalogNumber($catNumber)
+    {
+        return DB::table('catalog')->where('cat_number', $catNumber)->get();
+    }
     //======================================================================
     // UPDATE
     //======================================================================
