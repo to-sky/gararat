@@ -251,11 +251,29 @@ class Nodes extends Model
     // DELETE
     //======================================================================
     /**
+     * @param $nid
+     * @return bool
+     */
+    public function removeNodeById($nid)
+    {
+        DB::table('nodes_images')->where('node', $nid)->delete();
+        DB::table('nodes_machinery_fields')->where('node', $nid)->delete();
+        DB::table('nodes_parts_fields')->where('node', $nid)->delete();
+        DB::table('nodes_to_catalog')->where('node', $nid)->delete();
+        DB::table('nodes')->where('nid', $nid)->delete();
+        return true;
+    }
+    /**
      * @param $ni_id
      * @return mixed
      */
     public function deleteImageById($ni_id)
     {
         return DB::table('nodes_images')->where('ni_id', $ni_id)->delete();
+    }
+
+    public function removeProductByNodeId($nid)
+    {
+
     }
 }

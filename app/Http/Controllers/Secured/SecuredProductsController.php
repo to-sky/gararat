@@ -138,6 +138,10 @@ class SecuredProductsController extends Controller
         return redirect()->route('productsListSecuredPage', 1);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateEquipmentAPI(Request $request)
     {
         $nodesModel = new Nodes;
@@ -155,6 +159,17 @@ class SecuredProductsController extends Controller
                 $nodesModel->saveNewNodeImage($data['nid'], $image, 0);
             }
         }
+        return redirect()->back();
+    }
+
+    /**
+     * @param $nid
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeProductAPI($nid)
+    {
+        $nodesModel = new Nodes;
+        $nodesModel->removeNodeById($nid);
         return redirect()->back();
     }
 
