@@ -190,6 +190,26 @@ class SecuredProductsController extends Controller
         return redirect()->route('productsListSecuredPage', 2);
     }
 
+    public function updatePartsAPI(Request $request)
+    {
+        $nodesModel = new Nodes;
+        $data = $request->all();
+        $mainImage = $request->file('mainImage');
+        $additionalImages = $request->file('additionalImages');
+        $nodesModel->updateBasicNode($data);
+        $nodesModel->updatePartsNode($data);
+        $nodesModel->setNodeToCatalog($data['nid'], $data['catalog']);
+        if($mainImage !== NULL) {
+            $nodesModel->saveNewNodeImage($data['nid'], $mainImage, 1);
+        }
+        if($additionalImages !== NULL) {
+            foreach ($additionalImages as $image) {
+                $nodesModel->saveNewNodeImage($data['nid'], $image, 0);
+            }
+        }
+        return redirect()->back();
+    }
+
     /**
      * @param $nid
      * @return \Illuminate\Http\RedirectResponse
