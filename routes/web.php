@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/catalog/add', 'Secured\SecuredCatalogController@securedAddCatalogItemPage')->name('securedAddCatalogItemPage');
         Route::get('/secured/admin/catalog/edit/{cid}', 'Secured\SecuredCatalogController@securedEditCatalogItemPage')->name('securedEditCatalogItemPage');
         Route::get('/secured/admin/catalog/delete/{cid}', 'Secured\SecuredCatalogController@securedDeleteCatalogItemPage')->name('securedDeleteCatalogItemPage');
+        // Products
         ########################################################################
         # API
         ########################################################################
