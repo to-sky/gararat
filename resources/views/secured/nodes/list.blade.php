@@ -23,7 +23,7 @@
                                 <td><img src="{{ asset($product->thumb_path) }}" height="26"></td>
                                 <td>{{ $product->n_name_en }}</td>
                                 <td>
-                                    @if($product->special_price !== 0)
+                                    @if($product->is_special != 0)
                                         {{ number_format($product->special_price, 2, '.', ' ') }} <small><s>{{ number_format($product->price, 2, '.', ' ') }}</s></small>
                                     @else
                                         {{ number_format($product->price, 2, '.', ' ') }}

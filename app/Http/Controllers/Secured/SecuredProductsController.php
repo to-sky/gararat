@@ -163,6 +163,34 @@ class SecuredProductsController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function saveNewPartsAPI(Request $request)
+    {
+        $nodesModel = new Nodes;
+        $data = $request->all();
+        $mainImage = $request->file('mainImage');
+        $additionalImages = $request->file('additionalImages');
+        // Save node
+        $saveNode = $nodesModel->createBasicNode($data);
+        // Save parts node
+        $nodesModel->savePartsNode($saveNode, $data);
+        // Set node to catalog
+        $nodesModel->setNodeToCatalog($saveNode, $data['catalog']);
+        // Proceed images
+        if($mainImage !== NULL) {
+            $nodesModel->saveNewNodeImage($saveNode, $mainImage, 1);
+        }
+        if($additionalImages !== NULL) {
+            foreach ($additionalImages as $image) {
+                $nodesModel->saveNewNodeImage($saveNode, $image, 0);
+            }
+        }
+        return redirect()->route('productsListSecuredPage', 2);
+    }
+
+    /**
      * @param $nid
      * @return \Illuminate\Http\RedirectResponse
      */

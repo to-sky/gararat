@@ -90,6 +90,28 @@ class Nodes extends Model
 
     /**
      * @param $nid
+     * @param $data
+     * @return mixed
+     */
+    public function savePartsNode($nid, $data)
+    {
+        return DB::table('nodes_parts_fields')->insert([
+            'node' => $nid,
+            'group' => $data['partGroup'],
+            'fig_no' => $data['figNumber'],
+            'pos_no' => $data['posNumber'],
+            'qty' => $data['qty'],
+            'producer_id' => $data['producerId'],
+            'our_id' => $data['ourId'],
+            'fig_name_en' => $data['figNameEn'],
+            'npf_name_en' => $data['nameEn'],
+            'fig_name_ar' => $data['figNameAr'],
+            'npf_name_ar' => $data['nameAr']
+        ]);
+    }
+
+    /**
+     * @param $nid
      * @param $catalogs
      * @return bool
      */
