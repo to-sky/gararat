@@ -8,6 +8,7 @@
     <title>@if($pageTitle && NULL !== $pageTitle) {{ $pageTitle }} @else {{ config('app.name', 'Laravel') }} @endif</title>
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('admin-panel/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin-panel/summernote/summernote-lite.css') }}">
 </head>
     <body class="app">
         <div id="appRoot">
@@ -32,5 +33,30 @@
         <!-- Scripts -->
         <script src="{{ asset('admin-panel/vendor.js') }}"></script>
         <script src="{{ asset('admin-panel/bundle.js') }}"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="{{ asset('admin-panel/summernote/summernote-lite.min.js') }}"></script>
+        <script>
+            (function($) {
+                $('.summernote').summernote({
+                    height: 300,
+                    toolbar: [
+                        // [groupName, [list of button]]
+                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        ['font', ['strikethrough', 'superscript', 'subscript']],
+                        ['para', ['ul', 'ol', 'paragraph']]
+                    ],
+                    callbacks: {
+                        onPaste: function (e) {
+                            var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                            e.preventDefault();
+                            // Firefox fix
+                            setTimeout(function () {
+                                document.execCommand('insertText', false, bufferText);
+                            }, 10);
+                        }
+                    }
+                });
+            })(jQuery);
+        </script>
     </body>
 </html>

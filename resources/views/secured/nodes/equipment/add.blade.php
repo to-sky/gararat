@@ -88,7 +88,10 @@
             <div class="col-12" style="margin-bottom: 20px;">
                 <div class="bgc-white p-20 bd">
                     <h6 class="c-grey-900">Equipment</h6>
-
+                    <div class="form-group">
+                        <label for="nodeDescription">Body</label>
+                        <textarea name="nodeDescription" id="nodeDescription" class="summernote"></textarea>
+                    </div>
                 </div>
             </div>
             <!-- End Equipments Fields -->
