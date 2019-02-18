@@ -23,7 +23,7 @@
                                 <td><img src="{{ asset($product->thumb_path) }}" height="26"></td>
                                 <td>{{ $product->n_name_en }}</td>
                                 <td>
-                                    @if($product->special_price !== 0)
+                                    @if($product->is_special != 0)
                                         {{ number_format($product->special_price, 2, '.', ' ') }} <small><s>{{ number_format($product->price, 2, '.', ' ') }}</s></small>
                                     @else
                                         {{ number_format($product->price, 2, '.', ' ') }}
@@ -43,7 +43,7 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('editNode', ['product_type' => $product_type, 'nid' => $product->nid]) }}" class="btn btn-success"><i class="ti-pencil"></i></a>
-                                    <a href="" class="btn btn-danger"><i class="ti-trash"></i></a>
+                                    <a href="{{ route('removeProductAPI', $product->nid) }}" class="btn btn-danger"><i class="ti-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach

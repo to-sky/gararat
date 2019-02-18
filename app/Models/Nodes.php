@@ -90,6 +90,28 @@ class Nodes extends Model
 
     /**
      * @param $nid
+     * @param $data
+     * @return mixed
+     */
+    public function savePartsNode($nid, $data)
+    {
+        return DB::table('nodes_parts_fields')->insert([
+            'node' => $nid,
+            'group' => $data['partGroup'],
+            'fig_no' => $data['figNumber'],
+            'pos_no' => $data['posNumber'],
+            'qty' => $data['qty'],
+            'producer_id' => $data['producerId'],
+            'our_id' => $data['ourId'],
+            'fig_name_en' => $data['figNameEn'],
+            'npf_name_en' => $data['nameEn'],
+            'fig_name_ar' => $data['figNameAr'],
+            'npf_name_ar' => $data['nameAr']
+        ]);
+    }
+
+    /**
+     * @param $nid
      * @param $catalogs
      * @return bool
      */
@@ -114,7 +136,9 @@ class Nodes extends Model
      */
     public function saveNewNodeImage($nid, $image, $isFeatured)
     {
-        DB::table('nodes_images')->where('node', $nid)->where('is_featured', 1)->delete();
+        if($isFeatured == 1) {
+            DB::table('nodes_images')->where('node', $nid)->where('is_featured', 1)->delete();
+        }
         return DB::table('nodes_images')->insert([
             'node' => $nid,
             'full_path' => $this->proceedNodeImage($image, 2048, 'products'),
@@ -247,9 +271,42 @@ class Nodes extends Model
             'nmf_short_ar' => $data['nodeShortBodyAr']
         ]);
     }
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function updatePartsNode($data)
+    {
+        return DB::table('nodes_parts_fields')->where('node', $data['nid'])->update([
+            'group' => $data['partGroup'],
+            'fig_no' => $data['figNumber'],
+            'pos_no' => $data['posNumber'],
+            'qty' => $data['qty'],
+            'producer_id' => $data['producerId'],
+            'our_id' => $data['ourId'],
+            'fig_name_en' => $data['figNameEn'],
+            'npf_name_en' => $data['nameEn'],
+            'fig_name_ar' => $data['figNameAr'],
+            'npf_name_ar' => $data['nameAr']
+        ]);
+    }
     //======================================================================
     // DELETE
     //======================================================================
+    /**
+     * @param $nid
+     * @return bool
+     */
+    public function removeNodeById($nid)
+    {
+        DB::table('nodes_images')->where('node', $nid)->delete();
+        DB::table('nodes_machinery_fields')->where('node', $nid)->delete();
+        DB::table('nodes_parts_fields')->where('node', $nid)->delete();
+        DB::table('nodes_to_catalog')->where('node', $nid)->delete();
+        DB::table('nodes')->where('nid', $nid)->delete();
+        return true;
+    }
     /**
      * @param $ni_id
      * @return mixed
@@ -257,5 +314,10 @@ class Nodes extends Model
     public function deleteImageById($ni_id)
     {
         return DB::table('nodes_images')->where('ni_id', $ni_id)->delete();
+    }
+
+    public function removeProductByNodeId($nid)
+    {
+
     }
 }
