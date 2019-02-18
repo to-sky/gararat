@@ -47,9 +47,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/catalog/edit/{cid}', 'Secured\SecuredCatalogController@securedEditCatalogItemPage')->name('securedEditCatalogItemPage');
         Route::get('/secured/admin/catalog/delete/{cid}', 'Secured\SecuredCatalogController@securedDeleteCatalogItemPage')->name('securedDeleteCatalogItemPage');
         // Products
-        Route::get('/secured/admin/products', 'Secured\SecuredProductsController@productsListSecuredPage')->name('productsListSecuredPage');
+        Route::get('/secured/admin/products/sections/{product_type}', 'Secured\SecuredProductsController@productsListSecuredPage')->name('productsListSecuredPage');
         Route::get('/secured/admin/products/{product_type}/add', 'Secured\SecuredProductsController@addNewProduct')->name('addNewProduct');
         Route::get('/secured/admin/products/{product_type}/add', 'Secured\SecuredProductsController@addNewProduct')->name('addNewProduct');
+        Route::get('/secured/admin/products/{product_type}/{nid}/actions/edit', 'Secured\SecuredProductsController@editNode')->name('editNode');
+        Route::get('/secured/admin/products/{nid}/actions/delete', 'Secured\SecuredProductsController@deleteNode')->name('deleteNode');
         ########################################################################
         # API
         ########################################################################
@@ -58,6 +60,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/api/v1.0/catalog/edit/update', 'Secured\SecuredCatalogController@updateCatalogItemAPI')->name('updateCatalogItemAPI');
         // Products
         Route::post('/api/v1.0/products/equipment/save', 'Secured\SecuredProductsController@saveNewEquipmentAPI')->name('saveNewEquipmentAPI');
+        Route::post('/api/v1.0/products/equipment/update', 'Secured\SecuredProductsController@updateEquipmentAPI')->name('updateEquipmentAPI');
         Route::post('/api/v1.0/products/parts/save', 'Secured\SecuredProductsController@saveNewPartsAPI')->name('saveNewPartsAPI');
+        Route::get('/api/v1.0/products/images/remove/{ni_id}', 'Secured\SecuredProductsController@removeProductImage')->name('removeProductImage');
     });
 });

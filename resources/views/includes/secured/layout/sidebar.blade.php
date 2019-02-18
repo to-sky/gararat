@@ -25,7 +25,8 @@
         <ul class="dropdown-menu">
             <li><a class="sidebar-link" href="{{ route('addNewProduct', 1) }}">Add Equipment</a></li>
             <li><a class="sidebar-link" href="{{ route('addNewProduct', 2) }}">Add Parts</a></li>
-            <li><a class="sidebar-link" href="">List</a></li>
+            <li><a class="sidebar-link" href="{{ route('productsListSecuredPage', 1) }}">List of Equipment</a></li>
+            <li><a class="sidebar-link" href="{{ route('productsListSecuredPage', 2) }}">List of Parts</a></li>
         </ul>
     </li>
     <li class="nav-item dropdown">

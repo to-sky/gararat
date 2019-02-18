@@ -32,7 +32,15 @@ class Helpers extends Model
         foreach($array as $key => $value) {
             if($value['parent_cat'] == $parent) {
                 $selected = '';
-                if($activeItemId !== NULL && $value['cat_number'] == $activeItemId) {
+                $activeCatalogs = [];
+                if(is_array($activeItemId)) {
+                     foreach ($activeItemId as $item) {
+                         $activeCatalogs[] = $item;
+                     }
+                } else {
+                    $activeCatalogs[] = $activeItemId;
+                }
+                if($activeItemId !== NULL && in_array($value['cat_number'], $activeCatalogs)) {
                     $selected = 'selected';
                 }
                 $option = '<option ' .  $selected . ' value="' . $value['cat_number'] . '">' . $value['cat_number'] . ' ' . $value['cat_name_en'] . '</option>';

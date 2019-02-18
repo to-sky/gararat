@@ -114,6 +114,7 @@ class Nodes extends Model
      */
     public function saveNewNodeImage($nid, $image, $isFeatured)
     {
+        DB::table('nodes_images')->where('node', $nid)->where('is_featured', 1)->delete();
         return DB::table('nodes_images')->insert([
             'node' => $nid,
             'full_path' => $this->proceedNodeImage($image, 2048, 'products'),
@@ -125,13 +126,136 @@ class Nodes extends Model
     //======================================================================
     // READ
     //======================================================================
+    /**
+     * @param $type
+     * @return mixed
+     */
+    public function getNodesByType($nodes, $type)
+    {
+        $get = DB::table('nodes')->whereIn('nid', $nodes);
+        switch($type) {
+            case 1:
+                $get->join('nodes_machinery_fields', 'nodes.nid', '=', 'nodes_machinery_fields.node');
+                break;
+            case 2:
+                $get->join('nodes_parts_fields', 'nodes.nid', '=', 'nodes_parts_fields.node');
+                break;
+            default:
+                break;
+        }
+        $get->leftJoin('nodes_images', function($join) {
+            $join->on('nodes.nid', '=', 'nodes_images.node')
+                ->where('nodes_images.is_featured', '=', 1);
+        });
+        return $get->orderBy('nodes.created_at', 'DESC')->paginate(50);
+    }
 
+    /**
+     * @param $nid
+     * @param $type
+     * @return mixed
+     */
+    public function getNodeById($nid, $type)
+    {
+        $get = DB::table('nodes')->where('nid', $nid);
+        switch($type) {
+            case 1:
+                $get->join('nodes_machinery_fields', 'nodes.nid', '=', 'nodes_machinery_fields.node');
+                break;
+            case 2:
+                $get->join('nodes_parts_fields', 'nodes.nid', '=', 'nodes_parts_fields.node');
+                break;
+            default:
+                break;
+        }
+        return $get->first();
+    }
+
+    /**
+     * @param $catalog
+     * @return array
+     */
+    public function getNodesForProductType($catalog)
+    {
+        $nodes = [];
+        $getNodes = DB::table('nodes_to_catalog')->whereIn('catalog', $catalog)->get();
+        foreach ($getNodes as $node) {
+            if(!in_array($node->node, $nodes)) {
+                $nodes[] = $node->node;
+            }
+        }
+        return $nodes;
+    }
+
+    /**
+     * @param $nid
+     * @return mixed
+     */
+    public function getNodeImages($nid)
+    {
+        return DB::table('nodes_images')->where('node', $nid)->get();
+    }
     //======================================================================
     // UPDATE
     //======================================================================
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function updateBasicNode($data)
+    {
+        $seoTitleEn = NULL;
+        $seoTitleAr = NULL;
+        if($data['seoTitleEn'] === NULL) {
+            $seoTitleEn = $data['nameEn'];
+        }
+        if($data['seoTitleAr'] === NULL) {
+            $seoTitleAr = $data['nameAr'];
+        }
 
+        return DB::table('nodes')->where('nid', $data['nid'])->update([
+            'n_name_en' => $data['nameEn'],
+            'n_title_en' => $seoTitleEn,
+            'n_description_en' => $data['seoDescriptionEn'],
+            'n_name_ar' => $data['nameAr'],
+            'n_title_ar' => $seoTitleAr,
+            'n_description_ar' => $data['seoDescriptionAr'],
+            'has_photo' => $data['hasPhoto'],
+            'in_stock' => $data['inStock'],
+            'is_special' => $data['isSpecial'],
+            'price' => $data['nodePrice'],
+            'special_price' => $data['nodeSpecialPrice'],
+            'updated_at' => Carbon::now()
+        ]);
+    }
+
+    /**
+     * @param $nid
+     * @param $data
+     * @return mixed
+     */
+    public function updateEquipmentNode($data)
+    {
+        return DB::table('nodes_machinery_fields')->where('node', $data['nid'])->update([
+            'nmf_name_en' => $data['nameEn'],
+            'nmf_body_en' => $data['nodeBody'],
+            'nmf_description_en' => $data['seoDescriptionAr'],
+            'nmf_short_en' => $data['nodeShortBody'],
+            'nmf_name_ar' => $data['nameAr'],
+            'nmf_body_ar' => $data['nodeBodyAr'],
+            'nmf_description_ar' => $data['seoDescriptionAr'],
+            'nmf_short_ar' => $data['nodeShortBodyAr']
+        ]);
+    }
     //======================================================================
     // DELETE
     //======================================================================
-
+    /**
+     * @param $ni_id
+     * @return mixed
+     */
+    public function deleteImageById($ni_id)
+    {
+        return DB::table('nodes_images')->where('ni_id', $ni_id)->delete();
+    }
 }
