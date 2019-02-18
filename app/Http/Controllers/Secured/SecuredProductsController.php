@@ -34,7 +34,6 @@ class SecuredProductsController extends Controller
         }
 
         $data['products'] = $nodesModel->getNodesByType($getNodes, $product_type);
-        dd($data['products']);
 
         return view('secured.nodes.list', $data);
     }
