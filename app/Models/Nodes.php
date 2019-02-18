@@ -151,6 +151,27 @@ class Nodes extends Model
     }
 
     /**
+     * @param $nid
+     * @param $type
+     * @return mixed
+     */
+    public function getNodeById($nid, $type)
+    {
+        $get = DB::table('nodes')->where('nid', $nid);
+        switch($type) {
+            case 1:
+                $get->join('nodes_machinery_fields', 'nodes.nid', '=', 'nodes_machinery_fields.node');
+                break;
+            case 2:
+                $get->join('nodes_parts_fields', 'nodes.nid', '=', 'nodes_parts_fields.node');
+                break;
+            default:
+                break;
+        }
+        return $get->first();
+    }
+
+    /**
      * @param $catalog
      * @return array
      */
@@ -165,12 +186,76 @@ class Nodes extends Model
         }
         return $nodes;
     }
+
+    /**
+     * @param $nid
+     * @return mixed
+     */
+    public function getNodeImages($nid)
+    {
+        return DB::table('nodes_images')->where('node', $nid)->get();
+    }
     //======================================================================
     // UPDATE
     //======================================================================
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function updateBasicNode($data)
+    {
+        $seoTitleEn = NULL;
+        $seoTitleAr = NULL;
+        if($data['seoTitleEn'] === NULL) {
+            $seoTitleEn = $data['nameEn'];
+        }
+        if($data['seoTitleAr'] === NULL) {
+            $seoTitleAr = $data['nameAr'];
+        }
 
+        return DB::table('nodes')->where('nid', $data['nid'])->update([
+            'n_name_en' => $data['nameEn'],
+            'n_title_en' => $seoTitleEn,
+            'n_description_en' => $data['seoDescriptionEn'],
+            'n_name_ar' => $data['nameAr'],
+            'n_title_ar' => $seoTitleAr,
+            'n_description_ar' => $data['seoDescriptionAr'],
+            'has_photo' => $data['hasPhoto'],
+            'in_stock' => $data['inStock'],
+            'is_special' => $data['isSpecial'],
+            'price' => $data['nodePrice'],
+            'special_price' => $data['nodeSpecialPrice'],
+            'updated_at' => Carbon::now()
+        ]);
+    }
+
+    /**
+     * @param $nid
+     * @param $data
+     * @return mixed
+     */
+    public function updateEquipmentNode($data)
+    {
+        return DB::table('nodes_machinery_fields')->where('node', $data['nid'])->update([
+            'nmf_name_en' => $data['nameEn'],
+            'nmf_body_en' => $data['nodeBody'],
+            'nmf_description_en' => $data['seoDescriptionAr'],
+            'nmf_short_en' => $data['nodeShortBody'],
+            'nmf_name_ar' => $data['nameAr'],
+            'nmf_body_ar' => $data['nodeBodyAr'],
+            'nmf_description_ar' => $data['seoDescriptionAr'],
+            'nmf_short_ar' => $data['nodeShortBodyAr']
+        ]);
+    }
     //======================================================================
     // DELETE
     //======================================================================
-
+    /**
+     * @param $ni_id
+     * @return mixed
+     */
+    public function deleteImageById($ni_id)
+    {
+        return DB::table('nodes_images')->where('ni_id', $ni_id)->delete();
+    }
 }

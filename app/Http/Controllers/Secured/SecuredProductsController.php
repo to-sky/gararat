@@ -34,6 +34,7 @@ class SecuredProductsController extends Controller
         }
 
         $data['products'] = $nodesModel->getNodesByType($getNodes, $product_type);
+        $data['product_type'] = $product_type;
 
         return view('secured.nodes.list', $data);
     }
@@ -62,9 +63,49 @@ class SecuredProductsController extends Controller
                 return view('secured.nodes.parts.add', $data);
                 break;
             default:
-                return redirect()->route('productsListSecuredPage', 1);
+                return redirect()->route('productsListSecuredPage', $product_type);
                 break;
         }
+    }
+
+    /**
+     * @param $product_type
+     * @param $nid
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function editNode($product_type, $nid)
+    {
+        $helpersModel = new Helpers;
+        $catalogModel = new Catalog;
+        $nodesModel = new Nodes;
+        // Catalog operations
+        $selectedCatalogs = $catalogModel->getSelectedCatalogItem($nid);
+        $getCatalog = $catalogModel->getAllCatalogItems();
+        $getCatalogArray = $helpersModel->convertQueryBuilderToArray($getCatalog);
+        $buildCatalogOptions = $helpersModel->buildCatalogOptionsWithLevels($getCatalogArray, 0, '---', $selectedCatalogs, $product_type);
+
+        $data['catalog'] = $buildCatalogOptions;
+        $data['node'] = $nodesModel->getNodeById($nid, $product_type);
+        $data['images'] = $nodesModel->getNodeImages($nid);
+
+        switch($product_type) {
+            case 1:
+                $data['pageTitle'] = 'Edit';
+                return view('secured.nodes.equipment.edit', $data);
+                break;
+            case 2:
+                $data['pageTitle'] = 'Edit';
+                return view('secured.nodes.parts.edit', $data);
+                break;
+            default:
+                return redirect()->route('productsListSecuredPage', $product_type);
+                break;
+        }
+    }
+
+    public function deleteNode($nid)
+    {
+
     }
     //======================================================================
     // API
@@ -95,5 +136,36 @@ class SecuredProductsController extends Controller
             }
         }
         return redirect()->route('productsListSecuredPage', 1);
+    }
+
+    public function updateEquipmentAPI(Request $request)
+    {
+        $nodesModel = new Nodes;
+        $data = $request->all();
+        $mainImage = $request->file('mainImage');
+        $additionalImages = $request->file('additionalImages');
+        $nodesModel->updateBasicNode($data);
+        $nodesModel->updateEquipmentNode($data);
+        $nodesModel->setNodeToCatalog($data['nid'], $data['catalog']);
+        if($mainImage !== NULL) {
+            $nodesModel->saveNewNodeImage($data['nid'], $mainImage, 1);
+        }
+        if($additionalImages !== NULL) {
+            foreach ($additionalImages as $image) {
+                $nodesModel->saveNewNodeImage($data['nid'], $image, 0);
+            }
+        }
+        return redirect()->back();
+    }
+
+    /**
+     * @param $ni_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeProductImage($ni_id)
+    {
+        $nodesModel = new Nodes;
+        $nodesModel->deleteImageById($ni_id);
+        return redirect()->back();
     }
 }

@@ -42,7 +42,7 @@
                                     @endswitch
                                 </td>
                                 <td>
-                                    <a href="" class="btn btn-success"><i class="ti-pencil"></i></a>
+                                    <a href="{{ route('editNode', ['product_type' => $product_type, 'nid' => $product->nid]) }}" class="btn btn-success"><i class="ti-pencil"></i></a>
                                     <a href="" class="btn btn-danger"><i class="ti-trash"></i></a>
                                 </td>
                             </tr>

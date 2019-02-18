@@ -169,6 +169,26 @@ class Catalog extends Model
         }
         return $array;
     }
+
+    /**
+     * @param $nid
+     * @return array
+     */
+    public function getSelectedCatalogItem($nid)
+    {
+        $request = DB::table('nodes_to_catalog')
+            ->where('node', $nid)
+            ->join('catalog', 'nodes_to_catalog.catalog', '=', 'catalog.cid')
+            ->select('catalog.cat_number')
+            ->get();
+        $catalog = [];
+        foreach ($request as $key => $value) {
+            if(!in_array($value->cat_number, $catalog)) {
+                $catalog[] = $value->cat_number;
+            }
+        }
+        return $catalog;
+    }
     //======================================================================
     // UPDATE
     //======================================================================
