@@ -54,7 +54,11 @@ class Helpers extends Model
         foreach($array as $key => $value) {
             if($value['parent_cat'] == $parent) {
                 $result .= '<li style="font-size: 18px;">' . "\n";
-                $result .= $value['cat_name_en'] . '<a href="/secured/admin/catalog/edit/' . $value['cid'] . '" class="c-blue-500" style="margin-left: 10px; font-size: 14px;"><i class="ti-pencil"></i> Edit</a> <a class="c-red-500" href="/secured/admin/catalog/delete/' . $value['cid'] . '" style="font-size: 14px;"><i class="c-red-500 ti-trash"></i> Delete</a>';
+                if($value['parent_cat'] !== 0) {
+                    $result .= $value['cat_name_en'] . '<a href="/secured/admin/catalog/edit/' . $value['cid'] . '" class="c-blue-500" style="margin-left: 10px; font-size: 14px;"><i class="ti-pencil"></i> Edit</a> <a class="c-red-500" href="/secured/admin/catalog/delete/' . $value['cid'] . '" style="font-size: 14px;"><i class="c-red-500 ti-trash"></i> Delete</a>';
+                } else {
+                    $result .= '<strong>' . $value['cat_name_en'] . '</strong>';
+                }
                 $result .= $this->buildCatalogMenuWithLevels($array, $value['cat_number']);
                 $result .= '</li>' . "\n";
             }
