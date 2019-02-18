@@ -58,8 +58,15 @@ class SecuredProductsController extends Controller
      */
     public function saveNewEquipmentAPI(Request $request)
     {
+        $nodesModel = new Nodes;
         $data = $request->all();
         dd($data);
+        // Save node
+        $saveNode = $nodesModel->createBasicNode($data);
+        // Save equipment data
+
+        // Set node to catalog
+        $nodesModel->setNodeToCatalog($saveNode, $data['catalog']);
         return redirect()->route('productsListSecuredPage');
     }
 }

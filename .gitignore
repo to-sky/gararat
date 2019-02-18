@@ -5,6 +5,10 @@
 /vendor
 /public/uploads/products/*
 !/public/uploads/products/index.html
+/public/uploads/products-mid/*
+!/public/uploads/products-mid/index.html
+/public/uploads/products-thumb/*
+!/public/uploads/products-thumb/index.html
 .env
 .phpunit.result.cache
 Homestead.json
