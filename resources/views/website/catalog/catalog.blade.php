@@ -14,4 +14,8 @@
         <!-- /.row -->
     </div>
     <!-- /.products -->
+    <nav class="d-flex justify-content-center pagination__wrapper">
+        {{ $products->links() }}
+    </nav>
+    <!-- /.d-flex justify-content-center pagination -->
 @endsection
