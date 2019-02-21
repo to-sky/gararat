@@ -6,3 +6,4 @@
  */
 
 require('./bootstrap');
+require('./handlers/qty-handler');

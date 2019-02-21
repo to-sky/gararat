@@ -36400,6 +36400,8 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./handlers/qty-handler */ "./resources/js/handlers/qty-handler.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -36457,6 +36459,32 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/handlers/qty-handler.js":
+/*!**********************************************!*\
+  !*** ./resources/js/handlers/qty-handler.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function ($) {
+  var currentQty = $('#qty').val();
+  $('#subQTY').on('click', function (e) {
+    e.preventDefault();
+
+    if (currentQty > 1) {
+      currentQty = parseInt(currentQty) - 1;
+      $('#qty').val(currentQty);
+    }
+  });
+  $('#addQTY').on('click', function (e) {
+    e.preventDefault();
+    currentQty = parseInt(currentQty) + 1;
+    $('#qty').val(currentQty);
+  });
+})(jQuery);
 
 /***/ }),
 
