@@ -23,6 +23,8 @@ Route::get('/home', function() {
 Route::get('/', 'Website\PagesController@homePage')->name('homePage');
 // Catalog
 Route::get('/catalog/{cid}', 'Website\CatalogController@catalogPage')->name('catalogPage');
+// Nodes
+Route::get('/node/{nid}', 'Website\NodesController@singleNodePage')->name('singleNodePage');
 ########################################################################
 # Auth routes
 ########################################################################

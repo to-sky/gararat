@@ -28,6 +28,7 @@ class CatalogController extends Controller
             $data['pageTitle'] = $getCatalogByCid->cat_title_en;
         }
         $data['catalogName'] = $getCatalogByCid->cat_name_en;
+        $data['catalogType'] = $getCatalogByCid->cat_type;
         $data['pageDescription'] = $getCatalogByCid->cat_description_en;
         $data['catalogChilds'] = $catalogModel->getCatalogChilds($getCatalogByCid->cat_number);
         if(count($data['catalogChilds']) === 0) {

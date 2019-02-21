@@ -5746,6 +5746,38 @@ p {
   margin-bottom: 0;
 }
 
+.products {
+  margin-top: 30px;
+}
+
+.products .product__wrapper {
+  margin-bottom: 30px;
+}
+
+.products .product__wrapper .product__inner {
+  overflow: hidden;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #fc0203;
+}
+
+.products .product__wrapper .product__name {
+  margin-top: 15px;
+}
+
+.products .product__wrapper .product__name a {
+  color: #191a1c;
+  line-height: 1;
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.products .product__wrapper:hover a {
+  color: #fc0203 !important;
+}
+
 footer.footer {
   border-top: 3px solid #fc0203;
 }
