@@ -1,0 +1,22 @@
+.sidebar {
+    padding: 15px;
+    background: $sidebar_background;
+    margin-top: 50px;
+
+    h3 {
+
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+
+        li {
+
+            a {
+                outline: none !important;
+            }
+        }
+    }
+}

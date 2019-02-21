@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,600);*,
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,600);@charset "UTF-8";
+
+*,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -5522,6 +5524,60 @@ p {
   color: #777777;
 }
 
+.breadcrumbs {
+  margin-top: 30px;
+}
+
+.breadcrumbs ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.breadcrumbs ul li {
+  font-size: 1.2rem;
+  line-height: 1;
+  padding-left: 8px;
+}
+
+.breadcrumbs ul li:before {
+  content: "\F054";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1rem;
+  display: inline-block;
+  padding-right: 8px;
+  color: #6c757d;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.breadcrumbs ul li:first-child {
+  padding-left: 0;
+}
+
+.breadcrumbs ul li:first-child:before {
+  display: none;
+}
+
+.breadcrumbs ul li a {
+  color: #191a1c;
+}
+
+.breadcrumbs ul li a:hover {
+  color: #fc0203;
+}
+
+.breadcrumbs ul li span {
+  color: #616161;
+}
+
 .header__top {
   width: 100%;
   background: #191a1c;
@@ -5654,6 +5710,22 @@ p {
 
 .header__main .header__main-menu ul .active a {
   color: #2d7dd2;
+}
+
+.sidebar {
+  padding: 15px;
+  background: #f6f6f6;
+  margin-top: 50px;
+}
+
+.sidebar ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.sidebar ul li a {
+  outline: none !important;
 }
 
 footer.footer {

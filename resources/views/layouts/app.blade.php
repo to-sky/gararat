@@ -51,6 +51,13 @@
                         </div>
                         <!-- /.col-12 col-lg-3 -->
                         <div class="col-12 col-lg-9">
+                            <div class="breadcrumbs">
+                                <ul>
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">Catalog</a></li>
+                                    <li><span>Catalog name</span></li>
+                                </ul>
+                            </div>
                             @yield('content')
                         </div>
                         <!-- /.col-12 col-lg-9 -->
