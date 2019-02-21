@@ -202,6 +202,18 @@ class Catalog extends Model
         }
         return $catalog;
     }
+
+    /**
+     * @param $nid
+     * @return mixed
+     */
+    public function getCatalogByNodeId($nid)
+    {
+        return DB::table('nodes_to_catalog')
+            ->where('node', $nid)
+            ->join('catalog', 'nodes_to_catalog.catalog', '=', 'catalog.cid')
+            ->first();
+    }
     //======================================================================
     // UPDATE
     //======================================================================

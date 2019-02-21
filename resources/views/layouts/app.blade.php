@@ -72,6 +72,21 @@
                 </div>
                 <!-- /.container -->
             @else
+                <div class="container">
+                    <div class="breadcrumbs">
+                        @if(isset($breadcrumbs) && $breadcrumbs !== NULL)
+                            <ul>
+                                @foreach($breadcrumbs as $breadcrumb)
+                                    @if($breadcrumb['route'] !== NULL)
+                                        <li><a href="{{ route($breadcrumb['route'], $breadcrumb['param']) }}">{{ $breadcrumb['name'] }}</a></li>
+                                    @else
+                                        <li><span>{{ $breadcrumb['name'] }}</span></li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+                </div>
                 @yield('content')
             @endif
         </main>

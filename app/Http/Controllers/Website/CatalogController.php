@@ -34,7 +34,7 @@ class CatalogController extends Controller
         if(count($data['catalogChilds']) === 0) {
             $data['parentCatalog'] = $catalogModel->getCatalogByCatNumber($getCatalogByCid->parent_cat);
         }
-        $data['breadcrumbs'] = $helpers->buildCatalogBreadcrumbs($getCatalogByCid);
+        $data['breadcrumbs'] = $helpers->buildCatalogBreadcrumbs($getCatalogByCid, false);
         // Get products
         $getAllChildsCategories = $catalogModel->getAllChildsCategories($getCatalogByCid->cat_number);
         $getNodes = $nodesModel->getNodesForProductType($getAllChildsCategories);

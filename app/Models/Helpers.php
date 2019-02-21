@@ -89,11 +89,15 @@ class Helpers extends Model
      * @param $currentCatalog
      * @return array
      */
-    public function buildCatalogBreadcrumbs($currentCatalog)
+    public function buildCatalogBreadcrumbs($currentCatalog, $hasLast)
     {
         $catalogModel = new Catalog;
         $breadcrumbsArray = [];
-        $breadcrumbsArray[] = array('name' => $currentCatalog->cat_name_en, 'route' => NULL, 'param' => $currentCatalog->cid);
+        if($hasLast === TRUE) {
+            $breadcrumbsArray[] = array('name' => $currentCatalog->cat_name_en, 'route' => 'catalogPage', 'param' => $currentCatalog->cid);
+        } else {
+            $breadcrumbsArray[] = array('name' => $currentCatalog->cat_name_en, 'route' => NULL, 'param' => $currentCatalog->cid);
+        }
         $parentCat = $currentCatalog->parent_cat;
         if($parentCat > 0) {
             while($parentCat > 0) {
