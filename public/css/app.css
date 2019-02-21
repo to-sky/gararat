@@ -5712,20 +5712,38 @@ p {
   color: #2d7dd2;
 }
 
-.sidebar {
-  padding: 15px;
-  background: #f6f6f6;
-  margin-top: 50px;
+.sidebar h3 {
+  color: #191a1c;
+  font-size: 1.8rem;
+  line-height: 1;
+  margin-top: 45px;
+  margin-bottom: 10px;
+  font-weight: normal;
+  padding-left: 15px;
 }
 
 .sidebar ul {
   margin: 0;
-  padding: 0;
   list-style-type: none;
+  padding: 15px;
+  background: #f6f6f6;
+}
+
+.sidebar ul li {
+  margin-bottom: 7.5px;
 }
 
 .sidebar ul li a {
-  outline: none !important;
+  font-size: 1.6rem;
+  color: #616161;
+}
+
+.sidebar ul li a:hover {
+  color: #fc0203;
+}
+
+.sidebar ul li:last-child {
+  margin-bottom: 0;
 }
 
 footer.footer {
