@@ -90,6 +90,15 @@ class Catalog extends Model
     }
 
     /**
+     * @param $cid
+     * @return mixed
+     */
+    public function getCatalogByCid($cid)
+    {
+        return DB::table('catalog')->where('cid', $cid)->first();
+    }
+
+    /**
      * @param $catNumber
      * @return mixed
      */
@@ -165,6 +174,10 @@ class Catalog extends Model
                     $array .= $value['cid'] . ',';
                     $array .= $this->buildChildsCategories($catalog, $value['cat_number'], NULL);
                 }
+            } else {
+                if($value['cat_number'] == $neededCategory) {
+                    $array .= $value['cid'] . ',';
+                }
             }
         }
         return $array;
@@ -188,6 +201,18 @@ class Catalog extends Model
             }
         }
         return $catalog;
+    }
+
+    /**
+     * @param $nid
+     * @return mixed
+     */
+    public function getCatalogByNodeId($nid)
+    {
+        return DB::table('nodes_to_catalog')
+            ->where('node', $nid)
+            ->join('catalog', 'nodes_to_catalog.catalog', '=', 'catalog.cid')
+            ->first();
     }
     //======================================================================
     // UPDATE

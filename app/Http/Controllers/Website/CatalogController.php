@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use \App\Models\Catalog;
 use \App\Models\Helpers;
+use \App\Models\Nodes;
 
 class CatalogController extends Controller
 {
@@ -14,21 +15,30 @@ class CatalogController extends Controller
      * @param $cat_number
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function catalogPage($cat_number)
+    public function catalogPage($cid)
     {
         $catalogModel = new Catalog;
         $helpers = new Helpers;
-        $getCatalogByCatNumber = $catalogModel->getCatalogByCatNumber($cat_number);
+        $nodesModel = new Nodes;
 
-        if($getCatalogByCatNumber->cat_title_en === NULL) {
-            $data['pageTitle'] = $getCatalogByCatNumber->cat_name_en;
+        $getCatalogByCid = $catalogModel->getCatalogByCid($cid);
+        if($getCatalogByCid->cat_title_en === NULL) {
+            $data['pageTitle'] = $getCatalogByCid->cat_name_en;
         } else {
-            $data['pageTitle'] = $getCatalogByCatNumber->cat_title_en;
+            $data['pageTitle'] = $getCatalogByCid->cat_title_en;
         }
-        $data['catalogName'] = $getCatalogByCatNumber->cat_name_en;
-        $data['pageDescription'] = $getCatalogByCatNumber->cat_description_en;
-        $data['catalogChilds'] = $catalogModel->getCatalogChilds($cat_number);
-        $data['breadcrumbs'] = $helpers->buildCatalogBreadcrumbs($getCatalogByCatNumber);
+        $data['catalogName'] = $getCatalogByCid->cat_name_en;
+        $data['catalogType'] = $getCatalogByCid->cat_type;
+        $data['pageDescription'] = $getCatalogByCid->cat_description_en;
+        $data['catalogChilds'] = $catalogModel->getCatalogChilds($getCatalogByCid->cat_number);
+        if(count($data['catalogChilds']) === 0) {
+            $data['parentCatalog'] = $catalogModel->getCatalogByCatNumber($getCatalogByCid->parent_cat);
+        }
+        $data['breadcrumbs'] = $helpers->buildCatalogBreadcrumbs($getCatalogByCid, false);
+        // Get products
+        $getAllChildsCategories = $catalogModel->getAllChildsCategories($getCatalogByCid->cat_number);
+        $getNodes = $nodesModel->getNodesForProductType($getAllChildsCategories);
+        $data['products'] = $nodesModel->getNodesByType($getNodes, $getCatalogByCid->cat_type);
 
         return view('website.catalog.catalog', $data);
     }

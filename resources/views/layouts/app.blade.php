@@ -51,6 +51,19 @@
                         </div>
                         <!-- /.col-12 col-lg-3 -->
                         <div class="col-12 col-lg-9">
+                            <div class="breadcrumbs">
+                                @if(isset($breadcrumbs) && $breadcrumbs !== NULL)
+                                    <ul>
+                                        @foreach($breadcrumbs as $breadcrumb)
+                                            @if($breadcrumb['route'] !== NULL)
+                                                <li><a href="{{ route($breadcrumb['route'], $breadcrumb['param']) }}">{{ $breadcrumb['name'] }}</a></li>
+                                            @else
+                                                <li><span>{{ $breadcrumb['name'] }}</span></li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
                             @yield('content')
                         </div>
                         <!-- /.col-12 col-lg-9 -->
@@ -59,6 +72,21 @@
                 </div>
                 <!-- /.container -->
             @else
+                <div class="container">
+                    <div class="breadcrumbs">
+                        @if(isset($breadcrumbs) && $breadcrumbs !== NULL)
+                            <ul>
+                                @foreach($breadcrumbs as $breadcrumb)
+                                    @if($breadcrumb['route'] !== NULL)
+                                        <li><a href="{{ route($breadcrumb['route'], $breadcrumb['param']) }}">{{ $breadcrumb['name'] }}</a></li>
+                                    @else
+                                        <li><span>{{ $breadcrumb['name'] }}</span></li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+                </div>
                 @yield('content')
             @endif
         </main>
@@ -67,5 +95,15 @@
             @include('includes.website.layout.footer')
         </footer>
         <!-- /.footer -->
+        <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+        <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+            <div class="slides"></div>
+            <h3 class="title"></h3>
+            <a class="prev">‹</a>
+            <a class="next">›</a>
+            <a class="close">×</a>
+            <a class="play-pause"></a>
+            <ol class="indicator"></ol>
+        </div>
     </body>
 </html>

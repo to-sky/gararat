@@ -14,6 +14,10 @@ class SecuredProductsController extends Controller
     //======================================================================
     // PAGES
     //======================================================================
+    /**
+     * @param $product_type
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function productsListSecuredPage($product_type)
     {
         $nodesModel = new Nodes;
