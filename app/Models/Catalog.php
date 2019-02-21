@@ -174,6 +174,10 @@ class Catalog extends Model
                     $array .= $value['cid'] . ',';
                     $array .= $this->buildChildsCategories($catalog, $value['cat_number'], NULL);
                 }
+            } else {
+                if($value['cat_number'] == $neededCategory) {
+                    $array .= $value['cid'] . ',';
+                }
             }
         }
         return $array;

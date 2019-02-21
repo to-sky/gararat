@@ -171,7 +171,7 @@ class Nodes extends Model
             $join->on('nodes.nid', '=', 'nodes_images.node')
                 ->where('nodes_images.is_featured', '=', 1);
         });
-        return $get->orderBy('nodes.created_at', 'DESC')->paginate(50);
+        return $get->orderBy('nodes.created_at', 'DESC')->paginate(45);
     }
 
     /**
