@@ -90,6 +90,15 @@ class Catalog extends Model
     }
 
     /**
+     * @param $cid
+     * @return mixed
+     */
+    public function getCatalogByCid($cid)
+    {
+        return DB::table('catalog')->where('cid', $cid)->first();
+    }
+
+    /**
      * @param $catNumber
      * @return mixed
      */

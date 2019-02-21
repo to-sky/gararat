@@ -52,11 +52,17 @@
                         <!-- /.col-12 col-lg-3 -->
                         <div class="col-12 col-lg-9">
                             <div class="breadcrumbs">
-                                <ul>
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">Catalog</a></li>
-                                    <li><span>Catalog name</span></li>
-                                </ul>
+                                @if(isset($breadcrumbs) && $breadcrumbs !== NULL)
+                                    <ul>
+                                        @foreach($breadcrumbs as $breadcrumb)
+                                            @if($breadcrumb['route'] !== NULL)
+                                                <li><a href="{{ route($breadcrumb['route'], $breadcrumb['param']) }}">{{ $breadcrumb['name'] }}</a></li>
+                                            @else
+                                                <li><span>{{ $breadcrumb['name'] }}</span></li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                @endif
                             </div>
                             @yield('content')
                         </div>
