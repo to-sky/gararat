@@ -196,6 +196,27 @@ class Nodes extends Model
     }
 
     /**
+     * @param $nid
+     * @param $type
+     * @return mixed
+     */
+    public function getNodeByCatalogType($nid, $type)
+    {
+        $get = DB::table('nodes')->where('nid', $nid);
+        switch($type) {
+            case 0:
+                $get->leftJoin('nodes_machinery_fields', 'nodes.nid', '=', 'nodes_machinery_fields.node');
+                break;
+            case 1:
+                $get->leftJoin('nodes_parts_fields', 'nodes.nid', '=', 'nodes_parts_fields.node');
+                break;
+            default:
+                break;
+        }
+        return $get->first();
+    }
+
+    /**
      * @param $catalog
      * @return array
      */
@@ -218,6 +239,28 @@ class Nodes extends Model
     public function getNodeImages($nid)
     {
         return DB::table('nodes_images')->where('node', $nid)->get();
+    }
+
+    /**
+     * @param $nid
+     * @param $param
+     * @return mixed
+     */
+    public function getNodeImagesWithParams($nid, $param)
+    {
+        $get = DB::table('nodes_images')->where('node', $nid)->where('is_featured', $param);
+
+        switch ($param) {
+            case 1:
+                return $get->first();
+                break;
+            case 0:
+                return $get->get();
+                break;
+            default:
+                return $get->get();
+                break;
+        }
     }
     //======================================================================
     // UPDATE

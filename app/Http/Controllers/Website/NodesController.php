@@ -22,7 +22,7 @@ class NodesController extends Controller
         $nodesModel = new Nodes;
 
         $getNodeCatalog = $catalogModel->getCatalogByNodeId($nid);
-        $getNode = $nodesModel->getNodeById($nid, $getNodeCatalog->cat_type);
+        $getNode = $nodesModel->getNodeByCatalogType($nid, $getNodeCatalog->cat_type);
 
         if($getNode->n_title_en === NULL) {
             $data['pageTitle'] = $getNode->n_name_en;
@@ -32,6 +32,9 @@ class NodesController extends Controller
         $breadcrumbs = $helpers->buildCatalogBreadcrumbs($getNodeCatalog, true);
         $breadcrumbs[] = array('name' => $getNode->n_name_en, 'route' => NULL, 'param' => NULL);
         $data['breadcrumbs'] = $breadcrumbs;
+        $data['product'] = $getNode;
+        $data['images'] = $nodesModel->getNodeImagesWithParams($nid, 0);
+        $data['featuredImage'] = $nodesModel->getNodeImagesWithParams($nid, 1);
 
         switch($getNodeCatalog->cat_type) {
             case 0:
