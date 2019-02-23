@@ -151,10 +151,14 @@ class Nodes extends Model
     // READ
     //======================================================================
     /**
-     * @param $type
+     * @param array $nodes
+     * @param int $type
+     * @param int $perPage
+     * @param string $orderingTarget
+     * @param string $orderingType
      * @return mixed
      */
-    public function getNodesByType($nodes, $type)
+    public function getNodesByType(array $nodes, int $type, $perPage = 45, $orderingTarget = 'price', $orderingType = 'ASC')
     {
         $get = DB::table('nodes')->whereIn('nid', $nodes);
         switch($type) {
@@ -171,7 +175,9 @@ class Nodes extends Model
             $join->on('nodes.nid', '=', 'nodes_images.node')
                 ->where('nodes_images.is_featured', '=', 1);
         });
-        return $get->orderBy('nodes.created_at', 'DESC')->paginate(45);
+        return $get
+            ->orderBy('nodes.' . $orderingTarget, $orderingType)
+            ->paginate($perPage);
     }
 
     /**

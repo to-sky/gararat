@@ -1,4 +1,36 @@
 <div class="col-12">
+    <div class="products__parts-filters">
+        <div class="d-flex justify-content-between">
+            <div class="sorting-listing-by">
+                <span>Sorting listing by:</span>
+                <a @if($target == 'price') class="active" @endif href="{{ route('catalogPage', ['cid' => $cid, 'target' => 'price', 'dest' => $neededTarget, 'per_page' => $perPage]) }}">
+                    Price
+                    @if($neededTarget == 'ASC')
+                        <i class="fas fa-sort-amount-down"></i>
+                    @else
+                        <i class="fas fa-sort-amount-up"></i>
+                    @endif
+                </a>
+                <a @if($target == 'n_name_en') class="active" @endif href="{{ route('catalogPage', ['cid' => $cid, 'target' => 'n_name_en', 'dest' => $neededTarget, 'per_page' => $perPage]) }}">
+                    Name
+                    @if($neededTarget == 'ASC')
+                        <i class="fas fa-sort-alpha-down"></i>
+                    @else
+                        <i class="fas fa-sort-alpha-up"></i>
+                    @endif
+                </a>
+            </div>
+            <!-- /.sorting-listing-by -->
+            <div class="show-by">
+                <a @if($perPage == 20) class="active" @endif href="{{ route('catalogPage', ['cid' => $cid, 'target' => 'price', 'dest' => $neededTarget, 'per_page' => 20]) }}">20</a>
+                <a @if($perPage == 50) class="active" @endif href="{{ route('catalogPage', ['cid' => $cid, 'target' => 'price', 'dest' => $neededTarget, 'per_page' => 50]) }}">50</a>
+                <a @if($perPage == 100) class="active" @endif href="{{ route('catalogPage', ['cid' => $cid, 'target' => 'price', 'dest' => $neededTarget, 'per_page' => 100]) }}">100</a>
+            </div>
+            <!-- /.show-by -->
+        </div>
+        <!-- /.d-flex justify-content-between -->
+    </div>
+    <!-- /.products__parts-filters -->
     <div class="products__parts">
         @foreach($products as $product)
             <div class="products__part">
