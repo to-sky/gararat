@@ -158,10 +158,10 @@ class Nodes extends Model
     {
         $get = DB::table('nodes')->whereIn('nid', $nodes);
         switch($type) {
-            case 1:
+            case 0:
                 $get->join('nodes_machinery_fields', 'nodes.nid', '=', 'nodes_machinery_fields.node');
                 break;
-            case 2:
+            case 1:
                 $get->join('nodes_parts_fields', 'nodes.nid', '=', 'nodes_parts_fields.node');
                 break;
             default:

@@ -6059,6 +6059,11 @@ b {
   color: #fc0203 !important;
 }
 
+.products .products__parts .products__part {
+  margin-bottom: 30px;
+  width: 100%;
+}
+
 .product {
   margin-bottom: 30px;
 }

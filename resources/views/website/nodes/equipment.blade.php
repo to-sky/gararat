@@ -47,7 +47,7 @@
                                             @if($product->special_price !== NULL && $product->special_price != 0)
                                                 <p><span class="old">${{ number_format($product->price, 0, '.', ' ') }}</span><span class="current">${{ number_format($product->special_price, 0, '.', ' ') }}</span></p>
                                             @else
-                                                <p><span class="current">${{ number_format($product->special_price, 0, '.', ' ') }}</span></p>
+                                                <p><span class="current">${{ number_format($product->price, 0, '.', ' ') }}</span></p>
                                             @endif
                                         </div>
                                         <!-- /.product__purchase-price -->
