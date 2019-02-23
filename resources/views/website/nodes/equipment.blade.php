@@ -40,6 +40,7 @@
                     <div class="shadow product__purchase">
                         <form action="#" method="post">
                             @csrf
+                            <input type="hidden" name="nid" value="{{ $product->nid }}">
                             <div class="product__purchase-top">
                                 <div class="row">
                                     <div class="col-12 col-md-5">
