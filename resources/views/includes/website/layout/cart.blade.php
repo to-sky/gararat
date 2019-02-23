@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-between">
             <div class="cart__item-count">
                 <i class="fas fa-shopping-cart"></i>
-                <span>288 item(-s)</span>
+                <span id="cartItems">0</span> item(-s)
             </div>
             <!-- /.cart__item-count -->
             <div class="cart__upload-document">
@@ -18,7 +18,7 @@
     <div class="cart_bottom">
         <div class="d-flex justify-content-between">
             <div class="cart__price">
-                $<span id="cartPrice">999 999</span>
+                $<span id="cartPrice">0</span>
             </div>
             <!-- /.cart__price -->
             <div class="cart__checkout">
