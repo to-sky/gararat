@@ -20,7 +20,11 @@
                         @foreach($products as $product)
                             <tr>
                                 <td>{{ $product->nid }}</td>
-                                <td><img src="{{ asset($product->thumb_path) }}" height="26"></td>
+                                @if($product->has_photo != 0)
+                                    <td><img src="{{ asset($product->thumb_path) }}" height="26"></td>
+                                @else
+                                    <td><img src="{{ asset('assets/logos/logo.jpg') }}" height="26"></td>
+                                @endif
                                 <td>{{ $product->n_name_en }}</td>
                                 <td>
                                     @if($product->is_special != 0)

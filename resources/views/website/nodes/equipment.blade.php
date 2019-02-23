@@ -40,6 +40,7 @@
                     <div class="shadow product__purchase">
                         <form action="#" method="post">
                             @csrf
+                            <input type="hidden" name="nid" value="{{ $product->nid }}">
                             <div class="product__purchase-top">
                                 <div class="row">
                                     <div class="col-12 col-md-5">
@@ -47,7 +48,7 @@
                                             @if($product->special_price !== NULL && $product->special_price != 0)
                                                 <p><span class="old">${{ number_format($product->price, 0, '.', ' ') }}</span><span class="current">${{ number_format($product->special_price, 0, '.', ' ') }}</span></p>
                                             @else
-                                                <p><span class="current">${{ number_format($product->special_price, 0, '.', ' ') }}</span></p>
+                                                <p><span class="current">${{ number_format($product->price, 0, '.', ' ') }}</span></p>
                                             @endif
                                         </div>
                                         <!-- /.product__purchase-price -->

@@ -9,7 +9,7 @@
                     <h6 class="c-grey-900">Common</h6>
                     <div class="form-group">
                         <label for="catalogNumber">Catalog Number</label>
-                        <input type="number" class="form-control" id="catalogNumber" name="catalogNumber" placeholder="Input catalog number" required autocomplete="off">
+                        <input type="text" class="form-control" id="catalogNumber" name="catalogNumber" placeholder="Input catalog number" required autocomplete="off">
                         @if($errors->any())
                             <small id="emailHelp" class="form-text text-danger">{{$errors->first()}}</small>
                         @endif
