@@ -84,7 +84,7 @@
             <!-- /.col-12 col-lg-7 -->
             <div class="col-12 col-lg-3">
                 <div class="header__main-cart">
-                    Cart
+                    @include('includes.website.layout.cart')
                 </div>
                 <!-- /.header__main-cart -->
             </div>
