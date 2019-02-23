@@ -29,11 +29,11 @@
                     <!-- /.col-12 col-lg-7 -->
                     <div class="col-12 col-lg-5">
                         <form action="#" method="post">
-                            <div class="d-flex justify-content-between products__part-cart">
+                            <div class="d-flex justify-content-end products__part-cart">
                                 <div class="products__part-cart-price">
                                     @if($product->special_price !== NULL && $product->special_price != 0)
                                         <span class="old">${{ number_format($product->price, 0, '.', ' ') }}</span>
-                                        <span class="current">${{ number_format($product->special_price, 0, '.', ' ') }}</span>
+                                        <span class="current current-special">${{ number_format($product->special_price, 0, '.', ' ') }}</span>
                                     @else
                                         <span class="current">${{ number_format($product->price, 0, '.', ' ') }}</span>
                                     @endif
