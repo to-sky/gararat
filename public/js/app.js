@@ -36493,6 +36493,10 @@ function addToCart(key, nid, qty) {
   }).then(function (response) {
     console.log(response);
     updateCart();
+    $('.cart-success').fadeIn(250);
+    setTimeout(function () {
+      $('.cart-success').fadeOut(250);
+    }, 2000);
   }).catch(function (error) {
     console.log(error);
   });
