@@ -35,11 +35,19 @@ class Orders extends Model
      */
     public function createCartItems($cartId, $node, $qty)
     {
-        return DB::table('cart_nodes')->insert([
-            'cart' => $cartId,
-            'node' => $node,
-            'order_qty' => $qty
-        ]);
+        $checkIfNodeExist = DB::table('cart_nodes')->where('cart', $cartId)->where('node', $node)->first();
+        if(!isset($checkIfNodeExist->node) || $checkIfNodeExist->node === NULL) {
+            return DB::table('cart_nodes')->insert([
+                'cart' => $cartId,
+                'node' => $node,
+                'order_qty' => $qty
+            ]);
+        } else {
+            $newQty = $checkIfNodeExist->order_qty + $qty;
+            return DB::table('cart_nodes')->where('cart', $cartId)->where('node', $node)->update([
+                'order_qty' => $newQty
+            ]);
+        }
     }
     //======================================================================
     // READ
