@@ -14,8 +14,8 @@ class Cart extends Migration
     public function up()
     {
         Schema::create('cart', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('cart_id');
+            $table->string('user_key');
         });
     }
 
