@@ -5629,6 +5629,130 @@ b {
   transition: 0.3s all ease;
 }
 
+.cart-page {
+  margin: 30px 0;
+}
+
+.cart-page .cart-page__table table {
+  width: 100%;
+  border: 1px solid #191a1c;
+}
+
+.cart-page .cart-page__table table thead tr {
+  border-bottom: 2px solid #191a1c;
+}
+
+.cart-page .cart-page__table table thead tr th {
+  font-weight: 500;
+  font-size: 1.4rem;
+  padding: 5px 10px;
+  border-right: 1px solid #191a1c;
+}
+
+.cart-page .cart-page__table table tbody tr {
+  border-bottom: 1px solid #191a1c;
+}
+
+.cart-page .cart-page__table table tbody tr td {
+  font-weight: 400;
+  font-size: 1.6rem;
+  padding: 5px 10px;
+  border-right: 1px solid #191a1c;
+}
+
+.cart-page .cart-page__table table tbody tr td:first-child {
+  width: 70px;
+  text-align: center;
+}
+
+.cart-page .cart-page__table table tbody tr td:last-child {
+  text-align: center;
+  font-size: 2.2rem;
+  width: 30px;
+}
+
+.cart-page .cart-page__table table tbody tr td:last-child a {
+  color: #fc0203;
+}
+
+.cart-page .cart-page__table .total-price {
+  margin-top: 30px;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.cart-page .cart-page__actions {
+  margin-top: 30px;
+}
+
+.cart-page .cart-page__actions a.btn-home-page {
+  font-size: 1.4rem;
+  line-height: 16px;
+  padding: 10px;
+  margin: 0;
+  font-weight: normal;
+  display: block;
+  text-align: center;
+  color: #191a1c;
+  background: transparent;
+  border: 1px solid #191a1c;
+  border-radius: 3px;
+  transition: 0.3s all ease;
+}
+
+.cart-page .cart-page__actions a.btn-home-page:hover {
+  background: #191a1c;
+  color: #ffffff;
+  transition: 0.3s all ease;
+}
+
+.cart-page .cart-page__actions a.btn-checkout {
+  font-size: 1.4rem;
+  line-height: 16px;
+  padding: 10px;
+  margin: 0;
+  font-weight: normal;
+  display: block;
+  text-align: center;
+  color: #ffffff;
+  border: 1px solid #fc0203;
+  background: #fc0203;
+  border-radius: 3px;
+  transition: 0.3s all ease;
+}
+
+.cart-page .cart-page__actions a.btn-checkout:hover {
+  background: #c90202;
+  border: 1px solid #c90202;
+  transition: 0.3s all ease;
+}
+
+.cart-success {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 46px;
+  background: #41ad48;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 1;
+  text-transform: uppercase;
+  display: none;
+  z-index: 10;
+}
+
+.cart-success span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 11;
+}
+
 .section {
   width: 100%;
   padding: 30px 0;

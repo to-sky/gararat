@@ -9,6 +9,19 @@ use \App\Models\Orders;
 
 class OrdersController extends Controller
 {
+    //======================================================================
+    // PAGES
+    //======================================================================
+    public function cartPage()
+    {
+        $data['pageTitle'] = 'Cart';
+        $data['pageDescription'] = 'Description';
+
+        return view('website.cart.cart', $data);
+    }
+    //======================================================================
+    // API
+    //======================================================================
     /**
      * @param $userKey
      * @return \Illuminate\Http\JsonResponse
@@ -18,6 +31,17 @@ class OrdersController extends Controller
         $ordersModel = new Orders;
         $getCart = $ordersModel->getCurrentUserCartData($userKey);
         return response()->json(['userKey' => $userKey, 'qty' => $getCart['qty'], 'total' => $getCart['total']]);
+    }
+
+    /**
+     * @param $userKey
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getCartTableData($userKey)
+    {
+        $ordersModel = new Orders;
+        $getCart = $ordersModel->getCartTableData($userKey);
+        return response()->json(['userKey' => $userKey, 'return' => $getCart]);
     }
 
     /**
@@ -33,5 +57,17 @@ class OrdersController extends Controller
         $createCart = $ordersModel->createCart($userKey);
         $ordersModel->createCartItems($createCart, $node, $qty);
         return response()->json(['response' => 200]);
+    }
+
+    /**
+     * @param $userKey
+     * @param $cartNode
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeItemFromCart($userKey, $cartNode)
+    {
+        $ordersModel = new Orders;
+        $ordersModel->removeNodeFromCart($cartNode);
+        return redirect()->back();
     }
 }

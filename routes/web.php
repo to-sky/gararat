@@ -25,8 +25,13 @@ Route::get('/', 'Website\PagesController@homePage')->name('homePage');
 Route::get('/catalog/{cid}', 'Website\CatalogController@catalogPage')->name('catalogPage');
 // Nodes
 Route::get('/node/{nid}', 'Website\NodesController@singleNodePage')->name('singleNodePage');
+// Cart
+Route::get('/cart', 'Website\OrdersController@cartPage')->name('cartPage');
+Route::get('/cart/checkout', 'Website\OrdersController@cartPage')->name('cartPage');
 // API
 Route::get('/api/cart/{userKey}', 'Website\OrdersController@getCartPreviewData');
+Route::get('/api/cart/{userKey}/table', 'Website\OrdersController@getCartTableData');
+Route::get('/api/cart/remove/{userKey}/{cart_node}', 'Website\OrdersController@removeItemFromCart');
 Route::post('/api/cart/actions/add/item', 'Website\OrdersController@addItemToCart');
 ########################################################################
 # Auth routes

@@ -105,5 +105,9 @@
             <a class="play-pause"></a>
             <ol class="indicator"></ol>
         </div>
+        <div class="cart-success">
+            <span>Successfully Added to Cart</span>
+        </div>
+        <!-- /.cart-success -->
     </body>
 </html>
