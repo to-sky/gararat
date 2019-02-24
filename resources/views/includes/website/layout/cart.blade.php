@@ -22,7 +22,7 @@
             </div>
             <!-- /.cart__price -->
             <div class="cart__checkout">
-                <a href="#" class="shadow-sm btn btn-checkout">Checkout</a>
+                <a href="{{ route('cartPage') }}" class="shadow-sm btn btn-checkout">Checkout</a>
                 <!-- /.btn btn-checkout -->
             </div>
             <!-- /.cart__checkout -->

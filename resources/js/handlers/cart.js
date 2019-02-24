@@ -6,10 +6,11 @@ function updateCart() {
                 total = res.data['total'];
             $('#cartItems').text(qty);
             $('#cartPrice').text(total);
+            $('#totalPriceCheckout').text(total);
         })
         .catch(function(err) {
             console.log(err);
-        })
+        });
 }
 
 function addToCart(key, nid, qty) {
@@ -40,4 +41,15 @@ function addToCart(key, nid, qty) {
             qty = $(this).find('input[name="qty"]').val();
         addToCart(userKey, nid, qty);
     });
+
+    if($('#cartTableRenderer').length !== 0) {
+        axios.get('/api/cart/' + localStorage.getItem('userKey') + '/table')
+            .then(function(res) {
+                // console.log(res.data);
+                $('#cartTableRenderer tbody').html(res.data['return']);
+            })
+            .catch(function(err) {
+                // console.log(err);
+            });
+    }
 })(jQuery);

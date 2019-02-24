@@ -80,6 +80,114 @@
     }
 }
 
+.cart-page {
+    margin: 30px 0;
+
+    .cart-page__table {
+
+        table {
+            width: 100%;
+            border: 1px solid $primary_color;
+
+            thead {
+
+                tr {
+                    border-bottom: 2px solid $primary_color;
+
+                    th {
+                        font-weight: 500;
+                        font-size: 1.4rem;
+                        padding: 5px 10px;
+                        border-right: 1px solid $primary_color;
+                    }
+                }
+            }
+
+            tbody {
+
+                tr {
+                    border-bottom: 1px solid $primary_color;
+
+                    td {
+                        font-weight: 400;
+                        font-size: 1.6rem;
+                        padding: 5px 10px;
+                        border-right: 1px solid $primary_color;
+
+                        &:first-child {
+                            width: 70px;
+                            text-align: center;
+                        }
+
+                        &:last-child {
+                            text-align: center;
+                            font-size: 2.2rem;
+                            width: 30px;
+
+                            a {
+                                color: $secondary_color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .total-price {
+            margin-top: 30px;
+            font-weight: 500;
+            font-size: 2rem;
+            line-height: 1;
+        }
+    }
+
+    .cart-page__actions {
+        margin-top: 30px;
+
+        a.btn-home-page {
+            font-size: 1.4rem;
+            line-height: 16px;
+            padding: 10px;
+            margin: 0;
+            font-weight: normal;
+            display: block;
+            text-align: center;
+            color: $primary_color;
+            background: transparent;
+            border: 1px solid $primary_color;
+            border-radius: 3px;
+            transition: $default_transition;
+
+            &:hover {
+                background: $primary_color;
+                color: #ffffff;
+                transition: $default_transition;
+            }
+        }
+
+        a.btn-checkout {
+            font-size: 1.4rem;
+            line-height: 16px;
+            padding: 10px;
+            margin: 0;
+            font-weight: normal;
+            display: block;
+            text-align: center;
+            color: #ffffff;
+            border: 1px solid $secondary_color;
+            background: $secondary_color;
+            border-radius: 3px;
+            transition: $default_transition;
+
+            &:hover {
+                background: darken($secondary_color, 10%);
+                border: 1px solid darken($secondary_color, 10%);
+                transition: $default_transition;
+            }
+        }
+    }
+}
+
 .cart-success {
     position: fixed;
     bottom: 0;
