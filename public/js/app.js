@@ -36402,6 +36402,10 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./handlers/qty-handler */ "./resources/js/handlers/qty-handler.js");
 
+__webpack_require__(/*! ./handlers/user-identity */ "./resources/js/handlers/user-identity.js");
+
+__webpack_require__(/*! ./handlers/cart */ "./resources/js/handlers/cart.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -36462,6 +36466,52 @@ if (token) {
 
 /***/ }),
 
+/***/ "./resources/js/handlers/cart.js":
+/*!***************************************!*\
+  !*** ./resources/js/handlers/cart.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function updateCart() {
+  axios.get('/api/cart/' + localStorage.getItem('userKey')).then(function (res) {
+    console.log(res.data);
+    var qty = res.data['qty'],
+        total = res.data['total'];
+    $('#cartItems').text(qty);
+    $('#cartPrice').text(total);
+  }).catch(function (err) {
+    console.log(err);
+  });
+}
+
+function addToCart(key, nid, qty) {
+  axios.post('/api/cart/actions/add/item', {
+    userKey: key,
+    nid: nid,
+    qty: qty
+  }).then(function (response) {
+    console.log(response);
+    updateCart();
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+
+(function ($) {
+  updateCart(); // Add to cart
+
+  $(document).on('submit', '#addToCartHandler', function (e) {
+    e.preventDefault();
+    var userKey = $(this).find('input[name="userKey"]').val(),
+        nid = $(this).find('input[name="nid"]').val(),
+        qty = $(this).find('input[name="qty"]').val();
+    addToCart(userKey, nid, qty);
+  });
+})(jQuery);
+
+/***/ }),
+
 /***/ "./resources/js/handlers/qty-handler.js":
 /*!**********************************************!*\
   !*** ./resources/js/handlers/qty-handler.js ***!
@@ -36499,6 +36549,43 @@ if (token) {
     getCurrentQty = parseInt(getCurrentQty) + 1;
     $(this).parent().find('input').val(getCurrentQty);
   });
+})(jQuery);
+
+/***/ }),
+
+/***/ "./resources/js/handlers/user-identity.js":
+/*!************************************************!*\
+  !*** ./resources/js/handlers/user-identity.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Key Generator
+function generateHexString(length) {
+  var ret = "";
+
+  while (ret.length < length) {
+    ret += Math.random().toString(16).substring(2);
+  }
+
+  return ret.substring(0, length);
+}
+
+(function ($) {
+  // Check key and generate it if missing
+  var localStorageKey = localStorage.getItem('userKey'); // let key = generateHexString(58);
+
+  if (!localStorageKey) {
+    localStorage.setItem('userKey', generateHexString(58));
+  } else {} // console.log(localStorageKey);
+  // Set key to each form with ID userKey
+
+
+  if ($('input[name="userKey"]').length !== 0) {
+    // console.log(true);
+    $('input[name="userKey"]').val(localStorage.getItem('userKey'));
+  } else {// console.log(false);
+  }
 })(jQuery);
 
 /***/ }),

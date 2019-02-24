@@ -60,9 +60,10 @@
                     </div>
                     <!-- /.col-12 col-lg-7 -->
                     <div class="col-12 col-lg-5">
-                        <form action="#" method="post">
+                        <form action="#" method="post" id="addToCartHandler">
                             @csrf
                             <input type="hidden" name="nid" value="{{ $product->nid }}">
+                            <input type="hidden" name="userKey">
                             <div class="d-flex justify-content-end products__part-cart">
                                 <div class="products__part-cart-price">
                                     @if($product->special_price !== NULL && $product->special_price != 0)

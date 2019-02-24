@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 
 use \App\Models\Catalog;
@@ -109,5 +110,12 @@ class Helpers extends Model
         $breadcrumbsArray[] = array('name' => 'Home', 'route' => 'homePage', 'param' => NULL);
 
         return array_reverse($breadcrumbsArray);
+    }
+    //======================================================================
+    // Cart Builder
+    //======================================================================
+    public function cartPreview()
+    {
+
     }
 }
