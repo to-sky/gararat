@@ -98,7 +98,7 @@ class Orders extends Model
         foreach ($getCart as $item) {
             // Logic
             if($item->thumb_path !== NULL) {
-                $image = $item->thumb_path;
+                $image = '/' . $item->thumb_path;
             } else {
                 $image = '/assets/logos/logo.jpg';
             }
