@@ -36402,6 +36402,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./handlers/qty-handler */ "./resources/js/handlers/qty-handler.js");
 
+__webpack_require__(/*! ./handlers/user-identity */ "./resources/js/handlers/user-identity.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -36499,6 +36501,44 @@ if (token) {
     getCurrentQty = parseInt(getCurrentQty) + 1;
     $(this).parent().find('input').val(getCurrentQty);
   });
+})(jQuery);
+
+/***/ }),
+
+/***/ "./resources/js/handlers/user-identity.js":
+/*!************************************************!*\
+  !*** ./resources/js/handlers/user-identity.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Key Generator
+function generateHexString(length) {
+  var ret = "";
+
+  while (ret.length < length) {
+    ret += Math.random().toString(16).substring(2);
+  }
+
+  return ret.substring(0, length);
+}
+
+(function ($) {
+  // Check key and generate it if missing
+  var localStorageKey = localStorage.getItem('userKey'); // let key = generateHexString(58);
+
+  if (!localStorageKey) {
+    localStorage.setItem('userKey', generateHexString(58));
+  } else {} // console.log(localStorageKey);
+  // Set key to each form with ID userKey
+
+
+  if ($('input[name="userKey"]').length !== 0) {
+    console.log(true);
+    $('input[name="userKey"]').val(localStorage.getItem('userKey'));
+  } else {
+    console.log(false);
+  }
 })(jQuery);
 
 /***/ }),

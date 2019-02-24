@@ -63,6 +63,7 @@
                         <form action="#" method="post">
                             @csrf
                             <input type="hidden" name="nid" value="{{ $product->nid }}">
+                            <input type="hidden" name="userKey">
                             <div class="d-flex justify-content-end products__part-cart">
                                 <div class="products__part-cart-price">
                                     @if($product->special_price !== NULL && $product->special_price != 0)
