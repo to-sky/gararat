@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Website;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use \App\Models\Helpers;
+
 class PagesController extends Controller
 {
     //======================================================================
@@ -12,6 +14,8 @@ class PagesController extends Controller
     //======================================================================
     public function homePage()
     {
+        $helpers = new Helpers;
+
         $data['pageTitle'] = 'Home';
         $data['pageDescription'] = 'Description';
 

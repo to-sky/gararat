@@ -12,7 +12,7 @@
 */
 Auth::routes();
 Route::get('/home', function() {
-    return redirect()->route('homePage');
+    return redirect()->back();
 })->name('home');
 //======================================================================
 // WEBSITE
@@ -25,6 +25,9 @@ Route::get('/', 'Website\PagesController@homePage')->name('homePage');
 Route::get('/catalog/{cid}', 'Website\CatalogController@catalogPage')->name('catalogPage');
 // Nodes
 Route::get('/node/{nid}', 'Website\NodesController@singleNodePage')->name('singleNodePage');
+// API
+Route::get('/api/cart/{userKey}', 'Website\OrdersController@getCartPreviewData');
+Route::post('/api/cart/actions/add/item', 'Website\OrdersController@addItemToCart');
 ########################################################################
 # Auth routes
 ########################################################################

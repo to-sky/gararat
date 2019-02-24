@@ -38,7 +38,7 @@
                 <!-- /.col-12 col-lg-6 -->
                 <div class="col-12 col-lg-6">
                     <div class="shadow product__purchase">
-                        <form action="#" method="post">
+                        <form action="#" method="post" id="addToCartHandler">
                             @csrf
                             <input type="hidden" name="nid" value="{{ $product->nid }}">
                             <input type="hidden" name="userKey">

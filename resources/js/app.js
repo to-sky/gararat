@@ -8,3 +8,4 @@
 require('./bootstrap');
 require('./handlers/qty-handler');
 require('./handlers/user-identity');
+require('./handlers/cart');

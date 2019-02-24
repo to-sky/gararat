@@ -36404,6 +36404,8 @@ __webpack_require__(/*! ./handlers/qty-handler */ "./resources/js/handlers/qty-h
 
 __webpack_require__(/*! ./handlers/user-identity */ "./resources/js/handlers/user-identity.js");
 
+__webpack_require__(/*! ./handlers/cart */ "./resources/js/handlers/cart.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -36464,6 +36466,52 @@ if (token) {
 
 /***/ }),
 
+/***/ "./resources/js/handlers/cart.js":
+/*!***************************************!*\
+  !*** ./resources/js/handlers/cart.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function updateCart() {
+  axios.get('/api/cart/' + localStorage.getItem('userKey')).then(function (res) {
+    console.log(res.data);
+    var qty = res.data['qty'],
+        total = res.data['total'];
+    $('#cartItems').text(qty);
+    $('#cartPrice').text(total);
+  }).catch(function (err) {
+    console.log(err);
+  });
+}
+
+function addToCart(key, nid, qty) {
+  axios.post('/api/cart/actions/add/item', {
+    userKey: key,
+    nid: nid,
+    qty: qty
+  }).then(function (response) {
+    console.log(response);
+    updateCart();
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+
+(function ($) {
+  updateCart(); // Add to cart
+
+  $(document).on('submit', '#addToCartHandler', function (e) {
+    e.preventDefault();
+    var userKey = $(this).find('input[name="userKey"]').val(),
+        nid = $(this).find('input[name="nid"]').val(),
+        qty = $(this).find('input[name="qty"]').val();
+    addToCart(userKey, nid, qty);
+  });
+})(jQuery);
+
+/***/ }),
+
 /***/ "./resources/js/handlers/qty-handler.js":
 /*!**********************************************!*\
   !*** ./resources/js/handlers/qty-handler.js ***!
@@ -36521,55 +36569,21 @@ function generateHexString(length) {
   }
 
   return ret.substring(0, length);
-} // Cookie Helpers
-
-
-function setCookie(name, value, days) {
-  var expires = "";
-
-  if (days) {
-    var date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = "; expires=" + date.toUTCString();
-  }
-
-  document.cookie = name + "=" + (value || "") + expires + "; path=/";
-}
-
-function getCookie(name) {
-  var nameEQ = name + "=";
-  var ca = document.cookie.split(';');
-
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1, c.length);
-    }
-
-    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-  }
-
-  return null;
-}
-
-function eraseCookie(name) {
-  document.cookie = name + '=; Max-Age=-99999999;';
 }
 
 (function ($) {
   // Check key and generate it if missing
-  var userKey = getCookie('userKey'); // let key = generateHexString(58);
+  var localStorageKey = localStorage.getItem('userKey'); // let key = generateHexString(58);
 
-  if (!userKey) {
-    setCookie('userKey', generateHexString(58), 30);
+  if (!localStorageKey) {
+    localStorage.setItem('userKey', generateHexString(58));
   } else {} // console.log(localStorageKey);
   // Set key to each form with ID userKey
 
 
   if ($('input[name="userKey"]').length !== 0) {
-    console.log(true);
-    $('input[name="userKey"]').val(getCookie('userKey'));
+    // console.log(true);
+    $('input[name="userKey"]').val(localStorage.getItem('userKey'));
   } else {// console.log(false);
   }
 })(jQuery);

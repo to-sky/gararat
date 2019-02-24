@@ -60,7 +60,7 @@
                     </div>
                     <!-- /.col-12 col-lg-7 -->
                     <div class="col-12 col-lg-5">
-                        <form action="#" method="post">
+                        <form action="#" method="post" id="addToCartHandler">
                             @csrf
                             <input type="hidden" name="nid" value="{{ $product->nid }}">
                             <input type="hidden" name="userKey">
