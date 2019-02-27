@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1 class="page-title">{{ $pageTitle }}</h1>
-        <form action="" method="post" autocomplete="off">
+        <form action="{{ route('proceedOrderAPI') }}" method="post" autocomplete="off">
             @csrf
             <div class="cart-page cart-page__proceed">
                 <div class="row">

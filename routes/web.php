@@ -35,6 +35,7 @@ Route::get('/api/cart/{userKey}/table', 'Website\OrdersController@getCartTableDa
 Route::get('/api/cart/{userKey}/table-proceed', 'Website\OrdersController@getCartProceedTableData');
 Route::get('/api/cart/remove/{userKey}/{cart_node}', 'Website\OrdersController@removeItemFromCart');
 Route::post('/api/cart/actions/add/item', 'Website\OrdersController@addItemToCart');
+Route::post('/api/cart/proceed/action', 'Website\OrdersController@proceedOrderAPI')->name('proceedOrderAPI');
 ########################################################################
 # Auth routes
 ########################################################################
