@@ -28,7 +28,7 @@
                 <div class="d-flex justify-content-between">
                     <a href="{{ route('homePage') }}" class="btn btn-home-page">Return to home page</a>
                     <!-- /.btn btn-checkout -->
-                    <a href="{{ route('cartPage') }}" class="btn btn-checkout">Continue</a>
+                    <a href="{{ route('cartProceedPage') }}" class="btn btn-checkout">Continue</a>
                     <!-- /.btn btn-checkout -->
                 </div>
                 <!-- /.d-flex justify-content-between -->

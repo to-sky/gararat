@@ -165,7 +165,7 @@
             }
         }
 
-        a.btn-checkout {
+        .btn-checkout {
             font-size: 1.4rem;
             line-height: 16px;
             padding: 10px;
@@ -185,6 +185,51 @@
                 transition: $default_transition;
             }
         }
+    }
+}
+
+.cart-page__proceed {
+    margin-top: 0;
+
+    .cart-page__table {
+        margin-bottom: 30px;
+
+        table {
+
+            thead {
+
+                tr {
+
+                    th {
+                        font-size: 1.4rem;
+                        padding: 5px;
+                    }
+                }
+            }
+
+            tbody {
+
+                tr {
+
+                    td {
+                        font-size: 1.4rem;
+                        padding: 5px;
+
+                        &:last-child {
+                            font-size: 1.4rem;
+                            font-weight: normal;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .total-price {
+        margin-top: 30px;
+        font-weight: 500;
+        font-size: 2rem;
+        line-height: 1;
     }
 }
 

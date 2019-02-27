@@ -89,12 +89,12 @@
                 <div class="bgc-white p-20 bd">
                     <h6 class="c-grey-900">Equipment English</h6>
                     <div class="form-group">
-                        <label for="nodeBody">Body</label>
-                        <textarea name="nodeBody" id="nodeBody" class="summernote"></textarea>
-                    </div>
-                    <div class="form-group">
                         <label for="nodeShortBody">Short Body</label>
                         <textarea name="nodeShortBody" id="nodeShortBody" class="summernote"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="nodeBody">Body</label>
+                        <textarea name="nodeBody" id="nodeBody" class="summernote"></textarea>
                     </div>
                 </div>
             </div>
@@ -102,12 +102,12 @@
                 <div class="bgc-white p-20 bd">
                     <h6 class="c-grey-900">Equipment Arabic</h6>
                     <div class="form-group">
-                        <label for="nodeBodyAr">Body</label>
-                        <textarea name="nodeBodyAr" id="nodeBodyAr" class="summernote"></textarea>
-                    </div>
-                    <div class="form-group">
                         <label for="nodeShortBodyAr">Short Body</label>
                         <textarea name="nodeShortBodyAr" id="nodeShortBodyAr" class="summernote"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="nodeBodyAr">Body</label>
+                        <textarea name="nodeBodyAr" id="nodeBodyAr" class="summernote"></textarea>
                     </div>
                 </div>
             </div>

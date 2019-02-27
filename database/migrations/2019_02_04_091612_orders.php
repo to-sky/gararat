@@ -15,7 +15,6 @@ class Orders extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('oid');
-            $table->integer('user_id')->unsigned()->default(0);
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->nullable();
@@ -23,8 +22,6 @@ class Orders extends Migration
             $table->text('comment')->nullable();
             $table->dateTime('created_at');
             $table->dateTime('updated_at')->nullable();
-
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

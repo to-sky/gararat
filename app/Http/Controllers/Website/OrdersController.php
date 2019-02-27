@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 
 use \App\Models\Orders;
 
@@ -18,6 +19,26 @@ class OrdersController extends Controller
         $data['pageDescription'] = 'Description';
 
         return view('website.cart.cart', $data);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function cartProceedPage()
+    {
+        $data['pageTitle'] = 'Cart';
+        $data['pageDescription'] = '';
+        $data['countries'] = DB::table('countries')->orderBy('country', 'ASC')->get();
+
+        return view('website.cart.cart-proceed', $data);
+    }
+
+    public function cartProceedSuccessPage($oid)
+    {
+        $data['pageTitle'] = 'Order created successfully';
+        $data['pageDescription'] = '';
+        $data['oid'] = $oid;
+        return view('website.cart.cart-success', $data);
     }
     //======================================================================
     // API
@@ -41,6 +62,17 @@ class OrdersController extends Controller
     {
         $ordersModel = new Orders;
         $getCart = $ordersModel->getCartTableData($userKey);
+        return response()->json(['userKey' => $userKey, 'return' => $getCart]);
+    }
+
+    /**
+     * @param $userKey
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getCartProceedTableData($userKey)
+    {
+        $ordersModel = new Orders;
+        $getCart = $ordersModel->getCartProceedTableData($userKey);
         return response()->json(['userKey' => $userKey, 'return' => $getCart]);
     }
 
@@ -69,5 +101,17 @@ class OrdersController extends Controller
         $ordersModel = new Orders;
         $ordersModel->removeNodeFromCart($cartNode);
         return redirect()->back();
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function proceedOrderAPI(Request $request)
+    {
+        $ordersModel = new Orders;
+        $data = $request->all();
+        $createOrder = $ordersModel->createOrder($data);
+        return redirect()->route('cartProceedSuccessPage', $createOrder);
     }
 }

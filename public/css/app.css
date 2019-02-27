@@ -5553,6 +5553,61 @@ b {
   font-weight: 500;
 }
 
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group label {
+  width: 100%;
+  font-size: 1.4rem;
+  color: #191a1c;
+  font-weight: 400;
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group button,
+.form-group select {
+  outline: none !important;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.42857143;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #191a1c;
+  border-radius: 4px;
+  transition: 0.3s all ease;
+  box-shadow: none !important;
+  color: #191a1c;
+  padding: 5px 12px;
+  height: 32px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #fc0203;
+  box-shadow: none;
+}
+
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
 .cart {
   border: 1px solid #fc0203;
   padding: 10px;
@@ -5707,7 +5762,7 @@ b {
   transition: 0.3s all ease;
 }
 
-.cart-page .cart-page__actions a.btn-checkout {
+.cart-page .cart-page__actions .btn-checkout {
   font-size: 1.4rem;
   line-height: 16px;
   padding: 10px;
@@ -5722,10 +5777,40 @@ b {
   transition: 0.3s all ease;
 }
 
-.cart-page .cart-page__actions a.btn-checkout:hover {
+.cart-page .cart-page__actions .btn-checkout:hover {
   background: #c90202;
   border: 1px solid #c90202;
   transition: 0.3s all ease;
+}
+
+.cart-page__proceed {
+  margin-top: 0;
+}
+
+.cart-page__proceed .cart-page__table {
+  margin-bottom: 30px;
+}
+
+.cart-page__proceed .cart-page__table table thead tr th {
+  font-size: 1.4rem;
+  padding: 5px;
+}
+
+.cart-page__proceed .cart-page__table table tbody tr td {
+  font-size: 1.4rem;
+  padding: 5px;
+}
+
+.cart-page__proceed .cart-page__table table tbody tr td:last-child {
+  font-size: 1.4rem;
+  font-weight: normal;
+}
+
+.cart-page__proceed .total-price {
+  margin-top: 30px;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 1;
 }
 
 .cart-success {
