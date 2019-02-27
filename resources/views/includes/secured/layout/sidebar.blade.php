@@ -3,7 +3,7 @@
         <a href="{{ route('securedDashboardPage') }}" class="sidebar-link"><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Dashboard</span></a>
     </li>
     <li class="nav-item">
-        <a href="" class="sidebar-link"><span class="icon-holder"><i class="c-blue-500 ti-bar-chart"></i> </span><span class="title">Orders</span></a>
+        <a href="{{ route('ordersListPageSecured') }}" class="sidebar-link"><span class="icon-holder"><i class="c-blue-500 ti-bar-chart"></i> </span><span class="title">Orders</span></a>
     </li>
     <li class="nav-item dropdown">
         <a href="#" class="dropdown-toggle">
@@ -25,8 +25,8 @@
         <ul class="dropdown-menu">
             <li><a class="sidebar-link" href="{{ route('addNewProduct', 1) }}">Add Equipment</a></li>
             <li><a class="sidebar-link" href="{{ route('addNewProduct', 2) }}">Add Parts</a></li>
-            <li><a class="sidebar-link" href="{{ route('productsListSecuredPage', 1) }}">List of Equipment</a></li>
-            <li><a class="sidebar-link" href="{{ route('productsListSecuredPage', 2) }}">List of Parts</a></li>
+            <li><a class="sidebar-link" href="{{ route('productsListSecuredPage', 0) }}">List of Equipment</a></li>
+            <li><a class="sidebar-link" href="{{ route('productsListSecuredPage', 1) }}">List of Parts</a></li>
         </ul>
     </li>
     <li class="nav-item dropdown">

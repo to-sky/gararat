@@ -55,6 +55,9 @@ Route::group(['middleware' => 'auth'], function() {
         ########################################################################
         // Dashboard
         Route::get('/secured/admin', 'Secured\SecuredPagesController@securedDashboardPage')->name('securedDashboardPage');
+        // Orders
+        Route::get('/secured/admin/orders', 'Secured\SecuredOrdersController@ordersListPageSecured')->name('ordersListPageSecured');
+        Route::get('/secured/admin/orders/{oid}', 'Secured\SecuredOrdersController@reviewOrderPageSecured')->name('reviewOrderPageSecured');
         // Catalog
         Route::get('/secured/admin/catalog', 'Secured\SecuredCatalogController@securedCatalogListPage')->name('securedCatalogListPage');
         Route::get('/secured/admin/catalog/add', 'Secured\SecuredCatalogController@securedAddCatalogItemPage')->name('securedAddCatalogItemPage');
@@ -69,6 +72,10 @@ Route::group(['middleware' => 'auth'], function() {
         ########################################################################
         # API
         ########################################################################
+        // Orders
+        Route::post('/api/v1.0/orders/change/status', 'Secured\SecuredOrdersController@changeOrderStatusAPI')->name('changeOrderStatusAPI');
+        Route::get('/api/v1.0/orders/change/products/{oid}/{nid}', 'Secured\SecuredOrdersController@removeProductFromOrderAPI')->name('removeProductFromOrderAPI');
+        Route::get('/api/v1.0/orders/change/delete/{oid}', 'Secured\SecuredOrdersController@removeOrderAPI')->name('removeOrderAPI');
         // Catalog
         Route::post('/api/v1.0/catalog/new/save', 'Secured\SecuredCatalogController@saveNewCatalogItemAPI')->name('saveNewCatalogItemAPI');
         Route::post('/api/v1.0/catalog/edit/update', 'Secured\SecuredCatalogController@updateCatalogItemAPI')->name('updateCatalogItemAPI');
