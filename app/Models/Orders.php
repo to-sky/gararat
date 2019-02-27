@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
+use Hash;
 use DB;
 
 class Orders extends Model
@@ -48,6 +49,51 @@ class Orders extends Model
                 'order_qty' => $newQty
             ]);
         }
+    }
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function createOrder($data)
+    {
+        $getCart = DB::table('cart')
+            ->where('cart.user_key', $data['userKey'])
+            ->join('cart_nodes', 'cart.cart_id', '=', 'cart_nodes.cart')
+            ->get();
+        $userID = $data['uid'];
+        if($data['uid'] == 'guest') {
+            $createUser = DB::table('users')->insertGetId([
+                'name'        => $data['orderEmail'],
+                'email'       => $data['orderEmail'],
+                'password'    => Hash::make(uniqid())
+            ]);
+            $userID = $createUser;
+        }
+        $createOrder = DB::table('orders')->insertGetId([
+            'first_name' => $data['firstName'],
+            'last_name' => $data['lastName'],
+            'email' => $data['orderEmail'],
+            'phone' => $data['orderPhone'],
+            'comment' => $data['orderComment'],
+            'created_at' => Carbon::now(),
+            'user_id' => $userID,
+            'country' => $data['orderCountry'],
+            'city' => $data['orderCity'],
+            'post' => $data['orderPost'],
+            'address' => $data['orderAddress'],
+            'status' => 0
+        ]);
+        foreach ($getCart as $cart) {
+            DB::table('orders_to_nodes')->insert([
+                'order' => $createOrder,
+                'node' => $cart->node,
+                'order_qty' => $cart->order_qty
+            ]);
+            DB::table('cart_nodes')->where('cart', $cart->cart)->where('node', $cart->node)->delete();
+        }
+        DB::table('cart')->where('user_key', $data['userKey']);
+        return $createOrder;
     }
     //======================================================================
     // READ

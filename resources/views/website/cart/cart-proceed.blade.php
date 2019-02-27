@@ -32,8 +32,8 @@
                             </div>
                             <!-- /.col-12 col-lg-6 -->
                             <div class="col-12 col-lg-6">
-                                <label for="firstName">First Name*</label>
-                                <input type="text" name="firstName" id="firstName" required>
+                                <label for="lastName">First Name*</label>
+                                <input type="text" name="lastName" id="lastName" required>
                             </div>
                             <!-- /.col-12 col-lg-6 -->
                         </div>
@@ -41,12 +41,14 @@
                         <div class="form-group row">
                             @if(!Auth::check())
                                 <div class="col-12 col-lg-6">
+                                    <input type="hidden" name="uid" value="guest">
                                     <label for="orderEmail">Email*</label>
                                     <input type="email" name="orderEmail" id="orderEmail" required>
                                 </div>
                             @else
                                 <div class="col-12">
                                     <p>You're logged in as {{ Auth::user()->name }}</p>
+                                    <input type="hidden" name="uid" value="{{ Auth::user()->id }}">
                                     <input type="hidden" name="orderEmail" id="orderEmail" value="{{ Auth::user()->email }}" required>
                                 </div>
                                 <!-- /.col-12 -->
