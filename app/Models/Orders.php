@@ -99,6 +99,71 @@ class Orders extends Model
     // READ
     //======================================================================
     /**
+     * @return array
+     */
+    public function getOrders()
+    {
+        $getOrders = DB::table('orders')
+            ->join('users', 'orders.user_id', '=', 'users.id')
+            ->select('orders.*', 'users.name')
+            ->orderBy('orders.created_at', 'DESC')
+            ->paginate(50);
+        $array = [];
+        foreach ($getOrders as $order) {
+            $getNodes = DB::table('orders_to_nodes')
+                ->where('orders_to_nodes.order', $order->oid)
+                ->join('nodes', 'orders_to_nodes.node', '=', 'nodes.nid')
+                ->get();
+            $total = 0;
+            foreach ($getNodes as $node) {
+                if($node->is_special == 1) {
+                    $total = $total + ($node->order_qty * $node->special_price);
+                } else {
+                    $total = $total + ($node->order_qty * $node->price);
+                }
+            }
+            $array[] = array(
+                'oid' => $order->oid,
+                'customer' => $order->first_name . ' ' . $order->last_name,
+                'total' => '$' . number_format($total, 0, '.', ' '),
+                'status' => $order->status,
+                'created_at' => $order->created_at
+            );
+        }
+        return $array;
+    }
+
+    /**
+     * @param $oid
+     * @return mixed
+     */
+    public function getOrderById($oid)
+    {
+        return DB::table('orders')
+            ->where('orders.oid', $oid)
+            ->join('users', 'orders.user_id', '=', 'users.id')
+            ->select('orders.*', 'users.name')
+            ->orderBy('orders.created_at', 'DESC')
+            ->first();
+    }
+
+    /**
+     * @param $oid
+     * @return mixed
+     */
+    public function getOrderProducts($oid)
+    {
+        $getNodes = DB::table('orders_to_nodes')
+            ->where('orders_to_nodes.order', $oid)
+            ->join('nodes', 'orders_to_nodes.node', '=', 'nodes.nid')
+            ->leftJoin('nodes_images', function($join) {
+                $join->on('nodes.nid', '=', 'nodes_images.node')
+                    ->where('nodes_images.is_featured', '=', 1);
+            })
+            ->get();
+        return $getNodes;
+    }
+    /**
      * @param $userKey
      * @return array
      */
