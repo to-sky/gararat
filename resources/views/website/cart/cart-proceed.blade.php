@@ -7,7 +7,24 @@
             @csrf
             <div class="cart-page cart-page__proceed">
                 <div class="row">
-                    <div class="col-12 col-lg-8">
+                    <div class="col-12 col-lg-12">
+                        <div class="cart-page__table">
+                            <table id="cartProceedTableRenderer">
+                                <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Product Name</th>
+                                    <th>Quantity</th>
+                                    <th>Total Price</th>
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <!-- /.cart-page__table -->
+                    </div>
+                    <!-- /.col-12 col-lg-8 -->
+                    <div class="col-12 col-lg-12">
                         <div class="form-group row">
                             <div class="col-12 col-lg-6">
                                 <label for="firstName">First Name*</label>
@@ -28,7 +45,11 @@
                                     <input type="email" name="orderEmail" id="orderEmail" required>
                                 </div>
                             @else
-                                <input type="hidden" name="orderEmail" id="orderEmail" value="{{ Auth::user()->email }}" required>
+                                <div class="col-12">
+                                    <p>You're logged in as {{ Auth::user()->name }}</p>
+                                    <input type="hidden" name="orderEmail" id="orderEmail" value="{{ Auth::user()->email }}" required>
+                                </div>
+                                <!-- /.col-12 -->
                             @endif
                             <!-- /.col-12 col-lg-6 -->
                             <div class="col-12 @if(!Auth::check()) col-lg-6 @endif">
@@ -76,31 +97,14 @@
                         </div>
                         <!-- /.form-group row -->
                     </div>
-                    <div class="col-12 col-lg-4">
-                        <div class="cart-page__table">
-                            <table id="cartProceedTableRenderer">
-                                <thead>
-                                <tr>
-                                    <th>Image</th>
-                                    <th>Product Name</th>
-                                    <th>Quantity</th>
-                                    <th>Total Price</th>
-                                </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                            <div class="text-right total-price">
-                                Total price: $<span id="totalPriceCheckout">0</span>
-                            </div>
-                            <!-- /.total-price -->
-                        </div>
-                        <!-- /.cart-page__table -->
-                    </div>
-                    <!-- /.col-12 col-lg-8 -->
                 </div>
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-12">
+                        <div class="text-right total-price">
+                            Total price: $<span id="totalPriceCheckout">0</span>
+                        </div>
+                        <!-- /.total-price -->
                         <div class="cart-page__actions">
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('cartPage') }}" class="btn btn-home-page">Return to cart</a>

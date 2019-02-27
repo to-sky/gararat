@@ -188,11 +188,11 @@
     }
 }
 
-.cart-page {
+.cart-page__proceed {
     margin-top: 0;
 
     .cart-page__table {
-        margin: 18px 0;
+        margin-bottom: 30px;
 
         table {
 
@@ -223,6 +223,13 @@
                 }
             }
         }
+    }
+
+    .total-price {
+        margin-top: 30px;
+        font-weight: 500;
+        font-size: 2rem;
+        line-height: 1;
     }
 }
 

@@ -5783,27 +5783,34 @@ b {
   transition: 0.3s all ease;
 }
 
-.cart-page {
+.cart-page__proceed {
   margin-top: 0;
 }
 
-.cart-page .cart-page__table {
-  margin: 18px 0;
+.cart-page__proceed .cart-page__table {
+  margin-bottom: 30px;
 }
 
-.cart-page .cart-page__table table thead tr th {
+.cart-page__proceed .cart-page__table table thead tr th {
   font-size: 1.4rem;
   padding: 5px;
 }
 
-.cart-page .cart-page__table table tbody tr td {
+.cart-page__proceed .cart-page__table table tbody tr td {
   font-size: 1.4rem;
   padding: 5px;
 }
 
-.cart-page .cart-page__table table tbody tr td:last-child {
+.cart-page__proceed .cart-page__table table tbody tr td:last-child {
   font-size: 1.4rem;
   font-weight: normal;
+}
+
+.cart-page__proceed .total-price {
+  margin-top: 30px;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 1;
 }
 
 .cart-success {
