@@ -128,6 +128,51 @@ class Orders extends Model
         }
         return $return;
     }
+
+    public function getCartProceedTableData($userKey)
+    {
+        $return = '';
+        $return .= '<input type="hidden" name="userKey" value="' . $userKey . '" />';
+        $getCart = DB::table('cart')
+            ->where('cart.user_key', $userKey)
+            ->join('cart_nodes', 'cart.cart_id', '=', 'cart_nodes.cart')
+            ->leftJoin('nodes', 'cart_nodes.node', '=', 'nodes.nid')
+            ->leftJoin('nodes_images', function($join) {
+                $join->on('nodes.nid', '=', 'nodes_images.node')
+                    ->where('nodes_images.is_featured', '=', 1);
+            })
+            ->get();
+        foreach ($getCart as $item) {
+            // Logic
+            if($item->thumb_path !== NULL) {
+                $image = '/' . $item->thumb_path;
+            } else {
+                $image = '/assets/logos/logo.jpg';
+            }
+            switch($item->is_special) {
+                case 1:
+                    $priceTotal = ((int)$item->special_price * (int)$item->order_qty);
+                    $unitPrice = (int)$item->special_price;
+                    break;
+                case 0:
+                    $priceTotal = ((int)$item->price * (int)$item->order_qty);
+                    $unitPrice = (int)$item->price;
+                    break;
+                default:
+                    $priceTotal = ((int)$item->price * (int)$item->order_qty);
+                    $unitPrice = (int)$item->price;
+                    break;
+            }
+            // Return
+            $return .= '<tr>';
+            $return .= '<td><a href="/node/' . $item->nid . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_en . '" width="50" /></a></td>';
+            $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->n_name_en . '</a></td>';
+            $return .= '<td>' . $item->order_qty . '</td>';
+            $return .= '<td>$' . $priceTotal . '</td>';
+            $return .= '</tr>';
+        }
+        return $return;
+    }
     //======================================================================
     // UPDATE
     //======================================================================

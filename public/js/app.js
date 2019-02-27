@@ -36521,6 +36521,15 @@ function addToCart(key, nid, qty) {
     }).catch(function (err) {// console.log(err);
     });
   }
+
+  if ($('#cartProceedTableRenderer').length !== 0) {
+    axios.get('/api/cart/' + localStorage.getItem('userKey') + '/table-proceed').then(function (res) {
+      console.log(res.data);
+      $('#cartProceedTableRenderer tbody').html(res.data['return']);
+    }).catch(function (err) {
+      console.log(err);
+    });
+  }
 })(jQuery);
 
 /***/ }),

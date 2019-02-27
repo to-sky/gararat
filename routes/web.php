@@ -28,9 +28,11 @@ Route::get('/node/{nid}', 'Website\NodesController@singleNodePage')->name('singl
 // Cart
 Route::get('/cart', 'Website\OrdersController@cartPage')->name('cartPage');
 Route::get('/cart/checkout', 'Website\OrdersController@cartPage')->name('cartPage');
+Route::get('/cart/checkout/proceed', 'Website\OrdersController@cartProceedPage')->name('cartProceedPage');
 // API
 Route::get('/api/cart/{userKey}', 'Website\OrdersController@getCartPreviewData');
 Route::get('/api/cart/{userKey}/table', 'Website\OrdersController@getCartTableData');
+Route::get('/api/cart/{userKey}/table-proceed', 'Website\OrdersController@getCartProceedTableData');
 Route::get('/api/cart/remove/{userKey}/{cart_node}', 'Website\OrdersController@removeItemFromCart');
 Route::post('/api/cart/actions/add/item', 'Website\OrdersController@addItemToCart');
 ########################################################################

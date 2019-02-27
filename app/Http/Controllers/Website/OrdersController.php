@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 
 use \App\Models\Orders;
 
@@ -18,6 +19,15 @@ class OrdersController extends Controller
         $data['pageDescription'] = 'Description';
 
         return view('website.cart.cart', $data);
+    }
+
+    public function cartProceedPage()
+    {
+        $data['pageTitle'] = 'Cart';
+        $data['pageDescription'] = '';
+        $data['countries'] = DB::table('countries')->orderBy('country', 'ASC')->get();
+
+        return view('website.cart.cart-proceed', $data);
     }
     //======================================================================
     // API
@@ -41,6 +51,17 @@ class OrdersController extends Controller
     {
         $ordersModel = new Orders;
         $getCart = $ordersModel->getCartTableData($userKey);
+        return response()->json(['userKey' => $userKey, 'return' => $getCart]);
+    }
+
+    /**
+     * @param $userKey
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getCartProceedTableData($userKey)
+    {
+        $ordersModel = new Orders;
+        $getCart = $ordersModel->getCartProceedTableData($userKey);
         return response()->json(['userKey' => $userKey, 'return' => $getCart]);
     }
 
