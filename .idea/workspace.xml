@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a53de099-90a2-4e6f-9913-6b52edeefe05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/secured/orders/order.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/secured/orders/orders.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Nodes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Nodes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Orders.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/CatalogSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CatalogSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/secured/layout/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/secured/layout/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/react-laravel/node_modules/" />
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
@@ -112,56 +104,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="77" column="130" selection-start-line="77" selection-start-column="116" selection-end-line="77" selection-end-column="130" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredOrdersController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="727">
-              <caret line="69" column="48" selection-start-line="69" selection-start-column="48" selection-end-line="69" selection-end-column="48" />
-              <folding>
-                <element signature="e#48#76#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Models/Orders.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="163" column="25" selection-start-line="163" selection-start-column="25" selection-end-line="163" selection-end-column="25" />
-              <folding>
-                <element signature="e#30#69#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/secured/orders/orders.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="43" lean-forward="true" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/secured/orders/order.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="100" column="32" selection-start-line="100" selection-start-column="32" selection-end-line="102" selection-end-column="37" />
-              <folding>
-                <element signature="e#268#293#0#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="265">
+              <caret line="67" column="78" selection-start-line="67" selection-start-column="78" selection-end-line="67" selection-end-column="78" />
             </state>
           </provider>
         </entry>
@@ -223,7 +170,6 @@
         <option value="$PROJECT_DIR$/resources/views/website/cart/cart-proceed.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Website/OrdersController.php" />
         <option value="$PROJECT_DIR$/resources/views/website/cart/cart-success.blade.php" />
-        <option value="$PROJECT_DIR$/database/seeds/CatalogSeeder.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
         <option value="$PROJECT_DIR$/app/Models/Nodes.php" />
@@ -235,6 +181,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredOrdersController.php" />
         <option value="$PROJECT_DIR$/resources/views/secured/orders/order.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/secured/orders/orders.blade.php" />
+        <option value="$PROJECT_DIR$/database/seeds/CatalogSeeder.php" />
       </list>
     </option>
   </component>
@@ -505,7 +452,8 @@
       <workItem from="1551028956484" duration="40000" />
       <workItem from="1551077329970" duration="11000" />
       <workItem from="1551257372689" duration="9759000" />
-      <workItem from="1551277109259" duration="3669000" />
+      <workItem from="1551277109259" duration="3698000" />
+      <workItem from="1551337437801" duration="705000" />
     </task>
     <task id="LOCAL-00001" summary="Update .env">
       <created>1550474450583</created>
@@ -829,11 +777,18 @@
       <option name="project" value="LOCAL" />
       <updated>1551275846514</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Secured Orders">
+      <created>1551281267905</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1551281267906</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76908000" />
+    <option name="totallyTimeSpent" value="77642000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1007" extended-state="6" />
@@ -841,7 +796,7 @@
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.20010673" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.2022412" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
@@ -867,7 +822,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Full sidebar" />
     <MESSAGE value="Equipments products list" />
     <MESSAGE value="Pagination" />
     <MESSAGE value="Node Page" />
@@ -892,7 +846,8 @@
     <MESSAGE value="cart proceed --2" />
     <MESSAGE value="Secured nodes upd1" />
     <MESSAGE value="Checkout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Checkout" />
+    <MESSAGE value="Secured Orders" />
+    <option name="LAST_COMMIT_MESSAGE" value="Secured Orders" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/Models/Catalog.php">
@@ -1160,13 +1115,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/CatalogSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="18" column="107" selection-start-line="18" selection-start-column="107" selection-end-line="18" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -1248,6 +1196,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/secured/orders/order.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2200">
+          <caret line="100" column="32" selection-start-line="100" selection-start-column="32" selection-end-line="102" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/secured/orders/orders.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="51" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Orders.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
@@ -1268,27 +1230,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/secured/orders/order.blade.php">
+    <entry file="file://$PROJECT_DIR$/database/seeds/CatalogSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="100" column="32" selection-start-line="100" selection-start-column="32" selection-end-line="102" selection-end-column="37" />
-          <folding>
-            <element signature="e#268#293#0#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="220">
+          <caret line="93" column="47" lean-forward="true" selection-start-line="93" selection-start-column="47" selection-end-line="93" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="77" column="130" selection-start-line="77" selection-start-column="116" selection-end-line="77" selection-end-column="130" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/secured/orders/orders.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="43" lean-forward="true" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+        <state relative-caret-position="265">
+          <caret line="67" column="78" selection-start-line="67" selection-start-column="78" selection-end-line="67" selection-end-column="78" />
         </state>
       </provider>
     </entry>
