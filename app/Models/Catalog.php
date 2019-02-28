@@ -63,6 +63,14 @@ class Catalog extends Model
     }
 
     /**
+     * @return mixed
+     */
+    public function getAllCatalogItemsByType($type)
+    {
+        return DB::table('catalog')->where('cat_type', $type)->get();
+    }
+
+    /**
      * @param $cid
      * @return mixed
      */

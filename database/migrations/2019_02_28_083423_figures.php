@@ -17,9 +17,7 @@ class Figures extends Migration
             $table->increments('fig_id');
             $table->string('fig_no');
             $table->string('fig_image');
-            $table->integer('catalog')->unsigned()->default(0);
-
-            $table->foreign('catalog')->references('cid')->on('catalog');
+            $table->string('catalog')->default(0);
 
             $table->index('fig_no');
         });
