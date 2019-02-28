@@ -69,6 +69,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/products/{product_type}/add', 'Secured\SecuredProductsController@addNewProduct')->name('addNewProduct');
         Route::get('/secured/admin/products/{product_type}/{nid}/actions/edit', 'Secured\SecuredProductsController@editNode')->name('editNode');
         Route::get('/secured/admin/products/{nid}/actions/delete', 'Secured\SecuredProductsController@deleteNode')->name('deleteNode');
+        // Parts Constructor
+        Route::get('/secured/admin/constructor/list', 'Secured\SecuredPartsConstructor@listConstructorPage')->name('listConstructorPage');
+        Route::get('/secured/admin/constructor/add/init', 'Secured\SecuredPartsConstructor@initNewConstructorDrawingPage')->name('initNewConstructorDrawingPage');
         ########################################################################
         # API
         ########################################################################

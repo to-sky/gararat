@@ -17,7 +17,7 @@ class NodesPartsFields extends Migration
             $table->increments('npf_id');
             $table->integer('node')->unsigned()->default(0);
             $table->integer('group')->nullable();
-            $table->integer('fig_no')->nullable();
+            $table->string('fig_no')->nullable();
             $table->integer('pos_no')->nullable();
             $table->integer('qty')->nullable();
             $table->string('producer_id')->nullable();
