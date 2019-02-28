@@ -47,7 +47,7 @@ class Helpers extends Model
                 $option = '<option ' .  $selected . ' value="' . $value['cat_number'] . '">' . $value['cat_number'] . ' ' . $value['cat_name_en'] . '</option>';
                 // $i .= '---';
                 if($protectId !== NULL) {
-                    if($value['cat_number'] == $protectId) {
+                    if($value['cat_type'] == $protectId) {
                         $result .= $option;
                         $result .= $this->buildCatalogOptionsWithLevels($array, $value['cat_number'], $i, $activeItemId, NULL);
                     }

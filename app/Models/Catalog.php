@@ -135,15 +135,25 @@ class Catalog extends Model
 
     public function getAllChildsCategories($category)
     {
+        switch ($category) {
+            case 0:
+                $needed = 1;
+                break;
+            case 1:
+                $needed = 2;
+                break;
+            default:
+                break;
+        }
         $allCategories = $this->getAllCatalogItems();
         $categories = json_decode(json_encode($allCategories), true);
         $array = [];
-        if($category != 1 && $category != 2) {
-            $parent = $category;
+        if($needed != 1 && $needed != 2) {
+            $parent = $needed;
         } else {
             $parent = 0;
         }
-        $get = $this->buildChildsCategories($categories, $parent, $category);
+        $get = $this->buildChildsCategories($categories, $parent, $needed);
         $explodedCatalog = explode(',', $get);
         foreach ($explodedCatalog as $catalog) {
             if($catalog !== '') {

@@ -26,9 +26,21 @@ class Figures extends Model
         $path = public_path('uploads/' . $pathFolder . '/' . $image_filename . '.' . $image2->getClientOriginalExtension());
         $filename_to_store = 'uploads/' . $pathFolder . '/' . $image_filename . '.' . $image2->getClientOriginalExtension();
         if($size !== NULL) {
-            Image::make($image2->getRealPath())->resize($size, null, function($constraint) {
-                $constraint->aspectRatio();
-            })->save($path);
+            $imageWidth = getimagesize($image2)[0];
+            $imageHeight = getimagesize($image2)[1];
+            $imageSave = Image::make($image2->getRealPath());
+            if($imageWidth >= $imageHeight) {
+                $imageSave->resize(850, null, function($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+            } else {
+                $imageSave->resize(null, 800, function($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+            }
+            $imageSave->save($path);
         } else {
             Image::make($image2->getRealPath())->save($path);
         }

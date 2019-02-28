@@ -26,11 +26,11 @@ class SecuredProductsController extends Controller
         $getNodes = $nodesModel->getNodesForProductType($getAllChildsCategories);
 
         switch($product_type) {
-            case 1:
+            case 0:
                 $data['pageTitle'] = 'Equipment nodes';
                 break;
-            case 2:
-                $data['pageTitle'] = 'Equipment nodes';
+            case 1:
+                $data['pageTitle'] = 'Parts nodes';
                 break;
             default:
                 $data['pageTitle'] = 'Nodes';
@@ -58,11 +58,11 @@ class SecuredProductsController extends Controller
         $data['catalog'] = $buildCatalogOptions;
 
         switch($product_type) {
-            case 1:
+            case 0:
                 $data['pageTitle'] = 'Add new equipment node';
                 return view('secured.nodes.equipment.add', $data);
                 break;
-            case 2:
+            case 1:
                 $data['pageTitle'] = 'Add new parts node';
                 return view('secured.nodes.parts.add', $data);
                 break;
@@ -93,11 +93,11 @@ class SecuredProductsController extends Controller
         $data['images'] = $nodesModel->getNodeImages($nid);
 
         switch($product_type) {
-            case 1:
+            case 0:
                 $data['pageTitle'] = 'Edit';
                 return view('secured.nodes.equipment.edit', $data);
                 break;
-            case 2:
+            case 1:
                 $data['pageTitle'] = 'Edit';
                 return view('secured.nodes.parts.edit', $data);
                 break;
@@ -139,7 +139,7 @@ class SecuredProductsController extends Controller
                 $nodesModel->saveNewNodeImage($saveNode, $image, 0);
             }
         }
-        return redirect()->route('productsListSecuredPage', 1);
+        return redirect()->route('productsListSecuredPage', 0);
     }
 
     /**
@@ -191,7 +191,7 @@ class SecuredProductsController extends Controller
                 $nodesModel->saveNewNodeImage($saveNode, $image, 0);
             }
         }
-        return redirect()->route('productsListSecuredPage', 2);
+        return redirect()->route('productsListSecuredPage', 1);
     }
 
     public function updatePartsAPI(Request $request)

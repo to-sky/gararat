@@ -23,8 +23,8 @@
             <span class="arrow"><i class="ti-angle-right"></i></span>
         </a>
         <ul class="dropdown-menu">
-            <li><a class="sidebar-link" href="{{ route('addNewProduct', 1) }}">Add Equipment</a></li>
-            <li><a class="sidebar-link" href="{{ route('addNewProduct', 2) }}">Add Parts</a></li>
+            <li><a class="sidebar-link" href="{{ route('addNewProduct', 0) }}">Add Equipment</a></li>
+            <li><a class="sidebar-link" href="{{ route('addNewProduct', 1) }}">Add Parts</a></li>
             <li><a class="sidebar-link" href="{{ route('productsListSecuredPage', 0) }}">List of Equipment</a></li>
             <li><a class="sidebar-link" href="{{ route('productsListSecuredPage', 1) }}">List of Parts</a></li>
         </ul>

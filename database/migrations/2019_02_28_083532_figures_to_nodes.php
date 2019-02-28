@@ -11,8 +11,7 @@ class FiguresToNodes extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('figures_to_nodes', function (Blueprint $table) {
             $table->increments('fig_nid_id');
             $table->integer('node')->unsigned()->default(0);
