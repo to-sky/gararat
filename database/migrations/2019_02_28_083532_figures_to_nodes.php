@@ -19,6 +19,8 @@ class FiguresToNodes extends Migration
             $table->integer('figure')->unsigned()->default(0);
             $table->string('pos_x');
             $table->string('pos_y');
+            $table->string('size_x');
+            $table->string('size_y');
 
             $table->foreign('node')->references('nid')->on('nodes');
             $table->foreign('figure')->references('fig_id')->on('figures');
