@@ -58,5 +58,7 @@
                 });
             })(jQuery);
         </script>
+        @stack('scripts')
+        <div id="c-preloader" style="position: absolute;top: 0;left: 0;background: RGBA(0, 0, 0, 0.5);z-index: 9999999999999999999999;width: 100%;height: 100%;display: none;"></div>
     </body>
 </html>

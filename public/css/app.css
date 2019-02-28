@@ -5608,6 +5608,42 @@ b {
   resize: vertical;
 }
 
+.btn {
+  display: inline-block;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 5px 16px;
+  box-shadow: none !important;
+}
+
+.btn-primary {
+  color: #ffffff;
+  border-color: #fc0203 !important;
+  background-color: #fc0203 !important;
+  transition: 0.3s all ease;
+}
+
+.btn-primary:hover {
+  color: #fc0203;
+  border-color: #fc0203 !important;
+  background-color: #ffffff !important;
+  transition: 0.3s all ease;
+}
+
 .cart {
   border: 1px solid #fc0203;
   padding: 10px;

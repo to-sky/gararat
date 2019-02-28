@@ -69,6 +69,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/products/{product_type}/add', 'Secured\SecuredProductsController@addNewProduct')->name('addNewProduct');
         Route::get('/secured/admin/products/{product_type}/{nid}/actions/edit', 'Secured\SecuredProductsController@editNode')->name('editNode');
         Route::get('/secured/admin/products/{nid}/actions/delete', 'Secured\SecuredProductsController@deleteNode')->name('deleteNode');
+        // Parts Constructor
+        Route::get('/secured/admin/constructor/list', 'Secured\SecuredPartsConstructor@listConstructorPage')->name('listConstructorPage');
+        Route::get('/secured/admin/constructor/add/init', 'Secured\SecuredPartsConstructor@initNewConstructorDrawingPage')->name('initNewConstructorDrawingPage');
+        Route::get('/secured/admin/constructor/add/create/{fig_id}', 'Secured\SecuredPartsConstructor@createNewConstructorDrawingPage')->name('createNewConstructorDrawingPage');
         ########################################################################
         # API
         ########################################################################
@@ -86,5 +90,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/api/v1.0/products/parts/update', 'Secured\SecuredProductsController@updatePartsAPI')->name('updatePartsAPI');
         Route::get('/api/v1.0/products/images/remove/{ni_id}', 'Secured\SecuredProductsController@removeProductImage')->name('removeProductImage');
         Route::get('/api/v1.0/products/remove/{nid}', 'Secured\SecuredProductsController@removeProductAPI')->name('removeProductAPI');
+        // Parts Constructor
+        Route::post('/api/v1.0/constructor/init/save', 'Secured\SecuredPartsConstructor@saveConstructorInitAPI')->name('saveConstructorInitAPI');
+        Route::post('/api/v1.0/constructor/init/build/save', 'Secured\SecuredPartsConstructor@saveConstructorBuilderAPI')->name('saveConstructorBuilderAPI');
+        Route::post('/api/v1.0/constructor/init/build/clear', 'Secured\SecuredPartsConstructor@clearConstructorBuilderAPI')->name('clearConstructorBuilderAPI');
     });
 });

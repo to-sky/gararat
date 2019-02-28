@@ -9,3 +9,9 @@ require('./bootstrap');
 require('./handlers/qty-handler');
 require('./handlers/user-identity');
 require('./handlers/cart');
+
+(function($) {
+    if($('#figureConstructorWrapperTarget').length !== 0) {
+        require('./figures/secured-constructor');
+    }
+})(jQuery);
