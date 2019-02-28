@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use \App\Models\Catalog;
 use \App\Models\Figures;
 use \App\Models\Helpers;
+use \App\Models\Nodes;
 
 class SecuredPartsConstructor extends Controller
 {
@@ -34,16 +35,26 @@ class SecuredPartsConstructor extends Controller
         return view('secured.figures.init', $data);
     }
 
+    /**
+     * @param $fig_id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function createNewConstructorDrawingPage($fig_id)
     {
         $catalogModel = new Catalog;
         $figuresModel = new Figures;
+        $nodesModel = new Nodes;
 
         $getFigure = $figuresModel->getFigureById($fig_id);
         $getCatalgoByCatNumber = $catalogModel->getCatalogByCatNumber($getFigure->catalog);
+        $getNodes = $nodesModel->getNodesForFigure($getFigure->fig_no);
+        foreach ($getNodes as $node) {
+            $figuresModel->createOrUpdateNodeForFigure($node->nid, $fig_id);
+        }
 
         $data['pageTitle'] = $getCatalgoByCatNumber->cat_name_en . ' Figure';
         $data['figure'] = $getFigure;
+        $data['nodes'] = $getNodes;
 
         return view('secured.figures.construct', $data);
     }

@@ -46,6 +46,28 @@ class Figures extends Model
         }
         return $filename_to_store;
     }
+
+    /**
+     * @param $nid
+     * @param $figure
+     * @return bool
+     */
+    public function createOrUpdateNodeForFigure($nid, $figure)
+    {
+        $count = DB::table('figures_to_nodes')->where('node', $nid)->count();
+        if($count === 0) {
+            return DB::table('figures_to_nodes')->insert([
+                'node' => $nid,
+                'figure' => $figure,
+                'pos_x' => 0,
+                'pos_y' => 0,
+                'size_x' => 28,
+                'size_y' => 22
+            ]);
+        } else {
+            return false;
+        }
+    }
     //======================================================================
     // CREATE
     //======================================================================
