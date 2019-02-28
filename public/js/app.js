@@ -36406,6 +36406,12 @@ __webpack_require__(/*! ./handlers/user-identity */ "./resources/js/handlers/use
 
 __webpack_require__(/*! ./handlers/cart */ "./resources/js/handlers/cart.js");
 
+(function ($) {
+  if ($('#figureConstructorWrapperTarget').length !== 0) {
+    __webpack_require__(/*! ./figures/secured-constructor */ "./resources/js/figures/secured-constructor.js");
+  }
+})(jQuery);
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -36463,6 +36469,27 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/figures/secured-constructor.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/figures/secured-constructor.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function ($) {
+  $(document).on('click', '#figureConstructorWrapperTarget .figure img', function (e) {
+    e.preventDefault();
+    var parentOffset = $(this).parent().offset(); //or $(this).offset(); if you really just want the current element's offset
+
+    var relX = e.pageX - parentOffset.left;
+    var relY = e.pageY - parentOffset.top;
+    $(this).parent().append('<div style="position: absolute; top: ' + (relY - 22 / 2) + 'px; left: ' + (relX - 30 / 2) + 'px; border: 1px solid red; z-index: 9999; width: 28px; height: 20px;"></div>');
+    console.log(relX + ' ' + relY);
+  });
+})(jQuery);
 
 /***/ }),
 

@@ -36,7 +36,16 @@ class SecuredPartsConstructor extends Controller
 
     public function createNewConstructorDrawingPage($fig_id)
     {
+        $catalogModel = new Catalog;
+        $figuresModel = new Figures;
 
+        $getFigure = $figuresModel->getFigureById($fig_id);
+        $getCatalgoByCatNumber = $catalogModel->getCatalogByCatNumber($getFigure->catalog);
+
+        $data['pageTitle'] = $getCatalgoByCatNumber->cat_name_en . ' Figure';
+        $data['figure'] = $getFigure;
+
+        return view('secured.figures.construct', $data);
     }
     //======================================================================
     // API
