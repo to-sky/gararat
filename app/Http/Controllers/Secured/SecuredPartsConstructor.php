@@ -55,6 +55,7 @@ class SecuredPartsConstructor extends Controller
         $data['pageTitle'] = $getCatalgoByCatNumber->cat_name_en . ' Figure';
         $data['figure'] = $getFigure;
         $data['nodes'] = $getNodes;
+        $data['fig_id'] = $fig_id;
 
         return view('secured.figures.construct', $data);
     }
@@ -72,5 +73,29 @@ class SecuredPartsConstructor extends Controller
         $file = $request->file('figureImage');
         $createFigure = $figuresModel->initFigure($data, $file);
         return redirect()->route('createNewConstructorDrawingPage', $createFigure);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function saveConstructorBuilderAPI(Request $request)
+    {
+        $figuresModel = new Figures;
+        $data = $request->all();
+        $figuresModel->saveParamsForFigureNode($data);
+        return response()->json(['response' => 200]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function clearConstructorBuilderAPI(Request $request)
+    {
+        $figuresModel = new Figures;
+        $data = $request->all();
+        $figuresModel->clearFigureNode($data);
+        return response()->json(['response' => 200]);
     }
 }

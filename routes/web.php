@@ -92,5 +92,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/api/v1.0/products/remove/{nid}', 'Secured\SecuredProductsController@removeProductAPI')->name('removeProductAPI');
         // Parts Constructor
         Route::post('/api/v1.0/constructor/init/save', 'Secured\SecuredPartsConstructor@saveConstructorInitAPI')->name('saveConstructorInitAPI');
+        Route::post('/api/v1.0/constructor/init/build/save', 'Secured\SecuredPartsConstructor@saveConstructorBuilderAPI')->name('saveConstructorBuilderAPI');
+        Route::post('/api/v1.0/constructor/init/build/clear', 'Secured\SecuredPartsConstructor@clearConstructorBuilderAPI')->name('clearConstructorBuilderAPI');
     });
 });

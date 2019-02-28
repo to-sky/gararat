@@ -62,7 +62,8 @@ class Figures extends Model
                 'pos_x' => 0,
                 'pos_y' => 0,
                 'size_x' => 28,
-                'size_y' => 22
+                'size_y' => 22,
+                'color' => 'RGB(' . rand(0, 255)  . ', ' . rand(0, 255)  . ', ' .rand(0, 255) . ')'
             ]);
         } else {
             return false;
@@ -109,7 +110,30 @@ class Figures extends Model
     //======================================================================
     // UPDATE
     //======================================================================
-
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function saveParamsForFigureNode($data)
+    {
+        return DB::table('figures_to_nodes')->where('node', $data['nid'])->where('figure', $data['fig_id'])->update([
+            'pos_x' => $data['pos_x'],
+            'pos_y' => $data['pos_y'],
+            'size_x' => $data['size_x'],
+            'size_y' => $data['size_y']
+        ]);
+    }
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function clearFigureNode($data)
+    {
+        return DB::table('figures_to_nodes')->where('node', $data['nid'])->where('figure', $data['fig_id'])->update([
+            'pos_x' => 0,
+            'pos_y' => 0
+        ]);
+    }
     //======================================================================
     // DELETE
     //======================================================================
