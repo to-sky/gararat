@@ -9,6 +9,8 @@
 !/public/uploads/products-mid/index.html
 /public/uploads/products-thumb/*
 !/public/uploads/products-thumb/index.html
+/public/uploads/figures/*
+!/public/uploads/figures/index.html
 .env
 .phpunit.result.cache
 Homestead.json
