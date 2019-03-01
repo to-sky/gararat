@@ -22,7 +22,7 @@
                                 <td>{{ $figure->cat_number }} - {{ $figure->cat_name_en }}</td>
                                 <td>
                                     <a href="{{ route('createNewConstructorDrawingPage', $figure->fig_id) }}" class="btn btn-success"><i class="ti-pencil"></i></a>
-                                    <a href="" class="btn btn-danger"><i class="ti-trash"></i></a>
+                                    <a href="{{ route('deleteConstructorDrawingPage', ['fig_id' => $figure->fig_id, 'catalog' => $figure->cat_number]) }}" class="btn btn-danger"><i class="ti-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach

@@ -48,8 +48,8 @@ class Figures extends Model
     }
 
     /**
-     * @param $nid
      * @param $figure
+     * @param $fig_no
      * @return bool
      */
     public function createOrUpdateNodeForFigure($figure, $fig_no)
@@ -149,5 +149,18 @@ class Figures extends Model
     //======================================================================
     // DELETE
     //======================================================================
-
+    /**
+     * @param $figure
+     * @param $catalog
+     * @return mixed
+     */
+    public function removeFigure($figure, $catalog)
+    {
+        // Remove catalog
+        DB::table('catalog')->where('parent_cat', $catalog)->where('cat_name_en', 'Figure')->delete();
+        // Remove Nodes
+        DB::table('figures_to_nodes')->where('figure', $figure)->delete();
+        // Remove Figure
+        return DB::table('figures')->where('fig_id', $figure)->delete();
+    }
 }

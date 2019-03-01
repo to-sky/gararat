@@ -65,6 +65,19 @@ class SecuredPartsConstructor extends Controller
 
         return view('secured.figures.construct', $data);
     }
+
+    /**
+     * @param Request $request
+     * @param $fig_no
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deleteConstructorDrawingPage(Request $request, $fig_no)
+    {
+        $figuresModel = new Figures;
+        $catalog = $request->query('catalog');
+        $figuresModel->removeFigure($fig_no, $catalog);
+        return redirect()->back();
+    }
     //======================================================================
     // API
     //======================================================================
