@@ -133,6 +133,10 @@ class Catalog extends Model
         return DB::table('catalog')->where('cat_number', $catNumber)->get();
     }
 
+    /**
+     * @param $category
+     * @return array
+     */
     public function getAllChildsCategories($category)
     {
         switch ($category) {
@@ -143,6 +147,43 @@ class Catalog extends Model
                 $needed = 2;
                 break;
             default:
+                break;
+        }
+        $allCategories = $this->getAllCatalogItems();
+        $categories = json_decode(json_encode($allCategories), true);
+        $array = [];
+        if($needed != 1 && $needed != 2) {
+            $parent = $needed;
+        } else {
+            $parent = 0;
+        }
+        $get = $this->buildChildsCategories($categories, $parent, $needed);
+        $explodedCatalog = explode(',', $get);
+        foreach ($explodedCatalog as $catalog) {
+            if($catalog !== '') {
+                if(!in_array($catalog, $array)) {
+                    $array[] = $catalog;
+                }
+            }
+        }
+        return $array;
+    }
+
+    /**
+     * @param $category
+     * @return array
+     */
+    public function getAllChildsCategoriesFrontEnd($category)
+    {
+        switch ($category) {
+            case 1:
+                $needed = 1;
+                break;
+            case 2:
+                $needed = 2;
+                break;
+            default:
+                $needed = $category;
                 break;
         }
         $allCategories = $this->getAllCatalogItems();

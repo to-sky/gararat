@@ -15,3 +15,4 @@ require('./handlers/cart');
         require('./figures/secured-constructor');
     }
 })(jQuery);
+require('./figures/frontend-fogure');

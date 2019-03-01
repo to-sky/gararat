@@ -6180,6 +6180,201 @@ b {
   background: #fc0203;
 }
 
+.drawing .drawing__figure {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.drawing .drawing__figure .drawing__figure-wrapper {
+  width: 100%;
+  border: 1px solid #191a1c;
+  padding: 15px;
+  display: inline-block;
+  text-align: center;
+}
+
+.drawing .drawing__figure .drawing__figure-wrapper .drawing__figure-inner {
+  position: relative;
+  display: inline-block;
+}
+
+.drawing .drawing__figure .drawing__figure-wrapper .drawing__figure-inner .item-block {
+  border: 1px solid #191a1c !important;
+  cursor: pointer;
+}
+
+.drawing .drawing__nodes table {
+  width: 100%;
+  border: 1px solid #191a1c;
+}
+
+.drawing .drawing__nodes table thead tr {
+  border-bottom: 2px solid #191a1c;
+}
+
+.drawing .drawing__nodes table thead tr th {
+  border: 1px solid #191a1c;
+  padding: 10px 5px;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.drawing .drawing__nodes table thead tr th:nth-child(1) {
+  text-align: center;
+  width: 70px;
+}
+
+.drawing .drawing__nodes table thead tr th:nth-child(3) {
+  text-align: center;
+  width: 60px;
+}
+
+.drawing .drawing__nodes table tbody tr td {
+  border: 1px solid #191a1c;
+  padding: 5px;
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+
+.drawing .drawing__nodes table tbody tr td:nth-child(1) {
+  text-align: center;
+}
+
+.drawing .drawing__nodes table tbody tr td:nth-child(3) {
+  text-align: center;
+}
+
+.drawing .drawing__nodes table tbody tr td a {
+  color: #fc0203;
+}
+
+.drawing .drawing__nodes table tbody tr td .colps {
+  color: #191a1c;
+}
+
+.drawing .drawing__nodes table tbody tr td span {
+  color: #191a1c;
+  opacity: 0.7;
+}
+
+.drawing .drawing__nodes table tbody .hovered {
+  background: RGBA(0, 0, 0, 0.05);
+}
+
+.drawing .drawing__nodes table tbody .hovered td {
+  color: #fc0203;
+  border: 0;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row {
+  display: none;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row td {
+  border: 0;
+  border-bottom: 1px solid #191a1c;
+  vertical-align: middle;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-image,
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-name,
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-price,
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-qty,
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-button {
+  height: 28px;
+  display: flex;
+  align-items: center;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-price,
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-button {
+  margin-left: 30px;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-image {
+  border-radius: 5px;
+  border: 1px solid #191a1c;
+  overflow: hidden;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-name {
+  color: #2d7dd2;
+  font-size: 1.6rem;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-price {
+  width: 130px;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-price .old {
+  color: #191a1c;
+  opacity: 0.5;
+  padding-right: 5px;
+  font-size: 1.4rem;
+  text-decoration: line-through;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-price .current {
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: #191a1c;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-price .current-special {
+  color: #fc0203;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-qty a {
+  font-size: 1.4rem;
+  line-height: 20px;
+  color: #191a1c;
+  padding: 0 5px;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-qty input {
+  outline: none;
+  border: 1px solid #1e1e1e;
+  padding: 0 5px;
+  line-height: 20px;
+  font-size: 1.6rem;
+  color: #191a1c;
+  background: #ffffff;
+  text-align: center;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-qty input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-qty input::-webkit-outer-spin-button,
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-qty input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-button .btn-add-to-cart {
+  width: 121px;
+  background: #fc0203;
+  outline: none;
+  border: 0;
+  color: #ffffff;
+  line-height: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  transition: 0.3s all ease;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 4px 10px;
+}
+
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-button .btn-add-to-cart:hover {
+  background: #c90202;
+  transition: 0.3s all ease;
+}
+
 .header__top {
   width: 100%;
   background: #191a1c;

@@ -43,7 +43,7 @@
         </header>
         <!-- /.header -->
         <main class="main">
-            @if(in_array(\Request::route()->getName(), ['catalogPage']))
+            @if(in_array(\Request::route()->getName(), ['catalogPage', 'figuresCatalogPage']))
                 <div class="container mb-5">
                     <div class="row">
                         <div class="col-12 col-lg-3">

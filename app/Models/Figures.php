@@ -30,12 +30,12 @@ class Figures extends Model
             $imageHeight = getimagesize($image2)[1];
             $imageSave = Image::make($image2->getRealPath());
             if($imageWidth >= $imageHeight) {
-                $imageSave->resize(850, null, function($constraint) {
+                $imageSave->resize(700, null, function($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 });
             } else {
-                $imageSave->resize(null, 800, function($constraint) {
+                $imageSave->resize(null, 700, function($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 });
@@ -48,26 +48,28 @@ class Figures extends Model
     }
 
     /**
-     * @param $nid
      * @param $figure
+     * @param $fig_no
      * @return bool
      */
-    public function createOrUpdateNodeForFigure($nid, $figure)
+    public function createOrUpdateNodeForFigure($figure, $fig_no)
     {
-        $count = DB::table('figures_to_nodes')->where('node', $nid)->count();
-        if($count === 0) {
-            return DB::table('figures_to_nodes')->insert([
-                'node' => $nid,
-                'figure' => $figure,
-                'pos_x' => 0,
-                'pos_y' => 0,
-                'size_x' => 28,
-                'size_y' => 22,
-                'color' => 'RGB(' . rand(0, 255)  . ', ' . rand(0, 255)  . ', ' .rand(0, 255) . ')'
-            ]);
-        } else {
-            return false;
+        $get = DB::table('nodes_parts_fields')->where('fig_no', $fig_no)->get();
+        foreach ($get as $value) {
+            $count = DB::table('figures_to_nodes')->where('node', $value->node)->where('figure', $figure)->count();
+            if ($count === 0) {
+                DB::table('figures_to_nodes')->insert([
+                    'node' => $value->node,
+                    'figure' => $figure,
+                    'pos_x' => 0,
+                    'pos_y' => 0,
+                    'size_x' => 28,
+                    'size_y' => 22,
+                    'color' => 'RGB(' . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ')'
+                ]);
+            }
         }
+        return true;
     }
     //======================================================================
     // CREATE
@@ -92,7 +94,8 @@ class Figures extends Model
             'cat_type' => 1,
             'is_drawing' => 1,
             'cat_name_en' => 'Figure',
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now(),
+            'figure' => $createFigure
         ]);
         return $createFigure;
     }
@@ -106,6 +109,16 @@ class Figures extends Model
     public function getFigureById($fig_id)
     {
         return DB::table('figures')->where('fig_id', $fig_id)->first();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFiguresList()
+    {
+        return DB::table('figures')
+            ->join('catalog', 'figures.catalog', '=', 'catalog.cat_number')
+            ->get();
     }
     //======================================================================
     // UPDATE
@@ -137,5 +150,18 @@ class Figures extends Model
     //======================================================================
     // DELETE
     //======================================================================
-
+    /**
+     * @param $figure
+     * @param $catalog
+     * @return mixed
+     */
+    public function removeFigure($figure, $catalog)
+    {
+        // Remove catalog
+        DB::table('catalog')->where('parent_cat', $catalog)->where('cat_name_en', 'Figure')->delete();
+        // Remove Nodes
+        DB::table('figures_to_nodes')->where('figure', $figure)->delete();
+        // Remove Figure
+        return DB::table('figures')->where('fig_id', $figure)->delete();
+    }
 }

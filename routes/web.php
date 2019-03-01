@@ -23,6 +23,7 @@ Route::get('/home', function() {
 Route::get('/', 'Website\PagesController@homePage')->name('homePage');
 // Catalog
 Route::get('/catalog/{cid}', 'Website\CatalogController@catalogPage')->name('catalogPage');
+Route::get('/catalog/{cid}/construct/figures', 'Website\CatalogController@figuresCatalogPage')->name('figuresCatalogPage');
 // Nodes
 Route::get('/node/{nid}', 'Website\NodesController@singleNodePage')->name('singleNodePage');
 // Cart
@@ -73,6 +74,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/constructor/list', 'Secured\SecuredPartsConstructor@listConstructorPage')->name('listConstructorPage');
         Route::get('/secured/admin/constructor/add/init', 'Secured\SecuredPartsConstructor@initNewConstructorDrawingPage')->name('initNewConstructorDrawingPage');
         Route::get('/secured/admin/constructor/add/create/{fig_id}', 'Secured\SecuredPartsConstructor@createNewConstructorDrawingPage')->name('createNewConstructorDrawingPage');
+        Route::get('/secured/admin/constructor/add/delete/{fig_id}', 'Secured\SecuredPartsConstructor@deleteConstructorDrawingPage')->name('deleteConstructorDrawingPage');
         ########################################################################
         # API
         ########################################################################

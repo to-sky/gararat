@@ -275,14 +275,14 @@ class Nodes extends Model
      */
     public function getNodesForFigure($fig_number)
     {
-        return DB::table('nodes_parts_fields')
-            ->where('nodes_parts_fields.fig_no', $fig_number)
-            ->join('nodes', 'nodes_parts_fields.node', '=', 'nodes.nid')
+        return DB::table('figures_to_nodes')
+            ->where('figures_to_nodes.figure', $fig_number)
+            ->join('nodes_parts_fields', 'figures_to_nodes.node', '=', 'nodes_parts_fields.node')
+            ->leftJoin('nodes', 'nodes_parts_fields.node', '=', 'nodes.nid')
             ->leftJoin('nodes_images', function($join) {
                 $join->on('nodes.nid', '=', 'nodes_images.node')
                     ->where('nodes_images.is_featured', '=', 1);
             })
-            ->leftJoin('figures_to_nodes', 'nodes.nid', '=', 'figures_to_nodes.node')
             ->orderBy('nodes_parts_fields.pos_no', 'ASC')
             ->get();
     }
