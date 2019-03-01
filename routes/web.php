@@ -23,6 +23,7 @@ Route::get('/home', function() {
 Route::get('/', 'Website\PagesController@homePage')->name('homePage');
 // Catalog
 Route::get('/catalog/{cid}', 'Website\CatalogController@catalogPage')->name('catalogPage');
+Route::get('/catalog/{cid}/construct/figures', 'Website\CatalogController@figuresCatalogPage')->name('figuresCatalogPage');
 // Nodes
 Route::get('/node/{nid}', 'Website\NodesController@singleNodePage')->name('singleNodePage');
 // Cart

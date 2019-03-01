@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use \App\Models\Catalog;
 use \App\Models\Helpers;
 use \App\Models\Nodes;
+use \App\Models\Figures;
 
 class CatalogController extends Controller
 {
@@ -57,14 +58,48 @@ class CatalogController extends Controller
         }
         $data['breadcrumbs'] = $helpers->buildCatalogBreadcrumbs($getCatalogByCid, false);
         // Get products
-        $getAllChildsCategories = $catalogModel->getAllChildsCategories($getCatalogByCid->cat_number);
+        $getAllChildsCategories = $catalogModel->getAllChildsCategoriesFrontEnd($getCatalogByCid->cat_number);
         $getNodes = $nodesModel->getNodesForProductType($getAllChildsCategories);
         $data['products'] = $nodesModel->getNodesByType($getNodes, $getCatalogByCid->cat_type, $perPage, $target, $destination);
         $data['target'] = $target;
         $data['neededTarget'] = $neededTarget;
         $data['destination'] = $destination;
         $data['perPage'] = $perPage;
+        if($getCatalogByCid->is_drawing === 1) {
+            return redirect()->route('figuresCatalogPage', $cid);
+        } else {
+            return view('website.catalog.catalog', $data);
+        }
+    }
 
-        return view('website.catalog.catalog', $data);
+    public function figuresCatalogPage($cid)
+    {
+        $catalogModel = new Catalog;
+        $helpers = new Helpers;
+        $nodesModel = new Nodes;
+        $figuresModel = new Figures;
+
+        $getCatalogByCid = $catalogModel->getCatalogByCid($cid);
+        if($getCatalogByCid->cat_title_en === NULL) {
+            $data['pageTitle'] = $getCatalogByCid->cat_name_en;
+        } else {
+            $data['pageTitle'] = $getCatalogByCid->cat_title_en;
+        }
+        $data['cid'] = $cid;
+        $data['catalogName'] = $getCatalogByCid->cat_name_en;
+        $data['catalogType'] = $getCatalogByCid->cat_type;
+        $data['pageDescription'] = $getCatalogByCid->cat_description_en;
+        $data['catalogChilds'] = $catalogModel->getCatalogChilds($getCatalogByCid->cat_number);
+        if(count($data['catalogChilds']) === 0) {
+            $data['parentCatalog'] = $catalogModel->getCatalogByCatNumber($getCatalogByCid->parent_cat);
+        }
+        $data['breadcrumbs'] = $helpers->buildCatalogBreadcrumbs($getCatalogByCid, false);
+        // Figure
+        $getFigure = $figuresModel->getFigureById($getCatalogByCid->figure);
+        $getNodes = $nodesModel->getNodesForFigure($getFigure->fig_id);
+        $data['figure'] = $getFigure;
+        $data['nodes'] = $getNodes;
+
+        return view('website.catalog.figure', $data);
     }
 }

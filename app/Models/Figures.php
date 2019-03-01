@@ -30,12 +30,12 @@ class Figures extends Model
             $imageHeight = getimagesize($image2)[1];
             $imageSave = Image::make($image2->getRealPath());
             if($imageWidth >= $imageHeight) {
-                $imageSave->resize(850, null, function($constraint) {
+                $imageSave->resize(700, null, function($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 });
             } else {
-                $imageSave->resize(null, 800, function($constraint) {
+                $imageSave->resize(null, 700, function($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 });
@@ -94,7 +94,8 @@ class Figures extends Model
             'cat_type' => 1,
             'is_drawing' => 1,
             'cat_name_en' => 'Figure',
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now(),
+            'figure' => $createFigure
         ]);
         return $createFigure;
     }

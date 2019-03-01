@@ -283,6 +283,7 @@ class Nodes extends Model
                 $join->on('nodes.nid', '=', 'nodes_images.node')
                     ->where('nodes_images.is_featured', '=', 1);
             })
+            ->orderBy('nodes_parts_fields.pos_no', 'ASC')
             ->get();
     }
     //======================================================================

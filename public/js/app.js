@@ -36412,6 +36412,8 @@ __webpack_require__(/*! ./handlers/cart */ "./resources/js/handlers/cart.js");
   }
 })(jQuery);
 
+__webpack_require__(/*! ./figures/frontend-fogure */ "./resources/js/figures/frontend-fogure.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -36469,6 +36471,33 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/figures/frontend-fogure.js":
+/*!*************************************************!*\
+  !*** ./resources/js/figures/frontend-fogure.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function ($) {
+  // Collapsible rows
+  $(document).on('click', '.collapsible-row-activator', function (e) {
+    e.preventDefault();
+    $('.drawing__nodes table tr').removeClass('hovered');
+    var getTarget = $(this).data('target');
+
+    if ($('#' + getTarget).is(':visible')) {
+      $(this).removeClass('colps').html('to order');
+      $('#' + getTarget).slideUp(150);
+    } else {
+      $(this).parent().parent().addClass('hovered');
+      $(this).addClass('colps').html('Collapse <i class="fas fa-angle-up"></i>');
+      $('#' + getTarget).slideDown(150);
+    }
+  });
+})(jQuery);
 
 /***/ }),
 
