@@ -15,9 +15,17 @@ class SecuredPartsConstructor extends Controller
     //======================================================================
     // PAGES
     //======================================================================
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function listConstructorPage()
     {
+        $figuresModel = new Figures;
 
+        $data['pageTitle'] = 'Figures List';
+        $data['figures'] = $figuresModel->getFiguresList();
+
+        return view('secured.figures.list', $data);
     }
 
     /**
@@ -46,11 +54,9 @@ class SecuredPartsConstructor extends Controller
         $nodesModel = new Nodes;
 
         $getFigure = $figuresModel->getFigureById($fig_id);
+        $figuresModel->createOrUpdateNodeForFigure($fig_id, $getFigure->fig_no);
         $getCatalgoByCatNumber = $catalogModel->getCatalogByCatNumber($getFigure->catalog);
-        $getNodes = $nodesModel->getNodesForFigure($getFigure->fig_no);
-        foreach ($getNodes as $node) {
-            $figuresModel->createOrUpdateNodeForFigure($node->nid, $fig_id);
-        }
+        $getNodes = $nodesModel->getNodesForFigure($getFigure->fig_id);
 
         $data['pageTitle'] = $getCatalgoByCatNumber->cat_name_en . ' Figure';
         $data['figure'] = $getFigure;

@@ -52,22 +52,24 @@ class Figures extends Model
      * @param $figure
      * @return bool
      */
-    public function createOrUpdateNodeForFigure($nid, $figure)
+    public function createOrUpdateNodeForFigure($figure, $fig_no)
     {
-        $count = DB::table('figures_to_nodes')->where('node', $nid)->count();
-        if($count === 0) {
-            return DB::table('figures_to_nodes')->insert([
-                'node' => $nid,
-                'figure' => $figure,
-                'pos_x' => 0,
-                'pos_y' => 0,
-                'size_x' => 28,
-                'size_y' => 22,
-                'color' => 'RGB(' . rand(0, 255)  . ', ' . rand(0, 255)  . ', ' .rand(0, 255) . ')'
-            ]);
-        } else {
-            return false;
+        $get = DB::table('nodes_parts_fields')->where('fig_no', $fig_no)->get();
+        foreach ($get as $value) {
+            $count = DB::table('figures_to_nodes')->where('node', $value->node)->where('figure', $figure)->count();
+            if ($count === 0) {
+                DB::table('figures_to_nodes')->insert([
+                    'node' => $value->node,
+                    'figure' => $figure,
+                    'pos_x' => 0,
+                    'pos_y' => 0,
+                    'size_x' => 28,
+                    'size_y' => 22,
+                    'color' => 'RGB(' . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ')'
+                ]);
+            }
         }
+        return true;
     }
     //======================================================================
     // CREATE
@@ -106,6 +108,16 @@ class Figures extends Model
     public function getFigureById($fig_id)
     {
         return DB::table('figures')->where('fig_id', $fig_id)->first();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFiguresList()
+    {
+        return DB::table('figures')
+            ->join('catalog', 'figures.catalog', '=', 'catalog.cat_number')
+            ->get();
     }
     //======================================================================
     // UPDATE
