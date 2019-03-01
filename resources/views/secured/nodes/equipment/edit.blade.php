@@ -73,7 +73,7 @@
                             <div class="form-group row">
                                 <div class="col-6">
                                     <label for="mainImage">Main Image</label>
-                                    <input type="file" class="form-control" name="mainImage" id="mainImage">
+                                    <input type="file" class="form-control-file" name="mainImage" id="mainImage">
                                     <br>
                                     <p>Upload new image to replace current.</p>
                                     @foreach($images as $image)
@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="col-6">
                                     <label for="additionalImages">Additional Images</label>
-                                    <input type="file" class="form-control" multiple name="additionalImages[]" id="additionalImages">
+                                    <input type="file" class="form-control-file" multiple name="additionalImages[]" id="additionalImages">
                                     <br>
                                     <p>Additional images</p>
                                     <div class="row">
