@@ -52,7 +52,12 @@ class SecuredCommonController extends Controller
     ########################################################################
     public function securedNewsListPage()
     {
+        $newsModel = new News;
 
+        $data['pageTitle'] = 'News';
+        $data['news'] = $newsModel->getAllNews(100);
+
+        return view('secured.news.list', $data);
     }
 
     /**
@@ -65,14 +70,28 @@ class SecuredCommonController extends Controller
         return view('secured.news.add', $data);
     }
 
+    /**
+     * @param $nw_id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function securedUpdateNewsItem($nw_id)
     {
-
+        $newsModel = new News;
+        $getNews = $newsModel->getNewsItemById($nw_id);
+        $data['pageTitle'] = $getNews->nw_name;
+        $data['news'] = $getNews;
+        return view('secured.news.edit', $data);
     }
 
+    /**
+     * @param $nw_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function securedRemoveNewsItem($nw_id)
     {
-
+        $newsModel = new News;
+        $newsModel->removeNewsItem($nw_id);
+        return redirect()->back();
     }
     ########################################################################
     ### Pages
@@ -109,6 +128,19 @@ class SecuredCommonController extends Controller
         $data = $request->all();
         $file = $request->file('newsImage');
         $newsModel->createNewsItem($data, $file);
+        return redirect()->route('securedNewsListPage');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateNewsItemAPI(Request $request)
+    {
+        $newsModel = new News;
+        $data = $request->all();
+        $file = $request->file('newsImage');
+        $newsModel->updateNewsItem($data, $file);
         return redirect()->route('securedNewsListPage');
     }
     ########################################################################

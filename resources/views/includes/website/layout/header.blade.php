@@ -73,8 +73,8 @@
                         <li>
                             <a href="#">Services</a>
                         </li>
-                        <li>
-                            <a href="#">News</a>
+                        <li @if(in_array(\Request::route()->getName(), ['newsPage'])) class="active" @endif>
+                            <a href="{{ route('newsPage') }}">News</a>
                         </li>
                         <li>
                             <a href="#">Contacts</a>
