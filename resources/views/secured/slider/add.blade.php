@@ -12,7 +12,7 @@
                         <input type="text" class="form-control" name="slideTitle" id="slideTitle" required>
                     </div>
                     <div class="form-group">
-                        <label for="slideImage">Upload Image (1110 x 400 px)</label>
+                        <label for="slideImage">Upload Image (1110 x 400px)</label>
                         <input type="file" class="form-control-file" name="slideImage" id="slideImage" required>
                     </div>
                     <div class="form-group">
