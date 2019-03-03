@@ -6322,6 +6322,32 @@ img.image {
   overflow: hidden;
 }
 
+.contacts h3 {
+  margin-top: 30px;
+  margin-bottom: 0;
+  padding-bottom: 15px;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 1;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.contacts h3:after {
+  content: "";
+  position: absolute;
+  bottom: 7.5px;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: #fc0203;
+}
+
+.contacts .contacts__info h3,
+.contacts .contacts__form h3 {
+  margin-top: 0;
+}
+
 h1.homepage {
   font-weight: 400;
   text-transform: uppercase;

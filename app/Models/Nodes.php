@@ -237,6 +237,22 @@ class Nodes extends Model
     }
 
     /**
+     * @param $search
+     * @return mixed
+     */
+    public function getNodesBySearchRequestSecured($search)
+    {
+        $get = DB::table('nodes')->where('nodes.n_name_en', 'like', '%' . $search .'%')
+            ->join('nodes_to_catalog', 'nodes.nid', '=', 'nodes_to_catalog.node')
+            ->leftJoin('catalog', 'nodes_to_catalog.catalog', '=', 'catalog.cid');
+        $get->leftJoin('nodes_images', function($join) {
+            $join->on('nodes.nid', '=', 'nodes_images.node')
+                ->where('nodes_images.is_featured', '=', 1);
+        });
+        return $get->paginate(50);
+    }
+
+    /**
      * @param $catalog
      * @return array
      */

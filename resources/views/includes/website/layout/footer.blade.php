@@ -19,19 +19,19 @@
                             <a href="{{ route('homePage') }}">Home</a>
                         </li>
                         <li>
-                            <a href="#">Products</a>
+                            <a href="{{ route('catalogPage', 1) }}">Equipments</a>
                         </li>
                         <li>
-                            <a href="#">Parts</a>
+                            <a href="{{ route('catalogPage', 2) }}">Parts</a>
                         </li>
                         <li>
-                            <a href="#">Services</a>
+                            <a href="{{ route('servicesPage') }}">Services</a>
                         </li>
                         <li>
-                            <a href="#">News</a>
+                            <a href="{{ route('newsPage') }}">News</a>
                         </li>
                         <li>
-                            <a href="#">Contacts</a>
+                            <a href="{{ route('contactsPage') }}">Contacts</a>
                         </li>
                     </ul>
                 </div>

@@ -8,7 +8,7 @@
             @if($catalogType == 0)
                 @include('includes.website.catalog.equipment-renderer')
             @else
-                @include('includes.website.catalog.parts-renderer')
+                @include('includes.website.catalog.parts-renderer', ['hideFilters' => false])
             @endif
         </div>
         <!-- /.row -->

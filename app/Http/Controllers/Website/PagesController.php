@@ -26,11 +26,33 @@ class PagesController extends Controller
         $newsModel = new News;
 
         $data['pageTitle'] = 'Home';
-        $data['pageDescription'] = 'Description';
+        $data['pageDescription'] = '';
         $data['slides'] = $sliderModel->getAllSlides();
         $data['news'] = $newsModel->getLimitedNews(4);
 
         return view('website.home', $data);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function servicesPage()
+    {
+        $data['pageTitle'] = 'Services';
+        $data['pageDescription'] = '';
+
+        return view('website.services', $data);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function contactsPage()
+    {
+        $data['pageTitle'] = 'Contacts';
+        $data['pageDescription'] = '';
+
+        return view('website.contacts', $data);
     }
 
     /**
@@ -47,6 +69,10 @@ class PagesController extends Controller
         return view('website.news.list', $data);
     }
 
+    /**
+     * @param $nw_id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function singleNewsPage($nw_id)
     {
         $newsModel = new News;
@@ -57,6 +83,10 @@ class PagesController extends Controller
         return view('website.news.single', $data);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function searchResults(Request $request)
     {
         $nodesModel = new Nodes;

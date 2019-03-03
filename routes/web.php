@@ -21,6 +21,8 @@ Route::get('/home', function() {
 # Public routes
 ########################################################################
 Route::get('/', 'Website\PagesController@homePage')->name('homePage');
+Route::get('/services', 'Website\PagesController@servicesPage')->name('servicesPage');
+Route::get('/contacts', 'Website\PagesController@contactsPage')->name('contactsPage');
 Route::get('/search/results', 'Website\PagesController@searchResults')->name('searchResults');
 // Catalog
 Route::get('/catalog/{cid}', 'Website\CatalogController@catalogPage')->name('catalogPage');
@@ -60,6 +62,7 @@ Route::group(['middleware' => 'auth'], function() {
         ########################################################################
         // Dashboard
         Route::get('/secured/admin', 'Secured\SecuredPagesController@securedDashboardPage')->name('securedDashboardPage');
+        Route::get('/secured/admin/search', 'Secured\SecuredPagesController@securedSearchPage')->name('securedSearchPage');
         // Orders
         Route::get('/secured/admin/orders', 'Secured\SecuredOrdersController@ordersListPageSecured')->name('ordersListPageSecured');
         Route::get('/secured/admin/orders/{oid}', 'Secured\SecuredOrdersController@reviewOrderPageSecured')->name('reviewOrderPageSecured');
