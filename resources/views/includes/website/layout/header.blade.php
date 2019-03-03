@@ -70,14 +70,14 @@
                         <li @if(isset($catalogType) && $catalogType !== null && $catalogType == 1) class="active" @endif>
                             <a href="{{ route('catalogPage', 2) }}">Parts</a>
                         </li>
-                        <li>
-                            <a href="#">Services</a>
+                        <li @if(in_array(\Request::route()->getName(), ['servicesPage'])) class="active" @endif>
+                            <a href="{{ route('servicesPage') }}">Services</a>
                         </li>
                         <li @if(in_array(\Request::route()->getName(), ['newsPage'])) class="active" @endif>
                             <a href="{{ route('newsPage') }}">News</a>
                         </li>
-                        <li>
-                            <a href="#">Contacts</a>
+                        <li @if(in_array(\Request::route()->getName(), ['contactsPage'])) class="active" @endif>
+                            <a href="{{ route('contactsPage') }}">Contacts</a>
                         </li>
                     </ul>
                 </div>
