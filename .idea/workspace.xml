@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a53de099-90a2-4e6f-9913-6b52edeefe05" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/figures/frontend-fogure.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/figures/frontend-fogure.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/secured/nodes/equipment/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/secured/nodes/equipment/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/secured/nodes/equipment/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/secured/nodes/equipment/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/website/catalog/figure.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/catalog/figure.blade.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/react-laravel/node_modules/" />
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
@@ -193,8 +187,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/secured/nodes/equipment/add.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="74" column="62" lean-forward="true" selection-start-line="74" selection-start-column="62" selection-end-line="74" selection-end-column="79" />
+            <state relative-caret-position="1628">
+              <caret line="74" column="62" selection-start-line="74" selection-start-column="62" selection-end-line="74" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -202,8 +196,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/secured/nodes/equipment/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="75" column="74" selection-start-line="75" selection-start-column="74" selection-end-line="75" selection-end-column="74" />
+            <state relative-caret-position="176">
+              <caret line="59" column="45" lean-forward="true" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -619,14 +613,8 @@
       <workItem from="1551277109259" duration="3698000" />
       <workItem from="1551337437801" duration="16502000" />
       <workItem from="1551424900671" duration="9831000" />
-      <workItem from="1551437335586" duration="26000" />
-    </task>
-    <task id="LOCAL-00012" summary="CRUD - C - Nodes">
-      <created>1550496242545</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1550496242545</updated>
+      <workItem from="1551437335586" duration="44000" />
+      <workItem from="1551610261630" duration="420000" />
     </task>
     <task id="LOCAL-00013" summary="Recursive nodes list">
       <created>1550505107545</created>
@@ -964,11 +952,18 @@
       <option name="project" value="LOCAL" />
       <updated>1551432910397</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="fixes">
+      <created>1551437369087</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1551437369087</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103296000" />
+    <option name="totallyTimeSpent" value="103734000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1007" extended-state="6" />
@@ -976,7 +971,7 @@
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.1905016" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.19263607" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
@@ -1002,7 +997,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Cart DBA" />
     <MESSAGE value="Move from localStorage to Cookies" />
     <MESSAGE value="Add To Cart Functions" />
     <MESSAGE value="Extend cart backend" />
@@ -1027,7 +1021,8 @@
     <MESSAGE value="Fix node issue" />
     <MESSAGE value="Delete figures" />
     <MESSAGE value="Figure frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="Figure frontend" />
+    <MESSAGE value="fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredOrdersController.php">
@@ -1413,15 +1408,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/secured/nodes/equipment/add.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="74" column="62" lean-forward="true" selection-start-line="74" selection-start-column="62" selection-end-line="74" selection-end-column="79" />
+        <state relative-caret-position="1628">
+          <caret line="74" column="62" selection-start-line="74" selection-start-column="62" selection-end-line="74" selection-end-column="79" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/secured/nodes/equipment/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="75" column="74" selection-start-line="75" selection-start-column="74" selection-end-line="75" selection-end-column="74" />
+        <state relative-caret-position="176">
+          <caret line="59" column="45" lean-forward="true" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
         </state>
       </provider>
     </entry>
