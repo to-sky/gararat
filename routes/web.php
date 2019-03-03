@@ -21,6 +21,7 @@ Route::get('/home', function() {
 # Public routes
 ########################################################################
 Route::get('/', 'Website\PagesController@homePage')->name('homePage');
+Route::get('/search/results', 'Website\PagesController@searchResults')->name('searchResults');
 // Catalog
 Route::get('/catalog/{cid}', 'Website\CatalogController@catalogPage')->name('catalogPage');
 Route::get('/catalog/{cid}/construct/figures', 'Website\CatalogController@figuresCatalogPage')->name('figuresCatalogPage');
@@ -31,6 +32,9 @@ Route::get('/cart', 'Website\OrdersController@cartPage')->name('cartPage');
 Route::get('/cart/checkout', 'Website\OrdersController@cartPage')->name('cartPage');
 Route::get('/cart/checkout/proceed', 'Website\OrdersController@cartProceedPage')->name('cartProceedPage');
 Route::get('/cart/checkout/success/{oid}', 'Website\OrdersController@cartProceedSuccessPage')->name('cartProceedSuccessPage');
+// News
+Route::get('/news', 'Website\PagesController@newsPage')->name('newsPage');
+Route::get('/news/{nw_id}', 'Website\PagesController@singleNewsPage')->name('singleNewsPage');
 // API
 Route::get('/api/cart/{userKey}', 'Website\OrdersController@getCartPreviewData');
 Route::get('/api/cart/{userKey}/table', 'Website\OrdersController@getCartTableData');
@@ -79,6 +83,15 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/slider', 'Secured\SecuredCommonController@securedSlidesPage')->name('securedSlidesPage');
         Route::get('/secured/admin/slider/add', 'Secured\SecuredCommonController@securedAddSlidePage')->name('securedAddSlidePage');
         Route::get('/secured/admin/slider/remove/{sl_id}', 'Secured\SecuredCommonController@securedRemoveSlide')->name('securedRemoveSlide');
+        // News
+        Route::get('/secured/admin/news', 'Secured\SecuredCommonController@securedNewsListPage')->name('securedNewsListPage');
+        Route::get('/secured/admin/news/add', 'Secured\SecuredCommonController@securedAddNewNewsItem')->name('securedAddNewNewsItem');
+        Route::get('/secured/admin/news/edit/{nw_id}', 'Secured\SecuredCommonController@securedUpdateNewsItem')->name('securedUpdateNewsItem');
+        Route::get('/secured/admin/news/remove/{nw_id}', 'Secured\SecuredCommonController@securedRemoveNewsItem')->name('securedRemoveNewsItem');
+        // Pages
+        Route::get('/secured/admin/pages', 'Secured\SecuredCommonController@securedPagesListPage')->name('securedPagesListPage');
+        Route::get('/secured/admin/pages/edit/{pg_id}', 'Secured\SecuredCommonController@securedUpdatePageItem')->name('securedUpdatePageItem');
+        Route::get('/secured/admin/pages/remove/{pg_id}', 'Secured\SecuredCommonController@securedRemovePageItem')->name('securedRemovePageItem');
         ########################################################################
         # API
         ########################################################################
@@ -102,5 +115,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/api/v1.0/constructor/init/build/clear', 'Secured\SecuredPartsConstructor@clearConstructorBuilderAPI')->name('clearConstructorBuilderAPI');
         // Slider
         Route::post('/api/v1.0/slider/save', 'Secured\SecuredCommonController@saveNewSlideAPI')->name('saveNewSlideAPI');
+        // Pages
+        Route::post('/api/v1.0/pages/update', 'Secured\SecuredCommonController@updatePageItemAPI')->name('updatePageItemAPI');
+        //News
+        Route::post('/api/v1.0/news/save', 'Secured\SecuredCommonController@saveNewNewsItemAPI')->name('saveNewNewsItemAPI');
+        Route::post('/api/v1.0/news/update', 'Secured\SecuredCommonController@updateNewsItemAPI')->name('updateNewsItemAPI');
     });
 });

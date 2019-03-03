@@ -99,90 +99,29 @@
             <h2>Our News</h2>
             <div class="section__news">
                 <div class="row">
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="shadow-sm section__news-item">
-                            <div class="news-item__image">
-                                <a href="#">
-                                    <img src="{{ asset('assets/sections/2.jpg') }}" alt="News Alt" class="image">
-                                    <div class="news-item__date">
-                                        <h4>12</h4>
-                                        <h6>Nov</h6>
-                                    </div>
-                                    <!-- /.news-item__date -->
-                                </a>
+                    @foreach($news as $item)
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="shadow-sm section__news-item">
+                                <div class="news-item__image">
+                                    <a href="{{ route('singleNewsPage', $item->nw_id) }}">
+                                        <img src="{{ asset($item->nw_image) }}" alt="{{ $item->nw_name }}" class="image">
+                                        <div class="news-item__date">
+                                            <h4>{{ \Carbon\Carbon::parse($item->nw_created)->format('d') }}</h4>
+                                            <h6>{{ \Carbon\Carbon::parse($item->nw_created)->format('M') }}</h6>
+                                        </div>
+                                        <!-- /.news-item__date -->
+                                    </a>
+                                </div>
+                                <!-- /.news-item__image -->
+                                <div class="news-item__body">
+                                    <h3><a href="{{ route('singleNewsPage', $item->nw_id) }}">{{ $item->nw_name }}</a></h3>
+                                    <p>{{ substr(strip_tags($item->nw_body), 0, 150) }}</p>
+                                </div>
                             </div>
-                            <!-- /.news-item__image -->
-                            <div class="news-item__body">
-                                <h3><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dignissimos, dolorem facere fuga fugiat illo ipsum magni molestias odit omnis perferendis placeat quaerat ratione recusandae repellendus sequi vel voluptas voluptate?</p>
-                            </div>
+                            <!-- /.shadow-sm section__news-item -->
                         </div>
-                        <!-- /.shadow-sm section__news-item -->
-                    </div>
-                    <!-- /.col-12 col-md-6 col-lg-3 -->
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="shadow-sm section__news-item">
-                            <div class="news-item__image">
-                                <a href="#">
-                                    <img src="{{ asset('assets/sections/2.jpg') }}" alt="News Alt" class="image">
-                                    <div class="news-item__date">
-                                        <h4>12</h4>
-                                        <h6>Nov</h6>
-                                    </div>
-                                    <!-- /.news-item__date -->
-                                </a>
-                            </div>
-                            <!-- /.news-item__image -->
-                            <div class="news-item__body">
-                                <h3><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dignissimos, dolorem facere fuga fugiat illo ipsum magni molestias odit omnis perferendis placeat quaerat ratione recusandae repellendus sequi vel voluptas voluptate?</p>
-                            </div>
-                        </div>
-                        <!-- /.shadow-sm section__news-item -->
-                    </div>
-                    <!-- /.col-12 col-md-6 col-lg-3 -->
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="shadow-sm section__news-item">
-                            <div class="news-item__image">
-                                <a href="#">
-                                    <img src="{{ asset('assets/sections/2.jpg') }}" alt="News Alt" class="image">
-                                    <div class="news-item__date">
-                                        <h4>12</h4>
-                                        <h6>Nov</h6>
-                                    </div>
-                                    <!-- /.news-item__date -->
-                                </a>
-                            </div>
-                            <!-- /.news-item__image -->
-                            <div class="news-item__body">
-                                <h3><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dignissimos, dolorem facere fuga fugiat illo ipsum magni molestias odit omnis perferendis placeat quaerat ratione recusandae repellendus sequi vel voluptas voluptate?</p>
-                            </div>
-                        </div>
-                        <!-- /.shadow-sm section__news-item -->
-                    </div>
-                    <!-- /.col-12 col-md-6 col-lg-3 -->
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="shadow-sm section__news-item">
-                            <div class="news-item__image">
-                                <a href="#">
-                                    <img src="{{ asset('assets/sections/2.jpg') }}" alt="News Alt" class="image">
-                                    <div class="news-item__date">
-                                        <h4>12</h4>
-                                        <h6>Nov</h6>
-                                    </div>
-                                    <!-- /.news-item__date -->
-                                </a>
-                            </div>
-                            <!-- /.news-item__image -->
-                            <div class="news-item__body">
-                                <h3><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dignissimos, dolorem facere fuga fugiat illo ipsum magni molestias odit omnis perferendis placeat quaerat ratione recusandae repellendus sequi vel voluptas voluptate?</p>
-                            </div>
-                        </div>
-                        <!-- /.shadow-sm section__news-item -->
-                    </div>
-                    <!-- /.col-12 col-md-6 col-lg-3 -->
+                        <!-- /.col-12 col-md-6 col-lg-3 -->
+                    @endforeach
                 </div>
                 <!-- /.row -->
             </div>

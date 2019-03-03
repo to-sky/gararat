@@ -6317,6 +6317,11 @@ img.image {
   height: auto;
 }
 
+.slider__wrapper {
+  max-height: 400px;
+  overflow: hidden;
+}
+
 h1.homepage {
   font-weight: 400;
   text-transform: uppercase;
@@ -6851,7 +6856,7 @@ b {
   position: absolute;
   left: 0.5px;
   bottom: -14px;
-  border-left: 22.4px solid transparent;
+  border-left: 19.4px solid transparent;
   border-right: 22.6px solid transparent;
   border-top: 14px solid white;
   height: 0px;
@@ -7123,6 +7128,10 @@ b {
   margin-left: 30px;
 }
 
+.drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-price {
+  margin-left: 9px;
+}
+
 .drawing .drawing__nodes table tbody .collapsible-row td .products__part-image {
   border-radius: 5px;
   border: 1px solid #191a1c;
@@ -7137,7 +7146,7 @@ b {
 }
 
 .drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-price {
-  width: 130px;
+  width: 110px;
 }
 
 .drawing .drawing__nodes table tbody .collapsible-row td .products__part-cart-price .old {

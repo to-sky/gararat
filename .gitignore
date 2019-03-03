@@ -13,6 +13,8 @@
 !/public/uploads/figures/index.html
 /public/uploads/slider/*
 !/public/uploads/slider/index.html
+/public/uploads/news/*
+!/public/uploads/news/index.html
 .env
 .phpunit.result.cache
 Homestead.json
