@@ -78,6 +78,7 @@ Route::group(['middleware' => 'auth'], function() {
         // Slider
         Route::get('/secured/admin/slider', 'Secured\SecuredCommonController@securedSlidesPage')->name('securedSlidesPage');
         Route::get('/secured/admin/slider/add', 'Secured\SecuredCommonController@securedAddSlidePage')->name('securedAddSlidePage');
+        Route::get('/secured/admin/slider/remove/{sl_id}', 'Secured\SecuredCommonController@securedRemoveSlide')->name('securedRemoveSlide');
         ########################################################################
         # API
         ########################################################################
