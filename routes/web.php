@@ -62,6 +62,7 @@ Route::group(['middleware' => 'auth'], function() {
         ########################################################################
         // Dashboard
         Route::get('/secured/admin', 'Secured\SecuredPagesController@securedDashboardPage')->name('securedDashboardPage');
+        Route::get('/secured/admin/search', 'Secured\SecuredPagesController@securedSearchPage')->name('securedSearchPage');
         // Orders
         Route::get('/secured/admin/orders', 'Secured\SecuredOrdersController@ordersListPageSecured')->name('ordersListPageSecured');
         Route::get('/secured/admin/orders/{oid}', 'Secured\SecuredOrdersController@reviewOrderPageSecured')->name('reviewOrderPageSecured');
