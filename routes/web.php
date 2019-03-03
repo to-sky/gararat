@@ -86,8 +86,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/news/remove/{nw_id}', 'Secured\SecuredCommonController@securedRemoveNewsItem')->name('securedRemoveNewsItem');
         // Pages
         Route::get('/secured/admin/pages', 'Secured\SecuredCommonController@securedPagesListPage')->name('securedPagesListPage');
-        Route::get('/secured/admin/pages/edit/{nw_id}', 'Secured\SecuredCommonController@securedUpdatePageItem')->name('securedUpdatePageItem');
-        Route::get('/secured/admin/pages/remove/{nw_id}', 'Secured\SecuredCommonController@securedRemovePageItem')->name('securedRemovePageItem');
+        Route::get('/secured/admin/pages/edit/{pg_id}', 'Secured\SecuredCommonController@securedUpdatePageItem')->name('securedUpdatePageItem');
+        Route::get('/secured/admin/pages/remove/{pg_id}', 'Secured\SecuredCommonController@securedRemovePageItem')->name('securedRemovePageItem');
         ########################################################################
         # API
         ########################################################################
@@ -113,10 +113,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/api/v1.0/slider/save', 'Secured\SecuredCommonController@saveNewSlideAPI')->name('saveNewSlideAPI');
         // Pages
         Route::post('/api/v1.0/pages/update', 'Secured\SecuredCommonController@updatePageItemAPI')->name('updatePageItemAPI');
-        Route::post('/api/v1.0/pages/remove', 'Secured\SecuredCommonController@removePageItemAPI')->name('removePageItemAPI');
         //News
         Route::post('/api/v1.0/news/save', 'Secured\SecuredCommonController@saveNewNewsItemAPI')->name('saveNewNewsItemAPI');
         Route::post('/api/v1.0/news/update', 'Secured\SecuredCommonController@updateNewsItemAPI')->name('updateNewsItemAPI');
-        Route::post('/api/v1.0/news/remove', 'Secured\SecuredCommonController@removeNewsItemAPI')->name('removeNewsItemAPI');
     });
 });
