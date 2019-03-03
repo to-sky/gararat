@@ -9,6 +9,7 @@ use \App\Models\Helpers;
 use \App\Models\Slider;
 use \App\Models\News;
 use \App\Models\Pages;
+use \App\Models\Nodes;
 
 class PagesController extends Controller
 {
@@ -54,6 +55,17 @@ class PagesController extends Controller
         $data['pageDescription'] = $getNews->nw_description;
         $data['news'] = $getNews;
         return view('website.news.single', $data);
+    }
+
+    public function searchResults(Request $request)
+    {
+        $nodesModel = new Nodes;
+        $query = $request->query('q');
+
+        $data['pageTitle'] = 'Search results for: ' . $query;
+        $data['searchRequest'] = $query;
+        $data['products'] = $nodesModel->getNodesBySearchRequest($query);
+        return view('website.search', $data);
     }
     //======================================================================
     // API

@@ -12,8 +12,8 @@
             <div class="col-12 col-lg-6">
                 <div class="d-flex justify-content-end">
                     <div class="header__top-search">
-                        <form action="#" method="get">
-                            <input type="text" name="q" required />
+                        <form action="{{ route('searchResults') }}" method="get">
+                            <input type="text" name="q" required @if(isset($searchRequest) && $searchRequest !== null) value="{{ $searchRequest }} @endif" />
                             <button type="submit"><i class="fas fa-search"></i></button>
                         </form>
                     </div>

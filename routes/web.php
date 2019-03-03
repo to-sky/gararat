@@ -21,6 +21,7 @@ Route::get('/home', function() {
 # Public routes
 ########################################################################
 Route::get('/', 'Website\PagesController@homePage')->name('homePage');
+Route::get('/search/results', 'Website\PagesController@searchResults')->name('searchResults');
 // Catalog
 Route::get('/catalog/{cid}', 'Website\CatalogController@catalogPage')->name('catalogPage');
 Route::get('/catalog/{cid}/construct/figures', 'Website\CatalogController@figuresCatalogPage')->name('figuresCatalogPage');

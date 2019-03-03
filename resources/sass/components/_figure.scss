@@ -118,6 +118,10 @@
                             margin-left: 30px;
                         }
 
+                        .products__part-cart-price {
+                            margin-left: 9px;
+                        }
+
                         .products__part-image {
                             border-radius: 5px;
                             border: 1px solid $primary_color;
@@ -132,7 +136,7 @@
                         }
 
                         .products__part-cart-price {
-                            width: 130px;
+                            width: 110px;
 
                             .old {
                                 color: $primary_color;

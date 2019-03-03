@@ -223,6 +223,20 @@ class Nodes extends Model
     }
 
     /**
+     * @param $search
+     * @return mixed
+     */
+    public function getNodesBySearchRequest($search)
+    {
+        $get = DB::table('nodes')->where('nodes.n_name_en', 'like', '%' . $search .'%');
+        $get->leftJoin('nodes_images', function($join) {
+            $join->on('nodes.nid', '=', 'nodes_images.node')
+                ->where('nodes_images.is_featured', '=', 1);
+        });
+        return $get->paginate(50);
+    }
+
+    /**
      * @param $catalog
      * @return array
      */
