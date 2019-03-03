@@ -75,6 +75,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/constructor/add/init', 'Secured\SecuredPartsConstructor@initNewConstructorDrawingPage')->name('initNewConstructorDrawingPage');
         Route::get('/secured/admin/constructor/add/create/{fig_id}', 'Secured\SecuredPartsConstructor@createNewConstructorDrawingPage')->name('createNewConstructorDrawingPage');
         Route::get('/secured/admin/constructor/add/delete/{fig_id}', 'Secured\SecuredPartsConstructor@deleteConstructorDrawingPage')->name('deleteConstructorDrawingPage');
+        // Slider
+        Route::get('/secured/admin/slider', 'Secured\SecuredCommonController@securedSlidesPage')->name('securedSlidesPage');
+        Route::get('/secured/admin/slider/add', 'Secured\SecuredCommonController@securedAddSlidePage')->name('securedAddSlidePage');
         ########################################################################
         # API
         ########################################################################
@@ -96,5 +99,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/api/v1.0/constructor/init/save', 'Secured\SecuredPartsConstructor@saveConstructorInitAPI')->name('saveConstructorInitAPI');
         Route::post('/api/v1.0/constructor/init/build/save', 'Secured\SecuredPartsConstructor@saveConstructorBuilderAPI')->name('saveConstructorBuilderAPI');
         Route::post('/api/v1.0/constructor/init/build/clear', 'Secured\SecuredPartsConstructor@clearConstructorBuilderAPI')->name('clearConstructorBuilderAPI');
+        // Slider
+        Route::post('/api/v1.0/slider/save', 'Secured\SecuredCommonController@saveNewSlideAPI')->name('saveNewSlideAPI');
     });
 });

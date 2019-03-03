@@ -29,12 +29,14 @@
                         @endif
                     </div>
                     <!-- /.header__top-auth -->
+                    <!--
                     <div class="header__top-lang">
                         <select name="lang" id="lang">
                             <option value="en">English</option>
                             <option value="ar">Arabic</option>
                         </select>
                     </div>
+                    -->
                     <!-- /.header__top-lang -->
                 </div>
                 <!-- /.d-flex justify-content-end -->
