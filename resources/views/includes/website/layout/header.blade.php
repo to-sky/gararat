@@ -29,12 +29,14 @@
                         @endif
                     </div>
                     <!-- /.header__top-auth -->
+                    <!--
                     <div class="header__top-lang">
                         <select name="lang" id="lang">
                             <option value="en">English</option>
                             <option value="ar">Arabic</option>
                         </select>
                     </div>
+                    -->
                     <!-- /.header__top-lang -->
                 </div>
                 <!-- /.d-flex justify-content-end -->
@@ -62,10 +64,10 @@
                         <li @if(in_array(\Request::route()->getName(), ['homePage'])) class="active" @endif>
                             <a href="{{ route('homePage') }}">Home</a>
                         </li>
-                        <li @if(in_array(\Request::route()->getName(), ['catalogPage'])) class="active" @endif>
+                        <li @if(isset($catalogType) && $catalogType !== null && $catalogType == 0) class="active" @endif>
                             <a href="{{ route('catalogPage', 1) }}">Equipments</a>
                         </li>
-                        <li @if(in_array(\Request::route()->getName(), ['catalogPage'])) class="active" @endif>
+                        <li @if(isset($catalogType) && $catalogType !== null && $catalogType == 1) class="active" @endif>
                             <a href="{{ route('catalogPage', 2) }}">Parts</a>
                         </li>
                         <li>

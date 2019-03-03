@@ -1,6 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="slider__wrapper">
+        <div class="container">
+            <div class="slider-pro" id="my-slider">
+                <div class="sp-slides">
+                    @foreach($slides as $slide)
+                        <div class="sp-slide">
+                            <img src="{{ asset($slide->sl_image) }}" alt="{{ $slide->sl_title }}">
+                        </div>
+                        <!-- /.sp-slide -->
+                    @endforeach
+                </div>
+                <!-- /.slider-pro -->
+            </div>
+            <!-- /.sp-slide -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.slider__wrapper -->
     <div class="container">
         <h1 class="text-center homepage">Tractors <span><span class="red">«Belarus»</span> in Egypt</span></h1>
     </div>
