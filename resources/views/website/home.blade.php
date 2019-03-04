@@ -78,13 +78,13 @@
             <!-- /.row -->
             <div class="section__icons">
                 <div class="row">
-                    <div class="text-center col-12 col-md-6 col-lg-3 section__brg"><img src="{{ asset('assets/sections/5.png') }}" alt="530+ Happy customer"><p><strong>530+</strong></p><p>Happy customer</p></div>
+                    <div class="text-center col-6 col-md-6 col-lg-3 section__brg"><img src="{{ asset('assets/sections/5.png') }}" alt="530+ Happy customer"><p><strong>530+</strong></p><p>Happy customer</p></div>
                     <!-- /.text-center col-12 col-md-6 col-lg-3 section__brg -->
-                    <div class="text-center col-12 col-md-6 col-lg-3 section__brg"><img src="{{ asset('assets/sections/6.png') }}" alt="12+ Years of experience"><p><strong>12+</strong></p><p>Years of experience</p></div>
+                    <div class="text-center col-6 col-md-6 col-lg-3 section__brg"><img src="{{ asset('assets/sections/6.png') }}" alt="12+ Years of experience"><p><strong>12+</strong></p><p>Years of experience</p></div>
                     <!-- /.text-center col-12 col-md-6 col-lg-3 section__brg -->
-                    <div class="text-center col-12 col-md-6 col-lg-3 section__brg"><img src="{{ asset('assets/sections/7.png') }}" alt="24 Month warranty"><p><strong>24</strong></p><p>Month warranty</p></div>
+                    <div class="text-center col-6 col-md-6 col-lg-3 section__brg"><img src="{{ asset('assets/sections/7.png') }}" alt="24 Month warranty"><p><strong>24</strong></p><p>Month warranty</p></div>
                     <!-- /.text-center col-12 col-md-6 col-lg-3 section__brg -->
-                    <div class="text-center col-12 col-md-6 col-lg-3"><img src="{{ asset('assets/sections/8.png') }}" alt="270+ Projects completed"><p><strong>270+</strong></p><p>Projects completed</p></div>
+                    <div class="text-center col-6 col-md-6 col-lg-3"><img src="{{ asset('assets/sections/8.png') }}" alt="270+ Projects completed"><p><strong>270+</strong></p><p>Projects completed</p></div>
                     <!-- /.text-center col-12 col-md-6 col-lg-3 -->
                 </div>
                 <!-- /.row -->

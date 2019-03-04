@@ -5,8 +5,9 @@
         <h1 class="page-title">{{ $pageTitle }}</h1>
         <div class="cart-page">
             <div class="cart-page__table">
-                <table id="cartTableRenderer">
-                    <thead>
+                <div class="responsive-table">
+                    <table id="cartTableRenderer">
+                        <thead>
                         <tr>
                             <th>Image</th>
                             <th>Product Name</th>
@@ -15,9 +16,11 @@
                             <th>Total Price</th>
                             <th>Delete</th>
                         </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.responsive-table -->
                 <div class="text-right total-price">
                     Total price: $<span id="totalPriceCheckout">0</span>
                 </div>

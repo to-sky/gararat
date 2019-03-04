@@ -54,7 +54,7 @@
                                         </div>
                                         <!-- /.product__purchase-price -->
                                     </div>
-                                    <div class="col-12 col-md-3">
+                                    <div class="col-4 col-md-3">
                                         <div class="d-flex justify-content-around product__qty">
                                             <a href="#" id="subQTY"><i class="fas fa-minus"></i></a>
                                             <input type="number" name="qty" id="qty" value="1" min="1" style="max-width: 40px;">
@@ -62,7 +62,7 @@
                                         </div>
                                         <!-- /.product__qty -->
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-8 col-md-4">
                                         <button class="btn btn-add-to-cart" type="submit">Add to cart</button>
                                         <!-- /.btn btn-add-to-cart -->
                                     </div>

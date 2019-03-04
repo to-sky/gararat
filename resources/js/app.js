@@ -15,5 +15,14 @@ require('./handlers/slider');
     if($('#figureConstructorWrapperTarget').length !== 0) {
         require('./figures/secured-constructor');
     }
-})(jQuery);
+
+    $('.header__mobile-activator a').on('click', function(e) {
+        e.preventDefault();
+        if($('.header__main .header__main-menu').is(':visible')) {
+            $('.header__main .header__main-menu').slideUp(250);
+        } else {
+            $('.header__main .header__main-menu').slideDown(250);
+        }
+    });
+})(jQuery)
 require('./figures/frontend-fogure');

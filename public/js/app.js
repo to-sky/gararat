@@ -42628,6 +42628,16 @@ __webpack_require__(/*! ./handlers/slider */ "./resources/js/handlers/slider.js"
   if ($('#figureConstructorWrapperTarget').length !== 0) {
     __webpack_require__(/*! ./figures/secured-constructor */ "./resources/js/figures/secured-constructor.js");
   }
+
+  $('.header__mobile-activator a').on('click', function (e) {
+    e.preventDefault();
+
+    if ($('.header__main .header__main-menu').is(':visible')) {
+      $('.header__main .header__main-menu').slideUp(250);
+    } else {
+      $('.header__main .header__main-menu').slideDown(250);
+    }
+  });
 })(jQuery);
 
 __webpack_require__(/*! ./figures/frontend-fogure */ "./resources/js/figures/frontend-fogure.js");
@@ -42959,7 +42969,20 @@ function addToCart(key, nid, qty) {
       arrows: true,
       buttons: false,
       autoplayDelay: 7000,
-      autoHeight: true
+      autoHeight: true,
+      responsive: true,
+      centerImage: true,
+      breakpoints: {
+        1000: {
+          arrows: false,
+          buttons: false,
+          keyboard: false,
+          width: '100%',
+          centerImage: true,
+          autoSlideSize: true,
+          forceSize: 'fullWidth'
+        }
+      }
     });
   }
 })(jQuery);
