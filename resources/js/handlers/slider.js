@@ -5,7 +5,20 @@
             arrows: true,
             buttons: false,
             autoplayDelay: 7000,
-            autoHeight: true
+            autoHeight: true,
+            responsive: true,
+            centerImage: true,
+            breakpoints: {
+                1000: {
+                    arrows: false,
+                    buttons: false,
+                    keyboard: false,
+                    width: '100%',
+                    centerImage: true,
+                    autoSlideSize: true,
+                    forceSize: 'fullWidth'
+                }
+            }
         });
     }
 })(jQuery);

@@ -1,0 +1,203 @@
+.header__mobile-activator {
+    display: none;
+}
+
+@media screen and (max-width: 1000px) {
+    .header__mobile-activator {
+        display: block;
+        text-align: right;
+        padding-bottom: 20px;
+
+        a img {
+            height: 28px;
+        }
+    }
+
+    .header__main .header__main-menu {
+        display: none;
+        margin-bottom: 10px;
+    }
+
+    .header__main .header__main-menu ul {
+        display: block;
+        text-align: center;
+    }
+
+    h1.homepage {
+        font-size: 3rem;
+        margin-top: 25px;
+        margin-bottom: 5px;
+    }
+
+    h1.homepage span {
+        font-size: 4rem;
+    }
+
+    .section {
+        padding: 15px 0;
+    }
+
+    h2, h1.page-title {
+        font-size: 2.6rem;
+    }
+
+    .section .section__blocks .section__block {
+        margin-bottom: 30px;
+    }
+
+    .section .section__icons .section__brg {
+        margin-bottom: 30px;
+    }
+
+    .section .section__icons p strong {
+        font-size: 3rem;
+    }
+
+    .section .section__icons p {
+        font-size: 1.6rem;
+    }
+
+    .section .section__news .section__news-item {
+        margin-bottom: 30px;
+    }
+
+    .footer.footer .footer__top .footer__top-menu {
+        display: none;
+    }
+
+    .breadcrumbs {
+        display: none;
+    }
+
+    .sidebar h3 {
+        margin-top: 25px;
+        padding-left: 15px;
+    }
+
+    .products .products__parts .products__part .products__part-cart {
+        display: inline-block !important;
+        width: 100%;
+        text-align: center;
+    }
+
+    .products .products__parts .products__part .products__part-cart-price,
+    .products .products__parts .products__part .products__part-cart-qty,
+    .products .products__parts .products__part .products__part-cart-button {
+        float: left;
+    }
+
+    .products .products__parts .products__part .products__part-cart-price {
+        min-width: 80px;
+        text-align: center;
+    }
+
+    .products .products__parts .products__part .products__part-cart-button {
+        float: right;
+    }
+
+    .products .products__parts .products__part .products__part-cart-qty, .products .products__parts .products__part .products__part-cart-button {
+        margin-left: 10px;
+    }
+
+    .products .products__parts .products__part .products__part-image, .products .products__parts .products__part .products__part-name {
+        height: 64px;
+    }
+
+    .products .products__parts .products__part {
+        box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+        padding: 5px;
+    }
+
+    .responsive-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .product .product__purchase {
+        margin-top: 30px;
+    }
+
+    .product .product__purchase .product__purchase-top .product__purchase-price {
+        margin-bottom: 10px;
+    }
+
+    .d-flex.justify-content-around.product__qty {
+        max-width: 90px;
+        margin-bottom: 10px;
+    }
+
+    .product .product__purchase .product__short-description {
+        font-size: 1.4rem;
+
+        p,
+        ul li,
+        ol li {
+            font-size: 1.4rem;
+        }
+    }
+
+    .drawing .drawing__figure .drawing__figure-wrapper {
+        width: 100%;
+        border: 1px solid #191a1c;
+        padding: 15px;
+        display: inline-block;
+        text-align: center;
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        max-height: 500px;
+    }
+
+    .contacts__form {
+        margin: 30px 0;
+    }
+
+    .cart {
+        max-width: 350px;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .slider__wrapper {
+        display: none;
+    }
+
+    .header__top .header__top-contacts a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .search__mobile {
+        display: block !important;
+    }
+
+    .header__top .header__top-search {
+        margin-right: 0;
+        width: 100%;
+        text-align: center;
+        padding-top: 0;
+    }
+
+    .header__top .header__top-auth {
+        margin-right: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .header__top .header__top-search form {
+        display: inline-block;
+    }
+
+    footer.footer .footer__top .footer__top-phone {
+        text-align: center !important;
+        margin-top: 25px;
+    }
+}

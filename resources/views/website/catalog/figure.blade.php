@@ -22,8 +22,9 @@
                     </div>
                     <!-- /.drawing__figure -->
                     <div class="drawing__nodes">
-                        <table>
-                            <thead>
+                        <div class="responsive-table">
+                            <table>
+                                <thead>
                                 <tr>
                                     <th>Pos. #</th>
                                     <th>Assembly unit or part number</th>
@@ -31,8 +32,8 @@
                                     <th>Description</th>
                                     <th>Order</th>
                                 </tr>
-                            </thead>
-                            <tbody>
+                                </thead>
+                                <tbody>
                                 @foreach($nodes as $node)
                                     <tr id="targetConstructorNode_{{ $node->nid }}">
                                         <td>{{ $node->pos_no }}</td>
@@ -84,9 +85,11 @@
                                             </td>
                                         </tr>
                                     @endif
-                                @endforeach    
-                            </tbody>
-                        </table>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.responsive-table -->
                     </div>
                     <!-- /.drawing__nodes -->
                 </div>
