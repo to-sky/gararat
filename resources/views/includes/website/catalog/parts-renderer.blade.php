@@ -42,9 +42,9 @@
                             <div class="col-4 col-lg-3">
                                 <div class="products__part-image">
                                     @if($product->has_photo === 0)
-                                        <img src="{{ asset('assets/logos/logo.jpg') }}" class="image" alt="{{ $product->n_name_en }}">
+                                        <a href="{{ route('singleNodePage', $product->nid) }}"><img src="{{ asset('assets/logos/logo.jpg') }}" class="image" alt="{{ $product->n_name_en }}"></a>
                                     @else
-                                        <img src="{{ asset($product->thumb_path) }}" class="image" alt="{{ $product->n_name_en }}">
+                                        <a href="{{ route('singleNodePage', $product->nid) }}"><img src="{{ asset($product->thumb_path) }}" class="image" alt="{{ $product->n_name_en }}"></a>
                                     @endif
                                 </div>
                                 <!-- /.products__part-image -->
@@ -52,7 +52,7 @@
                             <!-- /.col-4 col-lg-3 -->
                             <div class="col-8 col-lg-9">
                                 <div class="products__part-name">
-                                    {{ $product->n_name_en }}
+                                    <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->n_name_en }}</a>
                                 </div>
                                 <!-- /.products__part-name -->
                             </div>

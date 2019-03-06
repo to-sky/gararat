@@ -34,8 +34,8 @@
                                         <!-- /.additional-image -->
                                     @endforeach
                                 </div>
-                            @endif
-                            <!-- /.col-2  additional-images -->
+                        @endif
+                        <!-- /.col-2  additional-images -->
                         </div>
                         <!-- /.row -->
                     </div>
@@ -84,10 +84,6 @@
                                 @endif
                             </div>
                             <!-- /.product__purchase-bottom -->
-                            <div class="product__short-description">
-                                {!! $product->nmf_short_en !!}
-                            </div>
-                            <!-- /.product__short-description -->
                         </form>
                     </div>
                     <!-- /.product__purchase -->
@@ -95,19 +91,6 @@
                 <!-- /.col-12 col-lg-6 -->
             </div>
             <!-- /.row -->
-            @if($product->nmf_body_en !== NULL)
-                <div class="row">
-                    <div class="col-12">
-                        <div class="shadow product__description">
-                            <h4>Technical Specification</h4>
-                            {!! $product->nmf_body_en !!}
-                        </div>
-                        <!-- /.product__description -->
-                    </div>
-                    <!-- /.col-12 -->
-                </div>
-                <!-- /.row -->
-            @endif
         </div>
         <!-- /.product -->
     </div>
