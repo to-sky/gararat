@@ -73,7 +73,7 @@ class SecuredCatalogController extends Controller
         $data = $request->all();
         $findDublicatesCatId = $catalogModel->findCatalogItemByCatId($data['catalogNumber']);
         if($findDublicatesCatId == 0) {
-            $catalogModel->saveNewCatalogItem($data);
+            $catalogModel->saveNewCatalogItem($data, $request->file('catalogImage'));
             return redirect()->route('securedCatalogListPage');
         } else {
             return redirect()->back()->withErrors('Catalog number must be unique');
@@ -90,7 +90,7 @@ class SecuredCatalogController extends Controller
         $data = $request->all();
         $findDublicatesCatId = $catalogModel->findCatalogItemByCatIdAndCid($data['catalogNumber'], $data['cid']);
         if($findDublicatesCatId == 0) {
-            $catalogModel->updateCatalogItem($data);
+            $catalogModel->updateCatalogItem($data, $request->file('catalogImage'));
             return redirect()->route('securedCatalogListPage');
         } else {
             return redirect()->back()->withErrors('Catalog number must be unique');
