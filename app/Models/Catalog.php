@@ -15,6 +15,7 @@ class Catalog extends Model
     //======================================================================
     /**
      * @param $data
+     * @param $file
      * @return mixed
      */
     public function saveNewCatalogItem($data, $file)
@@ -30,7 +31,8 @@ class Catalog extends Model
             'cat_name_ar' => $data['catalogNameAr'],
             'cat_title_ar' => $data['catalogSeoTitleAr'],
             'cat_description_ar' => $data['catalogSeoDescriptionAr'],
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now(),
+            'cat_view' => $data['catalogViewType']
         ]);
 
         if($file !== null) {
@@ -38,6 +40,8 @@ class Catalog extends Model
                 'cat_image' => $nodesModel->proceedNodeImage($file, 512, 'catalog')
             ]);
         }
+
+        return $saveCatalog;
     }
     //======================================================================
     // READ
@@ -300,11 +304,12 @@ class Catalog extends Model
 
     /**
      * @param $data
+     * @param $file
      * @return mixed
      */
-    public function updateCatalogItem($data)
+    public function updateCatalogItem($data, $file)
     {
-        return DB::table('catalog')->where('cid', $data['cid'])->update([
+        $updateCatalog =  DB::table('catalog')->where('cid', $data['cid'])->update([
             'cat_number' => $data['catalogNumber'],
             'parent_cat' => $data['catalogParent'],
             'cat_name_en' => $data['catalogNameEn'],
@@ -313,8 +318,17 @@ class Catalog extends Model
             'cat_name_ar' => $data['catalogNameAr'],
             'cat_title_ar' => $data['catalogSeoTitleAr'],
             'cat_description_ar' => $data['catalogSeoDescriptionAr'],
-            'updated_at' => Carbon::now()
+            'updated_at' => Carbon::now(),
+            'cat_view' => $data['catalogViewType']
         ]);
+
+        if($file !== null) {
+            $nodesModel = new Nodes;
+            DB::table('catalog')->where('cid', $data['cid'])->update([
+                'cat_image' => $nodesModel->proceedNodeImage($file, 512, 'catalog')
+            ]);
+        }
+        return $updateCatalog;
     }
     //======================================================================
     // DELETE

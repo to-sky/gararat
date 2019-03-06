@@ -1,7 +1,7 @@
 @extends('layouts.secured')
 
 @section('content')
-    <form action="{{ route('updateCatalogItemAPI') }}" method="post" autocomplete="off">
+    <form action="{{ route('updateCatalogItemAPI') }}" method="post" autocomplete="off" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="cid" value="{{ $catalogItem->cid }}">
         <div class="row">
@@ -21,6 +21,27 @@
                             <option @if($catalogItem->cat_number == 0) selected @endif value="0">Root Element</option>
                             {!! $catalogs !!}
                         </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" style="margin-bottom: 30px;">
+                <div class="bgc-white p-20 bd">
+                    <h6 class="c-grey-900">Catalog View</h6>
+                    <div class="form-group row">
+                        <div class="col-6">
+                            @if($catalogItem->cat_image !== null)
+                                <p><img src="{{ asset($catalogItem->cat_image) }}" height="50"></p>
+                            @endif
+                            <label for="catalogImage">Catalog Image</label>
+                            <input type="file" class="form-control-file" name="catalogImage" id="catalogImage">
+                        </div>
+                        <div class="col-6">
+                            <label for="catalogViewType">View Type</label>
+                            <select name="catalogViewType" id="catalogViewType" class="form-control" autocomplete="off">
+                                <option @if($catalogItem->cat_view == 0) selected @endif value="0">Nodes</option>
+                                <option @if($catalogItem->cat_view == 1) selected @endif value="1">Childs</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
