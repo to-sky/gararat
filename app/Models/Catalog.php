@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
 use DB;
 
+use \App\Models\Nodes;
+
 class Catalog extends Model
 {
     //======================================================================
@@ -15,9 +17,11 @@ class Catalog extends Model
      * @param $data
      * @return mixed
      */
-    public function saveNewCatalogItem($data)
+    public function saveNewCatalogItem($data, $file)
     {
-        return DB::table('catalog')->insert([
+        $nodesModel = new Nodes;
+
+        $saveCatalog =  DB::table('catalog')->insertGetId([
             'cat_number' => $data['catalogNumber'],
             'parent_cat' => $data['catalogParent'],
             'cat_name_en' => $data['catalogNameEn'],
@@ -28,6 +32,12 @@ class Catalog extends Model
             'cat_description_ar' => $data['catalogSeoDescriptionAr'],
             'created_at' => Carbon::now()
         ]);
+
+        if($file !== null) {
+            DB::table('catalog')->where('cid', $saveCatalog)->update([
+                'cat_image' => $nodesModel->proceedNodeImage($file, 512, 'catalog')
+            ]);
+        }
     }
     //======================================================================
     // READ

@@ -1,7 +1,7 @@
 @extends('layouts.secured')
 
 @section('content')
-    <form action="{{ route('saveNewCatalogItemAPI') }}" method="post" autocomplete="off">
+    <form action="{{ route('saveNewCatalogItemAPI') }}" method="post" autocomplete="off" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-12" style="margin-bottom: 30px;">
@@ -20,6 +20,24 @@
                             <option value="0">Root Element</option>
                             {!! $catalogs !!}
                         </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" style="margin-bottom: 30px;">
+                <div class="bgc-white p-20 bd">
+                    <h6 class="c-grey-900">Catalog View</h6>
+                    <div class="form-group row">
+                        <div class="col-6">
+                            <label for="catalogImage">Catalog Image</label>
+                            <input type="file" class="form-control-file" name="catalogImage" id="catalogImage">
+                        </div>
+                        <div class="col-6">
+                            <label for="catalogViewType">View Type</label>
+                            <select name="catalogViewType" id="catalogViewType" class="form-control" autocomplete="off">
+                                <option value="0">Nodes</option>
+                                <option value="1">Childs</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
