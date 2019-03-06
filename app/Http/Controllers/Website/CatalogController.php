@@ -13,8 +13,9 @@ use \App\Models\Figures;
 class CatalogController extends Controller
 {
     /**
-     * @param $cat_number
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Request $request
+     * @param $cid
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function catalogPage(Request $request, $cid)
     {
@@ -51,6 +52,7 @@ class CatalogController extends Controller
         $data['cid'] = $cid;
         $data['catalogName'] = $getCatalogByCid->cat_name_en;
         $data['catalogType'] = $getCatalogByCid->cat_type;
+        $data['catalogView'] = $getCatalogByCid->cat_view;
         $data['pageDescription'] = $getCatalogByCid->cat_description_en;
         $data['catalogChilds'] = $catalogModel->getCatalogChilds($getCatalogByCid->cat_number);
         if(count($data['catalogChilds']) === 0) {

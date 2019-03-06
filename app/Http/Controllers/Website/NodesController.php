@@ -41,7 +41,7 @@ class NodesController extends Controller
                 return view('website.nodes.equipment', $data);
                 break;
             default:
-                return redirect()->route('homePage');
+                return view('website.nodes.parts', $data);
                 break;
         }
     }
