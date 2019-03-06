@@ -28,6 +28,7 @@ class Nodes extends Model
         if($size !== NULL) {
             Image::make($image2->getRealPath())->resize($size, null, function($constraint) {
                 $constraint->aspectRatio();
+                $constraint->upsize();
             })->save($path);
         } else {
             Image::make($image2->getRealPath())->save($path);
