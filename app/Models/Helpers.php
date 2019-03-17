@@ -83,6 +83,29 @@ class Helpers extends Model
         return $result ? '<ul style="list-style-type: none;">' . $result . '</ul>' . "\n" : '';
     }
 
+    /**
+     * @param $array
+     * @param $parent
+     * @return string
+     */
+    public function buildFrontendPartsCatalogMenu($array, $parent)
+    {
+        $result = '';
+        foreach($array as $key => $value) {
+            if($value['parent_cat'] == $parent) {
+                $result .= '<li>' . "\n";
+                $result .= $value['cat_name_en'];
+                $result .= $this->buildFrontendPartsCatalogMenu($array, $value['cat_number']);
+                $result .= '</li>' . "\n";
+            }
+        }
+        if($parent === 0) {
+            $classTree = 'tree';
+        } else {
+            $classTree = '';
+        }
+        return $result ? '<ul class="' . $classTree . '">' . $result . '</ul>' . "\n" : '';
+    }
     //======================================================================
     // Breadcrumbs Builder
     //======================================================================

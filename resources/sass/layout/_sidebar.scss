@@ -5,9 +5,19 @@
         font-size: 1.8rem;
         line-height: 1;
         margin-top: 45px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         font-weight: normal;
         padding-left: 15px;
+    }
+
+    .sidebar__back {
+        padding-left: 15px;
+        margin-bottom: 10px;
+
+        a {
+            font-size: 1.2rem;
+            color: $primary_color_menu;
+        }
     }
 
     ul {
@@ -32,5 +42,46 @@
                 margin-bottom: 0;
             }
         }
+    }
+}
+
+.tree-sidebar {
+    margin-top: 15px;
+    padding: 15px;
+    background: $sidebar_background;
+
+    ul.tree, ul.tree ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    ul.tree ul {
+        margin-left: 10px;
+    }
+    ul.tree li {
+        margin: 0;
+        padding: 0 7px;
+        line-height: 20px;
+        color: #369;
+        font-weight: bold;
+        border-left:1px solid rgb(100,100,100);
+
+    }
+    ul.tree li:last-child {
+        border-left:none;
+    }
+    ul.tree li:before {
+        position:relative;
+        top:-0.3em;
+        height:1em;
+        width:12px;
+        color:white;
+        border-bottom:1px solid rgb(100,100,100);
+        content:"";
+        display:inline-block;
+        left:-7px;
+    }
+    ul.tree li:last-child:before {
+        border-left:1px solid rgb(100,100,100);
     }
 }
