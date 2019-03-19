@@ -6348,6 +6348,10 @@ img.image {
   margin-top: 0;
 }
 
+main.main {
+  min-height: 800px;
+}
+
 h1.homepage {
   font-weight: 400;
   text-transform: uppercase;
@@ -7494,7 +7498,15 @@ b {
 }
 
 .tree-sidebar ul.tree > li > ul > li > ul > li > ul > li ul li {
-  padding: 7.5px 15px;
+  padding: 6px 10px;
+}
+
+.tree-sidebar ul.tree > li > ul > li > ul > li > ul > li ul li a {
+  font-size: 1.2rem !important;
+}
+
+.tree-sidebar ul.tree > li > ul > li > ul > li > ul > li ul li a i {
+  font-size: 1rem;
 }
 
 .tree-sidebar ul.tree li:last-child {

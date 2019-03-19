@@ -115,7 +115,15 @@
     }
 
     ul.tree > li > ul > li > ul > li > ul > li ul li {
-        padding: 7.5px 15px;
+        padding: 6px 10px;
+
+        a {
+            font-size: 1.2rem !important;
+
+            i {
+                font-size: 1rem;
+            }
+        }
     }
 
     ul.tree {
