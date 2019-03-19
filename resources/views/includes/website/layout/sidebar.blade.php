@@ -17,7 +17,9 @@
     </ul>
 </div>
 <!-- /.sidebar -->
-<div class="tree-sidebar">
-    {!! $preRenderedCatalog !!}
-</div>
-<!-- /.tree-sidebar -->
+@if(isset($preRenderedCatalog) && $preRenderedCatalog !== NULL)
+    <div class="tree-sidebar">
+        {!! $preRenderedCatalog !!}
+    </div>
+    <!-- /.tree-sidebar -->
+@endif
