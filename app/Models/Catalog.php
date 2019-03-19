@@ -85,6 +85,14 @@ class Catalog extends Model
     }
 
     /**
+     * @return mixed
+     */
+    public function getAllCatalogItemsByTypeWithoutRoot($type)
+    {
+        return DB::table('catalog')->where('cat_type', $type)->where('parent_cat', '!=', 0)->get();
+    }
+
+    /**
      * @param $cid
      * @return mixed
      */

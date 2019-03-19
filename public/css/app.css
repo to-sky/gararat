@@ -7422,48 +7422,87 @@ b {
 
 .tree-sidebar {
   margin-top: 15px;
-  padding: 15px;
+}
+
+.tree-sidebar ul {
+  margin: 0;
+  list-style-type: none;
+  padding: 0;
   background: #f6f6f6;
 }
 
-.tree-sidebar ul.tree,
-.tree-sidebar ul.tree ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.tree-sidebar ul li {
+  position: relative;
+  padding: 15px;
 }
 
-.tree-sidebar ul.tree ul {
-  margin-left: 10px;
+.tree-sidebar ul li:first-child {
+  padding-top: 15px !important;
 }
 
-.tree-sidebar ul.tree li {
-  margin: 0;
-  padding: 0 7px;
-  line-height: 20px;
-  color: #369;
-  font-weight: bold;
-  border-left: 1px solid #646464;
+.tree-sidebar ul li:last-child {
+  padding-bottom: 15px !important;
+}
+
+.tree-sidebar ul li a {
+  font-size: 1.4rem;
+  color: #616161;
+  display: block;
+  width: 100%;
+  position: relative;
+  padding-right: 15px;
+}
+
+.tree-sidebar ul li a .menu_dropdown {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  z-index: 99999999999;
+}
+
+.tree-sidebar ul li ul {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  z-index: 999999;
+  min-width: 100px;
+  white-space: nowrap;
+}
+
+.tree-sidebar ul li.expanded:hover > ul {
+  display: block;
+}
+
+.tree-sidebar ul li:hover > a {
+  color: #fc0203;
+}
+
+.tree-sidebar ul.tree > li > ul,
+.tree-sidebar ul.tree > li > ul > li > ul,
+.tree-sidebar ul.tree > li > ul > li > ul > li > ul {
+  position: static;
+}
+
+.tree-sidebar ul.tree > li > ul > li,
+.tree-sidebar ul.tree > li > ul > li > ul > li,
+.tree-sidebar ul.tree > li > ul > li > ul > li > ul > li {
+  padding-right: 0;
+  padding-left: 5px;
+  padding-bottom: 0 !important;
+}
+
+.tree-sidebar ul.tree > li > ul > li > ul > li > ul > li ul li {
+  padding: 7.5px 15px;
 }
 
 .tree-sidebar ul.tree li:last-child {
-  border-left: none;
+  margin-bottom: 0;
 }
 
-.tree-sidebar ul.tree li:before {
-  position: relative;
-  top: -0.3em;
-  height: 1em;
-  width: 12px;
-  color: white;
-  border-bottom: 1px solid #646464;
-  content: "";
-  display: inline-block;
-  left: -7px;
-}
-
-.tree-sidebar ul.tree li:last-child:before {
-  border-left: 1px solid #646464;
+.tree-sidebar ul.tree li ul {
+  display: none;
 }
 
 .products {

@@ -90,16 +90,28 @@ class Helpers extends Model
      */
     public function buildFrontendPartsCatalogMenu($array, $parent)
     {
+        $catalogModel = new Catalog;
         $result = '';
         foreach($array as $key => $value) {
             if($value['parent_cat'] == $parent) {
-                $result .= '<li>' . "\n";
-                $result .= $value['cat_name_en'];
+                $getClilds = $catalogModel->getCatalogChilds($value['cat_number']);
+                if(count($getClilds) !== 0) {
+                    $expanded = 'expanded';
+                } else {
+                    $expanded = 'not-expanded';
+                }
+                // <i class="fas fa-chevron-right"></i>
+                $result .= '<li class="' . $expanded . '">' . "\n";
+                $result .= '<a href="/catalog/' . $value['cid'] . '"><span class="menu__name">' . $value['cat_name_en'] . '</span>';
+                if(count($getClilds) !== 0) {
+                    $result .= '<span class="menu_dropdown"><i class="fas fa-chevron-right"></i></span>';
+                }
+                $result .=  '</a>';
                 $result .= $this->buildFrontendPartsCatalogMenu($array, $value['cat_number']);
                 $result .= '</li>' . "\n";
             }
         }
-        if($parent === 0) {
+        if($parent === '2') {
             $classTree = 'tree';
         } else {
             $classTree = '';
