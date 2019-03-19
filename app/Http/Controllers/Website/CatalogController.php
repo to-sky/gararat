@@ -50,8 +50,8 @@ class CatalogController extends Controller
             $data['pageTitle'] = $getCatalogByCid->cat_title_en;
         }
         if($getCatalogByCid->cat_type === 1) {
-            $getCatalogs = $catalogModel->getAllCatalogItems();
-            $data['preRenderedCatalog'] = $helpers->buildFrontendPartsCatalogMenu($helpers->convertQueryBuilderToArray($getCatalogs), 0);
+            $getCatalogs = $catalogModel->getAllCatalogItemsByTypeWithoutRoot(1);
+            $data['preRenderedCatalog'] = $helpers->buildFrontendPartsCatalogMenu($helpers->convertQueryBuilderToArray($getCatalogs), '2');
         }
         $data['cid'] = $cid;
         $data['currentCatalog'] = $getCatalogByCid;
