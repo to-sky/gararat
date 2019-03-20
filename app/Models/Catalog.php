@@ -347,6 +347,11 @@ class Catalog extends Model
      */
     public function deleteCategoryItem($cid)
     {
-        return DB::table('catalog')->where('cid', $cid)->delete(); // TODO: before delete category linked nodes should be deleted or hide
+        $getCatalog = $this->getCatalogByCid($cid);
+        DB::table('catalog')->where('parent_cat', $getCatalog->cat_number)->update([
+            'parent_cat' => $getCatalog->parent_cat
+        ]);
+        DB::table('nodes_to_catalog')->where('catalog', $cid)->delete();
+        return DB::table('catalog')->where('cid', $cid)->delete();
     }
 }
