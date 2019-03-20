@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a53de099-90a2-4e6f-9913-6b52edeefe05" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Catalog.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Catalog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/CatalogSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CatalogSeeder.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/react-laravel/node_modules/" />
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
@@ -134,14 +134,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Models/Catalog.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
+            <state relative-caret-position="1277">
               <caret line="328" column="42" lean-forward="true" selection-start-line="328" selection-start-column="42" selection-end-line="328" selection-end-column="42" />
               <folding>
                 <element signature="e#30#69#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/seeds/CatalogSeeder.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="16" column="103" selection-start-line="16" selection-start-column="103" selection-end-line="16" selection-end-column="103" />
             </state>
           </provider>
         </entry>
@@ -192,6 +201,7 @@
     <findStrings>
       <find>products__part-cart</find>
       <find>style</find>
+      <find>2.1.1.11.113</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -200,7 +210,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Models/Pages.php" />
         <option value="$PROJECT_DIR$/resources/views/includes/secured/layout/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/secured/news/add.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_03_03_140949_nw_images_to_news.php" />
@@ -243,7 +252,6 @@
         <option value="$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/errors/illustrated-layout.blade.php" />
-        <option value="$PROJECT_DIR$/database/seeds/CatalogSeeder.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredCatalogController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Website/CatalogController.php" />
         <option value="$PROJECT_DIR$/app/Models/Helpers.php" />
@@ -251,6 +259,8 @@
         <option value="$PROJECT_DIR$/resources/sass/layout/_sidebar.scss" />
         <option value="$PROJECT_DIR$/resources/sass/components/_common.scss" />
         <option value="$PROJECT_DIR$/app/Models/Catalog.php" />
+        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
+        <option value="$PROJECT_DIR$/database/seeds/CatalogSeeder.php" />
       </list>
     </option>
   </component>
@@ -586,14 +596,7 @@
       <workItem from="1552893715934" duration="1424000" />
       <workItem from="1552977807195" duration="6169000" />
       <workItem from="1553006534520" duration="11000" />
-      <workItem from="1553066004062" duration="1184000" />
-    </task>
-    <task id="LOCAL-00035" summary="localStorage User Identity">
-      <created>1551018832016</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1551018832016</updated>
+      <workItem from="1553066004062" duration="2725000" />
     </task>
     <task id="LOCAL-00036" summary="Cart DBA">
       <created>1551019119819</created>
@@ -931,11 +934,18 @@
       <option name="project" value="LOCAL" />
       <updated>1552983767371</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Fixed delete catalog item">
+      <created>1553067565903</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1553067565904</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138968000" />
+    <option name="totallyTimeSpent" value="140509000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1007" extended-state="6" />
@@ -969,7 +979,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Delete figures" />
     <MESSAGE value="Figure frontend" />
     <MESSAGE value="fixes" />
     <MESSAGE value="fixes files inputs" />
@@ -994,7 +1003,8 @@
     <MESSAGE value="Fixed #34, Fixed #31, Fixed #30, Fixed #28" />
     <MESSAGE value="Sidebar BETA" />
     <MESSAGE value="Sidebar BETA 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sidebar BETA 2" />
+    <MESSAGE value="Fixed delete catalog item" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed delete catalog item" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/website/search.blade.php">
@@ -1299,9 +1309,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredCatalogController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -1347,13 +1354,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/CatalogSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="22" column="49" lean-forward="true" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/sass/components/_common.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
@@ -1370,11 +1370,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Catalog.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
+        <state relative-caret-position="1277">
           <caret line="328" column="42" lean-forward="true" selection-start-line="328" selection-start-column="42" selection-end-line="328" selection-end-column="42" />
           <folding>
             <element signature="e#30#69#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/CatalogSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="16" column="103" selection-start-line="16" selection-start-column="103" selection-end-line="16" selection-end-column="103" />
         </state>
       </provider>
     </entry>
