@@ -22,6 +22,8 @@ class Catalog extends Model
     {
         $nodesModel = new Nodes;
 
+        $getParentCatalog = $this->getCatalogByCatNumber($data['catalogParent']);
+
         $saveCatalog =  DB::table('catalog')->insertGetId([
             'cat_number' => $data['catalogNumber'],
             'parent_cat' => $data['catalogParent'],
@@ -32,7 +34,8 @@ class Catalog extends Model
             'cat_title_ar' => $data['catalogSeoTitleAr'],
             'cat_description_ar' => $data['catalogSeoDescriptionAr'],
             'created_at' => Carbon::now(),
-            'cat_view' => $data['catalogViewType']
+            'cat_view' => $data['catalogViewType'],
+            'cat_type' => $getParentCatalog->cat_type
         ]);
 
         if($file !== null) {
