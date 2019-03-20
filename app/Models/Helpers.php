@@ -84,11 +84,12 @@ class Helpers extends Model
     }
 
     /**
+     * @param $currentCid
      * @param $array
      * @param $parent
      * @return string
      */
-    public function buildFrontendPartsCatalogMenu($array, $parent)
+    public function buildFrontendPartsCatalogMenu($currentCid, $array, $parent)
     {
         $catalogModel = new Catalog;
         $result = '';
@@ -100,14 +101,20 @@ class Helpers extends Model
                 } else {
                     $expanded = 'not-expanded';
                 }
+                // Active Menu
+                if($currentCid == $value['cid']) {
+                    $activeMenu = 'active';
+                } else {
+                    $activeMenu = '';
+                }
                 // <i class="fas fa-chevron-right"></i>
-                $result .= '<li class="' . $expanded . '">' . "\n";
+                $result .= '<li class="' . $expanded . ' ' . $activeMenu . '">' . "\n";
                 $result .= '<a href="/catalog/' . $value['cid'] . '"><span class="menu__name">' . $value['cat_name_en'] . '</span>';
                 if(count($getClilds) !== 0) {
                     $result .= '<span class="menu_dropdown"><i class="fas fa-chevron-right"></i></span>';
                 }
                 $result .=  '</a>';
-                $result .= $this->buildFrontendPartsCatalogMenu($array, $value['cat_number']);
+                $result .= $this->buildFrontendPartsCatalogMenu($currentCid, $array, $value['cat_number']);
                 $result .= '</li>' . "\n";
             }
         }

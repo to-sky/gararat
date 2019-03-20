@@ -97,6 +97,10 @@
         li.expanded:hover > ul {
             display: block;
         }
+
+        .active > a {
+            color: $secondary_color;
+        }
     }
 
     ul li:hover > a {

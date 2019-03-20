@@ -7480,6 +7480,10 @@ b {
   display: block;
 }
 
+.tree-sidebar ul .active > a {
+  color: #fc0203;
+}
+
 .tree-sidebar ul li:hover > a {
   color: #fc0203;
 }
