@@ -6,15 +6,17 @@
         </div>
         <!-- /.sidebar__back -->
     @endif
-    <ul>
-        @if(count($catalogChilds) !== 0)
-            @foreach($catalogChilds as $child)
-                <li><a href="{{ route('catalogPage', $child->cid) }}">{{ $child->cat_name_en }}</a></li>
-            @endforeach
-        @else
-            <li><a href="{{ route('catalogPage', $parentCatalog->cid) }}"><i class="fas fa-arrow-left"></i> Return to {{ $parentCatalog->cat_name_en }}</a></li>
-        @endif
-    </ul>
+    @if(!isset($preRenderedCatalog))
+        <ul>
+            @if(count($catalogChilds) !== 0)
+                @foreach($catalogChilds as $child)
+                    <li><a href="{{ route('catalogPage', $child->cid) }}">{{ $child->cat_name_en }}</a></li>
+                @endforeach
+            @else
+                <li><a href="{{ route('catalogPage', $parentCatalog->cid) }}"><i class="fas fa-arrow-left"></i> Return to {{ $parentCatalog->cat_name_en }}</a></li>
+            @endif
+        </ul>
+    @endif
 </div>
 <!-- /.sidebar -->
 @if(isset($preRenderedCatalog) && $preRenderedCatalog !== NULL)

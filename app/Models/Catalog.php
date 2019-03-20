@@ -298,6 +298,21 @@ class Catalog extends Model
             ->join('catalog', 'nodes_to_catalog.catalog', '=', 'catalog.cid')
             ->first();
     }
+
+    /**
+     * @param $parent
+     * @return int
+     */
+    public function countParentsToRoot($parent)
+    {
+        $i = 0;
+        while($parent > 0) {
+            $catalog = $this->getCatalogByCatNumber($parent);
+            $parent = $catalog->parent_cat;
+            $i++;
+        }
+        return $i;
+    }
     //======================================================================
     // UPDATE
     //======================================================================

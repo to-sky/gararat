@@ -7437,7 +7437,7 @@ b {
 
 .tree-sidebar ul li {
   position: relative;
-  padding: 15px;
+  padding: 7.5px 15px;
 }
 
 .tree-sidebar ul li:first-child {
@@ -7449,7 +7449,7 @@ b {
 }
 
 .tree-sidebar ul li a {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #616161;
   display: block;
   width: 100%;
@@ -7464,6 +7464,7 @@ b {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   z-index: 99999999999;
+  font-size: 1rem;
 }
 
 .tree-sidebar ul li ul {
@@ -7483,30 +7484,8 @@ b {
   color: #fc0203;
 }
 
-.tree-sidebar ul.tree > li > ul,
-.tree-sidebar ul.tree > li > ul > li > ul,
-.tree-sidebar ul.tree > li > ul > li > ul > li > ul {
-  position: static;
-}
-
-.tree-sidebar ul.tree > li > ul > li,
-.tree-sidebar ul.tree > li > ul > li > ul > li,
-.tree-sidebar ul.tree > li > ul > li > ul > li > ul > li {
-  padding-right: 0;
-  padding-left: 5px;
-  padding-bottom: 0 !important;
-}
-
-.tree-sidebar ul.tree > li > ul > li > ul > li > ul > li ul li {
-  padding: 6px 10px;
-}
-
-.tree-sidebar ul.tree > li > ul > li > ul > li > ul > li ul li a {
-  font-size: 1.2rem !important;
-}
-
-.tree-sidebar ul.tree > li > ul > li > ul > li > ul > li ul li a i {
-  font-size: 1rem;
+.tree-sidebar ul li > ul {
+  display: none;
 }
 
 .tree-sidebar ul.tree li:last-child {
