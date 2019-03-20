@@ -22,6 +22,8 @@ class Catalog extends Model
     {
         $nodesModel = new Nodes;
 
+        $getParentCatalog = $this->getCatalogByCatNumber($data['catalogParent']);
+
         $saveCatalog =  DB::table('catalog')->insertGetId([
             'cat_number' => $data['catalogNumber'],
             'parent_cat' => $data['catalogParent'],
@@ -32,7 +34,8 @@ class Catalog extends Model
             'cat_title_ar' => $data['catalogSeoTitleAr'],
             'cat_description_ar' => $data['catalogSeoDescriptionAr'],
             'created_at' => Carbon::now(),
-            'cat_view' => $data['catalogViewType']
+            'cat_view' => $data['catalogViewType'],
+            'cat_type' => $getParentCatalog->cat_type
         ]);
 
         if($file !== null) {
@@ -295,6 +298,21 @@ class Catalog extends Model
             ->join('catalog', 'nodes_to_catalog.catalog', '=', 'catalog.cid')
             ->first();
     }
+
+    /**
+     * @param $parent
+     * @return int
+     */
+    public function countParentsToRoot($parent)
+    {
+        $i = 0;
+        while($parent > 0) {
+            $catalog = $this->getCatalogByCatNumber($parent);
+            $parent = $catalog->parent_cat;
+            $i++;
+        }
+        return $i;
+    }
     //======================================================================
     // UPDATE
     //======================================================================
@@ -347,6 +365,11 @@ class Catalog extends Model
      */
     public function deleteCategoryItem($cid)
     {
-        return DB::table('catalog')->where('cid', $cid)->delete(); // TODO: before delete category linked nodes should be deleted or hide
+        $getCatalog = $this->getCatalogByCid($cid);
+        DB::table('catalog')->where('parent_cat', $getCatalog->cat_number)->update([
+            'parent_cat' => $getCatalog->parent_cat
+        ]);
+        DB::table('nodes_to_catalog')->where('catalog', $cid)->delete();
+        return DB::table('catalog')->where('cid', $cid)->delete();
     }
 }

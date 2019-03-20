@@ -49,9 +49,18 @@ class CatalogController extends Controller
         } else {
             $data['pageTitle'] = $getCatalogByCid->cat_title_en;
         }
+        $getAllChildsCategories = $catalogModel->getAllChildsCategoriesFrontEnd($getCatalogByCid->cat_number);
+        $data['catalogChilds'] = $catalogModel->getCatalogChilds($getCatalogByCid->cat_number);
         if($getCatalogByCid->cat_type === 1) {
-            $getCatalogs = $catalogModel->getAllCatalogItemsByTypeWithoutRoot(1);
-            $data['preRenderedCatalog'] = $helpers->buildFrontendPartsCatalogMenu($helpers->convertQueryBuilderToArray($getCatalogs), '2');
+            $stepsToRoot = $catalogModel->countParentsToRoot($getCatalogByCid->parent_cat);
+            if($stepsToRoot >= 2) {
+                $getCatalogs = $catalogModel->getAllCatalogItemsByTypeWithoutRoot(1);
+                if(count($data['catalogChilds']) > 0) {
+                    $data['preRenderedCatalog'] = $helpers->buildFrontendPartsCatalogMenu($cid, $helpers->convertQueryBuilderToArray($getCatalogs), $getCatalogByCid->cat_number);
+                } else {
+                    $data['preRenderedCatalog'] = $helpers->buildFrontendPartsCatalogMenu($cid, $helpers->convertQueryBuilderToArray($getCatalogs), $getCatalogByCid->parent_cat);
+                }
+            }
         }
         $data['cid'] = $cid;
         $data['currentCatalog'] = $getCatalogByCid;
@@ -59,11 +68,9 @@ class CatalogController extends Controller
         $data['catalogType'] = $getCatalogByCid->cat_type;
         $data['catalogView'] = $getCatalogByCid->cat_view;
         $data['pageDescription'] = $getCatalogByCid->cat_description_en;
-        $data['catalogChilds'] = $catalogModel->getCatalogChilds($getCatalogByCid->cat_number);
         $data['parentCatalog'] = $catalogModel->getCatalogByCatNumber($getCatalogByCid->parent_cat);
         $data['breadcrumbs'] = $helpers->buildCatalogBreadcrumbs($getCatalogByCid, false);
         // Get products
-        $getAllChildsCategories = $catalogModel->getAllChildsCategoriesFrontEnd($getCatalogByCid->cat_number);
         $getNodes = $nodesModel->getNodesForProductType($getAllChildsCategories);
         $data['products'] = $nodesModel->getNodesByType($getNodes, $getCatalogByCid->cat_type, $perPage, $target, $destination);
         $data['target'] = $target;
