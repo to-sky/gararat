@@ -52,7 +52,7 @@
                             <!-- /.col-4 col-lg-3 -->
                             <div class="col-8 col-lg-9">
                                 <div class="products__part-name">
-                                    <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->n_name_en . ' - ' . $product->npf_name_en }}</a>
+                                    <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_en . ' - ' . $product->fig_name_en }}</a>
                                 </div>
                                 <!-- /.products__part-name -->
                             </div>

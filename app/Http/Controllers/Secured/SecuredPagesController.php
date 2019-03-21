@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Secured;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use League\Csv\Reader;
+use \Carbon\Carbon;
 
 use \App\Models\Nodes;
 
@@ -17,11 +19,19 @@ class SecuredPagesController extends Controller
      */
     public function securedDashboardPage()
     {
+        $nodesModel = new Nodes;
+
         $data['pageTitle'] = 'Dashboard';
+        $data['partsCount'] = $nodesModel->countPartsNodes();
+        $data['eqCount'] = $nodesModel->countEquipmentsNodes();
 
         return view('secured.dashboard', $data);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function securedSearchPage(Request $request)
     {
         $nodesModel = new Nodes;
@@ -33,8 +43,51 @@ class SecuredPagesController extends Controller
 
         return view('secured.search', $data);
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function uploadCSVPage()
+    {
+        $data['pageTitle'] = 'Upload CSV';
+
+        return view('secured.upload', $data);
+    }
     //======================================================================
     // API
     //======================================================================
+    public function uploadEquipmentsCsvApi(Request $request)
+    {
+        $file = $request->file('uploadEQFile');
+        dd($file);
+    }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function uploadPartsCsvApi(Request $request)
+    {
+        // Settings
+        if (!ini_get("auto_detect_line_endings")) {
+            ini_set("auto_detect_line_endings", '1');
+        }
+        // Save file
+        $file = $request->file('uploadPFile');
+        $name = md5_file($file->getRealPath());
+        $store = $file->storeAs('/public', Carbon::now()->format('d-m-Y') . '-' . uniqid() . '-' . $name.'.csv');
+        $filePath = explode('/', $store);
+        $filePath = $filePath[1];
+        // CSV Reader
+        $reader = Reader::createFromPath(public_path() . '/storage/' . $filePath, 'r');
+        $reader->setHeaderOffset(0);
+        $records = $reader->getRecords();
+        // Loop each part and check if exist and create/update it
+        $nodesModel = new Nodes;
+        foreach ($records as $offset => $record) {
+            // dd($record);
+            $nodesModel->getPartsCsvRecordToAnalyze($record);
+        }
+        return redirect()->route('productsListSecuredPage', 1);
+    }
 }
