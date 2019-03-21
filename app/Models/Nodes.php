@@ -35,6 +35,19 @@ class Nodes extends Model
         }
         return $filename_to_store;
     }
+
+    /**
+     * @param $data
+     */
+    public function getPartsCsvRecordToAnalyze($data)
+    {
+        $checkIfNodeExist = DB::table('nodes_parts_fields')->where('our_id', $data['OUR ID'])->select('node')->first();
+        if($checkIfNodeExist && $checkIfNodeExist !== null) {
+            $this->updateBasicPartsNodeFromCSV($checkIfNodeExist->node, $data);
+        } else {
+            $this->createBasicPartsNodeFromCSV($data);
+        }
+    }
     //======================================================================
     // CREATE
     //======================================================================
@@ -67,6 +80,69 @@ class Nodes extends Model
             'special_price' => $data['nodeSpecialPrice'],
             'created_at' => Carbon::now()
         ]);
+    }
+
+    /**
+     * @param $data
+     * @return bool
+     */
+    public function createBasicPartsNodeFromCSV($data)
+    {
+        $specialPrice = 0;
+        if($data['Special price'] != '' && $data['Special price'] !== null) {
+            $specialPrice = $data['Special price'];
+        }
+
+        $getCatalog = DB::table('catalog')->where('cat_number', $data['Catalog'])->select('cid')->first();
+
+        if($getCatalog && $getCatalog !== null) {
+            $saveNode = DB::table('nodes')->insertGetId([
+                'n_name_en' => $data['Drawing name Eng.'] . ' - ' . $data['Name Eng.'],
+                'n_title_en' => $data['Drawing name Eng.'] . ' - ' . $data['Name Eng.'],
+                'n_description_en' => $data['Drawing name Eng.'] . ' - ' . $data['Name Eng.'],
+                'n_name_ar' => $data['Drawing  name Ar.'] . ' - ' . $data['Name Ar.'],
+                'n_title_ar' => $data['Drawing  name Ar.'] . ' - ' . $data['Name Ar.'],
+                'n_description_ar' => $data['Drawing  name Ar.'] . ' - ' . $data['Name Ar.'],
+                'has_photo' => $data['Has photo'],
+                'in_stock' => $data['In stock'],
+                'is_special' => $data['Is speial'],
+                'price' => $data['Price'],
+                'special_price' => $specialPrice,
+                'created_at' => Carbon::now()
+            ]);
+            // Save to catalog
+            DB::table('nodes_to_catalog')->insert([
+                'node' => $saveNode,
+                'catalog' => $getCatalog->cid
+            ]);
+            // Save parts fields
+            $positionNumber = null;
+            $qty = null;
+            if($data['Pos. No.'] != '' && $data['Pos. No.'] !== null) {
+                $positionNumber = $data['Pos. No.'];
+            }
+            if($data['Q-ty on the drawing'] != '' && $data['Q-ty on the drawing'] !== null) {
+                $qty = $data['Q-ty on the drawing'];
+            }
+            $producerId = $data['Producer ID'];
+            if(strlen($producerId) > 200) {
+                $producerId = substr($producerId, 0, 200);
+            }
+            DB::table('nodes_parts_fields')->insert([
+                'node' => $saveNode,
+                'group' => (int)$data['Group No.'],
+                'fig_no' => $data['Drawing No.'],
+                'pos_no' => (int)$positionNumber,
+                'qty' => (int)$qty,
+                'producer_id' => $producerId,
+                'our_id' => $data['OUR ID'],
+                'fig_name_en' => $data['Drawing name Eng.'],
+                'npf_name_en' => $data['Name Eng.'],
+                'fig_name_ar' => $data['Drawing  name Ar.'],
+                'npf_name_ar' => $data['Name Ar.']
+            ]);
+        }
+        return true;
     }
 
     /**
@@ -317,6 +393,22 @@ class Nodes extends Model
             ->orderBy('nodes_parts_fields.pos_no', 'ASC')
             ->get();
     }
+
+    /**
+     * @return mixed
+     */
+    public function countPartsNodes()
+    {
+        return DB::table('nodes_parts_fields')->count();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function countEquipmentsNodes()
+    {
+        return DB::table('nodes_machinery_fields')->count();
+    }
     //======================================================================
     // UPDATE
     //======================================================================
@@ -388,6 +480,68 @@ class Nodes extends Model
             'fig_name_ar' => $data['figNameAr'],
             'npf_name_ar' => $data['nameAr']
         ]);
+    }
+
+    /**
+     * @param $nid
+     * @param $data
+     * @return bool
+     */
+    public function updateBasicPartsNodeFromCSV($nid, $data)
+    {
+        $specialPrice = 0;
+        if($data['Special price'] != '' && $data['Special price'] !== null) {
+            $specialPrice = $data['Special price'];
+        }
+
+        $getCatalog = DB::table('catalog')->where('cat_number', $data['Catalog'])->select('cid')->first();
+
+        if($getCatalog && $getCatalog !== null) {
+            $saveNode = DB::table('nodes')->where('nid', $nid)->update([
+                'n_name_en' => $data['Drawing name Eng.'] . ' - ' . $data['Name Eng.'],
+                'n_title_en' => $data['Drawing name Eng.'] . ' - ' . $data['Name Eng.'],
+                'n_description_en' => $data['Drawing name Eng.'] . ' - ' . $data['Name Eng.'],
+                'n_name_ar' => $data['Drawing  name Ar.'] . ' - ' . $data['Name Ar.'],
+                'n_title_ar' => $data['Drawing  name Ar.'] . ' - ' . $data['Name Ar.'],
+                'n_description_ar' => $data['Drawing  name Ar.'] . ' - ' . $data['Name Ar.'],
+                'has_photo' => $data['Has photo'],
+                'in_stock' => $data['In stock'],
+                'is_special' => $data['Is speial'],
+                'price' => $data['Price'],
+                'special_price' => $specialPrice,
+                'updated_at' => Carbon::now()
+            ]);
+            // Save to catalog
+            DB::table('nodes_to_catalog')->where('node', $nid)->update([
+                'catalog' => $getCatalog->cid
+            ]);
+            // Save parts fields
+            $positionNumber = null;
+            $qty = null;
+            if($data['Pos. No.'] != '' && $data['Pos. No.'] !== null) {
+                $positionNumber = $data['Pos. No.'];
+            }
+            if($data['Q-ty on the drawing'] != '' && $data['Q-ty on the drawing'] !== null) {
+                $qty = $data['Q-ty on the drawing'];
+            }
+            $producerId = $data['Producer ID'];
+            if(strlen($producerId) > 200) {
+                $producerId = substr($producerId, 0, 200);
+            }
+            DB::table('nodes_parts_fields')->where('node', $nid)->update([
+                'group' => (int)$data['Group No.'],
+                'fig_no' => $data['Drawing No.'],
+                'pos_no' => (int)$positionNumber,
+                'qty' => (int)$qty,
+                'producer_id' => $producerId,
+                'our_id' => $data['OUR ID'],
+                'fig_name_en' => $data['Drawing name Eng.'],
+                'npf_name_en' => $data['Name Eng.'],
+                'fig_name_ar' => $data['Drawing  name Ar.'],
+                'npf_name_ar' => $data['Name Ar.']
+            ]);
+        }
+        return true;
     }
     //======================================================================
     // DELETE

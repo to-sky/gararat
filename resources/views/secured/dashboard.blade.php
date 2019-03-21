@@ -13,7 +13,7 @@
                             <div class="peers ai-sb fxw-nw">
                                 <div class="peer">
                                     <span
-                                        class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">0</span>
+                                        class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{{ $partsCount }}</span>
                                 </div>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                             <div class="peers ai-sb fxw-nw">
                                 <div class="peer">
                                     <span
-                                        class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-red-50 c-red-500">0</span>
+                                        class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-red-50 c-red-500">{{ $eqCount }}</span>
                                 </div>
                             </div>
                         </div>
