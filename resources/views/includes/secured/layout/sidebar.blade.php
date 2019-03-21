@@ -76,4 +76,7 @@
     <li class="nav-item">
         <a href="" class="sidebar-link"><span class="icon-holder"><i class="c-blue-500 ti-user"></i> </span><span class="title">Users</span></a>
     </li>
+    <li class="nav-item">
+        <a href="{{ route('uploadCSVPage') }}" class="sidebar-link"><span class="icon-holder"><i class="c-blue-500 ti-save"></i> </span><span class="title">Import CSV</span></a>
+    </li>
 </ul>

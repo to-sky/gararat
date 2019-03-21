@@ -95,6 +95,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/pages', 'Secured\SecuredCommonController@securedPagesListPage')->name('securedPagesListPage');
         Route::get('/secured/admin/pages/edit/{pg_id}', 'Secured\SecuredCommonController@securedUpdatePageItem')->name('securedUpdatePageItem');
         Route::get('/secured/admin/pages/remove/{pg_id}', 'Secured\SecuredCommonController@securedRemovePageItem')->name('securedRemovePageItem');
+        // Upload
+        Route::get('/secured/admin/upload/csv', 'Secured\SecuredPagesController@uploadCSVPage')->name('uploadCSVPage');
         ########################################################################
         # API
         ########################################################################

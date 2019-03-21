@@ -33,6 +33,13 @@ class SecuredPagesController extends Controller
 
         return view('secured.search', $data);
     }
+
+    public function uploadCSVPage()
+    {
+        $data['pageTitle'] = 'Upload CSV';
+
+        return view('secured.upload', $data);
+    }
     //======================================================================
     // API
     //======================================================================
