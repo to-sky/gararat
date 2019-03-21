@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-6">
-            <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+            <form action="{{ route('uploadEquipmentsCsvApi') }}" method="post" enctype="multipart/form-data" autocomplete="off">
                 @csrf
                 <div class="bgc-white p-20 bd">
                     <h6 class="c-grey-900">Upload <strong>Equipments</strong> CSV</h6>
@@ -18,7 +18,7 @@
             </form>
         </div>
         <div class="col-6">
-            <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+            <form action="{{ route('uploadPartsCsvApi') }}" method="post" enctype="multipart/form-data" autocomplete="off">
                 @csrf
                 <div class="bgc-white p-20 bd">
                     <h6 class="c-grey-900">Upload <strong>Parts</strong> CSV</h6>

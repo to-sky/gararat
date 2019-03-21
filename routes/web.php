@@ -125,5 +125,8 @@ Route::group(['middleware' => 'auth'], function() {
         //News
         Route::post('/api/v1.0/news/save', 'Secured\SecuredCommonController@saveNewNewsItemAPI')->name('saveNewNewsItemAPI');
         Route::post('/api/v1.0/news/update', 'Secured\SecuredCommonController@updateNewsItemAPI')->name('updateNewsItemAPI');
+        // Upload
+        Route::post('/api/v1.0/upload/csv/equipments', 'Secured\SecuredPagesController@uploadEquipmentsCsvApi')->name('uploadEquipmentsCsvApi');
+        Route::post('/api/v1.0/upload/csv/parts', 'Secured\SecuredPagesController@uploadPartsCsvApi')->name('uploadPartsCsvApi');
     });
 });
