@@ -79,9 +79,9 @@ class SecuredPagesController extends Controller
         // Loop each part and check if exist and create/update it
         $nodesModel = new Nodes;
         foreach ($records as $offset => $record) {
-            dd($record);
+            // dd($record);
+            $nodesModel->getEQCsvRecordToAnalyze($record);
         }
-        dd($records);
         return redirect()->route('productsListSecuredPage', 0);
     }
 
