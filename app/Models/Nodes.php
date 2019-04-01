@@ -48,6 +48,19 @@ class Nodes extends Model
             $this->createBasicPartsNodeFromCSV($data);
         }
     }
+
+    /**
+     * @param $data
+     */
+    public function getEQCsvRecordToAnalyze($data)
+    {
+        $checkIfNodeExist = DB::table('nodes_machinery_fields')->where('our_id', $data['OUR ID'])->select('node')->first();
+        if($checkIfNodeExist && $checkIfNodeExist !== null) {
+            $this->updateEQNodeFromCSV($checkIfNodeExist->node, $data);
+        } else {
+            $this->createEQNodeFromCSV($data);
+        }
+    }
     //======================================================================
     // CREATE
     //======================================================================
@@ -146,6 +159,55 @@ class Nodes extends Model
     }
 
     /**
+     * @param $data
+     * @return bool
+     */
+    public function createEQNodeFromCSV($data)
+    {
+        $specialPrice = 0;
+        if($data['Special price'] != '' && $data['Special price'] !== null) {
+            $specialPrice = $data['Special price'];
+        }
+
+        $getCatalog = DB::table('catalog')->where('cat_number', $data['Catalog'])->select('cid')->first();
+        if($getCatalog && $getCatalog !== null) {
+            $saveNode = DB::table('nodes')->insertGetId([
+                'n_name_en' => $data['Name Eng.'],
+                'n_title_en' => $data['Name Eng.'],
+                'n_description_en' => null,
+                'n_name_ar' => $data['Name Ar.'],
+                'n_title_ar' => $data['Name Ar.'],
+                'n_description_ar' => null,
+                'has_photo' => $data['Has photo'],
+                'in_stock' => $data['In stock'],
+                'is_special' => $data['Is speial'],
+                'price' => $data['Price'],
+                'special_price' => $specialPrice,
+                'created_at' => Carbon::now()
+            ]);
+            // Save to catalog
+            DB::table('nodes_to_catalog')->insert([
+                'node' => $saveNode,
+                'catalog' => $getCatalog->cid
+            ]);
+
+            DB::table('nodes_machinery_fields')->insert([
+                'node' => $saveNode,
+                'nmf_name_en' => $data['Name Eng.'],
+                'nmf_body_en' => null,
+                'nmf_description_en' => null,
+                'nmf_short_en' => null,
+                'nmf_name_ar' => $data['Name Ar.'],
+                'nmf_body_ar' => null,
+                'nmf_description_ar' => null,
+                'nmf_short_ar' => null,
+                'our_id' => $data['OUR ID']
+            ]);
+        }
+        return true;
+    }
+
+    /**
      * @param $nid
      * @param $data
      * @return mixed
@@ -156,7 +218,7 @@ class Nodes extends Model
             'node' => $nid,
             'nmf_name_en' => $data['nameEn'],
             'nmf_body_en' => $data['nodeBody'],
-            'nmf_description_en' => $data['seoDescriptionAr'],
+            'nmf_description_en' => $data['seoDescriptionEn'],
             'nmf_short_en' => $data['nodeShortBody'],
             'nmf_name_ar' => $data['nameAr'],
             'nmf_body_ar' => $data['nodeBodyAr'],
@@ -539,6 +601,46 @@ class Nodes extends Model
                 'npf_name_en' => $data['Name Eng.'],
                 'fig_name_ar' => $data['Drawing  name Ar.'],
                 'npf_name_ar' => $data['Name Ar.']
+            ]);
+        }
+        return true;
+    }
+
+    /**
+     * @param $nid
+     * @param $data
+     * @return bool
+     */
+    public function updateEQNodeFromCSV($nid, $data)
+    {
+        $specialPrice = 0;
+        if($data['Special price'] != '' && $data['Special price'] !== null) {
+            $specialPrice = $data['Special price'];
+        }
+        $getCatalog = DB::table('catalog')->where('cat_number', $data['Catalog'])->select('cid')->first();
+        if($getCatalog && $getCatalog !== null) {
+            $saveNode = DB::table('nodes')->where('nid', $nid)->update([
+                'n_name_en' => $data['Name Eng.'],
+                'n_title_en' => $data['Name Eng.'],
+                'n_description_en' => null,
+                'n_name_ar' => $data['Name Ar.'],
+                'n_title_ar' => $data['Name Ar.'],
+                'n_description_ar' => null,
+                'has_photo' => $data['Has photo'],
+                'in_stock' => $data['In stock'],
+                'is_special' => $data['Is speial'],
+                'price' => $data['Price'],
+                'special_price' => $specialPrice,
+                'created_at' => Carbon::now()
+            ]);
+            // Save to catalog
+            DB::table('nodes_to_catalog')->where('node', $nid)->update([
+                'catalog' => $getCatalog->cid
+            ]);
+
+            DB::table('nodes_machinery_fields')->where('node', $nid)->update([
+                'nmf_name_en' => $data['Name Eng.'],
+                'nmf_name_ar' => $data['Name Ar.']
             ]);
         }
         return true;
