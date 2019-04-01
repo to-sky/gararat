@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a53de099-90a2-4e6f-9913-6b52edeefe05" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredPagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredPagesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Nodes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Nodes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/website/layout/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/website/layout/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/website/catalog/catalog.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/catalog/catalog.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/website/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/home.blade.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/react-laravel/node_modules/" />
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
@@ -123,8 +119,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredPagesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="60" column="48" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
+            <state relative-caret-position="661">
+              <caret line="83" column="9" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
               <folding>
                 <element signature="e#48#76#0#PHP" expanded="true" />
               </folding>
@@ -132,23 +128,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Models/Nodes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="190" column="23" selection-start-line="190" selection-start-column="17" selection-end-line="190" selection-end-column="23" />
+            <state relative-caret-position="562">
+              <caret line="640" column="78" selection-start-line="640" selection-start-column="78" selection-end-line="640" selection-end-column="78" />
               <folding>
                 <element signature="e#30#69#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_01_100218_add_our_id_to_eq_nodes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -226,9 +213,9 @@
         <option value="$PROJECT_DIR$/resources/views/website/catalog/catalog.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/includes/website/layout/header.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/website/home.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_04_01_100218_add_our_id_to_eq_nodes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredPagesController.php" />
         <option value="$PROJECT_DIR$/app/Models/Nodes.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_04_01_100218_add_our_id_to_eq_nodes.php" />
       </list>
     </option>
   </component>
@@ -391,23 +378,6 @@
             <path>
               <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
               <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
-              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
-              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="seeds" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
-              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -534,14 +504,7 @@
       <workItem from="1553006534520" duration="11000" />
       <workItem from="1553066004062" duration="5709000" />
       <workItem from="1553150564488" duration="6048000" />
-      <workItem from="1554108843613" duration="3462000" />
-    </task>
-    <task id="LOCAL-00045" summary="Secured nodes upd1">
-      <created>1551264418915</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1551264418915</updated>
+      <workItem from="1554108843613" duration="4488000" />
     </task>
     <task id="LOCAL-00046" summary="Checkout">
       <created>1551275846514</created>
@@ -879,11 +842,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553156369538</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="New DBA">
+      <created>1554113078449</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1554113078449</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153003000" />
+    <option name="totallyTimeSpent" value="154029000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1007" extended-state="6" />
@@ -917,7 +887,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="News DBA" />
     <MESSAGE value="news 1" />
     <MESSAGE value="news 2" />
     <MESSAGE value="Search by site" />
@@ -942,7 +911,8 @@
     <MESSAGE value="Upload CSV template /w routes" />
     <MESSAGE value="Upload EQ CSV" />
     <MESSAGE value="Fix pagination in catalog" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix pagination in catalog" />
+    <MESSAGE value="New DBA" />
+    <option name="LAST_COMMIT_MESSAGE" value="New DBA" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/includes/secured/layout/header.blade.php">
@@ -1287,16 +1257,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredPagesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="60" column="48" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
-          <folding>
-            <element signature="e#48#76#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_03_06_064641_image_to_catalog.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
@@ -1304,20 +1264,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Nodes.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_01_100218_add_our_id_to_eq_nodes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="190" column="23" selection-start-line="190" selection-start-column="17" selection-end-line="190" selection-end-column="23" />
+        <state relative-caret-position="352">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredPagesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="661">
+          <caret line="83" column="9" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
           <folding>
-            <element signature="e#30#69#0#PHP" expanded="true" />
+            <element signature="e#48#76#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_01_100218_add_our_id_to_eq_nodes.php">
+    <entry file="file://$PROJECT_DIR$/app/Models/Nodes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+        <state relative-caret-position="562">
+          <caret line="640" column="78" selection-start-line="640" selection-start-column="78" selection-end-line="640" selection-end-column="78" />
+          <folding>
+            <element signature="e#30#69#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
