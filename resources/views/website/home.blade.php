@@ -20,13 +20,13 @@
     </div>
     <!-- /.slider__wrapper -->
     <div class="container">
-        <h1 class="text-center homepage">Tractors <span><span class="red">«Belarus»</span> in Egypt</span></h1>
+        <h1 class="text-center homepage">Agricultural tractors, equipment, genuine spare parts and qualified service.</h1>
     </div>
     <!-- /.container -->
     <div class="section bg-section">
         <div class="container">
-            <h2>Production & Service</h2>
-            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad doloribus itaque natus necessitatibus pariatur quaerat reprehenderit tempore ullam. Aliquam at beatae cum cupiditate ipsam mollitia, pariatur quam quasi tempora veniam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aut cum error, harum hic natus nisi, nostrum perferendis perspiciatis quae quia sapiente sint sit totam unde vitae, voluptate? Eligendi, quam.</p>
+            <h2>GARARAT –the first e-hypermarket for agricultural tractors, equipment and spare parts!</h2>
+            <p class="mb-0">GARARAT is a reliable equipment, genuine spare parts and qualified service for all branches of agriculture. We provide a full range of services: from consultations when choosing equipment to warranty and post-warranty maintenance.</p>
             <div class="section__blocks">
                 <div class="row">
                     <div class="col-12 col-md-4">
@@ -65,9 +65,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-7">
-                    <h2>Belarus agriculture tractors</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eos eveniet ex exercitationem facilis itaque laudantium nemo quidem, reiciendis soluta totam unde vero vitae! Architecto autem distinctio itaque libero sint!</p>
-                    <p class="mb-0"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dignissimos eaque exercitationem incidunt magnam obcaecati odit officiis porro temporibus veniam. A commodi impedit laborum obcaecati officiis perferendis perspiciatis, recusandae vero!</span><span>Architecto, dignissimos eius eos error facere fugit nemo nulla placeat porro provident, quia quod ullam voluptas! Corporis dicta error itaque minus, non numquam praesentium quasi totam. Et labore pariatur quibusdam.</span></p>
+                    <h2>GARARAT Group of companies</h2>
+                    <p>GARARAT – international group of companies specialised in agricultural tractors, equipment, spare parts and services.</p>
+                    <p class="mb-0">More than 20 years we work in the field of agricultural equipment. Our Group consist of 9 sales and service points around Egypt and an Assembly plant in Alexandria.</p>
                 </div>
                 <!-- /.col-12 col-lg-6 -->
                 <div class="col-12 col-lg-5">

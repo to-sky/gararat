@@ -69,19 +69,19 @@
                             <a href="{{ route('homePage') }}">Home</a>
                         </li>
                         <li @if(isset($catalogType) && $catalogType !== null && $catalogType == 0) class="active" @endif>
-                            <a href="{{ route('catalogPage', 1) }}">Equipments</a>
+                            <a href="{{ route('catalogPage', 1) }}">Equipment</a>
                         </li>
                         <li @if(isset($catalogType) && $catalogType !== null && $catalogType == 1) class="active" @endif>
                             <a href="{{ route('catalogPage', 2) }}">Parts</a>
                         </li>
                         <li @if(in_array(\Request::route()->getName(), ['servicesPage'])) class="active" @endif>
-                            <a href="{{ route('servicesPage') }}">Services</a>
+                            <a href="{{ route('servicesPage') }}">Service</a>
                         </li>
                         <li @if(in_array(\Request::route()->getName(), ['newsPage'])) class="active" @endif>
                             <a href="{{ route('newsPage') }}">News</a>
                         </li>
                         <li @if(in_array(\Request::route()->getName(), ['contactsPage'])) class="active" @endif>
-                            <a href="{{ route('contactsPage') }}">Contacts</a>
+                            <a href="{{ route('contactsPage') }}">Contact</a>
                         </li>
                     </ul>
                 </div>

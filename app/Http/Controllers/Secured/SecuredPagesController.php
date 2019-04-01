@@ -56,10 +56,33 @@ class SecuredPagesController extends Controller
     //======================================================================
     // API
     //======================================================================
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function uploadEquipmentsCsvApi(Request $request)
     {
+        // Settings
+        if (!ini_get("auto_detect_line_endings")) {
+            ini_set("auto_detect_line_endings", '1');
+        }
+        // Save file
         $file = $request->file('uploadEQFile');
-        dd($file);
+        $name = md5_file($file->getRealPath());
+        $store = $file->storeAs('/public', Carbon::now()->format('d-m-Y') . '-' . uniqid() . '-' . $name.'.csv');
+        $filePath = explode('/', $store);
+        $filePath = $filePath[1];
+        // CSV Reader
+        $reader = Reader::createFromPath(public_path() . '/storage/' . $filePath, 'r');
+        $reader->setHeaderOffset(0);
+        $records = $reader->getRecords();
+        // Loop each part and check if exist and create/update it
+        $nodesModel = new Nodes;
+        foreach ($records as $offset => $record) {
+            dd($record);
+        }
+        dd($records);
+        return redirect()->route('productsListSecuredPage', 0);
     }
 
     /**
