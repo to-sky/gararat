@@ -7,9 +7,15 @@
                 <h6 class="c-grey-900">{{ $pageTitle }}</h6>
                 <form action="{{ route('saveNewNewsItemAPI') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <div class="form-group">
-                        <label for="newsName">Name</label>
-                        <input type="text" class="form-control" name="newsName" id="newsName" required>
+                    <div class="form-group row">
+                        <div class="col-6">
+                            <label for="newsName">Name</label>
+                            <input type="text" class="form-control" name="newsName" id="newsName" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="newsNameAr">Name Ar.</label>
+                            <input type="text" class="form-control" name="newsNameAr" id="newsNameAr" required>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="newsBody">Body</label>
