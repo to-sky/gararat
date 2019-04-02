@@ -26,6 +26,10 @@ class News extends Model
             'nw_body' => $data['newsBody'],
             'nw_title' => $data['newsTitle'],
             'nw_description' => $data['newsDescription'],
+            'nw_name_ar' => $data['newsNameAr'],
+            'nw_body_ar' => $data['newsBodyAr'],
+            'nw_title_ar' => $data['newsTitleAr'],
+            'nw_description_ar' => $data['newsDescriptionAr'],
             'nw_image' => $nodeModel->proceedNodeImage($file, NULL, 'news'),
             'nw_created' => Carbon::now(),
         ]);
@@ -76,6 +80,10 @@ class News extends Model
                 'nw_body' => $data['newsBody'],
                 'nw_title' => $data['newsTitle'],
                 'nw_description' => $data['newsDescription'],
+                'nw_name_ar' => $data['newsNameAr'],
+                'nw_body_ar' => $data['newsBodyAr'],
+                'nw_title_ar' => $data['newsTitleAr'],
+                'nw_description_ar' => $data['newsDescriptionAr'],
                 'nw_image' => $nodeModel->proceedNodeImage($file, NULL, 'news'),
             ]);
         } else {
@@ -83,7 +91,11 @@ class News extends Model
                 'nw_name' => $data['newsName'],
                 'nw_body' => $data['newsBody'],
                 'nw_title' => $data['newsTitle'],
-                'nw_description' => $data['newsDescription']
+                'nw_description' => $data['newsDescription'],
+                'nw_name_ar' => $data['newsNameAr'],
+                'nw_body_ar' => $data['newsBodyAr'],
+                'nw_title_ar' => $data['newsTitleAr'],
+                'nw_description_ar' => $data['newsDescriptionAr'],
             ]);
         }
     }
