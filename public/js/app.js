@@ -42624,6 +42624,8 @@ __webpack_require__(/*! ./handlers/cart */ "./resources/js/handlers/cart.js");
 
 __webpack_require__(/*! ./handlers/slider */ "./resources/js/handlers/slider.js");
 
+__webpack_require__(/*! ./handlers/lang */ "./resources/js/handlers/lang.js");
+
 (function ($) {
   if ($('#figureConstructorWrapperTarget').length !== 0) {
     __webpack_require__(/*! ./figures/secured-constructor */ "./resources/js/figures/secured-constructor.js");
@@ -42910,6 +42912,23 @@ function addToCart(key, nid, qty) {
       console.log(err);
     });
   }
+})(jQuery);
+
+/***/ }),
+
+/***/ "./resources/js/handlers/lang.js":
+/*!***************************************!*\
+  !*** ./resources/js/handlers/lang.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function ($) {
+  $('#changeLangHandler select').on('change', function (e) {
+    e.preventDefault();
+    var lang = $(this).val();
+    window.location.href = "/lang-switch/" + lang;
+  });
 })(jQuery);
 
 /***/ }),

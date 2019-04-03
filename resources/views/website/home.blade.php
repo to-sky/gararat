@@ -20,7 +20,13 @@
     </div>
     <!-- /.slider__wrapper -->
     <div class="container">
-        <h1 class="text-center homepage">Agricultural tractors, equipment, genuine spare parts and qualified service.</h1>
+        <h1 class="text-center homepage">
+            @if(App::isLocale('en'))
+                Agricultural tractors, equipment, genuine spare parts and qualified service.
+            @else
+                جرارات زراعية , معدات , قطع غيار اصلية و خدمة مؤهلة
+            @endif
+        </h1>
     </div>
     <!-- /.container -->
     <div class="section bg-section">

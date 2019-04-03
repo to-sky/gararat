@@ -10,46 +10,49 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
-Route::get('/home', function() {
-    return redirect()->back();
-})->name('home');
-//======================================================================
-// WEBSITE
-//======================================================================
-########################################################################
-# Public routes
-########################################################################
-Route::get('/', 'Website\PagesController@homePage')->name('homePage');
-Route::get('/services', 'Website\PagesController@servicesPage')->name('servicesPage');
-Route::get('/contacts', 'Website\PagesController@contactsPage')->name('contactsPage');
-Route::get('/search/results', 'Website\PagesController@searchResults')->name('searchResults');
-// Catalog
-Route::get('/catalog/{cid}', 'Website\CatalogController@catalogPage')->name('catalogPage');
-Route::get('/catalog/{cid}/construct/figures', 'Website\CatalogController@figuresCatalogPage')->name('figuresCatalogPage');
-// Nodes
-Route::get('/node/{nid}', 'Website\NodesController@singleNodePage')->name('singleNodePage');
-// Cart
-Route::get('/cart', 'Website\OrdersController@cartPage')->name('cartPage');
-Route::get('/cart/checkout', 'Website\OrdersController@cartPage')->name('cartPage');
-Route::get('/cart/checkout/proceed', 'Website\OrdersController@cartProceedPage')->name('cartProceedPage');
-Route::get('/cart/checkout/success/{oid}', 'Website\OrdersController@cartProceedSuccessPage')->name('cartProceedSuccessPage');
-// News
-Route::get('/news', 'Website\PagesController@newsPage')->name('newsPage');
-Route::get('/news/{nw_id}', 'Website\PagesController@singleNewsPage')->name('singleNewsPage');
-// API
-Route::get('/api/cart/{userKey}', 'Website\OrdersController@getCartPreviewData');
-Route::get('/api/cart/{userKey}/table', 'Website\OrdersController@getCartTableData');
-Route::get('/api/cart/{userKey}/table-proceed', 'Website\OrdersController@getCartProceedTableData');
-Route::get('/api/cart/remove/{userKey}/{cart_node}', 'Website\OrdersController@removeItemFromCart');
-Route::post('/api/cart/actions/add/item', 'Website\OrdersController@addItemToCart');
-Route::post('/api/cart/proceed/action', 'Website\OrdersController@proceedOrderAPI')->name('proceedOrderAPI');
-########################################################################
-# Auth routes
-########################################################################
-Route::group(['middleware' => 'auth'], function() {
-    Route::group(['middleware' => 'auth.active'], function() {
+Route::group(['middleware' => 'app.locale'], function() {
+    Auth::routes();
+    Route::get('/home', function() {
+        return redirect()->back();
+    })->name('home');
+    //======================================================================
+    // WEBSITE
+    //======================================================================
+    ########################################################################
+    # Public routes
+    ########################################################################
+    Route::get('/', 'Website\PagesController@homePage')->name('homePage');
+    Route::get('/lang-switch/{lang}', 'Website\PagesController@langSwitcherPage')->name('langSwitcherPage');
+    Route::get('/services', 'Website\PagesController@servicesPage')->name('servicesPage');
+    Route::get('/contacts', 'Website\PagesController@contactsPage')->name('contactsPage');
+    Route::get('/search/results', 'Website\PagesController@searchResults')->name('searchResults');
+    // Catalog
+    Route::get('/catalog/{cid}', 'Website\CatalogController@catalogPage')->name('catalogPage');
+    Route::get('/catalog/{cid}/construct/figures', 'Website\CatalogController@figuresCatalogPage')->name('figuresCatalogPage');
+    // Nodes
+    Route::get('/node/{nid}', 'Website\NodesController@singleNodePage')->name('singleNodePage');
+    // Cart
+    Route::get('/cart', 'Website\OrdersController@cartPage')->name('cartPage');
+    Route::get('/cart/checkout', 'Website\OrdersController@cartPage')->name('cartPage');
+    Route::get('/cart/checkout/proceed', 'Website\OrdersController@cartProceedPage')->name('cartProceedPage');
+    Route::get('/cart/checkout/success/{oid}', 'Website\OrdersController@cartProceedSuccessPage')->name('cartProceedSuccessPage');
+    // News
+    Route::get('/news', 'Website\PagesController@newsPage')->name('newsPage');
+    Route::get('/news/{nw_id}', 'Website\PagesController@singleNewsPage')->name('singleNewsPage');
+    // API
+    Route::get('/api/cart/{userKey}', 'Website\OrdersController@getCartPreviewData');
+    Route::get('/api/cart/{userKey}/table', 'Website\OrdersController@getCartTableData');
+    Route::get('/api/cart/{userKey}/table-proceed', 'Website\OrdersController@getCartProceedTableData');
+    Route::get('/api/cart/remove/{userKey}/{cart_node}', 'Website\OrdersController@removeItemFromCart');
+    Route::post('/api/cart/actions/add/item', 'Website\OrdersController@addItemToCart');
+    Route::post('/api/cart/proceed/action', 'Website\OrdersController@proceedOrderAPI')->name('proceedOrderAPI');
+    ########################################################################
+    # Auth routes
+    ########################################################################
+    Route::group(['middleware' => 'auth'], function() {
+        Route::group(['middleware' => 'auth.active'], function() {
 
+        });
     });
 });
 //======================================================================
