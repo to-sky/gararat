@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Website;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Session;
+use App;
 
 use \App\Models\Helpers;
 use \App\Models\Slider;
@@ -100,5 +102,13 @@ class PagesController extends Controller
     //======================================================================
     // API
     //======================================================================
-
+    /**
+     * @param $lang
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function langSwitcherPage($lang)
+    {
+        Session::put('locale', $lang);
+        return redirect()->back();
+    }
 }

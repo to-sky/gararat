@@ -10,6 +10,7 @@ require('./handlers/qty-handler');
 require('./handlers/user-identity');
 require('./handlers/cart');
 require('./handlers/slider');
+require('./handlers/lang');
 
 (function($) {
     if($('#figureConstructorWrapperTarget').length !== 0) {

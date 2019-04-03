@@ -29,14 +29,12 @@
                         @endif
                     </div>
                     <!-- /.header__top-auth -->
-                    <!--
-                    <div class="header__top-lang">
-                        <select name="lang" id="lang">
-                            <option value="en">English</option>
-                            <option value="ar">Arabic</option>
+                    <div class="header__top-lang" id="changeLangHandler">
+                        <select name="lang" id="lang" autocomplete="off">
+                            <option @if(Session::get('locale') == 'en') selected @endif value="en">English</option>
+                            <option @if(Session::get('locale') == 'ar') selected @endif value="ar">Arabic</option>
                         </select>
                     </div>
-                    -->
                     <!-- /.header__top-lang -->
                 </div>
                 <!-- /.d-flex justify-content-end -->
