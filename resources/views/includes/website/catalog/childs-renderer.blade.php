@@ -11,7 +11,11 @@
         </div>
         <!-- /.text-center product__inner -->
         <div class="text-center product__name">
-            <a href="{{ route('catalogPage', $child->cid) }}">{{ $child->cat_name_en }}</a>
+            @if(App::isLocale('en'))
+                <a href="{{ route('catalogPage', $child->cid) }}">{{ $child->cat_name_en }}</a>
+            @else
+                <a href="{{ route('catalogPage', $child->cid) }}">{{ $child->cat_name_ar }}</a>
+            @endif
         </div>
         <!-- /.text-center shadow-sm product__name -->
     </div>

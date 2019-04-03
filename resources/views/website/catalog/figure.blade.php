@@ -37,14 +37,36 @@
                                 @foreach($nodes as $node)
                                     <tr id="targetConstructorNode_{{ $node->nid }}">
                                         <td>{{ $node->pos_no }}</td>
-                                        <td>{{ $node->n_name_en }}</td>
+                                        <td>
+                                            @if(App::isLocale('en'))
+                                                {{ $node->n_name_en }}
+                                            @else
+                                                {{ $node->n_name_ar }}
+                                            @endif
+                                        </td>
                                         <td>{{ $node->qty }}</td>
-                                        <td>{{ $node->fig_name_en }}</td>
+                                        <td>
+                                            @if(App::isLocale('en'))
+                                                {{ $node->fig_name_en }}
+                                            @else
+                                                {{ $node->fig_name_ar }}
+                                            @endif
+                                        </td>
                                         <td>
                                             @if($node->in_stock === 1)
-                                                <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->nid }}">to order</a>
+                                                <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->nid }}">
+                                                    @if(App::isLocale('en'))
+                                                        to order
+                                                    @else
+                                                        لكي يطلب
+                                                    @endif
+                                                </a>
                                             @else
-                                                <span>not supply</span>
+                                                @if(App::isLocale('en'))
+                                                    <span>not supply</span>
+                                                @else
+                                                    <span>ليس العرض</span>
+                                                @endif
                                             @endif
                                         </td>
                                     </tr>
@@ -75,7 +97,13 @@
                                                         </div>
                                                         <!-- /.products__part-cart-price -->
                                                         <div class="products__part-cart-button">
-                                                            <button class="btn btn-add-to-cart" type="submit">Add to cart</button>
+                                                            <button class="btn btn-add-to-cart" type="submit">
+                                                                @if(App::isLocale('en'))
+                                                                    Add to cart
+                                                                @else
+                                                                    أضف إلى السلة
+                                                                @endif
+                                                            </button>
                                                             <!-- /.btn btn-add-to-cart -->
                                                         </div>
                                                         <!-- /.products__part-cart-button -->

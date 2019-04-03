@@ -78,9 +78,15 @@ class PagesController extends Controller
     public function singleNewsPage($nw_id)
     {
         $newsModel = new News;
+        $locale = App::getLocale();
         $getNews = $newsModel->getNewsItemById($nw_id);
-        $data['pageTitle'] = $getNews->nw_name;
-        $data['pageDescription'] = $getNews->nw_description;
+        if ($locale == 'ar') {
+            $data['pageTitle'] = $getNews->nw_name_ar;
+            $data['pageDescription'] = $getNews->nw_description_ar;
+        } else {
+            $data['pageTitle'] = $getNews->nw_name;
+            $data['pageDescription'] = $getNews->nw_description;
+        }
         $data['news'] = $getNews;
         return view('website.news.single', $data);
     }

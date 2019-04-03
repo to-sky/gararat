@@ -69,7 +69,13 @@
                                         <!-- /.product__qty -->
                                     </div>
                                     <div class="col-8 col-md-4">
-                                        <button class="btn btn-add-to-cart" type="submit">Add to cart</button>
+                                        <button class="btn btn-add-to-cart" type="submit">
+                                            @if(App::isLocale('en'))
+                                                Add to cart
+                                            @else
+                                                أضف إلى السلة
+                                            @endif
+                                        </button>
                                         <!-- /.btn btn-add-to-cart -->
                                     </div>
                                 </div>
@@ -78,14 +84,34 @@
                             <!-- /.product__purchase-top -->
                             <div class="product__purchase-bottom">
                                 @if($product->in_stock == 0)
-                                    <p class="in-stock out-stock"><i class="fas fa-times"></i> <span>Not in stock</span></p>
+                                    <p class="in-stock out-stock"><i class="fas fa-times"></i>
+                                        <span>
+                                            @if(App::isLocale('en'))
+                                                Not in stock
+                                            @else
+                                                ليس في المخزون
+                                            @endif
+                                        </span>
+                                    </p>
                                 @else
-                                    <p class="in-stock"><i class="fas fa-check"></i> <span>In stock</span></p>
+                                    <p class="in-stock"><i class="fas fa-check"></i>
+                                        <span>
+                                            @if(App::isLocale('en'))
+                                                In stock
+                                            @else
+                                                في المخزن
+                                            @endif
+                                        </span>
+                                    </p>
                                 @endif
                             </div>
                             <!-- /.product__purchase-bottom -->
                             <div class="product__short-description">
-                                {!! $product->nmf_short_en !!}
+                                @if(App::isLocale('en'))
+                                    {!! $product->nmf_short_en !!}
+                                @else
+                                    {!! $product->nmf_short_ar !!}
+                                @endif
                             </div>
                             <!-- /.product__short-description -->
                         </form>
@@ -99,8 +125,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="shadow product__description">
-                            <h4>Technical Specification</h4>
-                            {!! $product->nmf_body_en !!}
+                            <h4>المواصفات الفنية</h4>
+                            @if(App::isLocale('en'))
+                                {!! $product->nmf_body_en !!}
+                            @else
+                                {!! $product->nmf_body_ar !!}
+                            @endif
                         </div>
                         <!-- /.product__description -->
                     </div>
