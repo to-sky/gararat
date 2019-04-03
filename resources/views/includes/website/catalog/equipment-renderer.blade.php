@@ -11,7 +11,11 @@
         </div>
         <!-- /.text-center product__inner -->
         <div class="text-center product__name">
-            <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->n_name_en }}</a>
+            @if(App::isLocale('en'))
+                <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->n_name_en }}</a>
+            @else
+                <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->n_name_ar }}</a>
+            @endif
         </div>
         <!-- /.text-center shadow-sm product__name -->
     </div>

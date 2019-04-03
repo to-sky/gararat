@@ -92,7 +92,10 @@ class Catalog extends Model
      */
     public function getAllCatalogItemsByTypeWithoutRoot($type)
     {
-        return DB::table('catalog')->where('cat_type', $type)->where('parent_cat', '!=', 0)->get();
+        return DB::table('catalog')
+            ->where('cat_type', $type)
+            ->where('parent_cat', '!=', 0)
+            ->get();
     }
 
     /**

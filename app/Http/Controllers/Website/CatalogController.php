@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App;
 
 use \App\Models\Catalog;
 use \App\Models\Helpers;
@@ -22,7 +23,7 @@ class CatalogController extends Controller
         $catalogModel = new Catalog;
         $helpers = new Helpers;
         $nodesModel = new Nodes;
-
+        $locale = App::getLocale();
         // Params
         $target = $request->query('target');
         $destination = $request->query('dest');
@@ -42,12 +43,19 @@ class CatalogController extends Controller
                 $neededTarget = 'ASC';
                 break;
         }
-
         $getCatalogByCid = $catalogModel->getCatalogByCid($cid);
-        if($getCatalogByCid->cat_title_en === NULL) {
-            $data['pageTitle'] = $getCatalogByCid->cat_name_en;
+        if($locale == 'ar') {
+            if($getCatalogByCid->cat_title_ar === NULL) {
+                $data['pageTitle'] = $getCatalogByCid->cat_name_ar;
+            } else {
+                $data['pageTitle'] = $getCatalogByCid->cat_title_ar;
+            }
         } else {
-            $data['pageTitle'] = $getCatalogByCid->cat_title_en;
+            if($getCatalogByCid->cat_title_en === NULL) {
+                $data['pageTitle'] = $getCatalogByCid->cat_name_en;
+            } else {
+                $data['pageTitle'] = $getCatalogByCid->cat_title_en;
+            }
         }
         $getAllChildsCategories = $catalogModel->getAllChildsCategoriesFrontEnd($getCatalogByCid->cat_number);
         $data['catalogChilds'] = $catalogModel->getCatalogChilds($getCatalogByCid->cat_number);
@@ -64,10 +72,15 @@ class CatalogController extends Controller
         }
         $data['cid'] = $cid;
         $data['currentCatalog'] = $getCatalogByCid;
-        $data['catalogName'] = $getCatalogByCid->cat_name_en;
+        if($locale == 'ar') {
+            $data['catalogName'] = $getCatalogByCid->cat_name_ar;
+            $data['pageDescription'] = $getCatalogByCid->cat_description_ar;
+        } else {
+            $data['catalogName'] = $getCatalogByCid->cat_name_en;
+            $data['pageDescription'] = $getCatalogByCid->cat_description_en;
+        }
         $data['catalogType'] = $getCatalogByCid->cat_type;
         $data['catalogView'] = $getCatalogByCid->cat_view;
-        $data['pageDescription'] = $getCatalogByCid->cat_description_en;
         $data['parentCatalog'] = $catalogModel->getCatalogByCatNumber($getCatalogByCid->parent_cat);
         $data['breadcrumbs'] = $helpers->buildCatalogBreadcrumbs($getCatalogByCid, false);
         // Get products
@@ -98,6 +111,7 @@ class CatalogController extends Controller
             $data['pageTitle'] = $getCatalogByCid->cat_title_en;
         }
         $data['cid'] = $cid;
+        $data['currentCatalog'] = $getCatalogByCid;
         $data['catalogName'] = $getCatalogByCid->cat_name_en;
         $data['catalogType'] = $getCatalogByCid->cat_type;
         $data['pageDescription'] = $getCatalogByCid->cat_description_en;

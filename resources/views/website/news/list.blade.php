@@ -21,8 +21,20 @@
                                 </div>
                                 <!-- /.news-item__image -->
                                 <div class="news-item__body">
-                                    <h3><a href="{{ route('singleNewsPage', $item->nw_id) }}">{{ $item->nw_name }}</a></h3>
-                                    <p>{{ substr(strip_tags($item->nw_body), 0, 150) }}</p>
+                                    <h3>
+                                        <a href="{{ route('singleNewsPage', $item->nw_id) }}">
+                                            @if(App::isLocale('en'))
+                                                {{ $item->nw_name }}
+                                            @else
+                                                {{ $item->nw_name_ar }}
+                                            @endif
+                                        </a>
+                                    </h3>
+                                    @if(App::isLocale('en'))
+                                        <p>{{ substr(strip_tags($item->nw_body), 0, 150) }}</p>
+                                    @else
+                                        <p>{{ substr(strip_tags($item->nw_body_ar), 0, 150) }}</p>
+                                    @endif
                                 </div>
                             </div>
                             <!-- /.shadow-sm section__news-item -->

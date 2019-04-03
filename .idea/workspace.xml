@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/resources/views/website/home.blade.php" line="88" />
+    <bookmark url="file://$PROJECT_DIR$/resources/views/website/home.blade.php" line="117" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a53de099-90a2-4e6f-9913-6b52edeefe05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/handlers/lang.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Website/CatalogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Website/CatalogController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Website/NodesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Website/NodesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Website/PagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Website/PagesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/website/layout/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/website/layout/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Catalog.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Catalog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/website/catalog/childs-renderer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/website/catalog/childs-renderer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/website/catalog/equipment-renderer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/website/catalog/equipment-renderer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/website/catalog/catalog.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/catalog/catalog.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/website/catalog/figure.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/catalog/figure.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/website/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/website/news/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/news/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/website/news/single.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/news/single.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/react-laravel/node_modules/" />
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
@@ -127,26 +131,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Website/PagesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="638">
+              <caret line="86" column="51" lean-forward="true" selection-start-line="86" selection-start-column="51" selection-end-line="86" selection-end-column="51" />
+              <folding>
+                <element signature="e#48#76#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/handlers/lang.js">
+        <entry file="file://$PROJECT_DIR$/resources/views/website/home.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="4" column="53" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
+            <state relative-caret-position="419">
+              <caret line="150" column="32" lean-forward="true" selection-start-line="150" selection-start-column="32" selection-end-line="165" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/website/news/list.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="484">
+              <caret line="25" column="44" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="29" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/website/home.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/website/news/single.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="26" column="67" selection-start-line="26" selection-start-column="67" selection-end-line="26" selection-end-column="67" />
+            <state relative-caret-position="418">
+              <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -176,43 +192,31 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/website/contacts.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/includes/website/layout/footer.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/includes/secured/layout/header.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/secured/search.blade.php" />
         <option value="$PROJECT_DIR$/resources/sass/app.scss" />
         <option value="$PROJECT_DIR$/resources/js/handlers/slider.js" />
         <option value="$PROJECT_DIR$/resources/views/website/cart/cart.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/website/catalog/figure.blade.php" />
         <option value="$PROJECT_DIR$/resources/sass/_responsove.scss" />
         <option value="$PROJECT_DIR$/database/migrations/2019_03_06_063828_catalog_type_to_catalog.php" />
         <option value="$PROJECT_DIR$/resources/views/secured/catalog/add.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_03_06_064641_image_to_catalog.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/resources/views/secured/catalog/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/includes/website/catalog/childs-renderer.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Website/NodesController.php" />
         <option value="$PROJECT_DIR$/resources/views/website/nodes/parts.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/errors/illustrated-layout.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredCatalogController.php" />
         <option value="$PROJECT_DIR$/resources/sass/components/_common.scss" />
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/CatalogSeeder.php" />
-        <option value="$PROJECT_DIR$/app/Models/Catalog.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Website/CatalogController.php" />
         <option value="$PROJECT_DIR$/app/Models/Helpers.php" />
         <option value="$PROJECT_DIR$/resources/sass/layout/_sidebar.scss" />
         <option value="$PROJECT_DIR$/resources/views/includes/website/layout/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/includes/secured/layout/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/secured/upload.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/secured/dashboard.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/website/catalog/catalog.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_04_01_100218_add_our_id_to_eq_nodes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredPagesController.php" />
         <option value="$PROJECT_DIR$/app/Models/Nodes.php" />
-        <option value="$PROJECT_DIR$/resources/views/includes/website/catalog/equipment-renderer.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_04_02_072422_ar_fields_to_news.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_04_02_075819_ar_fields_to_pages.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/secured.blade.php" />
@@ -221,12 +225,24 @@
         <option value="$PROJECT_DIR$/app/Models/News.php" />
         <option value="$PROJECT_DIR$/resources/js/app.js" />
         <option value="$PROJECT_DIR$/resources/js/handlers/lang.js" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Website/PagesController.php" />
         <option value="$PROJECT_DIR$/resources/views/includes/website/layout/header.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/LanguageMiddleware.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/sass/layout/_header.scss" />
+        <option value="$PROJECT_DIR$/app/Models/Catalog.php" />
+        <option value="$PROJECT_DIR$/resources/views/website/catalog/catalog.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Website/CatalogController.php" />
+        <option value="$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/includes/website/catalog/childs-renderer.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/includes/website/catalog/equipment-renderer.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/website/catalog/figure.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Website/NodesController.php" />
+        <option value="$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/website/home.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/website/news/list.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Website/PagesController.php" />
+        <option value="$PROJECT_DIR$/resources/views/website/news/single.blade.php" />
       </list>
     </option>
   </component>
@@ -370,14 +386,6 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="Secured" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
-              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
               <item name="Website" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -402,44 +410,44 @@
               <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
               <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="sass" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
               <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="handlers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
-              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
-              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
-              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-              <item name="website" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
-              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-              <item name="website" type="462c0819:PsiDirectoryNode" />
+              <item name="sass" type="462c0819:PsiDirectoryNode" />
               <item name="layout" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
+              <item name="website" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
+              <item name="website" type="462c0819:PsiDirectoryNode" />
+              <item name="catalog" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
@@ -453,14 +461,22 @@
               <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="secured" type="462c0819:PsiDirectoryNode" />
+              <item name="website" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
               <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="secured" type="462c0819:PsiDirectoryNode" />
+              <item name="website" type="462c0819:PsiDirectoryNode" />
+              <item name="catalog" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="website" type="462c0819:PsiDirectoryNode" />
               <item name="news" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -469,6 +485,7 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="website" type="462c0819:PsiDirectoryNode" />
+              <item name="nodes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
@@ -543,21 +560,7 @@
       <workItem from="1554108843613" duration="4935000" />
       <workItem from="1554189745991" duration="150000" />
       <workItem from="1554189899936" duration="2993000" />
-      <workItem from="1554279664133" duration="1611000" />
-    </task>
-    <task id="LOCAL-00052" summary="Create figure">
-      <created>1551346131823</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1551346131823</updated>
-    </task>
-    <task id="LOCAL-00053" summary="Basic jQuery React plugin">
-      <created>1551348374305</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1551348374305</updated>
+      <workItem from="1554279664133" duration="7858000" />
     </task>
     <task id="LOCAL-00054" summary="Algo">
       <created>1551348536340</created>
@@ -888,11 +891,25 @@
       <option name="project" value="LOCAL" />
       <updated>1554194129567</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="Set Locale Middleware">
+      <created>1554281313582</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1554281313584</updated>
+    </task>
+    <task id="LOCAL-00102" summary="Home page translations">
+      <created>1554282192080</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1554282192080</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159230000" />
+    <option name="totallyTimeSpent" value="165477000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1007" extended-state="6" />
@@ -926,8 +943,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="prod" />
-    <MESSAGE value="catalog updates" />
     <MESSAGE value="catalog updates 2" />
     <MESSAGE value="catalog updates 3" />
     <MESSAGE value="Images and parts node page" />
@@ -951,57 +966,11 @@
     <MESSAGE value="Ar DBA" />
     <MESSAGE value="Fixed #41" />
     <MESSAGE value="Ar news" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ar news" />
+    <MESSAGE value="Set Locale Middleware" />
+    <MESSAGE value="Home page translations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Home page translations" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/secured/nodes/equipment/add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="70" column="34" lean-forward="true" selection-start-line="70" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/secured/nodes/parts/add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1320" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Figures.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="33" column="47" selection-start-line="33" selection-start-column="47" selection-end-line="34" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/includes/website/catalog/childs-renderer.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="61" lean-forward="true" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="89" selection-start-line="14" selection-start-column="89" selection-end-line="14" selection-end-column="89" />
-          <folding>
-            <element signature="e#301#323#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/website/nodes/parts.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="59" lean-forward="true" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/errors/layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-571" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/errors/illustrated-layout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -1044,31 +1013,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="21" column="82" selection-start-line="21" selection-start-column="82" selection-end-line="21" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Website/NodesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="771">
-          <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Catalog.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-125">
-          <caret line="200" column="20" selection-start-line="200" selection-start-column="20" selection-end-line="200" selection-end-column="20" />
-          <folding>
-            <element signature="e#30#69#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Website/CatalogController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1188">
-          <caret line="58" column="96" selection-start-line="58" selection-start-column="96" selection-end-line="58" selection-end-column="96" />
-          <caret line="60" column="96" selection-start-line="60" selection-start-column="96" selection-end-line="60" selection-end-column="96" />
         </state>
       </provider>
     </entry>
@@ -1134,13 +1078,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/website/catalog/catalog.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="104" selection-start-line="8" selection-start-column="104" selection-end-line="8" selection-end-column="104" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1148,30 +1085,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
           <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="29" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Nodes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13706">
-          <caret line="626" column="50" selection-start-line="626" selection-start-column="50" selection-end-line="626" selection-end-column="50" />
-          <folding>
-            <element signature="e#30#69#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="946">
-          <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="47" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/includes/website/catalog/equipment-renderer.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -1277,13 +1190,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
@@ -1308,17 +1214,140 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Website/PagesController.php">
+    <entry file="file://$PROJECT_DIR$/resources/sass/layout/_header.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="352">
+          <caret line="88" column="9" lean-forward="true" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Catalog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="95" column="38" lean-forward="true" selection-start-line="95" selection-start-column="38" selection-end-line="95" selection-end-column="38" />
+          <folding>
+            <element signature="e#30#69#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/includes/website/catalog/childs-renderer.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="47" lean-forward="true" selection-start-line="12" selection-start-column="47" selection-end-line="13" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/includes/website/catalog/equipment-renderer.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="74" lean-forward="true" selection-start-line="3" selection-start-column="74" selection-end-line="3" selection-end-column="74" />
+          <folding>
+            <element signature="e#244#267#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/website/catalog/catalog.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="5" column="30" lean-forward="true" selection-start-line="5" selection-start-column="30" selection-end-line="6" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/website/catalog/figure.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1430">
+          <caret line="100" column="88" lean-forward="true" selection-start-line="100" selection-start-column="88" selection-end-line="100" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/website/nodes/parts.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="59" lean-forward="true" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="75" column="61" selection-start-line="75" selection-start-column="61" selection-end-line="75" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Nodes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1468">
+          <caret line="299" column="20" selection-start-line="299" selection-start-column="20" selection-end-line="299" selection-end-column="20" />
+          <folding>
+            <element signature="e#30#69#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Website/CatalogController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="29" />
+          <folding>
+            <element signature="e#48#76#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Website/NodesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="31" column="20" lean-forward="true" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
+          <folding>
+            <element signature="e#48#76#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/website/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="26" column="67" selection-start-line="26" selection-start-column="67" selection-end-line="26" selection-end-column="67" />
+        <state relative-caret-position="419">
+          <caret line="150" column="32" lean-forward="true" selection-start-line="150" selection-start-column="32" selection-end-line="165" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Website/PagesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="86" column="51" lean-forward="true" selection-start-line="86" selection-start-column="51" selection-end-line="86" selection-end-column="51" />
+          <folding>
+            <element signature="e#48#76#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/website/news/list.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="25" column="44" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="29" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/website/news/single.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
         </state>
       </provider>
     </entry>

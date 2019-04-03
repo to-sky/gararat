@@ -1,5 +1,5 @@
 <div class="col-12">
-    @if(!isset($hideFilters) && $hideFilters !== true)
+    @if(!isset($hideFilters) || $hideFilters !== true)
         <div class="products__parts-filters">
             <div class="d-flex justify-content-between">
                 <div class="sorting-listing-by">
@@ -12,7 +12,11 @@
                             <i class="fas fa-sort-amount-up"></i>
                         @endif
                     </a>
-                    <a @if($target == 'n_name_en') class="active" @endif href="{{ route('catalogPage', ['cid' => $cid, 'target' => 'n_name_en', 'dest' => $neededTarget, 'per_page' => $perPage]) }}">
+                    @if(App::isLocale('en'))
+                        <a @if($target == 'n_name_en') class="active" @endif href="{{ route('catalogPage', ['cid' => $cid, 'target' => 'n_name_en', 'dest' => $neededTarget, 'per_page' => $perPage]) }}">
+                    @else
+                        <a @if($target == 'n_name_ar') class="active" @endif href="{{ route('catalogPage', ['cid' => $cid, 'target' => 'n_name_ar', 'dest' => $neededTarget, 'per_page' => $perPage]) }}">
+                    @endif
                         Name
                         @if($neededTarget == 'ASC')
                             <i class="fas fa-sort-alpha-down"></i>
@@ -52,7 +56,11 @@
                             <!-- /.col-4 col-lg-3 -->
                             <div class="col-8 col-lg-9">
                                 <div class="products__part-name">
-                                    <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_en . ' - ' . $product->fig_name_en }}</a>
+                                    @if(App::isLocale('en'))
+                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_en . ' - ' . $product->fig_name_en }} {{ $product->producer_id }}</a>
+                                    @else
+                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_ar . ' - ' . $product->fig_name_ar }} {{ $product->producer_id }}</a>
+                                    @endif
                                 </div>
                                 <!-- /.products__part-name -->
                             </div>
@@ -86,7 +94,13 @@
                                 </div>
                                 <!-- /.products__part-cart-qty -->
                                 <div class="products__part-cart-button">
-                                    <button class="btn btn-add-to-cart" type="submit">Add to cart</button>
+                                    <button class="btn btn-add-to-cart" type="submit">
+                                        @if(App::isLocale('en'))
+                                            Add to cart
+                                        @else
+                                            أضف إلى السلة
+                                        @endif
+                                    </button>
                                     <!-- /.btn btn-add-to-cart -->
                                 </div>
                                 <!-- /.products__part-cart-button -->

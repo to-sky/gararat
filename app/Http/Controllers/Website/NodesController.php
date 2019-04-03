@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App;
 
 use \App\Models\Catalog;
 use \App\Models\Helpers;
@@ -20,10 +21,24 @@ class NodesController extends Controller
         $catalogModel = new Catalog;
         $helpers = new Helpers;
         $nodesModel = new Nodes;
+        $locale = App::getLocale();
 
         $getNodeCatalog = $catalogModel->getCatalogByNodeId($nid);
         $getNode = $nodesModel->getNodeByCatalogType($nid, $getNodeCatalog->cat_type);
 
+        if($locale == 'ar') {
+            if($getNode->n_title_ar === NULL) {
+                $data['pageTitle'] = $getNode->n_name_ar;
+            } else {
+                $data['pageTitle'] = $getNode->n_title_ar;
+            }
+        } else {
+            if($getNode->n_title_en === NULL) {
+                $data['pageTitle'] = $getNode->n_name_en;
+            } else {
+                $data['pageTitle'] = $getNode->n_title_en;
+            }
+        }
         if($getNode->n_title_en === NULL) {
             $data['pageTitle'] = $getNode->n_name_en;
         } else {
