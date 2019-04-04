@@ -71,7 +71,7 @@
                     <div class="col-12 col-md-4">
                         <div class="section__block">
                             <img src="{{ asset('assets/sections/3.jpg') }}" alt="Service">
-                            <a href="#">
+                            <a href="{{ route('servicesPage') }}">
                                 @if(App::isLocale('en'))
                                     <span>Service</span>
                                 @else

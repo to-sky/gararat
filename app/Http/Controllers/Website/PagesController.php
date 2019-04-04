@@ -26,9 +26,14 @@ class PagesController extends Controller
         $helpers = new Helpers;
         $sliderModel = new Slider;
         $newsModel = new News;
-
-        $data['pageTitle'] = 'Home';
-        $data['pageDescription'] = '';
+        $locale = App::getLocale();
+        if($locale == 'ar') {
+            $data['pageTitle'] = 'جرارات زراعية , معدات , قطع غيار اصلية و خدمة مؤهلة';
+            $data['pageDescription'] = 'جرارات هو اول سوق إليكترونى للجرارات الزراعية و المعدات وقطع الغيار';
+        } else {
+            $data['pageTitle'] = 'Agricultural tractors, equipment, genuine spare parts and service';
+            $data['pageDescription'] = 'GARARAT –the first e-hypermarket for agricultural tractors, equipment and spare parts!';
+        }
         $data['slides'] = $sliderModel->getAllSlides();
         $data['news'] = $newsModel->getLimitedNews(4);
 
