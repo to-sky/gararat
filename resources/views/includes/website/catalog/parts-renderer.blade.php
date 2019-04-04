@@ -80,7 +80,19 @@
                                         <span class="old">${{ number_format($product->price, 0, '.', ' ') }}</span>
                                         <span class="current current-special">${{ number_format($product->special_price, 0, '.', ' ') }}</span>
                                     @else
-                                        <span class="current">${{ number_format($product->price, 0, '.', ' ') }}</span>
+                                        @if($product->price != 0)
+                                            <p><span class="current">${{ number_format($product->price, 0, '.', ' ') }}</span></p>
+                                        @else
+                                            <p>
+                                                <span class="current">
+                                                    @if(App::isLocale('en'))
+                                                        By Request
+                                                    @else
+                                                        حسب الطلب
+                                                    @endif
+                                                </span>
+                                            </p>
+                                        @endif
                                     @endif
                                 </div>
                                 <!-- /.products__part-cart-price -->

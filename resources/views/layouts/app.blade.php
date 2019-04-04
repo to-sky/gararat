@@ -6,7 +6,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Title & Description -->
-    <title>@if(isset($pageTitle) && NULL !== $pageTitle) {{ $pageTitle }} | {{ config('app.name', 'Laravel') }} @else Gararat @endif</title>
+    <title>@if(isset($pageTitle) && NULL !== $pageTitle) {{ $pageTitle }} | Gararat @else Gararat @endif</title>
     @if(isset($pageDescription) && NULL !== $pageDescription)
         <meta name="description" content="{{ $pageDescription }}">
     @endif

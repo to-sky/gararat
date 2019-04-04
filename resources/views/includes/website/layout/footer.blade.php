@@ -7,7 +7,11 @@
                 </div>
                 <!-- /.footer__top-logo -->
                 <div class="text-center footer__top-slogan">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aspernatur assumenda atque deleniti dolore.</p>
+                    @if(App::isLocale('en'))
+                        <p>GARARAT –the first e-hypermarket for agricultural tractors, equipment and spare parts!</p>
+                    @else
+                        <p>جرارات هو اول سوق إليكترونى للجرارات الزراعية و المعدات وقطع الغيار</p>
+                    @endif
                 </div>
                 <!-- /.footer__top-slogan -->
             </div>

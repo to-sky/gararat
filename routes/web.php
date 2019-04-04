@@ -96,8 +96,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/news/remove/{nw_id}', 'Secured\SecuredCommonController@securedRemoveNewsItem')->name('securedRemoveNewsItem');
         // Pages
         Route::get('/secured/admin/pages', 'Secured\SecuredCommonController@securedPagesListPage')->name('securedPagesListPage');
-        Route::get('/secured/admin/pages/edit/{pg_id}', 'Secured\SecuredCommonController@securedUpdatePageItem')->name('securedUpdatePageItem');
-        Route::get('/secured/admin/pages/remove/{pg_id}', 'Secured\SecuredCommonController@securedRemovePageItem')->name('securedRemovePageItem');
+        Route::get('/secured/admin/pages/edit/home', 'Secured\SecuredCommonController@securedHomePageEditPage')->name('securedHomePageEditPage');
+        Route::get('/secured/admin/pages/edit/services', 'Secured\SecuredCommonController@securedServicesPageEditPage')->name('securedServicesPageEditPage');
+        Route::get('/secured/admin/pages/edit/contacts', 'Secured\SecuredCommonController@securedContactsPageEditPage')->name('securedContactsPageEditPage');
+
         // Upload
         Route::get('/secured/admin/upload/csv', 'Secured\SecuredPagesController@uploadCSVPage')->name('uploadCSVPage');
         ########################################################################
@@ -125,6 +127,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/api/v1.0/slider/save', 'Secured\SecuredCommonController@saveNewSlideAPI')->name('saveNewSlideAPI');
         // Pages
         Route::post('/api/v1.0/pages/update', 'Secured\SecuredCommonController@updatePageItemAPI')->name('updatePageItemAPI');
+        Route::post('/api/v1.0/pages/home/update', 'Secured\SecuredCommonController@updateHomePageItemAPI')->name('updateHomePageItemAPI');
         //News
         Route::post('/api/v1.0/news/save', 'Secured\SecuredCommonController@saveNewNewsItemAPI')->name('saveNewNewsItemAPI');
         Route::post('/api/v1.0/news/update', 'Secured\SecuredCommonController@updateNewsItemAPI')->name('updateNewsItemAPI');

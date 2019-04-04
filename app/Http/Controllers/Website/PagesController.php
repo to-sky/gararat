@@ -23,12 +23,18 @@ class PagesController extends Controller
      */
     public function homePage()
     {
-        $helpers = new Helpers;
+        $pagesModel = new Pages;
         $sliderModel = new Slider;
         $newsModel = new News;
-
-        $data['pageTitle'] = 'Home';
-        $data['pageDescription'] = '';
+        $locale = App::getLocale();
+        if($locale == 'ar') {
+            $data['pageTitle'] = 'جرارات زراعية , معدات , قطع غيار اصلية و خدمة مؤهلة';
+            $data['pageDescription'] = 'جرارات هو اول سوق إليكترونى للجرارات الزراعية و المعدات وقطع الغيار';
+        } else {
+            $data['pageTitle'] = 'Agricultural tractors, equipment, genuine spare parts and service';
+            $data['pageDescription'] = 'GARARAT –the first e-hypermarket for agricultural tractors, equipment and spare parts!';
+        }
+        $data['home'] = $pagesModel->getHomePage();
         $data['slides'] = $sliderModel->getAllSlides();
         $data['news'] = $newsModel->getLimitedNews(4);
 
@@ -40,8 +46,17 @@ class PagesController extends Controller
      */
     public function servicesPage()
     {
-        $data['pageTitle'] = 'Services';
-        $data['pageDescription'] = '';
+        $pagesModel = new Pages;
+        $locale = App::getLocale();
+        $getPage = $pagesModel->getPageByAlias('services');
+        if($locale == 'ar') {
+            $data['pageTitle'] = $getPage->pg_title_ar;
+            $data['pageDescription'] = $getPage->pg_description_ar;
+        } else {
+            $data['pageTitle'] = $getPage->pg_title;
+            $data['pageDescription'] = $getPage->pg_description;
+        }
+        $data['page'] = $getPage;
 
         return view('website.services', $data);
     }
@@ -51,8 +66,17 @@ class PagesController extends Controller
      */
     public function contactsPage()
     {
-        $data['pageTitle'] = 'Contacts';
-        $data['pageDescription'] = '';
+        $pagesModel = new Pages;
+        $locale = App::getLocale();
+        $getPage = $pagesModel->getPageByAlias('contacts');
+        if($locale == 'ar') {
+            $data['pageTitle'] = $getPage->pg_title_ar;
+            $data['pageDescription'] = $getPage->pg_description_ar;
+        } else {
+            $data['pageTitle'] = $getPage->pg_title;
+            $data['pageDescription'] = $getPage->pg_description;
+        }
+        $data['page'] = $getPage;
 
         return view('website.contacts', $data);
     }
