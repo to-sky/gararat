@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="page-title">{{ $pageTitle }}</h1>
+        <h1 class="page-title">{{ $pageTitle }} {{ $product->producer_id }}</h1>
         <div class="product">
             <div class="row">
                 <div class="col-12 col-lg-6">
@@ -55,7 +55,19 @@
                                             @if($product->special_price !== NULL && $product->special_price != 0)
                                                 <p><span class="old">${{ number_format($product->price, 0, '.', ' ') }}</span><span class="current">${{ number_format($product->special_price, 0, '.', ' ') }}</span></p>
                                             @else
-                                                <p><span class="current">${{ number_format($product->price, 0, '.', ' ') }}</span></p>
+                                                @if($product->price != 0)
+                                                    <p><span class="current">${{ number_format($product->price, 0, '.', ' ') }}</span></p>
+                                                @else
+                                                    <p>
+                                                        <span class="current">
+                                                            @if(App::isLocale('en'))
+                                                                By Request
+                                                            @else
+                                                                حسب الطلب
+                                                            @endif
+                                                        </span>
+                                                    </p>
+                                                @endif
                                             @endif
                                         </div>
                                         <!-- /.product__purchase-price -->
@@ -69,7 +81,13 @@
                                         <!-- /.product__qty -->
                                     </div>
                                     <div class="col-8 col-md-4">
-                                        <button class="btn btn-add-to-cart" type="submit">Add to cart</button>
+                                        <button class="btn btn-add-to-cart" type="submit">
+                                            @if(App::isLocale('en'))
+                                                Add to cart
+                                            @else
+                                                أضف إلى السلة
+                                            @endif
+                                        </button>
                                         <!-- /.btn btn-add-to-cart -->
                                     </div>
                                 </div>
@@ -78,9 +96,25 @@
                             <!-- /.product__purchase-top -->
                             <div class="product__purchase-bottom">
                                 @if($product->in_stock == 0)
-                                    <p class="in-stock out-stock"><i class="fas fa-times"></i> <span>Not in stock</span></p>
+                                    <p class="in-stock out-stock"><i class="fas fa-times"></i>
+                                        <span>
+                                            @if(App::isLocale('en'))
+                                                Not in stock
+                                            @else
+                                                ليس في المخزون
+                                            @endif
+                                        </span>
+                                    </p>
                                 @else
-                                    <p class="in-stock"><i class="fas fa-check"></i> <span>In stock</span></p>
+                                    <p class="in-stock"><i class="fas fa-check"></i>
+                                        <span>
+                                            @if(App::isLocale('en'))
+                                                In stock
+                                            @else
+                                                في المخزن
+                                            @endif
+                                        </span>
+                                    </p>
                                 @endif
                             </div>
                             <!-- /.product__purchase-bottom -->
