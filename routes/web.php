@@ -127,6 +127,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/api/v1.0/slider/save', 'Secured\SecuredCommonController@saveNewSlideAPI')->name('saveNewSlideAPI');
         // Pages
         Route::post('/api/v1.0/pages/update', 'Secured\SecuredCommonController@updatePageItemAPI')->name('updatePageItemAPI');
+        Route::post('/api/v1.0/pages/home/update', 'Secured\SecuredCommonController@updateHomePageItemAPI')->name('updateHomePageItemAPI');
         //News
         Route::post('/api/v1.0/news/save', 'Secured\SecuredCommonController@saveNewNewsItemAPI')->name('saveNewNewsItemAPI');
         Route::post('/api/v1.0/news/update', 'Secured\SecuredCommonController@updateNewsItemAPI')->name('updateNewsItemAPI');

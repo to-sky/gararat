@@ -106,6 +106,18 @@ class SecuredCommonController extends Controller
         return view('secured.pages.list', $data);
     }
 
+    public function securedHomePageEditPage()
+    {
+        $pagesModel = new Pages;
+        $getPage = $pagesModel->getHomePage();
+        if($getPage === null) {
+            $pagesModel->createDefaultHomePage();
+        }
+        $data['pageTitle'] = 'Edit Home Page';
+        $data['pageData'] = $pagesModel->getHomePage();
+        return view('secured.pages.home', $data);
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -193,6 +205,18 @@ class SecuredCommonController extends Controller
         $pagesModel = new Pages;
         $data = $request->all();
         $pagesModel->updateDefaultPage($data);
+        return redirect()->back();
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateHomePageItemAPI(Request $request)
+    {
+        $pagesModel = new Pages;
+        $data = $request->all();
+        $pagesModel->updateHomePage($data);
         return redirect()->back();
     }
 }
