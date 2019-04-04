@@ -40,8 +40,17 @@ class PagesController extends Controller
      */
     public function servicesPage()
     {
-        $data['pageTitle'] = 'Services';
-        $data['pageDescription'] = '';
+        $pagesModel = new Pages;
+        $locale = App::getLocale();
+        $getPage = $pagesModel->getPageByAlias('services');
+        if($locale == 'ar') {
+            $data['pageTitle'] = $getPage->pg_title_ar;
+            $data['pageDescription'] = $getPage->pg_description_ar;
+        } else {
+            $data['pageTitle'] = $getPage->pg_title;
+            $data['pageDescription'] = $getPage->pg_description;
+        }
+        $data['page'] = $getPage;
 
         return view('website.services', $data);
     }
@@ -51,8 +60,17 @@ class PagesController extends Controller
      */
     public function contactsPage()
     {
-        $data['pageTitle'] = 'Contacts';
-        $data['pageDescription'] = '';
+        $pagesModel = new Pages;
+        $locale = App::getLocale();
+        $getPage = $pagesModel->getPageByAlias('contacts');
+        if($locale == 'ar') {
+            $data['pageTitle'] = $getPage->pg_title_ar;
+            $data['pageDescription'] = $getPage->pg_description_ar;
+        } else {
+            $data['pageTitle'] = $getPage->pg_title;
+            $data['pageDescription'] = $getPage->pg_description;
+        }
+        $data['page'] = $getPage;
 
         return view('website.contacts', $data);
     }

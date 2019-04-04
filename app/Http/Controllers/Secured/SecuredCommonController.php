@@ -96,7 +96,45 @@ class SecuredCommonController extends Controller
     ########################################################################
     ### Pages
     ########################################################################
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function securedPagesListPage()
+    {
+        $data['pageTitle'] = 'Pages';
 
+        return view('secured.pages.list', $data);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function securedContactsPageEditPage()
+    {
+        $pagesModel = new Pages;
+        $getPage = $pagesModel->getPageByAlias('contacts');
+        if($getPage === null) {
+            $pagesModel->createDefaultPage('contacts', 'Contacts', 'Contacts');
+        }
+        $data['pageTitle'] = 'Edit Contacts Page';
+        $data['pageData'] = $pagesModel->getPageByAlias('contacts');
+        return view('secured.pages.contacts', $data);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function securedServicesPageEditPage()
+    {
+        $pagesModel = new Pages;
+        $getPage = $pagesModel->getPageByAlias('services');
+        if($getPage === null) {
+            $pagesModel->createDefaultPage('services', 'Services', 'Services');
+        }
+        $data['pageTitle'] = 'Edit Contacts Page';
+        $data['pageData'] = $pagesModel->getPageByAlias('services');
+        return view('secured.pages.contacts', $data);
+    }
     //======================================================================
     // API
     //======================================================================
@@ -146,5 +184,15 @@ class SecuredCommonController extends Controller
     ########################################################################
     ### Pages
     ########################################################################
-
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updatePageItemAPI(Request $request)
+    {
+        $pagesModel = new Pages;
+        $data = $request->all();
+        $pagesModel->updateDefaultPage($data);
+        return redirect()->back();
+    }
 }
