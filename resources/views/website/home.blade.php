@@ -22,9 +22,9 @@
     <div class="container">
         <h1 class="text-center homepage">
             @if(App::isLocale('en'))
-                Agricultural tractors, equipment, genuine spare parts and qualified service.
+                {{ $home->block_1 }}
             @else
-                جرارات زراعية , معدات , قطع غيار اصلية و خدمة مؤهلة
+                {{ $home->block_1_ar }}
             @endif
         </h1>
     </div>
@@ -32,11 +32,11 @@
     <div class="section bg-section">
         <div class="container">
             @if(App::isLocale('en'))
-                <h2>GARARAT –the first e-hypermarket for agricultural tractors, equipment and spare parts!</h2>
-                <p class="mb-0">GARARAT is a reliable equipment, genuine spare parts and qualified service for all branches of agriculture. We provide a full range of services: from consultations when choosing equipment to warranty and post-warranty maintenance.</p>
+                <h2>{{ $home->block_2 }}</h2>
+                {!! $home->block_3 !!}
             @else
-                <h2>جرارات هو اول سوق إليكترونى للجرارات الزراعية و المعدات وقطع الغيار</h2>
-                <p>جرارت يقدم معدات موثوقة وقطع غيار أصلية وخدمة مؤهلة لجميع فروع الزراعة.</p><p class="mb-0">نحن نقدم مجموعة كاملة من الخدمات: من الاستشارات عند اختيار المعدات إلى الضمان والصيانة فترة ما بعد الضمان.</p>
+                <h2>{{ $home->block_2_ar }}</h2>
+                {!! $home->block_3_ar !!}
             @endif
             <div class="section__blocks">
                 <div class="row">
@@ -95,13 +95,11 @@
             <div class="row">
                 <div class="col-12 col-lg-7">
                     @if(App::isLocale('en'))
-                        <h2>GARARAT Group of companies</h2>
-                        <p>GARARAT – international group of companies specialised in agricultural tractors, equipment, spare parts and services.</p>
-                        <p class="mb-0">More than 20 years we work in the field of agricultural equipment. Our Group consist of 9 sales and service points around Egypt and an Assembly plant in Alexandria.</p>
+                        <h2>{{ $home->block_4 }}</h2>
+                        {!! $home->block_5 !!}
                     @else
-                        <h2>مجموعة شركات جرارات</h2>
-                        <p>جرارات يمثل مجموعة من الشركات الدولية المتخصصة فى الجرارات زراعية ,و المعدات و قطع الغيار و الخدمات.</p>
-                        <p class="mb-0">نحن نعمل منذ أكثر من عشرون عام فى مجال المعدات الزراعية. يمثل مجموعتنا تسع نقاط بيع وخدمة بجميع أرجاء مصر و مصنع التجميع بمدينة الاسكندرية</p>
+                        <h2>{{ $home->block_4_ar }}</h2>
+                        {!! $home->block_5_ar !!}
                     @endif
                 </div>
                 <!-- /.col-12 col-lg-6 -->

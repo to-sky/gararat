@@ -51,7 +51,7 @@ class Pages extends Model
      */
     public function getHomePage()
     {
-        return DB::table('home_page')->first();
+        return DB::table('home_page')->where('hp_id', 1)->first();
     }
     //======================================================================
     // UPDATE

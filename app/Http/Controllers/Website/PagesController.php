@@ -23,7 +23,7 @@ class PagesController extends Controller
      */
     public function homePage()
     {
-        $helpers = new Helpers;
+        $pagesModel = new Pages;
         $sliderModel = new Slider;
         $newsModel = new News;
         $locale = App::getLocale();
@@ -34,6 +34,7 @@ class PagesController extends Controller
             $data['pageTitle'] = 'Agricultural tractors, equipment, genuine spare parts and service';
             $data['pageDescription'] = 'GARARAT –the first e-hypermarket for agricultural tractors, equipment and spare parts!';
         }
+        $data['home'] = $pagesModel->getHomePage();
         $data['slides'] = $sliderModel->getAllSlides();
         $data['news'] = $newsModel->getLimitedNews(4);
 
