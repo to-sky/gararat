@@ -4,12 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/resources/views/website/home.blade.php" line="115" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a53de099-90a2-4e6f-9913-6b52edeefe05" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/website/nodes/parts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/nodes/parts.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="a53de099-90a2-4e6f-9913-6b52edeefe05" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/react-laravel/node_modules/" />
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -143,7 +138,7 @@
         <entry file="file://$PROJECT_DIR$/resources/sass/components/_section.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="265">
-              <caret line="135" lean-forward="true" selection-start-line="135" selection-end-line="135" />
+              <caret line="135" selection-start-line="135" selection-end-line="135" />
             </state>
           </provider>
         </entry>
@@ -163,8 +158,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="94" column="46" lean-forward="true" selection-start-line="94" selection-start-column="46" selection-end-line="94" selection-end-column="46" />
+            <state relative-caret-position="353">
+              <caret line="93" column="48" selection-start-line="93" selection-start-column="48" selection-end-line="93" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -557,14 +552,7 @@
       <workItem from="1554189745991" duration="150000" />
       <workItem from="1554189899936" duration="2993000" />
       <workItem from="1554279664133" duration="8460000" />
-      <workItem from="1554360434889" duration="6771000" />
-    </task>
-    <task id="LOCAL-00059" summary="Delete figures">
-      <created>1551426515529</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1551426515529</updated>
+      <workItem from="1554360434889" duration="7452000" />
     </task>
     <task id="LOCAL-00060" summary="Figure frontend">
       <created>1551432910396</created>
@@ -902,11 +890,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554368353390</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="Fixed #33, Fixed 29">
+      <created>1554368854180</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1554368854180</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="172850000" />
+    <option name="totallyTimeSpent" value="173531000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1007" extended-state="6" />
@@ -940,7 +935,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Sidebar BETA 2" />
     <MESSAGE value="Fixed delete catalog item" />
     <MESSAGE value="New Catalog Seeder" />
     <MESSAGE value="Save new catalog: Cat. Type" />
@@ -965,7 +959,8 @@
     <MESSAGE value="Home page title and description" />
     <MESSAGE value="Home page admin modules" />
     <MESSAGE value="Home page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Home page" />
+    <MESSAGE value="Fixed #33, Fixed 29" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed #33, Fixed 29" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/secured/dashboard.blade.php">
@@ -1295,7 +1290,7 @@
     <entry file="file://$PROJECT_DIR$/resources/sass/components/_section.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
-          <caret line="135" lean-forward="true" selection-start-line="135" selection-end-line="135" />
+          <caret line="135" selection-start-line="135" selection-end-line="135" />
         </state>
       </provider>
     </entry>
@@ -1332,8 +1327,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="94" column="46" lean-forward="true" selection-start-line="94" selection-start-column="46" selection-end-line="94" selection-end-column="46" />
+        <state relative-caret-position="353">
+          <caret line="93" column="48" selection-start-line="93" selection-start-column="48" selection-end-line="93" selection-end-column="48" />
         </state>
       </provider>
     </entry>
