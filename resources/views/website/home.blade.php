@@ -20,23 +20,29 @@
     </div>
     <!-- /.slider__wrapper -->
     <div class="container">
-        <h1 class="text-center homepage">
-            @if(App::isLocale('en'))
+        @if(App::isLocale('en'))
+            <h1 class="text-center homepage">
                 {{ $home->block_1 }}
-            @else
+            </h1>
+        @else
+            <h1 class="text-center homepage text-right">
                 {{ $home->block_1_ar }}
-            @endif
-        </h1>
+            </h1>
+        @endif
     </div>
     <!-- /.container -->
     <div class="section bg-section">
         <div class="container">
             @if(App::isLocale('en'))
-                <h2>{{ $home->block_2 }}</h2>
-                {!! $home->block_3 !!}
+                <div>
+                    <h2>{{ $home->block_2 }}</h2>
+                    {!! $home->block_3 !!}
+                </div>
             @else
-                <h2>{{ $home->block_2_ar }}</h2>
-                {!! $home->block_3_ar !!}
+                <div class="text-right">
+                    <h2>{{ $home->block_2_ar }}</h2>
+                    {!! $home->block_3_ar !!}
+                </div>
             @endif
             <div class="section__blocks">
                 <div class="row">
@@ -95,11 +101,15 @@
             <div class="row">
                 <div class="col-12 col-lg-7">
                     @if(App::isLocale('en'))
-                        <h2>{{ $home->block_4 }}</h2>
-                        {!! $home->block_5 !!}
+                        <div>
+                            <h2>{{ $home->block_4 }}</h2>
+                            {!! $home->block_5 !!}
+                        </div>
                     @else
-                        <h2>{{ $home->block_4_ar }}</h2>
-                        {!! $home->block_5_ar !!}
+                        <div class="text-right">
+                            <h2>{{ $home->block_4_ar }}</h2>
+                            {!! $home->block_5_ar !!}
+                        </div>
                     @endif
                 </div>
                 <!-- /.col-12 col-lg-6 -->
@@ -147,19 +157,15 @@
                                 </div>
                                 <!-- /.news-item__image -->
                                 <div class="news-item__body">
-                                    <h3>
-                                        <a href="{{ route('singleNewsPage', $item->nw_id) }}">
-                                            @if(App::isLocale('en'))
-                                                {{ $item->nw_name }}
-                                            @else
-                                                {{ $item->nw_name_ar }}
-                                            @endif
-                                        </a>
-                                    </h3>
+                                    @if(App::isLocale('en'))
+                                        <h3><a href="{{ route('singleNewsPage', $item->nw_id) }}">{{ $item->nw_name }}</a></h3>
+                                    @else
+                                        <h3 class="text-right"><a href="{{ route('singleNewsPage', $item->nw_id) }}">{{ $item->nw_name_ar }}</a></h3>
+                                    @endif
                                     @if(App::isLocale('en'))
                                         <p>{{ substr(strip_tags($item->nw_body), 0, 150) }}</p>
                                     @else
-                                        <p>{{ substr(strip_tags($item->nw_body_ar), 0, 150) }}</p>
+                                        <p class="text-right">{{ substr(strip_tags($item->nw_body_ar), 0, 150) }}</p>
                                     @endif
                                 </div>
                             </div>

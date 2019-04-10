@@ -10,13 +10,15 @@
             </a>
         </div>
         <!-- /.text-center product__inner -->
-        <div class="text-center product__name">
-            @if(App::isLocale('en'))
+        @if(App::isLocale('en'))
+            <div class="text-center product__name">
                 <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->n_name_en }}</a>
-            @else
+            </div>
+        @else
+            <div class="text-center product__name text-right">
                 <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->n_name_ar }}</a>
-            @endif
-        </div>
+            </div>
+        @endif
         <!-- /.text-center shadow-sm product__name -->
     </div>
     <!-- /.col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 product__wrapper -->

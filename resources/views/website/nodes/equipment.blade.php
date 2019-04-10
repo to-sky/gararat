@@ -2,7 +2,11 @@
 
 @section('content')
     <div class="container">
-        <h1 class="page-title">{{ $pageTitle }}</h1>
+        @if(App::isLocale('en'))
+            <h1 class="page-title">{{ $pageTitle }}</h1>
+        @else
+            <h1 class="page-title text-right">{{ $pageTitle }}</h1>
+        @endif
         <div class="product">
             <div class="row">
                 <div class="col-12 col-lg-6">
