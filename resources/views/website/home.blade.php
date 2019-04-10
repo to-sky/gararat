@@ -7,7 +7,11 @@
                 <div class="sp-slides">
                     @foreach($slides as $slide)
                         <div class="sp-slide">
-                            <img src="{{ asset($slide->sl_image) }}" alt="{{ $slide->sl_title }}">
+                            @if($slide->sl_description !== null)
+                                <a href="{{ $slide->sl_description }}"><img src="{{ asset($slide->sl_image) }}" alt="{{ $slide->sl_title }}"></a>
+                            @else
+                                <img src="{{ asset($slide->sl_image) }}" alt="{{ $slide->sl_title }}">
+                            @endif
                         </div>
                         <!-- /.sp-slide -->
                     @endforeach
