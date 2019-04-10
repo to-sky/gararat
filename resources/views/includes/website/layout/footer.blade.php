@@ -10,7 +10,7 @@
                     @if(App::isLocale('en'))
                         <p>GARARAT –the first e-hypermarket for agricultural tractors, equipment and spare parts!</p>
                     @else
-                        <p>جرارات هو اول سوق إليكترونى للجرارات الزراعية و المعدات وقطع الغيار</p>
+                        <p class="text-right">جرارات هو اول سوق إليكترونى للجرارات الزراعية و المعدات وقطع الغيار</p>
                     @endif
                 </div>
                 <!-- /.footer__top-slogan -->
@@ -23,25 +23,25 @@
                             <a href="{{ route('homePage') }}">Home</a>
                         </li>
                         <li>
-                            <a href="{{ route('catalogPage', 1) }}">Equipments</a>
+                            <a href="{{ route('catalogPage', 1) }}">Equipment</a>
                         </li>
                         <li>
                             <a href="{{ route('catalogPage', 2) }}">Parts</a>
                         </li>
                         <li>
-                            <a href="{{ route('servicesPage') }}">Services</a>
+                            <a href="{{ route('servicesPage') }}">Service</a>
                         </li>
                         <li>
                             <a href="{{ route('newsPage') }}">News</a>
                         </li>
                         <li>
-                            <a href="{{ route('contactsPage') }}">Contacts</a>
+                            <a href="{{ route('contactsPage') }}">Contact</a>
                         </li>
                     </ul>
                 </div>
                 <!-- /.footer__top-menu -->
                 <div class="text-right footer__top-phone">
-                    <p>+375-22-333-4444</p>
+                    <p>+20-101-620-05-99</p>
                 </div>
                 <!-- /.text-right footer__top-phone -->
             </div>
