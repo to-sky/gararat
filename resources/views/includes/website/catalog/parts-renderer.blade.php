@@ -55,13 +55,15 @@
                             </div>
                             <!-- /.col-4 col-lg-3 -->
                             <div class="col-8 col-lg-9">
-                                <div class="products__part-name">
-                                    @if(App::isLocale('en'))
+                                @if(App::isLocale('en'))
+                                    <div class="products__part-name">
                                         <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_en . ' - ' . $product->fig_name_en }} {{ $product->producer_id }}</a>
-                                    @else
+                                    </div>
+                                @else
+                                    <div class="products__part-name text-right" style="display: grid;">
                                         <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_ar . ' - ' . $product->fig_name_ar }} {{ $product->producer_id }}</a>
-                                    @endif
-                                </div>
+                                    </div>
+                                @endif
                                 <!-- /.products__part-name -->
                             </div>
                             <!-- /.col-8 col-lg-9 -->

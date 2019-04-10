@@ -16,8 +16,8 @@
                         <input type="file" class="form-control-file" name="slideImage" id="slideImage" required>
                     </div>
                     <div class="form-group">
-                        <label for="sliderDescription">Description</label>
-                        <textarea name="sliderDescription" id="sliderDescription" class="form-control"></textarea>
+                        <label for="sliderDescription">Link</label>
+                        <input type="text" class="form-control-file" name="sliderDescription" id="sliderDescription" placeholder="Example: /catalog/2">
                     </div>
                     <div class="form-group">
                         <label for="positionNumber">Position Number</label>

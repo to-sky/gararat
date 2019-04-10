@@ -19,6 +19,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <div class="col-6">
+                            <label for="newsDate">Created At</label>
+                            <input type="text" class="form-control" name="newsDate" id="newsDate" required value="{{ \Carbon\Carbon::parse($news->nw_created)->format('Y-m-d h:m') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <div class="col-12">
                             <label for="newsBody">Body</label>
                             <textarea name="newsBody" id="newsBody" class="summernote">{{ $news->nw_body }}</textarea>

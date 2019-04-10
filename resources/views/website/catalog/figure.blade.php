@@ -39,17 +39,17 @@
                                         <td>{{ $node->pos_no }}</td>
                                         <td>
                                             @if(App::isLocale('en'))
-                                                {{ $node->n_name_en }}
+                                                {{ $node->producer_id }}
                                             @else
-                                                {{ $node->n_name_ar }}
+                                                {{ $node->producer_id }}
                                             @endif
                                         </td>
                                         <td>{{ $node->qty }}</td>
                                         <td>
                                             @if(App::isLocale('en'))
-                                                {{ $node->fig_name_en }}
+                                                {{ $node->npf_name_en }}
                                             @else
-                                                {{ $node->fig_name_ar }}
+                                                {{ $node->npf_name_ar }}
                                             @endif
                                         </td>
                                         <td>

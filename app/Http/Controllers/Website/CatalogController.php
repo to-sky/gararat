@@ -10,6 +10,7 @@ use \App\Models\Catalog;
 use \App\Models\Helpers;
 use \App\Models\Nodes;
 use \App\Models\Figures;
+use \App\Models\Pages;
 
 class CatalogController extends Controller
 {
@@ -23,6 +24,7 @@ class CatalogController extends Controller
         $catalogModel = new Catalog;
         $helpers = new Helpers;
         $nodesModel = new Nodes;
+        $pagesModel = new Pages;
         $locale = App::getLocale();
         // Params
         $target = $request->query('target');
@@ -60,6 +62,7 @@ class CatalogController extends Controller
         $getAllChildsCategories = $catalogModel->getAllChildsCategoriesFrontEnd($getCatalogByCid->cat_number);
         $data['catalogChilds'] = $catalogModel->getCatalogChilds($getCatalogByCid->cat_number);
         if($getCatalogByCid->cat_type === 1) {
+            $alias = 'parts';
             $stepsToRoot = $catalogModel->countParentsToRoot($getCatalogByCid->parent_cat);
             if($stepsToRoot >= 2) {
                 $getCatalogs = $catalogModel->getAllCatalogItemsByTypeWithoutRoot(1);
@@ -69,6 +72,8 @@ class CatalogController extends Controller
                     $data['preRenderedCatalog'] = $helpers->buildFrontendPartsCatalogMenu($cid, $helpers->convertQueryBuilderToArray($getCatalogs), $getCatalogByCid->parent_cat);
                 }
             }
+        } else {
+            $alias = 'equipment';
         }
         $data['cid'] = $cid;
         $data['currentCatalog'] = $getCatalogByCid;
@@ -90,6 +95,7 @@ class CatalogController extends Controller
         $data['neededTarget'] = $neededTarget;
         $data['destination'] = $destination;
         $data['perPage'] = $perPage;
+        $data['page'] = $pagesModel->getPageByAlias($alias);
         if($getCatalogByCid->is_drawing === 1) {
             return redirect()->route('figuresCatalogPage', $cid);
         } else {

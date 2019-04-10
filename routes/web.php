@@ -99,7 +99,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/pages/edit/home', 'Secured\SecuredCommonController@securedHomePageEditPage')->name('securedHomePageEditPage');
         Route::get('/secured/admin/pages/edit/services', 'Secured\SecuredCommonController@securedServicesPageEditPage')->name('securedServicesPageEditPage');
         Route::get('/secured/admin/pages/edit/contacts', 'Secured\SecuredCommonController@securedContactsPageEditPage')->name('securedContactsPageEditPage');
-
+        Route::get('/secured/admin/pages/edit/{catalog}', 'Secured\SecuredCommonController@securedCatalogPageEditPage')->name('securedCatalogPageEditPage');
         // Upload
         Route::get('/secured/admin/upload/csv', 'Secured\SecuredPagesController@uploadCSVPage')->name('uploadCSVPage');
         ########################################################################

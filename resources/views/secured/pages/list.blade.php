@@ -25,6 +25,14 @@
                         <td>Contacts Page</td>
                         <td><a href="{{ route('securedContactsPageEditPage') }}" class="btn btn-success"><i class="ti-pencil"></i></a></td>
                     </tr>
+                    <tr>
+                        <td>Parts Pages</td>
+                        <td><a href="{{ route('securedCatalogPageEditPage', 'parts') }}" class="btn btn-success"><i class="ti-pencil"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>Equipment Pages</td>
+                        <td><a href="{{ route('securedCatalogPageEditPage', 'equipment') }}" class="btn btn-success"><i class="ti-pencil"></i></a></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

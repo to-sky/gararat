@@ -21,19 +21,23 @@
                                 </div>
                                 <!-- /.news-item__image -->
                                 <div class="news-item__body">
-                                    <h3>
-                                        <a href="{{ route('singleNewsPage', $item->nw_id) }}">
-                                            @if(App::isLocale('en'))
-                                                {{ $item->nw_name }}
-                                            @else
-                                                {{ $item->nw_name_ar }}
-                                            @endif
-                                        </a>
-                                    </h3>
                                     @if(App::isLocale('en'))
-                                        <p>{{ substr(strip_tags($item->nw_body), 0, 150) }}</p>
+                                        <h3><a href="{{ route('singleNewsPage', $item->nw_id) }}">{{ $item->nw_name }}</a></h3>
                                     @else
-                                        <p>{{ substr(strip_tags($item->nw_body_ar), 0, 150) }}</p>
+                                        <h3 class="text-right"><a href="{{ route('singleNewsPage', $item->nw_id) }}">{{ $item->nw_name_ar }}</a></h3>
+                                    @endif
+                                    @if(App::isLocale('en'))
+                                        @if($item->nw_description !== null)
+                                            <p>{{ $item->nw_description }}</p>
+                                        @else
+                                            <p>{{ substr(strip_tags($item->nw_body), 0, 150) }}</p>
+                                        @endif
+                                    @else
+                                        @if($item->nw_description_ar !== null)
+                                            <p class="text-right">{{ $item->nw_description_ar }}</p>
+                                        @else
+                                            <p class="text-right">{{ substr(strip_tags($item->nw_body_ar), 0, 150) }}</p>
+                                        @endif
                                     @endif
                                 </div>
                             </div>
