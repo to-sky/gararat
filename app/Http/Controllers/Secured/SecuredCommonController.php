@@ -147,6 +147,18 @@ class SecuredCommonController extends Controller
         $data['pageData'] = $pagesModel->getPageByAlias('services');
         return view('secured.pages.contacts', $data);
     }
+
+    public function securedCatalogPageEditPage($catalog)
+    {
+        $pagesModel = new Pages;
+        $getPage = $pagesModel->getPageByAlias($catalog);
+        if($getPage === null) {
+            $pagesModel->createDefaultPage('services', 'Services', 'Services');
+        }
+        $data['pageTitle'] = 'Edit ' . $catalog . ' Page';
+        $data['pageData'] = $pagesModel->getPageByAlias($catalog);
+        return view('secured.pages.catalog', $data);
+    }
     //======================================================================
     // API
     //======================================================================
