@@ -32,7 +32,7 @@
                     <div class="header__top-lang" id="changeLangHandler">
                         <select name="lang" id="lang" autocomplete="off">
                             <option @if(Session::get('locale') == 'en') selected @endif value="en">English</option>
-                            <option @if(Session::get('locale') == 'ar') selected @endif value="ar">Arabic</option>
+                            <option @if(Session::get('locale') == 'ar') selected @endif value="ar">عربى</option>
                         </select>
                     </div>
                     <!-- /.header__top-lang -->
