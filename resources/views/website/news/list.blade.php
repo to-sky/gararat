@@ -27,9 +27,17 @@
                                         <h3 class="text-right"><a href="{{ route('singleNewsPage', $item->nw_id) }}">{{ $item->nw_name_ar }}</a></h3>
                                     @endif
                                     @if(App::isLocale('en'))
-                                        <p>{{ substr(strip_tags($item->nw_body), 0, 150) }}</p>
+                                        @if($item->nw_description !== null)
+                                            <p>{{ $item->nw_description }}</p>
+                                        @else
+                                            <p>{{ substr(strip_tags($item->nw_body), 0, 150) }}</p>
+                                        @endif
                                     @else
-                                        <p class="text-right">{{ substr(strip_tags($item->nw_body_ar), 0, 150) }}</p>
+                                        @if($item->nw_description_ar !== null)
+                                            <p class="text-right">{{ $item->nw_description_ar }}</p>
+                                        @else
+                                            <p class="text-right">{{ substr(strip_tags($item->nw_body_ar), 0, 150) }}</p>
+                                        @endif
                                     @endif
                                 </div>
                             </div>

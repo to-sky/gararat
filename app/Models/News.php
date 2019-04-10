@@ -31,7 +31,7 @@ class News extends Model
             'nw_title_ar' => $data['newsTitleAr'],
             'nw_description_ar' => $data['newsDescriptionAr'],
             'nw_image' => $nodeModel->proceedNodeImage($file, NULL, 'news'),
-            'nw_created' => Carbon::now(),
+            'nw_created' => $data['newsDate'],
         ]);
     }
     //======================================================================
@@ -85,6 +85,7 @@ class News extends Model
                 'nw_title_ar' => $data['newsTitleAr'],
                 'nw_description_ar' => $data['newsDescriptionAr'],
                 'nw_image' => $nodeModel->proceedNodeImage($file, NULL, 'news'),
+                'nw_created' => $data['newsDate'],
             ]);
         } else {
             return DB::table('news')->where('nw_id', $data['nw_id'])->update([
@@ -96,6 +97,7 @@ class News extends Model
                 'nw_body_ar' => $data['newsBodyAr'],
                 'nw_title_ar' => $data['newsTitleAr'],
                 'nw_description_ar' => $data['newsDescriptionAr'],
+                'nw_created' => $data['newsDate'],
             ]);
         }
     }
