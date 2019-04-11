@@ -2,11 +2,19 @@
 
 @section('content')
     <div class="container">
-        <h1 class="page-title">{{ $pageTitle }}</h1>
         @if(App::isLocale('en'))
-            {!! $page->pg_body !!}
+            <h1 class="page-title">{{ $pageTitle }}</h1>
         @else
-            {!! $page->pg_body_ar !!}
+            <h1 class="page-title text-right">{{ $pageTitle }}</h1>
+        @endif
+        @if(App::isLocale('en'))
+            <div>
+                {!! $page->pg_body !!}
+            </div>
+        @else
+            <div class="text-right">
+                {!! $page->pg_body_ar !!}
+            </div>
         @endif
     </div>
     <!-- /.container -->
