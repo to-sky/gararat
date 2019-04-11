@@ -103,9 +103,11 @@
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-12">
+                        <!--
                         <div class="text-right total-price">
                             Total price: $<span id="totalPriceCheckout">0</span>
                         </div>
+                        -->
                         <!-- /.total-price -->
                         <div class="cart-page__actions">
                             <div class="d-flex justify-content-between">

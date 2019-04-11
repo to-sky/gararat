@@ -18,7 +18,7 @@
     <div class="cart_bottom">
         <div class="d-flex justify-content-between">
             <div class="cart__price">
-                $<span id="cartPrice">0</span>
+                <!-- $<span id="cartPrice">0</span> -->
             </div>
             <!-- /.cart__price -->
             <div class="cart__checkout">
