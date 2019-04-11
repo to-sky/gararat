@@ -21,9 +21,11 @@
                     </table>
                 </div>
                 <!-- /.responsive-table -->
+                <!--
                 <div class="text-right total-price">
                     Total price: $<span id="totalPriceCheckout">0</span>
                 </div>
+                -->
                 <!-- /.total-price -->
             </div>
             <!-- /.cart-page__table -->

@@ -213,27 +213,37 @@ class Orders extends Model
             } else {
                 $image = '/assets/logos/logo.jpg';
             }
-            switch($item->is_special) {
-                case 1:
-                    $priceTotal = ((int)$item->special_price * (int)$item->order_qty);
-                    $unitPrice = (int)$item->special_price;
-                    break;
-                case 0:
-                    $priceTotal = ((int)$item->price * (int)$item->order_qty);
-                    $unitPrice = (int)$item->price;
-                    break;
-                default:
-                    $priceTotal = ((int)$item->price * (int)$item->order_qty);
-                    $unitPrice = (int)$item->price;
-                    break;
+            if ($item->in_stock === 1 && $item->price == 0) {
+                $unitPrice = 'By Request';
+                $priceTotal = 'By Request';
+            } elseif ($item->in_stock === 0 && $item->price == 0) {
+                $unitPrice = 'Not Supply';
+                $priceTotal = 'Not Supply';
+            } else {
+                switch($item->is_special) {
+                    case 1:
+                        $priceTotal = ((int)$item->special_price * (int)$item->order_qty);
+                        $unitPrice = (int)$item->special_price;
+                        break;
+                    case 0:
+                        $priceTotal = ((int)$item->price * (int)$item->order_qty);
+                        $unitPrice = (int)$item->price;
+                        break;
+                    default:
+                        $priceTotal = ((int)$item->price * (int)$item->order_qty);
+                        $unitPrice = (int)$item->price;
+                        break;
+                }
+                $priceTotal = '$' . $priceTotal;
+                $unitPrice = '$' . $unitPrice;
             }
             // Return
             $return .= '<tr>';
             $return .= '<td><a href="/node/' . $item->nid . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_en . '" width="50" /></a></td>';
             $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->n_name_en . '</a></td>';
             $return .= '<td>' . $item->order_qty . '</td>';
-            $return .= '<td>$' . $unitPrice . '</td>';
-            $return .= '<td>$' . $priceTotal . '</td>';
+            $return .= '<td>' . $unitPrice . '</td>';
+            $return .= '<td>' . $priceTotal . '</td>';
             $return .= '<td><a href="/api/cart/remove/' . $item->user_key . '/' . $item->cart_nodes_id . '"><i class="far fa-trash-alt"></i></a></td>';
             $return .= '</tr>';
         }
@@ -260,26 +270,30 @@ class Orders extends Model
             } else {
                 $image = '/assets/logos/logo.jpg';
             }
-            switch($item->is_special) {
-                case 1:
-                    $priceTotal = ((int)$item->special_price * (int)$item->order_qty);
-                    $unitPrice = (int)$item->special_price;
-                    break;
-                case 0:
-                    $priceTotal = ((int)$item->price * (int)$item->order_qty);
-                    $unitPrice = (int)$item->price;
-                    break;
-                default:
-                    $priceTotal = ((int)$item->price * (int)$item->order_qty);
-                    $unitPrice = (int)$item->price;
-                    break;
+            if ($item->in_stock === 1 && $item->price == 0) {
+                $priceTotal = 'By Request';
+            } elseif ($item->in_stock === 0 && $item->price == 0) {
+                $priceTotal = 'Not Supply';
+            } else {
+                switch($item->is_special) {
+                    case 1:
+                        $priceTotal = ((int)$item->special_price * (int)$item->order_qty);
+                        break;
+                    case 0:
+                        $priceTotal = ((int)$item->price * (int)$item->order_qty);
+                        break;
+                    default:
+                        $priceTotal = ((int)$item->price * (int)$item->order_qty);
+                        break;
+                }
+                $priceTotal = '$' . $priceTotal;
             }
             // Return
             $return .= '<tr>';
             $return .= '<td><a href="/node/' . $item->nid . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_en . '" width="50" /></a></td>';
             $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->n_name_en . '</a></td>';
             $return .= '<td>' . $item->order_qty . '</td>';
-            $return .= '<td>$' . $priceTotal . '</td>';
+            $return .= '<td>' . $priceTotal . '</td>';
             $return .= '</tr>';
         }
         return $return;

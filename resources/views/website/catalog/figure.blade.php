@@ -53,12 +53,20 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if($node->in_stock === 1)
+                                            @if($node->in_stock === 1 && $node->price > 0)
                                                 <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->nid }}">
                                                     @if(App::isLocale('en'))
                                                         to order
                                                     @else
                                                         لكي يطلب
+                                                    @endif
+                                                </a>
+                                            @elseif($node->in_stock === 1 && $node->price == 0)
+                                                <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->nid }}">
+                                                    @if(App::isLocale('en'))
+                                                        by request
+                                                    @else
+                                                        حسب الطلب
                                                     @endif
                                                 </a>
                                             @else
