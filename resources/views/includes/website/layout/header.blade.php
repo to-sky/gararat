@@ -4,7 +4,7 @@
             <div class="col-12 col-lg-6">
                 <div class="header__top-contacts">
                     <a href="tel:+375224443333"><i class="fas fa-phone"></i><span>+20-101-620-05-99</span></a>
-                    <a href="email:sales@gararat.com"><i class="far fa-envelope"></i><span>sales@gararat.com</span></a>
+                    <a href="mailto:sales@gararat.com"><i class="far fa-envelope"></i><span>sales@gararat.com</span></a>
                 </div>
                 <!-- /.header__top-contacts -->
             </div>
