@@ -35,84 +35,86 @@
                                 </thead>
                                 <tbody>
                                 @foreach($nodes as $node)
-                                    <tr id="targetConstructorNode_{{ $node->nid }}">
-                                        <td>{{ $node->pos_no }}</td>
-                                        <td>
-                                            @if(App::isLocale('en'))
-                                                {{ $node->producer_id }}
-                                            @else
-                                                {{ $node->producer_id }}
-                                            @endif
-                                        </td>
-                                        <td>{{ $node->qty }}</td>
-                                        <td>
-                                            @if(App::isLocale('en'))
-                                                {{ $node->npf_name_en }}
-                                            @else
-                                                {{ $node->npf_name_ar }}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($node->price > 0)
-                                                <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->nid }}">
-                                                    @if(App::isLocale('en'))
-                                                        to order
-                                                    @else
-                                                        لكي يطلب
-                                                    @endif
-                                                </a>
-                                            @else($node->price == 0)
-                                                <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->nid }}">
-                                                    @if(App::isLocale('en'))
-                                                        by request
-                                                    @else
-                                                        حسب الطلب
-                                                    @endif
-                                                </a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr class="collapsible-row" id="collapsibleNode_{{ $node->nid }}">
-                                        <td colspan="5">
-                                            <form action="#" method="post" id="addToCartHandler">
-                                                @csrf
-                                                <input type="hidden" name="nid" value="{{ $node->nid }}">
-                                                <input type="hidden" name="userKey">
-                                                <div class="d-flex justify-content-end products__part-cart">
-                                                    <div class="products__part-cart-qty">
-                                                        <div class="d-flex justify-content-around product__qty">
-                                                            <a href="#" class="sub-qty"><i class="fas fa-minus"></i></a>
-                                                            <input type="number" name="qty" id="qty_{{ $node->nid }}" value="1" min="1" style="max-width: 40px;">
-                                                            <a href="#" class="add-qty"><i class="fas fa-plus"></i></a>
-                                                        </div>
-                                                        <!-- /.product__qty -->
-                                                    </div>
-                                                    <!-- /.products__part-cart-qty -->
-                                                    <div class="products__part-cart-price">
-                                                        @if($node->special_price !== NULL && $node->special_price != 0)
-                                                            <span class="old">${{ number_format($node->price, 0, '.', ' ') }}</span>
-                                                            <span class="current current-special">${{ number_format($node->special_price, 0, '.', ' ') }}</span>
+                                    @if($node->price >= 0)
+                                        <tr id="targetConstructorNode_{{ $node->nid }}">
+                                            <td>{{ $node->pos_no }}</td>
+                                            <td>
+                                                @if(App::isLocale('en'))
+                                                    {{ $node->producer_id }}
+                                                @else
+                                                    {{ $node->producer_id }}
+                                                @endif
+                                            </td>
+                                            <td>{{ $node->qty }}</td>
+                                            <td>
+                                                @if(App::isLocale('en'))
+                                                    {{ $node->npf_name_en }}
+                                                @else
+                                                    {{ $node->npf_name_ar }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($node->price > 0)
+                                                    <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->nid }}">
+                                                        @if(App::isLocale('en'))
+                                                            to order
                                                         @else
-                                                            <span class="current">${{ number_format($node->price, 0, '.', ' ') }}</span>
+                                                            لكي يطلب
                                                         @endif
-                                                    </div>
-                                                    <!-- /.products__part-cart-price -->
-                                                    <div class="products__part-cart-button">
-                                                        <button class="btn btn-add-to-cart" type="submit">
-                                                            @if(App::isLocale('en'))
-                                                                Add to cart
+                                                    </a>
+                                                @else($node->price == 0)
+                                                    <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->nid }}">
+                                                        @if(App::isLocale('en'))
+                                                            by request
+                                                        @else
+                                                            حسب الطلب
+                                                        @endif
+                                                    </a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr class="collapsible-row" id="collapsibleNode_{{ $node->nid }}">
+                                            <td colspan="5">
+                                                <form action="#" method="post" id="addToCartHandler">
+                                                    @csrf
+                                                    <input type="hidden" name="nid" value="{{ $node->nid }}">
+                                                    <input type="hidden" name="userKey">
+                                                    <div class="d-flex justify-content-end products__part-cart">
+                                                        <div class="products__part-cart-qty">
+                                                            <div class="d-flex justify-content-around product__qty">
+                                                                <a href="#" class="sub-qty"><i class="fas fa-minus"></i></a>
+                                                                <input type="number" name="qty" id="qty_{{ $node->nid }}" value="1" min="1" style="max-width: 40px;">
+                                                                <a href="#" class="add-qty"><i class="fas fa-plus"></i></a>
+                                                            </div>
+                                                            <!-- /.product__qty -->
+                                                        </div>
+                                                        <!-- /.products__part-cart-qty -->
+                                                        <div class="products__part-cart-price">
+                                                            @if($node->special_price !== NULL && $node->special_price != 0)
+                                                                <span class="old">${{ number_format($node->price, 0, '.', ' ') }}</span>
+                                                                <span class="current current-special">${{ number_format($node->special_price, 0, '.', ' ') }}</span>
                                                             @else
-                                                                أضف إلى السلة
+                                                                <span class="current">${{ number_format($node->price, 0, '.', ' ') }}</span>
                                                             @endif
-                                                        </button>
-                                                        <!-- /.btn btn-add-to-cart -->
+                                                        </div>
+                                                        <!-- /.products__part-cart-price -->
+                                                        <div class="products__part-cart-button">
+                                                            <button class="btn btn-add-to-cart" type="submit">
+                                                                @if(App::isLocale('en'))
+                                                                    Add to cart
+                                                                @else
+                                                                    أضف إلى السلة
+                                                                @endif
+                                                            </button>
+                                                            <!-- /.btn btn-add-to-cart -->
+                                                        </div>
+                                                        <!-- /.products__part-cart-button -->
                                                     </div>
-                                                    <!-- /.products__part-cart-button -->
-                                                </div>
-                                                <!-- /.d-flex justify-content-between products__part-cart -->
-                                            </form>
-                                        </td>
-                                    </tr>
+                                                    <!-- /.d-flex justify-content-between products__part-cart -->
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                                 </tbody>
                             </table>
