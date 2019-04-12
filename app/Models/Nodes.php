@@ -299,7 +299,9 @@ class Nodes extends Model
      */
     public function getNodesByType(array $nodes, int $type, $perPage = 45, $orderingTarget = 'price', $orderingType = 'ASC')
     {
-        $get = DB::table('nodes')->whereIn('nodes.nid', $nodes);
+        $get = DB::table('nodes')
+            ->whereIn('nodes.nid', $nodes)
+            ->where('nodes.price', '>=', 0);
         switch($type) {
             case 0:
                 $get->join('nodes_machinery_fields', 'nodes.nid', '=', 'nodes_machinery_fields.node');
