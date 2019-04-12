@@ -93,7 +93,7 @@ class Figures extends Model
             'parent_cat' => $data['figureCategory'],
             'cat_type' => 1,
             'is_drawing' => 1,
-            'cat_name_en' => 'Figure',
+            'cat_name_en' => 'Drawing',
             'created_at' => Carbon::now(),
             'figure' => $createFigure
         ]);
