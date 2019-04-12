@@ -369,7 +369,11 @@ class Nodes extends Model
      */
     public function getNodesBySearchRequest($search)
     {
-        $get = DB::table('nodes')->where('nodes.n_name_en', 'like', '%' . $search .'%');
+        $get = DB::table('nodes')
+            ->where('nodes.n_name_en', 'like', '%' . $search .'%')
+            ->where('nodes.price', '>=', '0')
+            ->leftJoin('nodes_machinery_fields', 'nodes.nid', '=', 'nodes_machinery_fields.node')
+            ->leftJoin('nodes_parts_fields', 'nodes.nid', '=', 'nodes_parts_fields.node');
         $get->leftJoin('nodes_images', function($join) {
             $join->on('nodes.nid', '=', 'nodes_images.node')
                 ->where('nodes_images.is_featured', '=', 1);
