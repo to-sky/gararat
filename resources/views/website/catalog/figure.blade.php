@@ -57,17 +57,17 @@
                                                 @if($node->price > 0)
                                                     <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->nid }}">
                                                         @if(App::isLocale('en'))
-                                                            to order
+                                                            order
                                                         @else
-                                                            لكي يطلب
+                                                            طلب
                                                         @endif
                                                     </a>
                                                 @else($node->price == 0)
                                                     <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->nid }}">
                                                         @if(App::isLocale('en'))
-                                                            by request
+                                                            order
                                                         @else
-                                                            حسب الطلب
+                                                            طلب
                                                         @endif
                                                     </a>
                                                 @endif
@@ -90,11 +90,21 @@
                                                         </div>
                                                         <!-- /.products__part-cart-qty -->
                                                         <div class="products__part-cart-price">
-                                                            @if($node->special_price !== NULL && $node->special_price != 0)
-                                                                <span class="old">${{ number_format($node->price, 0, '.', ' ') }}</span>
-                                                                <span class="current current-special">${{ number_format($node->special_price, 0, '.', ' ') }}</span>
+                                                            @if($node->price > 0)
+                                                                @if($node->special_price !== NULL && $node->special_price != 0)
+                                                                    <span class="old">${{ number_format($node->price, 0, '.', ' ') }}</span>
+                                                                    <span class="current current-special">${{ number_format($node->special_price, 0, '.', ' ') }}</span>
+                                                                @else
+                                                                    <span class="current">${{ number_format($node->price, 0, '.', ' ') }}</span>
+                                                                @endif
                                                             @else
-                                                                <span class="current">${{ number_format($node->price, 0, '.', ' ') }}</span>
+                                                                <span class="current">
+                                                                    @if(App::isLocale('en'))
+                                                                        by request
+                                                                    @else
+                                                                        حسب الطلب
+                                                                    @endif
+                                                                </span>
                                                             @endif
                                                         </div>
                                                         <!-- /.products__part-cart-price -->
