@@ -48,7 +48,6 @@
                 <!-- /.col-12 col-lg-6 -->
                 <div class="col-12 col-lg-6">
                     <div class="shadow product__purchase">
-                        @if($product->in_stock === 1 && $product->price > 0 || $product->in_stock === 1 && $product->price == 0)
                         <form action="#" method="post" id="addToCartHandler">
                             @csrf
                             <input type="hidden" name="nid" value="{{ $product->nid }}">
@@ -124,28 +123,6 @@
                             </div>
                             <!-- /.product__purchase-bottom -->
                         </form>
-                        @else
-                            <div class="product__purchase-price">
-                                @if($product->special_price !== NULL && $product->special_price != 0)
-                                    <p><span class="old">${{ number_format($product->price, 0, '.', ' ') }}</span><span class="current">${{ number_format($product->special_price, 0, '.', ' ') }}</span></p>
-                                @else
-                                    @if($product->price != 0)
-                                        <p><span class="current">${{ number_format($product->price, 0, '.', ' ') }}</span></p>
-                                    @else
-                                        <p>
-                                            <span class="current">
-                                                @if(App::isLocale('en'))
-                                                    Not Supply
-                                                @else
-                                                    ليس العرض
-                                                @endif
-                                            </span>
-                                        </p>
-                                    @endif
-                                @endif
-                            </div>
-                            <!-- /.product__purchase-price -->
-                        @endif
                     </div>
                     <!-- /.product__purchase -->
                 </div>

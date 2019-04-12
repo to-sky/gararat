@@ -53,7 +53,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if($node->in_stock === 1 && $node->price > 0)
+                                            @if($node->price > 0)
                                                 <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->nid }}">
                                                     @if(App::isLocale('en'))
                                                         to order
@@ -61,7 +61,7 @@
                                                         لكي يطلب
                                                     @endif
                                                 </a>
-                                            @elseif($node->in_stock === 1 && $node->price == 0)
+                                            @else($node->price == 0)
                                                 <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->nid }}">
                                                     @if(App::isLocale('en'))
                                                         by request
@@ -69,58 +69,50 @@
                                                         حسب الطلب
                                                     @endif
                                                 </a>
-                                            @else
-                                                @if(App::isLocale('en'))
-                                                    <span>not supply</span>
-                                                @else
-                                                    <span>ليس العرض</span>
-                                                @endif
                                             @endif
                                         </td>
                                     </tr>
-                                    @if($node->in_stock === 1)
-                                        <tr class="collapsible-row" id="collapsibleNode_{{ $node->nid }}">
-                                            <td colspan="5">
-                                                <form action="#" method="post" id="addToCartHandler">
-                                                    @csrf
-                                                    <input type="hidden" name="nid" value="{{ $node->nid }}">
-                                                    <input type="hidden" name="userKey">
-                                                    <div class="d-flex justify-content-end products__part-cart">
-                                                        <div class="products__part-cart-qty">
-                                                            <div class="d-flex justify-content-around product__qty">
-                                                                <a href="#" class="sub-qty"><i class="fas fa-minus"></i></a>
-                                                                <input type="number" name="qty" id="qty_{{ $node->nid }}" value="1" min="1" style="max-width: 40px;">
-                                                                <a href="#" class="add-qty"><i class="fas fa-plus"></i></a>
-                                                            </div>
-                                                            <!-- /.product__qty -->
+                                    <tr class="collapsible-row" id="collapsibleNode_{{ $node->nid }}">
+                                        <td colspan="5">
+                                            <form action="#" method="post" id="addToCartHandler">
+                                                @csrf
+                                                <input type="hidden" name="nid" value="{{ $node->nid }}">
+                                                <input type="hidden" name="userKey">
+                                                <div class="d-flex justify-content-end products__part-cart">
+                                                    <div class="products__part-cart-qty">
+                                                        <div class="d-flex justify-content-around product__qty">
+                                                            <a href="#" class="sub-qty"><i class="fas fa-minus"></i></a>
+                                                            <input type="number" name="qty" id="qty_{{ $node->nid }}" value="1" min="1" style="max-width: 40px;">
+                                                            <a href="#" class="add-qty"><i class="fas fa-plus"></i></a>
                                                         </div>
-                                                        <!-- /.products__part-cart-qty -->
-                                                        <div class="products__part-cart-price">
-                                                            @if($node->special_price !== NULL && $node->special_price != 0)
-                                                                <span class="old">${{ number_format($node->price, 0, '.', ' ') }}</span>
-                                                                <span class="current current-special">${{ number_format($node->special_price, 0, '.', ' ') }}</span>
-                                                            @else
-                                                                <span class="current">${{ number_format($node->price, 0, '.', ' ') }}</span>
-                                                            @endif
-                                                        </div>
-                                                        <!-- /.products__part-cart-price -->
-                                                        <div class="products__part-cart-button">
-                                                            <button class="btn btn-add-to-cart" type="submit">
-                                                                @if(App::isLocale('en'))
-                                                                    Add to cart
-                                                                @else
-                                                                    أضف إلى السلة
-                                                                @endif
-                                                            </button>
-                                                            <!-- /.btn btn-add-to-cart -->
-                                                        </div>
-                                                        <!-- /.products__part-cart-button -->
+                                                        <!-- /.product__qty -->
                                                     </div>
-                                                    <!-- /.d-flex justify-content-between products__part-cart -->
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endif
+                                                    <!-- /.products__part-cart-qty -->
+                                                    <div class="products__part-cart-price">
+                                                        @if($node->special_price !== NULL && $node->special_price != 0)
+                                                            <span class="old">${{ number_format($node->price, 0, '.', ' ') }}</span>
+                                                            <span class="current current-special">${{ number_format($node->special_price, 0, '.', ' ') }}</span>
+                                                        @else
+                                                            <span class="current">${{ number_format($node->price, 0, '.', ' ') }}</span>
+                                                        @endif
+                                                    </div>
+                                                    <!-- /.products__part-cart-price -->
+                                                    <div class="products__part-cart-button">
+                                                        <button class="btn btn-add-to-cart" type="submit">
+                                                            @if(App::isLocale('en'))
+                                                                Add to cart
+                                                            @else
+                                                                أضف إلى السلة
+                                                            @endif
+                                                        </button>
+                                                        <!-- /.btn btn-add-to-cart -->
+                                                    </div>
+                                                    <!-- /.products__part-cart-button -->
+                                                </div>
+                                                <!-- /.d-flex justify-content-between products__part-cart -->
+                                            </form>
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>

@@ -72,21 +72,20 @@
                     </div>
                     <!-- /.col-12 col-lg-7 -->
                     <div class="col-12 col-lg-5">
-                        @if($product->in_stock === 1 && $product->price > 0 || $product->in_stock === 1 && $product->price == 0)
-                            <form action="#" method="post" id="addToCartHandler">
-                                @csrf
-                                <input type="hidden" name="nid" value="{{ $product->nid }}">
-                                <input type="hidden" name="userKey">
-                                <div class="d-flex justify-content-end products__part-cart">
-                                    <div class="products__part-cart-price">
-                                        @if($product->special_price !== NULL && $product->special_price != 0)
-                                            <span class="old">${{ number_format($product->price, 0, '.', ' ') }}</span>
-                                            <span class="current current-special">${{ number_format($product->special_price, 0, '.', ' ') }}</span>
+                        <form action="#" method="post" id="addToCartHandler">
+                            @csrf
+                            <input type="hidden" name="nid" value="{{ $product->nid }}">
+                            <input type="hidden" name="userKey">
+                            <div class="d-flex justify-content-end products__part-cart">
+                                <div class="products__part-cart-price">
+                                    @if($product->special_price !== NULL && $product->special_price != 0)
+                                        <span class="old">${{ number_format($product->price, 0, '.', ' ') }}</span>
+                                        <span class="current current-special">${{ number_format($product->special_price, 0, '.', ' ') }}</span>
+                                    @else
+                                        @if($product->price != 0)
+                                            <p><span class="current">${{ number_format($product->price, 0, '.', ' ') }}</span></p>
                                         @else
-                                            @if($product->price != 0)
-                                                <p><span class="current">${{ number_format($product->price, 0, '.', ' ') }}</span></p>
-                                            @else
-                                                <p>
+                                            <p>
                                                 <span class="current">
                                                     @if(App::isLocale('en'))
                                                         By Request
@@ -94,56 +93,34 @@
                                                         حسب الطلب
                                                     @endif
                                                 </span>
-                                                </p>
-                                            @endif
+                                            </p>
                                         @endif
-                                    </div>
-                                    <!-- /.products__part-cart-price -->
-                                    <div class="products__part-cart-qty">
-                                        <div class="d-flex justify-content-around product__qty">
-                                            <a href="#" class="sub-qty"><i class="fas fa-minus"></i></a>
-                                            <input type="number" name="qty" id="qty_{{ $product->nid }}" value="1" min="1" style="max-width: 40px;">
-                                            <a href="#" class="add-qty"><i class="fas fa-plus"></i></a>
-                                        </div>
-                                        <!-- /.product__qty -->
-                                    </div>
-                                    <!-- /.products__part-cart-qty -->
-                                    <div class="products__part-cart-button">
-                                        <button class="btn btn-add-to-cart" type="submit">
-                                            @if(App::isLocale('en'))
-                                                Add to cart
-                                            @else
-                                                أضف إلى السلة
-                                            @endif
-                                        </button>
-                                        <!-- /.btn btn-add-to-cart -->
-                                    </div>
-                                    <!-- /.products__part-cart-button -->
-                                </div>
-                                <!-- /.d-flex justify-content-between products__part-cart -->
-                            </form>
-                        @else
-                            <div class="products__part-cart-price">
-                                @if($product->special_price !== NULL && $product->special_price != 0)
-                                    <span class="old">${{ number_format($product->price, 0, '.', ' ') }}</span>
-                                    <span class="current current-special">${{ number_format($product->special_price, 0, '.', ' ') }}</span>
-                                @else
-                                    @if($product->price != 0)
-                                        <p><span class="current">${{ number_format($product->price, 0, '.', ' ') }}</span></p>
-                                    @else
-                                        <p>
-                                            <span class="current">
-                                                @if(App::isLocale('en'))
-                                                    Not Supply
-                                                @else
-                                                    ليس العرض
-                                                @endif
-                                            </span>
-                                        </p>
                                     @endif
-                                @endif
+                                </div>
+                                <!-- /.products__part-cart-price -->
+                                <div class="products__part-cart-qty">
+                                    <div class="d-flex justify-content-around product__qty">
+                                        <a href="#" class="sub-qty"><i class="fas fa-minus"></i></a>
+                                        <input type="number" name="qty" id="qty_{{ $product->nid }}" value="1" min="1" style="max-width: 40px;">
+                                        <a href="#" class="add-qty"><i class="fas fa-plus"></i></a>
+                                    </div>
+                                    <!-- /.product__qty -->
+                                </div>
+                                <!-- /.products__part-cart-qty -->
+                                <div class="products__part-cart-button">
+                                    <button class="btn btn-add-to-cart" type="submit">
+                                        @if(App::isLocale('en'))
+                                            Add to cart
+                                        @else
+                                            أضف إلى السلة
+                                        @endif
+                                    </button>
+                                    <!-- /.btn btn-add-to-cart -->
+                                </div>
+                                <!-- /.products__part-cart-button -->
                             </div>
-                        @endif
+                            <!-- /.d-flex justify-content-between products__part-cart -->
+                        </form>
                     </div>
                     <!-- /.col-12 col-lg-5 -->
                 </div>
