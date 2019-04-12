@@ -213,12 +213,9 @@ class Orders extends Model
             } else {
                 $image = '/assets/logos/logo.jpg';
             }
-            if ($item->in_stock === 1 && $item->price == 0) {
+            if ($item->price == 0) {
                 $unitPrice = 'By Request';
                 $priceTotal = 'By Request';
-            } elseif ($item->in_stock === 0 && $item->price == 0) {
-                $unitPrice = 'Not Supply';
-                $priceTotal = 'Not Supply';
             } else {
                 switch($item->is_special) {
                     case 1:
@@ -270,10 +267,8 @@ class Orders extends Model
             } else {
                 $image = '/assets/logos/logo.jpg';
             }
-            if ($item->in_stock === 1 && $item->price == 0) {
+            if ($item->price == 0) {
                 $priceTotal = 'By Request';
-            } elseif ($item->in_stock === 0 && $item->price == 0) {
-                $priceTotal = 'Not Supply';
             } else {
                 switch($item->is_special) {
                     case 1:
