@@ -378,7 +378,22 @@ class Nodes extends Model
             $join->on('nodes.nid', '=', 'nodes_images.node')
                 ->where('nodes_images.is_featured', '=', 1);
         });
-        return $get->paginate(50);
+        $return = $get->paginate(50);
+        if(count($return) === 0) {
+            $get = DB::table('nodes')
+                ->where('nodes.price', '>=', '0')
+                ->join('nodes_parts_fields', function($join) use($search) {
+                    $join->on('nodes.nid', '=', 'nodes_parts_fields.node')
+                        ->where('nodes_parts_fields.producer_id', 'like', '%' . $search .'%');
+                });
+            $get->leftJoin('nodes_images', function($join) {
+                $join->on('nodes.nid', '=', 'nodes_images.node')
+                    ->where('nodes_images.is_featured', '=', 1);
+            });
+            return $get->paginate(50);
+        } else {
+            return $return;
+        }
     }
 
     /**
