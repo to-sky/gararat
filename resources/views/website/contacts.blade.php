@@ -107,7 +107,7 @@
                             خريطة
                         @endif
                     </h3>
-                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A321f80a1403148c2e7eff608823556f9cfbc1bec2bfb0d2bb6fbd083758e858d&amp;width=100%&amp;height=400&amp;lang=en_GB&amp;scroll=true"></script>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d863.6868215099953!2d31.411449829250078!3d30.015411998868327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDAwJzU1LjUiTiAzMcKwMjQnNDMuMiJF!5e0!3m2!1sru!2seg!4v1555091379312!5m2!1sru!2seg" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
                 <!-- /.contacts__map -->
             </div>

@@ -62,11 +62,11 @@
                             <div class="form-group row">
                                 <div class="col-6">
                                     <label for="nodePrice">Price*</label>
-                                    <input type="number" class="form-control" name="nodePrice" id="nodePrice" required>
+                                    <input type="text" class="form-control" name="nodePrice" id="nodePrice" required>
                                 </div>
                                 <div class="col-6">
                                     <label for="nodeSpecialPrice">Special Price</label>
-                                    <input type="number" class="form-control" name="nodeSpecialPrice" id="nodeSpecialPrice" value="0.00">
+                                    <input type="text" class="form-control" name="nodeSpecialPrice" id="nodeSpecialPrice" value="0.00">
                                 </div>
                             </div>
                             <div class="form-group row">

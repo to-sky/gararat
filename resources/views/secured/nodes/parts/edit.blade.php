@@ -63,11 +63,11 @@
                             <div class="form-group row">
                                 <div class="col-6">
                                     <label for="nodePrice">Price*</label>
-                                    <input type="number" class="form-control" name="nodePrice" id="nodePrice" required value="{{ $node->price }}">
+                                    <input type="text" class="form-control" name="nodePrice" id="nodePrice" required value="{{ $node->price }}">
                                 </div>
                                 <div class="col-6">
                                     <label for="nodeSpecialPrice">Special Price</label>
-                                    <input type="number" class="form-control" name="nodeSpecialPrice" id="nodeSpecialPrice" value="{{ $node->special_price }}">
+                                    <input type="text" class="form-control" name="nodeSpecialPrice" id="nodeSpecialPrice" value="{{ $node->special_price }}">
                                 </div>
                             </div>
                             <div class="form-group row">

@@ -79,11 +79,11 @@
                             <div class="d-flex justify-content-end products__part-cart">
                                 <div class="products__part-cart-price">
                                     @if($product->special_price !== NULL && $product->special_price != 0)
-                                        <span class="old">${{ number_format($product->price, 0, '.', ' ') }}</span>
-                                        <span class="current current-special">${{ number_format($product->special_price, 0, '.', ' ') }}</span>
+                                        <span class="old">{{ number_format($product->price, 2, '.', ' ') }} LE</span>
+                                        <span class="current current-special">{{ number_format($product->special_price, 2, '.', ' ') }} LE</span>
                                     @else
                                         @if($product->price != 0)
-                                            <p><span class="current">${{ number_format($product->price, 0, '.', ' ') }}</span></p>
+                                            <p><span class="current">{{ number_format($product->price, 2, '.', ' ') }} LE</span></p>
                                         @else
                                             <p>
                                                 <span class="current">
