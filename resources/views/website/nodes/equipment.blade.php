@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="@if(count($images) > 0) col-9 @else col-12 @endif mip" style="padding-left: 15px;">
                                 <div class="featured-image">
-                                    @if(count($images) > 0)
+                                    @if(isset($featuredImage) && $featuredImage !== null)
                                         <a href="{{ asset($featuredImage->mid_path) }}" title="{{ $pageTitle }}">
                                             <img src="{{ asset($featuredImage->mid_path) }}" alt="{{ $pageTitle }} Featured" class="image">
                                         </a>
@@ -57,10 +57,16 @@
                                     <div class="col-12 col-md-5">
                                         <div class="product__purchase-price">
                                             @if($product->special_price !== NULL && $product->special_price != 0)
-                                                <p><span class="old">${{ number_format($product->price, 0, '.', ' ') }}</span><span class="current">${{ number_format($product->special_price, 0, '.', ' ') }}</span></p>
+                                                <p>
+                                                    <span class="old">{{ number_format($product->price, 2, '.', ' ') }} LE</span>
+                                                    <br>
+                                                    <span class="current">{{ number_format($product->special_price, 2, '.', ' ') }} LE</span>
+                                                </p>
                                             @else
                                                 @if($product->price != 0)
-                                                    <p><span class="current">${{ number_format($product->price, 0, '.', ' ') }}</span></p>
+                                                    <p>
+                                                        <span class="current">{{ number_format($product->price, 2, '.', ' ') }} LE</span>
+                                                    </p>
                                                 @else
                                                     <p>
                                                         <span class="current">
@@ -141,7 +147,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="shadow product__description">
-                            <h4>المواصفات الفنية</h4>
+                            @if(App::isLocale('en'))
+                                <h4>Technical Description</h4>
+                            @else
+                                <h4>المواصفات الفنية</h4>
+                            @endif
                             @if(App::isLocale('en'))
                                 {!! $product->nmf_body_en !!}
                             @else

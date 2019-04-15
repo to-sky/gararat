@@ -57,10 +57,16 @@
                                     <div class="col-12 col-md-5">
                                         <div class="product__purchase-price">
                                             @if($product->special_price !== NULL && $product->special_price != 0)
-                                                <p><span class="old">${{ number_format($product->price, 0, '.', ' ') }}</span><span class="current">${{ number_format($product->special_price, 0, '.', ' ') }}</span></p>
+                                                <p>
+                                                    <span class="old">{{ number_format($product->price, 2, '.', ' ') }} LE</span>
+                                                    <br>
+                                                    <span class="current">{{ number_format($product->special_price, 2, '.', ' ') }} LE</span>
+                                                </p>
                                             @else
                                                 @if($product->price != 0)
-                                                    <p><span class="current">${{ number_format($product->price, 0, '.', ' ') }}</span></p>
+                                                    <p>
+                                                        <span class="current">{{ number_format($product->price, 2, '.', ' ') }} LE</span>
+                                                    </p>
                                                 @else
                                                     <p>
                                                         <span class="current">
