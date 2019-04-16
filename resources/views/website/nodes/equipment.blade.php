@@ -58,14 +58,14 @@
                                         <div class="product__purchase-price">
                                             @if($product->special_price !== NULL && $product->special_price != 0)
                                                 <p>
-                                                    <span class="old">{{ number_format($product->price, 2, '.', ' ') }} LE</span>
+                                                    <span class="old">@if(!App::isLocale('en')) جنيه @endif{{ number_format($product->price, 2, '.', '') }} @if(App::isLocale('en')) LE @endif</span>
                                                     <br>
-                                                    <span class="current">{{ number_format($product->special_price, 2, '.', ' ') }} LE</span>
+                                                    <span class="current">@if(!App::isLocale('en')) جنيه @endif{{ number_format($product->special_price, 2, '.', '') }} @if(App::isLocale('en')) LE @endif</span>
                                                 </p>
                                             @else
                                                 @if($product->price != 0)
                                                     <p>
-                                                        <span class="current">{{ number_format($product->price, 2, '.', ' ') }} LE</span>
+                                                        <span class="current">@if(!App::isLocale('en')) جنيه @endif{{ number_format($product->price, 2, '.', '') }} @if(App::isLocale('en')) LE @endif</span>
                                                     </p>
                                                 @else
                                                     <p>
