@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a53de099-90a2-4e6f-9913-6b52edeefe05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/secured/slider/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredCommonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredCommonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Slider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Slider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/secured.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/secured.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/secured/slider/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/secured/slider/list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/website/nodes/parts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/nodes/parts.blade.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/react-laravel/node_modules/" />
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
@@ -121,32 +118,29 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="58" column="45" selection-start-line="58" selection-start-column="44" selection-end-line="80" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/website/nodes/parts.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="701">
+              <caret line="80" column="50" selection-start-line="80" selection-start-column="50" selection-end-line="80" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredCommonController.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="682">
-              <caret line="202" column="49" selection-start-line="202" selection-start-column="49" selection-end-line="202" selection-end-column="49" />
-              <folding>
-                <element signature="e#48#76#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Models/Slider.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/secured/slider/edit.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="81" selection-start-line="9" selection-start-column="81" selection-end-line="9" selection-end-column="81" />
+            <state relative-caret-position="192">
+              <caret line="77" column="49" lean-forward="true" selection-start-line="77" selection-start-column="49" selection-end-line="77" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -216,9 +210,6 @@
         <option value="$PROJECT_DIR$/resources/views/secured/nodes/equipment/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/secured/nodes/parts/add.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/secured/nodes/parts/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/website/nodes/parts.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php" />
         <option value="$PROJECT_DIR$/resources/sass/layout/_product.scss" />
         <option value="$PROJECT_DIR$/resources/views/website/contacts.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/secured.blade.php" />
@@ -227,6 +218,9 @@
         <option value="$PROJECT_DIR$/resources/views/secured/slider/edit.blade.php" />
         <option value="$PROJECT_DIR$/app/Models/Slider.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredCommonController.php" />
+        <option value="$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/website/nodes/parts.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php" />
       </list>
     </option>
   </component>
@@ -403,32 +397,39 @@
               <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="secured" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
               <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="secured" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
+              <item name="website" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
+              <item name="website" type="462c0819:PsiDirectoryNode" />
+              <item name="catalog" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="website" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="website" type="462c0819:PsiDirectoryNode" />
               <item name="nodes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
-              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="secured" type="462c0819:PsiDirectoryNode" />
-              <item name="nodes" type="462c0819:PsiDirectoryNode" />
-              <item name="equipment" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
-              <item name="laravel1.local" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="secured" type="462c0819:PsiDirectoryNode" />
-              <item name="slider" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="laravel1.local" type="b2602c69:ProjectViewProjectNode" />
@@ -510,21 +511,8 @@
       <workItem from="1555055700795" duration="4991000" />
       <workItem from="1555094443876" duration="695000" />
       <workItem from="1555328785092" duration="1508000" />
-      <workItem from="1555398028380" duration="834000" />
-    </task>
-    <task id="LOCAL-00082" summary="Sidebar BETA">
-      <created>1552982416850</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1552982416851</updated>
-    </task>
-    <task id="LOCAL-00083" summary="Sidebar BETA 2">
-      <created>1552983767371</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1552983767371</updated>
+      <workItem from="1555398028380" duration="1128000" />
+      <workItem from="1555413899670" duration="401000" />
     </task>
     <task id="LOCAL-00084" summary="Fixed delete catalog item">
       <created>1553067565903</created>
@@ -855,11 +843,25 @@
       <option name="project" value="LOCAL" />
       <updated>1555330005627</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="Fixed #74, Fixed #73">
+      <created>1555398953009</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1555398953010</updated>
+    </task>
+    <task id="LOCAL-00132" summary="Production Assets Build">
+      <created>1555398992653</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1555398992654</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201171000" />
+    <option name="totallyTimeSpent" value="201866000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="47" y="25" width="1873" height="1055" extended-state="6" />
@@ -867,7 +869,7 @@
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.242474" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.24521072" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
@@ -893,8 +895,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Edit contacts and services page" />
-    <MESSAGE value="Home page title and description" />
     <MESSAGE value="Home page admin modules" />
     <MESSAGE value="Home page" />
     <MESSAGE value="Fixed #33, Fixed 29" />
@@ -918,7 +918,9 @@
     <MESSAGE value="Fix search" />
     <MESSAGE value="Fix admin search and drawing" />
     <MESSAGE value="Fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes" />
+    <MESSAGE value="Fixed #74, Fixed #73" />
+    <MESSAGE value="Production Assets Build" />
+    <option name="LAST_COMMIT_MESSAGE" value="Production Assets Build" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/sass/components/_typo.scss">
@@ -1180,31 +1182,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3256">
-          <caret line="148" column="56" selection-start-line="148" selection-start-column="56" selection-end-line="148" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/sass/layout/_product.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4642">
           <caret line="211" column="40" selection-start-line="211" selection-start-column="40" selection-end-line="211" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/website/nodes/parts.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1760">
-          <caret line="80" column="50" selection-start-line="80" selection-start-column="50" selection-end-line="80" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1782">
-          <caret line="81" column="110" selection-start-line="81" selection-start-column="110" selection-end-line="81" selection-end-column="110" />
         </state>
       </provider>
     </entry>
@@ -1257,10 +1238,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/app/Models/Slider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="128" column="94" selection-start-line="128" selection-start-column="80" selection-end-line="128" selection-end-column="94" />
+        <state relative-caret-position="1144">
+          <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -1271,20 +1252,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Slider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Secured/SecuredCommonController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="202" column="49" selection-start-line="202" selection-start-column="49" selection-end-line="202" selection-end-column="49" />
+        <state relative-caret-position="308">
+          <caret line="185" column="5" selection-start-line="185" selection-start-column="5" selection-end-line="185" selection-end-column="5" />
           <folding>
             <element signature="e#48#76#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="128" column="94" selection-start-line="128" selection-start-column="80" selection-end-line="128" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/website/nodes/equipment.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="58" column="45" selection-start-line="58" selection-start-column="44" selection-end-line="80" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/website/nodes/parts.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="701">
+          <caret line="80" column="50" selection-start-line="80" selection-start-column="50" selection-end-line="80" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="77" column="49" lean-forward="true" selection-start-line="77" selection-start-column="49" selection-end-line="77" selection-end-column="49" />
         </state>
       </provider>
     </entry>
