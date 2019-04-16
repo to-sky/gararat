@@ -45,17 +45,7 @@
                         ['font', ['strikethrough', 'superscript', 'subscript']],
                         ['para', ['style', 'ul', 'ol', 'paragraph']],
                         ['insert', ['link', 'table', 'picture', 'video', 'hr']],
-                    ],
-                    callbacks: {
-                        onPaste: function (e) {
-                            var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-                            e.preventDefault();
-                            // Firefox fix
-                            setTimeout(function () {
-                                document.execCommand('insertText', false, bufferText);
-                            }, 10);
-                        }
-                    }
+                    ]
                 });
             })(jQuery);
         </script>

@@ -38,6 +38,19 @@ class SecuredCommonController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function securedEditSlidePage($sl_id)
+    {
+        $sliderModel = new Slider;
+
+        $data['pageTitle'] = 'Edit Slide';
+        $data['slider'] = $sliderModel->getSliderById($sl_id);
+
+        return view('secured.slider.edit', $data);
+    }
+
+    /**
      * @param $sl_id
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -175,6 +188,19 @@ class SecuredCommonController extends Controller
         $data = $request->all();
         $file = $request->file('slideImage');
         $sliderModel->saveNewSlide($data, $file);
+        return redirect()->route('securedSlidesPage');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateSlideAPI(Request $request)
+    {
+        $sliderModel = new Slider;
+        $data = $request->all();
+        $file = $request->file('slideImage');
+        $sliderModel->updateSlider($data, $file);
         return redirect()->route('securedSlidesPage');
     }
     ########################################################################
