@@ -88,6 +88,7 @@ Route::group(['middleware' => 'auth'], function() {
         // Slider
         Route::get('/secured/admin/slider', 'Secured\SecuredCommonController@securedSlidesPage')->name('securedSlidesPage');
         Route::get('/secured/admin/slider/add', 'Secured\SecuredCommonController@securedAddSlidePage')->name('securedAddSlidePage');
+        Route::get('/secured/admin/slider/edit/{sl_id}', 'Secured\SecuredCommonController@securedEditSlidePage')->name('securedEditSlidePage');
         Route::get('/secured/admin/slider/remove/{sl_id}', 'Secured\SecuredCommonController@securedRemoveSlide')->name('securedRemoveSlide');
         // News
         Route::get('/secured/admin/news', 'Secured\SecuredCommonController@securedNewsListPage')->name('securedNewsListPage');
@@ -125,6 +126,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/api/v1.0/constructor/init/build/clear', 'Secured\SecuredPartsConstructor@clearConstructorBuilderAPI')->name('clearConstructorBuilderAPI');
         // Slider
         Route::post('/api/v1.0/slider/save', 'Secured\SecuredCommonController@saveNewSlideAPI')->name('saveNewSlideAPI');
+        Route::post('/api/v1.0/slider/update', 'Secured\SecuredCommonController@updateSlideAPI')->name('updateSlideAPI');
         // Pages
         Route::post('/api/v1.0/pages/update', 'Secured\SecuredCommonController@updatePageItemAPI')->name('updatePageItemAPI');
         Route::post('/api/v1.0/pages/home/update', 'Secured\SecuredCommonController@updateHomePageItemAPI')->name('updateHomePageItemAPI');

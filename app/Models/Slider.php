@@ -39,10 +39,42 @@ class Slider extends Model
     {
         return DB::table('slider')->orderBy('sl_order', 'ASC')->get();
     }
+
+    /**
+     * @param $slider
+     * @return mixed
+     */
+    public function getSliderById($slider)
+    {
+        return DB::table('slider')->where('sl_id', $slider)->first();
+    }
     //======================================================================
     // UPDATE
     //======================================================================
-
+    /**
+     * @param $data
+     * @param $file
+     * @return mixed
+     */
+    public function updateSlider($data, $file)
+    {
+        if(isset($file) && $file !== null) {
+            $nodeModel = new Nodes;
+            $saveImage = $nodeModel->proceedNodeImage($file, null, 'slider');
+            return DB::table('slider')->where('sl_id', $data['sliderId'])->update([
+                'sl_order' => $data['positionNumber'],
+                'sl_title' => $data['slideTitle'],
+                'sl_description' => $data['sliderDescription'],
+                'sl_image' => $saveImage,
+            ]);
+        } else {
+            return DB::table('slider')->where('sl_id', $data['sliderId'])->update([
+                'sl_order' => $data['positionNumber'],
+                'sl_title' => $data['slideTitle'],
+                'sl_description' => $data['sliderDescription']
+            ]);
+        }
+    }
     //======================================================================
     // DELETE
     //======================================================================
