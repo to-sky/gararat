@@ -14,6 +14,9 @@ class OrdersController extends Controller
     //======================================================================
     // PAGES
     //======================================================================
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function cartPage()
     {
         $locale = App::getLocale();
@@ -44,6 +47,10 @@ class OrdersController extends Controller
         return view('website.cart.cart-proceed', $data);
     }
 
+    /**
+     * @param $oid
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function cartProceedSuccessPage($oid)
     {
         $locale = App::getLocale();

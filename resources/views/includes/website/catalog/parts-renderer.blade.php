@@ -67,19 +67,31 @@
                                 <!-- /.products__part-image -->
                             </div>
                             <!-- /.col-4 col-lg-3 -->
-                            <div class="col-8 col-lg-9">
+                            <div class="col-12 col-lg-4">
                                 @if(App::isLocale('en'))
                                     <div class="products__part-name">
-                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_en . ' - ' . $product->fig_name_en }} {{ $product->producer_id }}</a>
+                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->producer_id }}</a>
                                     </div>
                                 @else
                                     <div class="products__part-name text-right" style="display: grid;">
-                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_ar . ' - ' . $product->fig_name_ar }} {{ $product->producer_id }}</a>
+                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->producer_id }}</a>
                                     </div>
                                 @endif
                                 <!-- /.products__part-name -->
                             </div>
-                            <!-- /.col-8 col-lg-9 -->
+                            <!-- /.col-12 col-lg-5 -->
+                            <div class="col-12 col-lg-5">
+                                @if(App::isLocale('en'))
+                                    <div class="products__part-name">
+                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_en . ' - ' . $product->fig_name_en }}</a>
+                                    </div>
+                                @else
+                                    <div class="products__part-name text-right" style="display: grid;">
+                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_ar . ' - ' . $product->fig_name_ar }}</a>
+                                    </div>
+                                @endif
+                            </div>
+                            <!-- /.col-12 col-lg-4 -->
                         </div>
                         <!-- /.row -->
                     </div>
