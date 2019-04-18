@@ -20,9 +20,32 @@
                     <!-- /.header__top-search -->
                     <div class="header__top-auth">
                         @if(! Auth::check())
-                            <a href="{{ route('login') }}"><i class="far fa-user"></i> <span>Login</span></a><span>|</span><a href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a href="{{ route('login') }}"><i class="far fa-user"></i>
+                                @if(App::isLocale('en'))
+                                    <span>Login</span>
+                                @else
+                                    <span>تسجيل الدخول</span>
+                                @endif
+                            </a>
+                            <span>|</span>
+                            <a href="{{ route('register') }}">
+                                @if(App::isLocale('en'))
+                                    {{ __('Register') }}
+                                @else
+                                    <span>تسجيل بالموقع</span>
+                                @endif
+                            </a>
                         @else
-                            <a href="#"><i class="far fa-user"></i><!--<span>My account</span></a><span>|</span>--><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span>Logout</span></a>
+                            <a href="#"><i class="far fa-user"></i></a><!--<span>My account</span></a><span>|</span>-->
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <span>
+                                        @if(App::isLocale('en'))
+                                            Logout
+                                        @else
+                                            الخروج
+                                        @endif
+                                    </span>
+                                </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
@@ -64,22 +87,58 @@
                 <div class="header__main-menu">
                     <ul>
                         <li @if(in_array(\Request::route()->getName(), ['homePage'])) class="active" @endif>
-                            <a href="{{ route('homePage') }}">Home</a>
+                            <a href="{{ route('homePage') }}">
+                                @if(App::isLocale('en'))
+                                    Home
+                                @else
+                                    الرئيسية
+                                @endif
+                            </a>
                         </li>
                         <li @if(isset($catalogType) && $catalogType !== null && $catalogType == 0) class="active" @endif>
-                            <a href="{{ route('catalogPage', 1) }}">Equipment</a>
+                            <a href="{{ route('catalogPage', 1) }}">
+                                @if(App::isLocale('en'))
+                                    Equipment
+                                @else
+                                    معدات
+                                @endif
+                            </a>
                         </li>
                         <li @if(isset($catalogType) && $catalogType !== null && $catalogType == 1) class="active" @endif>
-                            <a href="{{ route('catalogPage', 2) }}">Parts</a>
+                            <a href="{{ route('catalogPage', 2) }}">
+                                @if(App::isLocale('en'))
+                                    Parts
+                                @else
+                                    قطع الغيار
+                                @endif
+                            </a>
                         </li>
                         <li @if(in_array(\Request::route()->getName(), ['servicesPage'])) class="active" @endif>
-                            <a href="{{ route('servicesPage') }}">Service</a>
+                            <a href="{{ route('servicesPage') }}">
+                                @if(App::isLocale('en'))
+                                    Service
+                                @else
+                                    الخدمة
+                                @endif
+                            </a>
                         </li>
                         <li @if(in_array(\Request::route()->getName(), ['newsPage'])) class="active" @endif>
-                            <a href="{{ route('newsPage') }}">News</a>
+                            <a href="{{ route('newsPage') }}">
+                                @if(App::isLocale('en'))
+                                    News
+                                @else
+                                    أخبار
+                                @endif
+                            </a>
                         </li>
                         <li @if(in_array(\Request::route()->getName(), ['contactsPage'])) class="active" @endif>
-                            <a href="{{ route('contactsPage') }}">Contact</a>
+                            <a href="{{ route('contactsPage') }}">
+                                @if(App::isLocale('en'))
+                                    Contact
+                                @else
+                                    إتصل بنا
+                                @endif
+                            </a>
                         </li>
                     </ul>
                 </div>

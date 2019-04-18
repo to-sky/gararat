@@ -9,12 +9,21 @@
                     <table id="cartTableRenderer">
                         <thead>
                         <tr>
-                            <th>Image</th>
-                            <th>Product Name</th>
-                            <th>Quantity</th>
-                            <th>Unit Price</th>
-                            <th>Total Price</th>
-                            <th>Delete</th>
+                            @if(App::isLocale('en'))
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
+                                <th>Total Price</th>
+                                <th>Delete</th>
+                            @else
+                                <th>صورة </th>
+                                <th>إسم المنتج </th>
+                                <th>الكمية </th>
+                                <th>سعر الوحدة </th>
+                                <th>السعر الاجمالى </th>
+                                <th>إلغاء </th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody></tbody>
@@ -31,9 +40,21 @@
             <!-- /.cart-page__table -->
             <div class="cart-page__actions">
                 <div class="d-flex justify-content-between">
-                    <a href="{{ route('homePage') }}" class="btn btn-home-page">Return to home page</a>
+                    <a href="{{ route('homePage') }}" class="btn btn-home-page">
+                        @if(App::isLocale('en'))
+                            Return to home page
+                        @else
+                            العودة الى الصفحة الرئيسية
+                        @endif
+                    </a>
                     <!-- /.btn btn-checkout -->
-                    <a href="{{ route('cartProceedPage') }}" class="btn btn-checkout">Continue</a>
+                    <a href="{{ route('cartProceedPage') }}" class="btn btn-checkout">
+                        @if(App::isLocale('en'))
+                            Continue
+                        @else
+                            استمر
+                        @endif
+                    </a>
                     <!-- /.btn btn-checkout -->
                 </div>
                 <!-- /.d-flex justify-content-between -->

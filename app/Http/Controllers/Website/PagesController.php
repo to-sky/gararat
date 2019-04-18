@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Website;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
+use Mail;
 use App;
 
 use \App\Models\Helpers;
@@ -123,8 +124,13 @@ class PagesController extends Controller
     {
         $nodesModel = new Nodes;
         $query = $request->query('q');
+        $locale = App::getLocale();
 
-        $data['pageTitle'] = 'Search results for: ' . $query;
+        if ($locale == 'ar') {
+            $data['pageTitle'] = $query . ' :البحث عن نتائج';
+        } else {
+            $data['pageTitle'] = 'Search results for: ' . $query;
+        }
         $data['searchRequest'] = $query;
         $data['products'] = $nodesModel->getNodesBySearchRequest($query);
         return view('website.search', $data);
@@ -139,6 +145,22 @@ class PagesController extends Controller
     public function langSwitcherPage($lang)
     {
         Session::put('locale', $lang);
+        return redirect()->back();
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function sendContactsMail(Request $request)
+    {
+        $data = $request->all();
+        Mail::raw('Message from ' . $data['name'] . '. Email: ' . $data['email'] . '. Phone: ' . $data['phone'] . '. Message: ' . $data['message'], function($message)
+        {
+            $message->subject('Message From Gararat Contact Form');
+            $message->from(config('mail.from.address'), 'Gararat');
+            $message->to('belmachdata@gmail.com');
+        });
         return redirect()->back();
     }
 }

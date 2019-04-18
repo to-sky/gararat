@@ -46,6 +46,7 @@ Route::group(['middleware' => 'app.locale'], function() {
     Route::get('/api/cart/remove/{userKey}/{cart_node}', 'Website\OrdersController@removeItemFromCart');
     Route::post('/api/cart/actions/add/item', 'Website\OrdersController@addItemToCart');
     Route::post('/api/cart/proceed/action', 'Website\OrdersController@proceedOrderAPI')->name('proceedOrderAPI');
+    Route::post('/api/contacts/mail/send', 'Website\PagesController@sendContactsMail')->name('sendContactsMail');
     ########################################################################
     # Auth routes
     ########################################################################

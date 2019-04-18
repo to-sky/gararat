@@ -3,9 +3,15 @@
         <div class="products__parts-filters">
             <div class="d-flex justify-content-between">
                 <div class="sorting-listing-by">
-                    <span>Sorting listing by:</span>
+                    @if(App::isLocale('en'))
+                        <span>Sorting by:</span>
+                    @endif
                     <a @if($target == 'price') class="active" @endif href="{{ route('catalogPage', ['cid' => $cid, 'target' => 'price', 'dest' => $neededTarget, 'per_page' => $perPage]) }}">
-                        Price
+                        @if(App::isLocale('en'))
+                            Price
+                        @else
+                            السعر
+                        @endif
                         @if($neededTarget == 'ASC')
                             <i class="fas fa-sort-amount-down"></i>
                         @else
@@ -17,13 +23,20 @@
                     @else
                         <a @if($target == 'n_name_ar') class="active" @endif href="{{ route('catalogPage', ['cid' => $cid, 'target' => 'n_name_ar', 'dest' => $neededTarget, 'per_page' => $perPage]) }}">
                     @endif
-                        Name
+                        @if(App::isLocale('en'))
+                            Name
+                        @else
+                            الاسم
+                        @endif
                         @if($neededTarget == 'ASC')
                             <i class="fas fa-sort-alpha-down"></i>
                         @else
                             <i class="fas fa-sort-alpha-up"></i>
                         @endif
                     </a>
+                    @if(!App::isLocale('en'))
+                        <span> :العرض بواسطة</span>
+                    @endif
                 </div>
                 <!-- /.sorting-listing-by -->
                 <div class="show-by">
@@ -54,19 +67,31 @@
                                 <!-- /.products__part-image -->
                             </div>
                             <!-- /.col-4 col-lg-3 -->
-                            <div class="col-8 col-lg-9">
+                            <div class="col-12 col-lg-4">
                                 @if(App::isLocale('en'))
                                     <div class="products__part-name">
-                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_en . ' - ' . $product->fig_name_en }} {{ $product->producer_id }}</a>
+                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->producer_id }}</a>
                                     </div>
                                 @else
                                     <div class="products__part-name text-right" style="display: grid;">
-                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_ar . ' - ' . $product->fig_name_ar }} {{ $product->producer_id }}</a>
+                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->producer_id }}</a>
                                     </div>
                                 @endif
                                 <!-- /.products__part-name -->
                             </div>
-                            <!-- /.col-8 col-lg-9 -->
+                            <!-- /.col-12 col-lg-5 -->
+                            <div class="col-12 col-lg-5">
+                                @if(App::isLocale('en'))
+                                    <div class="products__part-name">
+                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_en . ' - ' . $product->fig_name_en }}</a>
+                                    </div>
+                                @else
+                                    <div class="products__part-name text-right" style="display: grid;">
+                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_ar . ' - ' . $product->fig_name_ar }}</a>
+                                    </div>
+                                @endif
+                            </div>
+                            <!-- /.col-12 col-lg-4 -->
                         </div>
                         <!-- /.row -->
                     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App;
 use DB;
 
 use \App\Models\Orders;
@@ -13,9 +14,17 @@ class OrdersController extends Controller
     //======================================================================
     // PAGES
     //======================================================================
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function cartPage()
     {
-        $data['pageTitle'] = 'Cart';
+        $locale = App::getLocale();
+        if($locale == 'ar') {
+            $data['pageTitle'] = 'عربة التسوق';
+        } else {
+            $data['pageTitle'] = 'Cart';
+        }
         $data['pageDescription'] = 'Description';
 
         return view('website.cart.cart', $data);
@@ -26,16 +35,30 @@ class OrdersController extends Controller
      */
     public function cartProceedPage()
     {
-        $data['pageTitle'] = 'Cart';
+        $locale = App::getLocale();
+        if($locale == 'ar') {
+            $data['pageTitle'] = 'عربة التسوق';
+        } else {
+            $data['pageTitle'] = 'Cart';
+        }
         $data['pageDescription'] = '';
         $data['countries'] = DB::table('countries')->orderBy('country', 'ASC')->get();
 
         return view('website.cart.cart-proceed', $data);
     }
 
+    /**
+     * @param $oid
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function cartProceedSuccessPage($oid)
     {
-        $data['pageTitle'] = 'Order created successfully';
+        $locale = App::getLocale();
+        if($locale == 'ar') {
+            $data['pageTitle'] = 'تم إنشاء الطلب بنجاح';
+        } else {
+            $data['pageTitle'] = 'Order created successfully';
+        }
         $data['pageDescription'] = '';
         $data['oid'] = $oid;
         return view('website.cart.cart-success', $data);

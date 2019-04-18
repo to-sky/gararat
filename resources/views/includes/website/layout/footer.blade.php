@@ -20,22 +20,58 @@
                 <div class="footer__top-menu">
                     <ul>
                         <li @if(in_array(\Request::route()->getName(), ['homePage'])) class="active" @endif>
-                            <a href="{{ route('homePage') }}">Home</a>
+                            <a href="{{ route('homePage') }}">
+                                @if(App::isLocale('en'))
+                                    Home
+                                @else
+                                    الرئيسية
+                                @endif
+                            </a>
                         </li>
                         <li>
-                            <a href="{{ route('catalogPage', 1) }}">Equipment</a>
+                            <a href="{{ route('catalogPage', 1) }}">
+                                @if(App::isLocale('en'))
+                                    Equipment
+                                @else
+                                    معدات
+                                @endif
+                            </a>
                         </li>
                         <li>
-                            <a href="{{ route('catalogPage', 2) }}">Parts</a>
+                            <a href="{{ route('catalogPage', 2) }}">
+                                @if(App::isLocale('en'))
+                                    Parts
+                                @else
+                                    قطع الغيار
+                                @endif
+                            </a>
                         </li>
                         <li>
-                            <a href="{{ route('servicesPage') }}">Service</a>
+                            <a href="{{ route('servicesPage') }}">
+                                @if(App::isLocale('en'))
+                                    Service
+                                @else
+                                    الخدمة
+                                @endif
+                            </a>
                         </li>
                         <li>
-                            <a href="{{ route('newsPage') }}">News</a>
+                            <a href="{{ route('newsPage') }}">
+                                @if(App::isLocale('en'))
+                                    News
+                                @else
+                                    أخبار
+                                @endif
+                            </a>
                         </li>
                         <li>
-                            <a href="{{ route('contactsPage') }}">Contact</a>
+                            <a href="{{ route('contactsPage') }}">
+                                @if(App::isLocale('en'))
+                                    Contact
+                                @else
+                                    إتصل بنا
+                                @endif
+                            </a>
                         </li>
                     </ul>
                 </div>

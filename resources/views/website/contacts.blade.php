@@ -24,7 +24,7 @@
                             اتصل بنا
                         @endif
                     </h3>
-                    <form action="" method="post">
+                    <form action="{{ route('sendContactsMail') }}" method="post" autocomplete="off">
                         @csrf
                         <div class="form-group row">
                             <div class="col-12">

@@ -12,14 +12,21 @@ function scrollToAnchor(aid, stock) {
     // Collapsible rows
     $(document).on('click', '.collapsible-row-activator', function(e) {
         e.preventDefault();
+        let lang = $('select#lang').val(),
+            toOrder = 'to order',
+            collapse = 'Collapse';
+        if(lang == 'ar') {
+            toOrder = 'الطلب ';
+            collapse = 'إغلاق ';
+        }
         $('.drawing__nodes table tr').removeClass('hovered');
         let getTarget = $(this).data('target');
         if($('#' + getTarget).is(':visible')) {
-            $(this).removeClass('colps').html('to order');
+            $(this).removeClass('colps').html(toOrder);
             $('#' + getTarget).slideUp(150);
         } else {
             $(this).parent().parent().addClass('hovered');
-            $(this).addClass('colps').html('Collapse <i class="fas fa-angle-up"></i>');
+            $(this).addClass('colps').html(collapse + ' <i class="fas fa-angle-up"></i>');
             $('#' + getTarget).slideDown(150);
         }
     });
