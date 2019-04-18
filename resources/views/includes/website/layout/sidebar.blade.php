@@ -1,8 +1,12 @@
 <div class="sidebar">
-    <h3>{{ $pageTitle }} Catalog</h3>
+    <h3>{{ $pageTitle }} فهرس </h3>
     @if($currentCatalog->parent_cat != 0)
         <div class="sidebar__back">
-            <a href="{{ route('catalogPage', $parentCatalog->cid) }}"><i class="fas fa-arrow-left"></i> Return to {{ $parentCatalog->cat_name_en }}</a>
+            @if(App::isLocale('en'))
+                <a href="{{ route('catalogPage', $parentCatalog->cid) }}"><i class="fas fa-arrow-left"></i> Return to  {{ $parentCatalog->cat_name_en }}</a>
+            @else
+                <a href="{{ route('catalogPage', $parentCatalog->cid) }}"><i class="fas fa-arrow-left"></i>  {{ $parentCatalog->cat_name_en }} العودة إلى </a>
+            @endif
         </div>
         <!-- /.sidebar__back -->
     @endif
@@ -13,7 +17,13 @@
                     <li><a href="{{ route('catalogPage', $child->cid) }}">{{ $child->cat_name_en }}</a></li>
                 @endforeach
             @else
-                <li><a href="{{ route('catalogPage', $parentCatalog->cid) }}"><i class="fas fa-arrow-left"></i> Return to {{ $parentCatalog->cat_name_en }}</a></li>
+                <li>
+                    @if(App::isLocale('en'))
+                        <a href="{{ route('catalogPage', $parentCatalog->cid) }}"><i class="fas fa-arrow-left"></i> Return to  {{ $parentCatalog->cat_name_en }}</a>
+                    @else
+                        <a href="{{ route('catalogPage', $parentCatalog->cid) }}"><i class="fas fa-arrow-left"></i>  {{ $parentCatalog->cat_name_en }} العودة إلى </a>
+                    @endif
+                </li>
             @endif
         </ul>
     @endif

@@ -3,9 +3,15 @@
         <div class="products__parts-filters">
             <div class="d-flex justify-content-between">
                 <div class="sorting-listing-by">
-                    <span>Sorting listing by:</span>
+                    @if(App::isLocale('en'))
+                        <span>Sorting by:</span>
+                    @endif
                     <a @if($target == 'price') class="active" @endif href="{{ route('catalogPage', ['cid' => $cid, 'target' => 'price', 'dest' => $neededTarget, 'per_page' => $perPage]) }}">
-                        Price
+                        @if(App::isLocale('en'))
+                            Price
+                        @else
+                            السعر
+                        @endif
                         @if($neededTarget == 'ASC')
                             <i class="fas fa-sort-amount-down"></i>
                         @else
@@ -17,13 +23,20 @@
                     @else
                         <a @if($target == 'n_name_ar') class="active" @endif href="{{ route('catalogPage', ['cid' => $cid, 'target' => 'n_name_ar', 'dest' => $neededTarget, 'per_page' => $perPage]) }}">
                     @endif
-                        Name
+                        @if(App::isLocale('en'))
+                            Name
+                        @else
+                            الاسم
+                        @endif
                         @if($neededTarget == 'ASC')
                             <i class="fas fa-sort-alpha-down"></i>
                         @else
                             <i class="fas fa-sort-alpha-up"></i>
                         @endif
                     </a>
+                    @if(!App::isLocale('en'))
+                        <span> :العرض بواسطة</span>
+                    @endif
                 </div>
                 <!-- /.sorting-listing-by -->
                 <div class="show-by">

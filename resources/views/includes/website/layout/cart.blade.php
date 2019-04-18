@@ -3,32 +3,27 @@
         <div class="d-flex justify-content-between">
             <div class="cart__item-count">
                 <i class="fas fa-shopping-cart"></i>
-                <span id="cartItems">0</span> item(-s)
+                @if(App::isLocale('en'))
+                    <span id="cartItems">0</span> item(-s)
+                @else
+                    <span id="cartItems">0</span> البند
+                @endif
             </div>
             <!-- /.cart__item-count -->
-            <div class="cart__upload-document">
-                <i class="fas fa-file-upload"></i>
-                <span>Upload file</span>
-            </div>
-            <!-- /.cart__upload-document -->
-        </div>
-        <!-- /.d-flex justify-content-between -->
-    </div>
-    <!-- /.cart__top -->
-    <div class="cart_bottom">
-        <div class="d-flex justify-content-between">
-            <div class="cart__price">
-                <!-- $<span id="cartPrice">0</span> -->
-            </div>
-            <!-- /.cart__price -->
             <div class="cart__checkout">
-                <a href="{{ route('cartPage') }}" class="shadow-sm btn btn-checkout">Checkout</a>
+                <a href="{{ route('cartPage') }}" class="shadow-sm btn btn-checkout">
+                    @if(App::isLocale('en'))
+                        Checkout
+                    @else
+                        الدفع
+                    @endif
+                </a>
                 <!-- /.btn btn-checkout -->
             </div>
             <!-- /.cart__checkout -->
         </div>
         <!-- /.d-flex justify-content-between -->
     </div>
-    <!-- /.cart_bottom -->
+    <!-- /.cart__top -->
 </div>
 <!-- /.cart -->

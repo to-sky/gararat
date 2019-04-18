@@ -12,10 +12,17 @@
                             <table id="cartProceedTableRenderer">
                                 <thead>
                                 <tr>
-                                    <th>Image</th>
-                                    <th>Product Name</th>
-                                    <th>Quantity</th>
-                                    <th>Total Price</th>
+                                    @if(App::isLocale('en'))
+                                        <th>Image</th>
+                                        <th>Product Name</th>
+                                        <th>Quantity</th>
+                                        <th>Total Price</th>
+                                    @else
+                                        <th>صورة </th>
+                                        <th>إسم المنتج </th>
+                                        <th>الكمية </th>
+                                        <th>السعر الاجمالى </th>
+                                    @endif
                                 </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -27,12 +34,24 @@
                     <div class="col-12 col-lg-12">
                         <div class="form-group row">
                             <div class="col-12 col-lg-6">
-                                <label for="firstName">First Name*</label>
+                                <label for="firstName">
+                                    @if(App::isLocale('en'))
+                                        First Name*
+                                    @else
+                                        الاسم الاول
+                                    @endif
+                                </label>
                                 <input type="text" name="firstName" id="firstName" required>
                             </div>
                             <!-- /.col-12 col-lg-6 -->
                             <div class="col-12 col-lg-6">
-                                <label for="lastName">First Name*</label>
+                                <label for="lastName">
+                                    @if(App::isLocale('en'))
+                                        Last Name*
+                                    @else
+                                        الكنية
+                                    @endif
+                                </label>
                                 <input type="text" name="lastName" id="lastName" required>
                             </div>
                             <!-- /.col-12 col-lg-6 -->
@@ -42,7 +61,13 @@
                             @if(!Auth::check())
                                 <div class="col-12 col-lg-6">
                                     <input type="hidden" name="uid" value="guest">
-                                    <label for="orderEmail">Email*</label>
+                                    <label for="orderEmail">
+                                        @if(App::isLocale('en'))
+                                            Email*
+                                        @else
+                                            البريد الاليكترونى
+                                        @endif
+                                    </label>
                                     <input type="email" name="orderEmail" id="orderEmail" required>
                                 </div>
                             @else
@@ -55,14 +80,26 @@
                             @endif
                             <!-- /.col-12 col-lg-6 -->
                             <div class="col-12 @if(!Auth::check()) col-lg-6 @endif">
-                                <label for="orderPhone">Phone*</label>
+                                <label for="orderPhone">
+                                    @if(App::isLocale('en'))
+                                        Phone*
+                                    @else
+                                        رقم الهاتف
+                                    @endif
+                                </label>
                                 <input type="text" name="orderPhone" id="orderPhone" required>
                             </div>
                             <!-- /.col-12 col-lg-6 -->
                         </div>
                         <div class="form-group row">
                             <div class="col-12 col-lg-6">
-                                <label for="orderCountry">Country*</label>
+                                <label for="orderCountry">
+                                    @if(App::isLocale('en'))
+                                        Country*
+                                    @else
+                                        الدولة
+                                    @endif
+                                </label>
                                 <select name="orderCountry" id="orderCountry" autocomplete="off">
                                     @foreach($countries as $country)
                                         <option @if($country->country == 'Egypt') selected @endif value="{{ $country->country }}">{{ $country->country }}</option>
@@ -71,7 +108,13 @@
                             </div>
                             <!-- /.col-12 col-lg-6 -->
                             <div class="col-12 col-lg-6">
-                                <label for="orderCity">City</label>
+                                <label for="orderCity">
+                                    @if(App::isLocale('en'))
+                                        City
+                                    @else
+                                        المدينة
+                                    @endif
+                                </label>
                                 <input type="text" name="orderCity" id="orderCity">
                             </div>
                             <!-- /.col-12 col-lg-6 -->
@@ -79,12 +122,24 @@
                         <!-- /.form-group row -->
                         <div class="form-group row">
                             <div class="col-12 col-lg-9">
-                                <label for="orderAddress">Address</label>
+                                <label for="orderAddress">
+                                    @if(App::isLocale('en'))
+                                        Address
+                                    @else
+                                        العنوان
+                                    @endif
+                                </label>
                                 <input type="text" name="orderAddress" id="orderAddress">
                             </div>
                             <!-- /.col-12 col-lg-9 -->
                             <div class="col-12 col-lg-3">
-                                <label for="orderPost">Post Code</label>
+                                <label for="orderPost">
+                                    @if(App::isLocale('en'))
+                                        Post Code
+                                    @else
+                                        الرقم البريدى
+                                    @endif
+                                </label>
                                 <input type="text" name="orderPost" id="orderPost">
                             </div>
                             <!-- /.col-12 col-lg-3 -->
@@ -92,7 +147,13 @@
                         <!-- /.form-group row -->
                         <div class="form-group row">
                             <div class="col-12">
-                                <label for="orderComment">Comment</label>
+                                <label for="orderComment">
+                                    @if(App::isLocale('en'))
+                                        Comment
+                                    @else
+                                        تعليقات
+                                    @endif
+                                </label>
                                 <textarea name="orderComment" id="orderComment"></textarea>
                             </div>
                             <!-- /.col-12 -->
@@ -111,9 +172,21 @@
                         <!-- /.total-price -->
                         <div class="cart-page__actions">
                             <div class="d-flex justify-content-between">
-                                <a href="{{ route('cartPage') }}" class="btn btn-home-page">Return to cart</a>
+                                <a href="{{ route('cartPage') }}" class="btn btn-home-page">
+                                    @if(App::isLocale('en'))
+                                        Return to cart
+                                    @else
+                                        العودة إلى السلة
+                                    @endif
+                                </a>
                                 <!-- /.btn btn-checkout -->
-                                <button class="btn btn-checkout" type="submit">Checkout</button>
+                                <button class="btn btn-checkout" type="submit">
+                                    @if(App::isLocale('en'))
+                                        Checkout
+                                    @else
+                                        الدفع
+                                    @endif
+                                </button>
                                 <!-- /.btn btn-checkout -->
                             </div>
                             <!-- /.d-flex justify-content-between -->

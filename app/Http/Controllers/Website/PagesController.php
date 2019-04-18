@@ -123,8 +123,13 @@ class PagesController extends Controller
     {
         $nodesModel = new Nodes;
         $query = $request->query('q');
+        $locale = App::getLocale();
 
-        $data['pageTitle'] = 'Search results for: ' . $query;
+        if ($locale == 'ar') {
+            $data['pageTitle'] = $query . ' :البحث عن نتائج';
+        } else {
+            $data['pageTitle'] = 'Search results for: ' . $query;
+        }
         $data['searchRequest'] = $query;
         $data['products'] = $nodesModel->getNodesBySearchRequest($query);
         return view('website.search', $data);

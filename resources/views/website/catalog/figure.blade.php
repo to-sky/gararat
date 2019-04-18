@@ -26,11 +26,19 @@
                             <table>
                                 <thead>
                                 <tr>
-                                    <th>Pos. #</th>
-                                    <th>Assembly unit or part number</th>
-                                    <th>Q-ty</th>
-                                    <th>Description</th>
-                                    <th>Order</th>
+                                    @if(App::isLocale('en'))
+                                        <th>Pos. #</th>
+                                        <th>Assembly unit or part number</th>
+                                        <th>Q-ty</th>
+                                        <th>Description</th>
+                                        <th>Order</th>
+                                    @else
+                                        <th>رقم القطعة بالصورة </th>
+                                        <th>رقم القطعة </th>
+                                        <th>الكمية </th>
+                                        <th>الوصف </th>
+                                        <th>الطلب </th>
+                                    @endif
                                 </tr>
                                 </thead>
                                 <tbody>
