@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a53de099-90a2-4e6f-9913-6b52edeefe05" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Website/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Website/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Website/PagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Website/PagesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/website/contacts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/contacts.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/website/catalog/figure.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/catalog/figure.blade.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/react-laravel/node_modules/" />
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
@@ -112,11 +107,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="654">
-              <caret line="88" column="103" lean-forward="true" selection-start-line="88" selection-start-column="103" selection-end-line="88" selection-end-column="103" />
+            <state relative-caret-position="610">
+              <caret line="114" column="48" selection-start-line="114" selection-start-column="48" selection-end-line="114" selection-end-column="197" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/website/catalog/figure.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="616">
+              <caret line="105" column="217" selection-start-line="105" selection-start-column="217" selection-end-line="105" selection-end-column="217" />
             </state>
           </provider>
         </entry>
@@ -182,7 +186,6 @@
         <option value="$PROJECT_DIR$/resources/views/includes/website/layout/cart.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/includes/website/layout/footer.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/includes/website/layout/sidebar.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/website/catalog/figure.blade.php" />
         <option value="$PROJECT_DIR$/resources/js/figures/frontend-fogure.js" />
         <option value="$PROJECT_DIR$/resources/views/website/cart/cart.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/website/cart/cart-proceed.blade.php" />
@@ -197,6 +200,7 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Website/PagesController.php" />
         <option value="$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/website/catalog/figure.blade.php" />
       </list>
     </option>
   </component>
@@ -309,6 +313,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -449,7 +454,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -523,14 +527,8 @@
       <workItem from="1555328785092" duration="1508000" />
       <workItem from="1555398028380" duration="1128000" />
       <workItem from="1555413899670" duration="872000" />
-      <workItem from="1555558649555" duration="5860000" />
-    </task>
-    <task id="LOCAL-00087" summary="Catalog BETA 3">
-      <created>1553073731815</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1553073731816</updated>
+      <workItem from="1555558649555" duration="5888000" />
+      <workItem from="1555656970726" duration="138000" />
     </task>
     <task id="LOCAL-00088" summary="Catalog BETA 3.1">
       <created>1553074423554</created>
@@ -868,11 +866,18 @@
       <option name="project" value="LOCAL" />
       <updated>1555561585604</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="Mail and catalog">
+      <created>1555568151312</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1555568151312</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208197000" />
+    <option name="totallyTimeSpent" value="208363000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="47" y="25" width="1873" height="1055" extended-state="6" />
@@ -880,7 +885,7 @@
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.24794745" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.25068417" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
@@ -906,7 +911,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="New Logos" />
     <MESSAGE value="New Logos 2" />
     <MESSAGE value="New Logos 3" />
     <MESSAGE value="Fixed 56" />
@@ -931,7 +935,8 @@
     <MESSAGE value="Fix Prices View" />
     <MESSAGE value="Translations" />
     <MESSAGE value="Extend Editor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Extend Editor" />
+    <MESSAGE value="Mail and catalog" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mail and catalog" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/website/news/list.blade.php">
@@ -1158,13 +1163,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/website/catalog/figure.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-197">
-          <caret line="39" column="50" selection-start-line="39" selection-start-column="50" selection-end-line="39" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/includes/website/layout/sidebar.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -1292,8 +1290,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/includes/website/catalog/parts-renderer.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="654">
-          <caret line="88" column="103" lean-forward="true" selection-start-line="88" selection-start-column="103" selection-end-line="88" selection-end-column="103" />
+        <state relative-caret-position="610">
+          <caret line="114" column="48" selection-start-line="114" selection-start-column="48" selection-end-line="114" selection-end-column="197" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/website/catalog/figure.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="105" column="217" selection-start-line="105" selection-start-column="217" selection-end-line="105" selection-end-column="217" />
         </state>
       </provider>
     </entry>
