@@ -100,10 +100,10 @@
                                                         <div class="products__part-cart-price">
                                                             @if($node->price > 0)
                                                                 @if($node->special_price !== NULL && $node->special_price != 0)
-                                                                    <span class="old">@if(!App::isLocale('en')) جنيه @endif{{ number_format($product->price, 2, '.', '') }} @if(App::isLocale('en')) LE @endif</span>
-                                                                    <span class="current">@if(!App::isLocale('en')) جنيه @endif{{ number_format($product->special_price, 2, '.', '') }} @if(App::isLocale('en')) LE @endif</span>
+                                                                    <span class="old">@if(!App::isLocale('en')) جنيه @endif{{ number_format($node->price, 2, '.', '') }} @if(App::isLocale('en')) LE @endif</span>
+                                                                    <span class="current">@if(!App::isLocale('en')) جنيه @endif{{ number_format($node->special_price, 2, '.', '') }} @if(App::isLocale('en')) LE @endif</span>
                                                                 @else
-                                                                    <span class="current">@if(!App::isLocale('en')) جنيه @endif{{ number_format($product->price, 2, '.', '') }} @if(App::isLocale('en')) LE @endif</span>
+                                                                    <span class="current">@if(!App::isLocale('en')) جنيه @endif{{ number_format($node->price, 2, '.', '') }} @if(App::isLocale('en')) LE @endif</span>
                                                                 @endif
                                                             @else
                                                                 <span class="current">
