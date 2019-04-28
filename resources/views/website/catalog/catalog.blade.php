@@ -11,7 +11,7 @@
         <div class="text-right">{!! $page->pg_body_ar !!}</div>
     @endif
     <div class="products">
-        <div class="row">
+        <div class="row @if($catalogView !== 1 && $catalogType == 0 && !App::isLocale('en')) flex-row-reverse @endif">
             @if($catalogView === 1)
                 @include('includes.website.catalog.childs-renderer')
             @else

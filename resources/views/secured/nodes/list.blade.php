@@ -11,6 +11,9 @@
                             <th>#</th>
                             <th>Image</th>
                             <th>Name</th>
+                            @if($product_type == 1)
+                                <th>Producer ID</th>
+                            @endif
                             <th>Price</th>
                             <th>In Stock?</th>
                             <th>Actions</th>
@@ -25,7 +28,10 @@
                                 @else
                                     <td><img src="{{ asset('assets/logos/logo.jpg') }}" height="26"></td>
                                 @endif
-                                <td>{{ $product->n_name_en }}</td>
+                                <td style="width: 45%;">{{ $product->n_name_en }}</td>
+                                @if($product_type == 1)
+                                    <td>{{ $product->producer_id }}</td>
+                                @endif
                                 <td>
                                     @if($product->is_special != 0)
                                         {{ number_format($product->special_price, 2, '.', ' ') }} <small><s>{{ number_format($product->price, 2, '.', ' ') }}</s></small>

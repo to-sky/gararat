@@ -18,62 +18,121 @@
             <!-- /.col-12 col-md-6 col-lg-3 -->
             <div class="col-12 col-md-6 col-lg-9">
                 <div class="footer__top-menu">
-                    <ul>
-                        <li @if(in_array(\Request::route()->getName(), ['homePage'])) class="active" @endif>
-                            <a href="{{ route('homePage') }}">
-                                @if(App::isLocale('en'))
-                                    Home
-                                @else
-                                    الرئيسية
-                                @endif
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('catalogPage', 1) }}">
-                                @if(App::isLocale('en'))
-                                    Equipment
-                                @else
-                                    معدات
-                                @endif
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('catalogPage', 2) }}">
-                                @if(App::isLocale('en'))
-                                    Parts
-                                @else
-                                    قطع الغيار
-                                @endif
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('servicesPage') }}">
-                                @if(App::isLocale('en'))
-                                    Service
-                                @else
-                                    الخدمة
-                                @endif
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('newsPage') }}">
-                                @if(App::isLocale('en'))
-                                    News
-                                @else
-                                    أخبار
-                                @endif
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('contactsPage') }}">
-                                @if(App::isLocale('en'))
-                                    Contact
-                                @else
-                                    إتصل بنا
-                                @endif
-                            </a>
-                        </li>
-                    </ul>
+                    @if(App::isLocale('en'))
+                        <ul>
+                            <li @if(in_array(\Request::route()->getName(), ['homePage'])) class="active" @endif>
+                                <a href="{{ route('homePage') }}">
+                                    @if(App::isLocale('en'))
+                                        Home
+                                    @else
+                                        الرئيسية
+                                    @endif
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('catalogPage', 1) }}">
+                                    @if(App::isLocale('en'))
+                                        Equipment
+                                    @else
+                                        معدات
+                                    @endif
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('catalogPage', 2) }}">
+                                    @if(App::isLocale('en'))
+                                        Parts
+                                    @else
+                                        قطع الغيار
+                                    @endif
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('servicesPage') }}">
+                                    @if(App::isLocale('en'))
+                                        Service
+                                    @else
+                                        الخدمة
+                                    @endif
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('newsPage') }}">
+                                    @if(App::isLocale('en'))
+                                        News
+                                    @else
+                                        أخبار
+                                    @endif
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('contactsPage') }}">
+                                    @if(App::isLocale('en'))
+                                        Contact
+                                    @else
+                                        إتصل بنا
+                                    @endif
+                                </a>
+                            </li>
+                        </ul>
+                    @else
+                        <ul>
+                            <li>
+                                <a href="{{ route('contactsPage') }}">
+                                    @if(App::isLocale('en'))
+                                        Contact
+                                    @else
+                                        إتصل بنا
+                                    @endif
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('newsPage') }}">
+                                    @if(App::isLocale('en'))
+                                        News
+                                    @else
+                                        أخبار
+                                    @endif
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('servicesPage') }}">
+                                    @if(App::isLocale('en'))
+                                        Service
+                                    @else
+                                        الخدمة
+                                    @endif
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('catalogPage', 2) }}">
+                                    @if(App::isLocale('en'))
+                                        Parts
+                                    @else
+                                        قطع الغيار
+                                    @endif
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('catalogPage', 1) }}">
+                                    @if(App::isLocale('en'))
+                                        Equipment
+                                    @else
+                                        معدات
+                                    @endif
+                                </a>
+                            </li>
+                            <li @if(in_array(\Request::route()->getName(), ['homePage'])) class="active" @endif>
+                                <a href="{{ route('homePage') }}">
+                                    @if(App::isLocale('en'))
+                                        Home
+                                    @else
+                                        الرئيسية
+                                    @endif
+                                </a>
+                            </li>
+                        </ul>
+                    @endif
                 </div>
                 <!-- /.footer__top-menu -->
                 <div class="text-right footer__top-phone">

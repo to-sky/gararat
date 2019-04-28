@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
+use App;
 use Hash;
 use DB;
 
@@ -196,6 +197,7 @@ class Orders extends Model
 
     public function getCartTableData($userKey)
     {
+        $locale = App::getLocale();
         $return = '';
         $getCart = DB::table('cart')
             ->where('cart.user_key', $userKey)
@@ -231,8 +233,13 @@ class Orders extends Model
                         $unitPrice = (int)$item->price;
                         break;
                 }
-                $priceTotal = '$' . $priceTotal;
-                $unitPrice = '$' . $unitPrice;
+                if($locale === 'en') {
+                    $priceTotal = $priceTotal . ' LE';
+                    $unitPrice = $unitPrice . ' LE';
+                } else {
+                    $priceTotal = 'جنيه ' . $priceTotal;
+                    $unitPrice = ' جنيه ' . $unitPrice;
+                }
             }
             // Return
             $return .= '<tr>';
@@ -249,6 +256,7 @@ class Orders extends Model
 
     public function getCartProceedTableData($userKey)
     {
+        $locale = App::getLocale();
         $return = '';
         $return .= '<input type="hidden" name="userKey" value="' . $userKey . '" />';
         $getCart = DB::table('cart')
@@ -281,14 +289,18 @@ class Orders extends Model
                         $priceTotal = ((int)$item->price * (int)$item->order_qty);
                         break;
                 }
-                $priceTotal = '$' . $priceTotal;
+                if($locale === 'en') {
+                    $priceTotal = $priceTotal . ' LE';
+                } else {
+                    $priceTotal = 'جنيه ' . $priceTotal;
+                }
             }
             // Return
             $return .= '<tr>';
             $return .= '<td><a href="/node/' . $item->nid . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_en . '" width="50" /></a></td>';
             $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->n_name_en . '</a></td>';
             $return .= '<td>' . $item->order_qty . '</td>';
-            $return .= '<td>' . $priceTotal . '</td>';
+            $return .= '<td style="width: 15%;">' . $priceTotal . '</td>';
             $return .= '</tr>';
         }
         return $return;

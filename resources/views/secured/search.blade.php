@@ -25,7 +25,12 @@
                             @else
                                 <td><img src="{{ asset('assets/logos/logo.jpg') }}" height="26"></td>
                             @endif
-                            <td>{{ $product->n_name_en }}</td>
+                            <td>
+                                {{ $product->n_name_en }}
+                                @if(isset($product->producer_id) && $product->producer_id !== null)
+                                    <strong>Producer ID: {{ $product->producer_id }}</strong>
+                                @endif
+                            </td>
                             <td>
                                 @if($product->is_special != 0)
                                     {{ number_format($product->special_price, 2, '.', ' ') }} <small><s>{{ number_format($product->price, 2, '.', ' ') }}</s></small>
