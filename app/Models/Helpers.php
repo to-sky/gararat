@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
+use App;
 
 use \App\Models\Catalog;
 
@@ -134,22 +135,39 @@ class Helpers extends Model
      */
     public function buildCatalogBreadcrumbs($currentCatalog, $hasLast)
     {
+        $locale = App::getLocale();
         $catalogModel = new Catalog;
         $breadcrumbsArray = [];
-        if($hasLast === TRUE) {
-            $breadcrumbsArray[] = array('name' => $currentCatalog->cat_name_en, 'route' => 'catalogPage', 'param' => $currentCatalog->cid);
+        if($locale === 'en') {
+            if($hasLast === TRUE) {
+                $breadcrumbsArray[] = array('name' => $currentCatalog->cat_name_en, 'route' => 'catalogPage', 'param' => $currentCatalog->cid);
+            } else {
+                $breadcrumbsArray[] = array('name' => $currentCatalog->cat_name_en, 'route' => NULL, 'param' => $currentCatalog->cid);
+            }
         } else {
-            $breadcrumbsArray[] = array('name' => $currentCatalog->cat_name_en, 'route' => NULL, 'param' => $currentCatalog->cid);
+            if($hasLast === TRUE) {
+                $breadcrumbsArray[] = array('name' => $currentCatalog->cat_name_ar, 'route' => 'catalogPage', 'param' => $currentCatalog->cid);
+            } else {
+                $breadcrumbsArray[] = array('name' => $currentCatalog->cat_name_ar, 'route' => NULL, 'param' => $currentCatalog->cid);
+            }
         }
         $parentCat = $currentCatalog->parent_cat;
         if($parentCat > 0) {
             while($parentCat > 0) {
                 $getCatalog = $catalogModel->getCatalogParent($parentCat);
-                $breadcrumbsArray[] = array('name' => $getCatalog->cat_name_en, 'route' => 'catalogPage', 'param' => $getCatalog->cid);
+                if($locale === 'en') {
+                    $breadcrumbsArray[] = array('name' => $getCatalog->cat_name_en, 'route' => 'catalogPage', 'param' => $getCatalog->cid);
+                } else {
+                    $breadcrumbsArray[] = array('name' => $getCatalog->cat_name_ar, 'route' => 'catalogPage', 'param' => $getCatalog->cid);
+                }
                 $parentCat = $getCatalog->parent_cat;
             }
         }
-        $breadcrumbsArray[] = array('name' => 'Home', 'route' => 'homePage', 'param' => NULL);
+        if($locale === 'en') {
+            $breadcrumbsArray[] = array('name' => 'Home', 'route' => 'homePage', 'param' => NULL);
+        } else {
+            $breadcrumbsArray[] = array('name' => 'الرئيسية', 'route' => 'homePage', 'param' => NULL);
+        }
 
         return array_reverse($breadcrumbsArray);
     }

@@ -11,17 +11,19 @@
         <div class="text-right">{!! $page->pg_body_ar !!}</div>
     @endif
     <div class="products">
-        <div class="row @if($catalogView !== 1 && $catalogType == 0 && !App::isLocale('en')) flex-row-reverse @endif">
-            @if($catalogView === 1)
+        @if($catalogView === 1)
+            <div class="row @if(!App::isLocale('en')) flex-row-reverse @endif">
                 @include('includes.website.catalog.childs-renderer')
-            @else
+            </div>
+        @else
+            <div class="row @if($catalogView !== 1 && $catalogType == 0 && !App::isLocale('en')) flex-row-reverse @endif">
                 @if($catalogType == 0)
                     @include('includes.website.catalog.equipment-renderer')
                 @else
                     @include('includes.website.catalog.parts-renderer', ['hideFilters' => false])
                 @endif
-            @endif
-        </div>
+            </div>
+        @endif
         <!-- /.row -->
     </div>
     <!-- /.products -->

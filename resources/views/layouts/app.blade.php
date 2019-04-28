@@ -53,7 +53,7 @@
                         <div class="col-12 col-lg-9">
                             <div class="breadcrumbs">
                                 @if(isset($breadcrumbs) && $breadcrumbs !== NULL)
-                                    <ul>
+                                    <ul @if(!App::isLocale('en')) class="flex-row-reverse" @endif>
                                         @foreach($breadcrumbs as $breadcrumb)
                                             @if($breadcrumb['route'] !== NULL)
                                                 <li><a href="{{ route($breadcrumb['route'], $breadcrumb['param']) }}">{{ $breadcrumb['name'] }}</a></li>

@@ -7020,6 +7020,30 @@ b {
   color: #616161;
 }
 
+.breadcrumbs ul.flex-row-reverse li:before {
+  content: "\F053";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1rem;
+  display: inline-block;
+  padding-right: 8px;
+  color: #6c757d;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.breadcrumbs ul.flex-row-reverse li:first-child {
+  padding-left: 8px;
+}
+
+.breadcrumbs ul.flex-row-reverse li:last-child:before {
+  display: none;
+}
+
 .pagination__wrapper .pagination {
   display: flex;
   padding-left: 0;
