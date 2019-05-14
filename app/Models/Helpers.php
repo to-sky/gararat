@@ -92,6 +92,7 @@ class Helpers extends Model
      */
     public function buildFrontendPartsCatalogMenu($currentCid, $array, $parent)
     {
+        $locale = App::getLocale();
         $catalogModel = new Catalog;
         $result = '';
         foreach($array as $key => $value) {
@@ -110,7 +111,11 @@ class Helpers extends Model
                 }
                 // <i class="fas fa-chevron-right"></i>
                 $result .= '<li class="' . $expanded . ' ' . $activeMenu . '">' . "\n";
-                $result .= '<a href="/catalog/' . $value['cid'] . '"><span class="menu__name">' . $value['cat_name_en'] . '</span>';
+                if($locale === 'en') {
+                    $result .= '<a href="/catalog/' . $value['cid'] . '"><span class="menu__name">' . $value['cat_name_en'] . '</span>';
+                } else {
+                    $result .= '<a href="/catalog/' . $value['cid'] . '"><span class="menu__name">' . $value['cat_name_ar'] . '</span>';
+                }
                 if(count($getClilds) !== 0) {
                     $result .= '<span class="menu_dropdown"><i class="fas fa-chevron-right"></i></span>';
                 }
