@@ -110,11 +110,21 @@ class CatalogController extends Controller
         $nodesModel = new Nodes;
         $figuresModel = new Figures;
 
+        $locale = App::getLocale();
+
         $getCatalogByCid = $catalogModel->getCatalogByCid($cid);
-        if($getCatalogByCid->cat_title_en === NULL) {
-            $data['pageTitle'] = $getCatalogByCid->cat_name_en;
+        if($locale === 'en') {
+            if($getCatalogByCid->cat_title_en === NULL) {
+                $data['pageTitle'] = $getCatalogByCid->cat_name_en;
+            } else {
+                $data['pageTitle'] = $getCatalogByCid->cat_title_en;
+            }
         } else {
-            $data['pageTitle'] = $getCatalogByCid->cat_title_en;
+            if($getCatalogByCid->cat_title_en === NULL) {
+                $data['pageTitle'] = $getCatalogByCid->cat_name_ar;
+            } else {
+                $data['pageTitle'] = $getCatalogByCid->cat_title_ar;
+            }
         }
         $data['cid'] = $cid;
         $data['currentCatalog'] = $getCatalogByCid;

@@ -18,39 +18,7 @@
                         </form>
                     </div>
                     <!-- /.header__top-search -->
-                    <div class="header__top-auth">
-                        @if(! Auth::check())
-                            <a href="{{ route('login') }}#top"><i class="far fa-user"></i>
-                                @if(App::isLocale('en'))
-                                    <span>Login</span>
-                                @else
-                                    <span>تسجيل الدخول</span>
-                                @endif
-                            </a>
-                            <span>|</span>
-                            <a href="{{ route('register') }}#top">
-                                @if(App::isLocale('en'))
-                                    {{ __('Register') }}
-                                @else
-                                    <span>تسجيل بالموقع</span>
-                                @endif
-                            </a>
-                        @else
-                            <a href="#"><i class="far fa-user"></i></a><!--<span>My account</span></a><span>|</span>-->
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <span>
-                                        @if(App::isLocale('en'))
-                                            Logout
-                                        @else
-                                            الخروج
-                                        @endif
-                                    </span>
-                                </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        @endif
-                    </div>
+
                     <!-- /.header__top-auth -->
                     <div class="header__top-lang" id="changeLangHandler">
                         <select name="lang" id="lang" autocomplete="off">
