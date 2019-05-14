@@ -37,7 +37,7 @@
     <meta name="msapplication-TileColor" content="#191a1c">
     <meta name="theme-color" content="#191a1c">
 </head>
-    <body>
+    <body id="top">
         <header class="header">
             @include('includes.website.layout.header')
         </header>
