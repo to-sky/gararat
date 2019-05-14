@@ -2,7 +2,11 @@
 
 @section('content')
     <div class="container">
-        <h1 class="page-title">{{ $catalogName }} for {{ $parentCatalog->cat_name_en }}</h1>
+        @if(App::isLocale('en'))
+            <h1 class="page-title">{{ $catalogName }} for {{ $parentCatalog->cat_name_en }}</h1>
+        @else
+            <h1 class="page-title">{{ $parentCatalog->cat_name_ar }}الرسم ل </h1>
+        @endif
         <div class="drawing">
             <div class="row">
                 <div class="col-12">
