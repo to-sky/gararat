@@ -25,7 +25,7 @@
                     @if(App::isLocale('en'))
                         <a href="{{ route('catalogPage', $parentCatalog->cid) }}"><i class="fas fa-arrow-left"></i> Return to  {{ $parentCatalog->cat_name_en }}</a>
                     @else
-                        <a href="{{ route('catalogPage', $parentCatalog->cid) }}"><i class="fas fa-arrow-left"></i>  {{ $parentCatalog->cat_name_en }} العودة إلى </a>
+                        <a href="{{ route('catalogPage', $parentCatalog->cid) }}"><i class="fas fa-arrow-left"></i>  {{ $parentCatalog->cat_name_ar }} العودة إلى </a>
                     @endif
                 </li>
             @endif
