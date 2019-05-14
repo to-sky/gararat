@@ -94,6 +94,7 @@ class Figures extends Model
             'cat_type' => 1,
             'is_drawing' => 1,
             'cat_name_en' => 'Drawing',
+            'cat_name_ar' => 'رسم',
             'created_at' => Carbon::now(),
             'figure' => $createFigure
         ]);
