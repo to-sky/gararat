@@ -1,4 +1,4 @@
-<div class="header__top" id="top">
+<div class="header__top">
     <div class="container">
         <div class="row @if(!App::isLocale('en')) flex-row-reverse @endif">
             <div class="col-12 col-lg-6">

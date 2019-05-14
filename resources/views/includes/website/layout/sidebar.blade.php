@@ -14,7 +14,11 @@
         <ul>
             @if(count($catalogChilds) !== 0)
                 @foreach($catalogChilds as $child)
-                    <li><a href="{{ route('catalogPage', $child->cid) }}">{{ $child->cat_name_en }}</a></li>
+                    @if(App::isLocale('en'))
+                        <li><a href="{{ route('catalogPage', $child->cid) }}">{{ $child->cat_name_en }}</a></li>
+                    @else
+                        <li><a href="{{ route('catalogPage', $child->cid) }}">{{ $child->cat_name_ar }}</a></li>
+                    @endif
                 @endforeach
             @else
                 <li>
