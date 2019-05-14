@@ -1,4 +1,6 @@
 footer.footer {
+    clear: both;
+    position: relative;
     border-top: 3px solid $secondary_color_muted;
 
     .footer__top {

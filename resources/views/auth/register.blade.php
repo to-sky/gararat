@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container" style="margin-bottom: 30px; min-height: 400px;">
+<div class="container" id="auth">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
