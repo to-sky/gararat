@@ -46,13 +46,7 @@
                                     @if($node->price >= 0)
                                         <tr id="targetConstructorNode_{{ $node->nid }}">
                                             <td>{{ $node->pos_no }}</td>
-                                            <td>
-                                                @if(App::isLocale('en'))
-                                                    {{ $node->producer_id }}
-                                                @else
-                                                    {{ $node->producer_id }}
-                                                @endif
-                                            </td>
+                                            <td><a href="{{ route('singleNodePage', $node->nid) }}">{{ $node->producer_id }}</a></td>
                                             <td>{{ $node->qty }}</td>
                                             <td>
                                                 @if(App::isLocale('en'))

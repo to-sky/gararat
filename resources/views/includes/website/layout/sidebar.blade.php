@@ -1,5 +1,5 @@
 <div class="sidebar">
-    <h3>{{ $pageTitle }} فهرس </h3>
+    <h3>{{ $pageTitle }}</h3>
     @if($currentCatalog->parent_cat != 0)
         <div class="sidebar__back">
             @if(App::isLocale('en'))

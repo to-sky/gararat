@@ -1,6 +1,6 @@
 <div class="footer__top">
     <div class="container">
-        <div class="row">
+        <div class="row @if(!App::isLocale('en')) flex-row-reverse @endif">
             <div class="col-12 col-md-6 col-lg-3">
                 <div class="text-center footer__top-logo">
                     <a href="{{ route('homePage') }}"><img src="{{ asset('assets/logos/logo-footer.png') }}" alt="Gararat Logo" height="80"></a>

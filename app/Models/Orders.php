@@ -195,6 +195,10 @@ class Orders extends Model
         return array('qty' => $qty, 'total' => $total);
     }
 
+    /**
+     * @param $userKey
+     * @return string
+     */
     public function getCartTableData($userKey)
     {
         $locale = App::getLocale();
@@ -203,6 +207,8 @@ class Orders extends Model
             ->where('cart.user_key', $userKey)
             ->join('cart_nodes', 'cart.cart_id', '=', 'cart_nodes.cart')
             ->leftJoin('nodes', 'cart_nodes.node', '=', 'nodes.nid')
+            ->leftJoin('nodes_machinery_fields', 'nodes.nid', '=', 'nodes_machinery_fields.node')
+            ->leftJoin('nodes_parts_fields', 'nodes.nid', '=', 'nodes_parts_fields.node')
             ->leftJoin('nodes_images', function($join) {
                 $join->on('nodes.nid', '=', 'nodes_images.node')
                     ->where('nodes_images.is_featured', '=', 1);
@@ -216,8 +222,13 @@ class Orders extends Model
                 $image = '/assets/logos/logo.jpg';
             }
             if ($item->price == 0) {
-                $unitPrice = 'By Request';
-                $priceTotal = 'By Request';
+                if($locale === 'en') {
+                    $unitPrice = 'By Request';
+                    $priceTotal = 'By Request';
+                } else {
+                    $unitPrice = 'حسب الطلب';
+                    $priceTotal = 'حسب الطلب';
+                }
             } else {
                 switch($item->is_special) {
                     case 1:
@@ -242,14 +253,33 @@ class Orders extends Model
                 }
             }
             // Return
-            $return .= '<tr>';
-            $return .= '<td><a href="/node/' . $item->nid . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_en . '" width="50" /></a></td>';
-            $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->n_name_en . '</a></td>';
-            $return .= '<td>' . $item->order_qty . '</td>';
-            $return .= '<td>' . $unitPrice . '</td>';
-            $return .= '<td>' . $priceTotal . '</td>';
-            $return .= '<td><a href="/api/cart/remove/' . $item->user_key . '/' . $item->cart_nodes_id . '"><i class="far fa-trash-alt"></i></a></td>';
-            $return .= '</tr>';
+            if($locale === 'en') {
+                $return .= '<tr>';
+                $return .= '<td><a href="/node/' . $item->nid . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_en . '" width="50" /></a></td>';
+                if(isset($item->nmf_name_en)) {
+                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->nmf_name_en . '</a></td>';
+                } else {
+                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->producer_id . ' - ' . $item->npf_name_en . '</a></td>';
+                }
+                $return .= '<td>' . $item->order_qty . '</td>';
+                $return .= '<td>' . $unitPrice . '</td>';
+                $return .= '<td>' . $priceTotal . '</td>';
+                $return .= '<td><a href="/api/cart/remove/' . $item->user_key . '/' . $item->cart_nodes_id . '"><i class="far fa-trash-alt"></i></a></td>';
+                $return .= '</tr>';
+            } else {
+                $return .= '<tr>';
+                $return .= '<td><a href="/node/' . $item->nid . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_ar . '" width="50" /></a></td>';
+                if(isset($item->nmf_name_en)) {
+                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->nmf_name_ar . '</a></td>';
+                } else {
+                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->producer_id . ' - ' . $item->npf_name_ar . '</a></td>';
+                }
+                $return .= '<td>' . $item->order_qty . '</td>';
+                $return .= '<td>' . $unitPrice . '</td>';
+                $return .= '<td>' . $priceTotal . '</td>';
+                $return .= '<td><a href="/api/cart/remove/' . $item->user_key . '/' . $item->cart_nodes_id . '"><i class="far fa-trash-alt"></i></a></td>';
+                $return .= '</tr>';
+            }
         }
         return $return;
     }
@@ -263,6 +293,8 @@ class Orders extends Model
             ->where('cart.user_key', $userKey)
             ->join('cart_nodes', 'cart.cart_id', '=', 'cart_nodes.cart')
             ->leftJoin('nodes', 'cart_nodes.node', '=', 'nodes.nid')
+            ->leftJoin('nodes_machinery_fields', 'nodes.nid', '=', 'nodes_machinery_fields.node')
+            ->leftJoin('nodes_parts_fields', 'nodes.nid', '=', 'nodes_parts_fields.node')
             ->leftJoin('nodes_images', function($join) {
                 $join->on('nodes.nid', '=', 'nodes_images.node')
                     ->where('nodes_images.is_featured', '=', 1);
@@ -276,7 +308,11 @@ class Orders extends Model
                 $image = '/assets/logos/logo.jpg';
             }
             if ($item->price == 0) {
-                $priceTotal = 'By Request';
+                if($locale === 'en') {
+                    $priceTotal = 'By Request';
+                } else {
+                    $priceTotal = 'حسب الطلب';
+                }
             } else {
                 switch($item->is_special) {
                     case 1:
@@ -296,12 +332,29 @@ class Orders extends Model
                 }
             }
             // Return
-            $return .= '<tr>';
-            $return .= '<td><a href="/node/' . $item->nid . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_en . '" width="50" /></a></td>';
-            $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->n_name_en . '</a></td>';
-            $return .= '<td>' . $item->order_qty . '</td>';
-            $return .= '<td style="width: 15%;">' . $priceTotal . '</td>';
-            $return .= '</tr>';
+            if($locale === 'en') {
+                $return .= '<tr>';
+                $return .= '<td><a href="/node/' . $item->nid . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_en . '" width="50" /></a></td>';
+                if (isset($item->nmf_name_en)) {
+                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->nmf_name_en . '</a></td>';
+                } else {
+                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->producer_id . ' - ' . $item->npf_name_en . '</a></td>';
+                }
+                $return .= '<td>' . $item->order_qty . '</td>';
+                $return .= '<td style="width: 15%;">' . $priceTotal . '</td>';
+                $return .= '</tr>';
+            } else {
+                $return .= '<tr>';
+                $return .= '<td><a href="/node/' . $item->nid . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_ar . '" width="50" /></a></td>';
+                if (isset($item->nmf_name_en)) {
+                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->nmf_name_ar . '</a></td>';
+                } else {
+                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->producer_id . ' - ' . $item->npf_name_ar . '</a></td>';
+                }
+                $return .= '<td>' . $item->order_qty . '</td>';
+                $return .= '<td style="width: 15%;">' . $priceTotal . '</td>';
+                $return .= '</tr>';
+            }
         }
         return $return;
     }

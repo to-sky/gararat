@@ -1,8 +1,8 @@
-<div class="header__top">
+<div class="header__top" id="top">
     <div class="container">
-        <div class="row">
+        <div class="row @if(!App::isLocale('en')) flex-row-reverse @endif">
             <div class="col-12 col-lg-6">
-                <div class="header__top-contacts">
+                <div class="header__top-contacts @if(!App::isLocale('en')) text-right @endif">
                     <a href="tel:+375224443333"><i class="fas fa-phone"></i><span>+20-101-620-05-99</span></a>
                     <a href="mailto:sales@gararat.com"><i class="far fa-envelope"></i><span>sales@gararat.com</span></a>
                 </div>
@@ -10,7 +10,7 @@
             </div>
             <!-- /.col-12 col-lg-6 -->
             <div class="col-12 col-lg-6">
-                <div class="d-flex justify-content-end search__mobile">
+                <div class="d-flex justify-content-end @if(!App::isLocale('en')) flex-row-reverse @endif search__mobile">
                     <div class="header__top-search">
                         <form action="{{ route('searchResults') }}" method="get" autocomplete="off">
                             <input type="text" name="q" required @if(isset($searchRequest) && $searchRequest !== null) value="{{ $searchRequest }} @endif" autocomplete="off" />
@@ -20,7 +20,7 @@
                     <!-- /.header__top-search -->
                     <div class="header__top-auth">
                         @if(! Auth::check())
-                            <a href="{{ route('login') }}"><i class="far fa-user"></i>
+                            <a href="{{ route('login') }}#top"><i class="far fa-user"></i>
                                 @if(App::isLocale('en'))
                                     <span>Login</span>
                                 @else
@@ -28,7 +28,7 @@
                                 @endif
                             </a>
                             <span>|</span>
-                            <a href="{{ route('register') }}">
+                            <a href="{{ route('register') }}#top">
                                 @if(App::isLocale('en'))
                                     {{ __('Register') }}
                                 @else
@@ -71,7 +71,7 @@
 <!-- /.header__top -->
 <div class="shadow pt-3 pb-3 header__main">
     <div class="container">
-        <div class="row">
+        <div class="row @if(!App::isLocale('en')) flex-row-reverse @endif">
             <div class="col-12 col-lg-2">
                 <div class="text-center header__main-logo">
                     <a href="{{ route('homePage') }}"><img src="{{ asset('assets/logos/logo.png') }}" alt="Gararat Logo" height="64"></a>
