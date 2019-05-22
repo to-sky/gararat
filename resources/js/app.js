@@ -25,5 +25,13 @@ require('./handlers/lang');
             $('.header__main .header__main-menu').slideDown(250);
         }
     });
-})(jQuery)
+
+    $(document).on("cut copy paste", function(e) {
+        e.preventDefault();
+    });
+
+    $(document).on("contextmenu",function(){
+        return false;
+    });
+})(jQuery);
 require('./figures/frontend-fogure');

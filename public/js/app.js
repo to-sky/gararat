@@ -42640,6 +42640,12 @@ __webpack_require__(/*! ./handlers/lang */ "./resources/js/handlers/lang.js");
       $('.header__main .header__main-menu').slideDown(250);
     }
   });
+  $(document).on("cut copy paste", function (e) {
+    e.preventDefault();
+  });
+  $(document).on("contextmenu", function () {
+    return false;
+  });
 })(jQuery);
 
 __webpack_require__(/*! ./figures/frontend-fogure */ "./resources/js/figures/frontend-fogure.js");
