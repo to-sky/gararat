@@ -63,8 +63,8 @@ class Figures extends Model
                     'figure' => $figure,
                     'pos_x' => 0,
                     'pos_y' => 0,
-                    'size_x' => 28,
-                    'size_y' => 22,
+                    'size_x' => 18,
+                    'size_y' => 18,
                     'color' => 'RGB(' . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ')'
                 ]);
             }
