@@ -26,7 +26,7 @@ require('./handlers/lang');
         }
     });
 
-    $(document).on("cut copy paste", function(e) {
+    $(document).on("cut copy", function(e) {
         e.preventDefault();
     });
 
