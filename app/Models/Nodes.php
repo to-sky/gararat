@@ -29,9 +29,9 @@ class Nodes extends Model
             Image::make($image2->getRealPath())->resize($size, null, function($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
-            })->insert('assets/watermark.png', 'bottom-right', 100, 100)->save($path);
+            })->insert('assets/watermark.png', 'center')->save($path);
         } else {
-            Image::make($image2->getRealPath())->insert('assets/watermark.png', 'bottom-right', 100, 100)->save($path);
+            Image::make($image2->getRealPath())->insert('assets/watermark.png', 'center')->save($path);
         }
         return $filename_to_store;
     }
