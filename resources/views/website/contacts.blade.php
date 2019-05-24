@@ -24,8 +24,9 @@
                             اتصل بنا
                         @endif
                     </h3>
-                    <form action="{{ route('sendContactsMail') }}" method="post" autocomplete="off">
+                    <form action="{{ route('sendContactsMail') }}" method="post" autocomplete="off" id="contactFormPageForm">
                         @csrf
+                        <input type="hidden" name="checkCode" id="checkCode" value="">
                         <div class="form-group row">
                             <div class="col-12">
                                 <label for="name">

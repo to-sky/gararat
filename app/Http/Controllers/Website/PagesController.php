@@ -155,12 +155,16 @@ class PagesController extends Controller
     public function sendContactsMail(Request $request)
     {
         $data = $request->all();
-        Mail::raw('Message from ' . $data['name'] . '. Email: ' . $data['email'] . '. Phone: ' . $data['phone'] . '. Message: ' . $data['message'], function($message)
-        {
-            $message->subject('Message From Gararat Contact Form');
-            $message->from(config('mail.from.address'), 'Gararat');
-            $message->to('belmachdata@gmail.com');
-        });
+        $checkCode = 'g29853qg-(*&H@#O(*&FH0908hj2dc89hncole9r8whcd';
+        if($checkCode == $data['checkCode']) {
+            Mail::raw('Message from ' . $data['name'] . '. Email: ' . $data['email'] . '. Phone: ' . $data['phone'] . '. Message: ' . $data['message'], function($message)
+            {
+                $message->subject('Message From Gararat Contact Form');
+                $message->from(config('mail.from.address'), 'Gararat');
+                // $message->to('belmachdata@gmail.com');
+                $message->to('smilecatwebstudio@gmail.com');
+            });
+        }
         return redirect()->back();
     }
 }
