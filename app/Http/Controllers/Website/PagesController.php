@@ -161,8 +161,8 @@ class PagesController extends Controller
             {
                 $message->subject('Message From Gararat Contact Form');
                 $message->from(config('mail.from.address'), 'Gararat');
-                // $message->to('belmachdata@gmail.com');
-                $message->to('smilecatwebstudio@gmail.com');
+                $message->to('belmachdata@gmail.com');
+                // $message->to('smilecatwebstudio@gmail.com');
             });
         }
         return redirect()->back();
