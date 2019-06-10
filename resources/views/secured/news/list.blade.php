@@ -24,7 +24,15 @@
                             <td>{{ \Carbon\Carbon::parse($item->nw_created)->format('Y-m-d') }}</td>
                             <td>
                                 <a href="{{ route('securedUpdateNewsItem', $item->nw_id) }}" class="btn btn-success"><i class="ti-pencil"></i></a>
-                                <a href="{{ route('securedRemoveNewsItem', $item->nw_id) }}" class="btn btn-danger"><i class="ti-trash"></i></a>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger">Delete?</button>
+                                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a href="{{ route('securedRemoveNewsItem', $item->nw_id) }}">Yes, remove</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

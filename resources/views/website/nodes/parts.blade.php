@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="@if(count($images) > 0) col-9 @else col-12 @endif mip" style="padding-left: 15px;">
                                 <div class="featured-image">
-                                    @if(count($images) > 0)
+                                    @if(isset($featuredImage) && $featuredImage !== null)
                                         <a href="{{ asset($featuredImage->mid_path) }}" title="{{ $pageTitle }}">
                                             <img src="{{ asset($featuredImage->mid_path) }}" alt="{{ $pageTitle }} Featured" class="image">
                                         </a>
