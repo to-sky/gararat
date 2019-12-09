@@ -138,10 +138,13 @@ class CatalogController extends Controller
         $data['breadcrumbs'] = $helpers->buildCatalogBreadcrumbs($getCatalogByCid, false);
         // Figure
         $getFigure = $figuresModel->getFigureById($getCatalogByCid->figure);
-        $getNodes = $nodesModel->getNodesForFigure($getFigure->fig_id);
         $data['figure'] = $getFigure;
-        $data['nodes'] = $getNodes;
-
+        if(isset($getFigure) && $getFigure !== null) {
+            $getNodes = $nodesModel->getNodesForFigure($getFigure->fig_id);
+            $data['nodes'] = $getNodes;
+        } else {
+            $data['nodes'] = null;
+        }
         return view('website.catalog.figure', $data);
     }
 }
