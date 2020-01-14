@@ -61,3 +61,10 @@ img.image {
 main.main {
     min-height: 800px;
 }
+
+.rtl-separator {
+    &:after {
+        left: auto !important;
+        right: 0;
+    }
+}

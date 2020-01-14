@@ -39,11 +39,7 @@ class NodesController extends Controller
                 $data['pageTitle'] = $getNode->n_title_en;
             }
         }
-        if($getNode->n_title_en === NULL) {
-            $data['pageTitle'] = $getNode->n_name_en;
-        } else {
-            $data['pageTitle'] = $getNode->n_title_en;
-        }
+
         $breadcrumbs = $helpers->buildCatalogBreadcrumbs($getNodeCatalog, true);
         $breadcrumbs[] = array('name' => $getNode->n_name_en, 'route' => NULL, 'param' => NULL);
         $data['breadcrumbs'] = $breadcrumbs;

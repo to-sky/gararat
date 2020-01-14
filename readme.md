@@ -71,9 +71,30 @@ Run the database seeder and you're done
 - `.env` - Environment variables can be set in this file
 
 ***Note*** : You can quickly set the database information and other variables in this file and have the application fully working.
+
+
+## Assets
+
+Installing Node
+
+Before triggering Mix, you must first ensure that Node.js and NPM are installed on your machine.
+
+    node -v
+    npm -v
     
+If Node.js not installed you can easily install the latest version of Node and NPM using simple graphical installers from [their download page](https://nodejs.org/en/download/).
+
+Laravel Mix
+
+Need to install frontend dependencies from `package.json` file
+
+    npm install
     
+Running Mix
     
+    npm run dev
+    
+        
 # [Adminator HTML5 Admin Template](https://github.com/puikinsh/Adminator-admin-dashboard)
 
 <img src="https://camo.githubusercontent.com/fa67acfe96d692f2115f562ce75730f2891edbb2/68747470733a2f2f636f6c6f726c69622e636f6d2f77702f77702d636f6e74656e742f75706c6f6164732f73697465732f322f61646d696e61746f722d667265652d61646d696e2d64617368626f6172642d74656d706c6174652e6a7067" width="600">

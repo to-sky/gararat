@@ -149,12 +149,9 @@
                         <div class="shadow product__description">
                             @if(App::isLocale('en'))
                                 <h4>Technical Description</h4>
-                            @else
-                                <h4>المواصفات الفنية</h4>
-                            @endif
-                            @if(App::isLocale('en'))
                                 {!! $product->nmf_body_en !!}
                             @else
+                                <h4 class="text-right rtl-separator">المواصفات الفنية</h4>
                                 {!! $product->nmf_body_ar !!}
                             @endif
                         </div>
