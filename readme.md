@@ -66,6 +66,11 @@ Run the database seeder and you're done
     php artisan migrate:refresh
     
     
+## Environment variables
+
+- `.env` - Environment variables can be set in this file
+
+***Note*** : You can quickly set the database information and other variables in this file and have the application fully working.
     
     
     
