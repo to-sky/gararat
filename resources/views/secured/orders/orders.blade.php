@@ -19,7 +19,7 @@
                     <tbody>
                         @foreach($orders as $order)
                             <tr>
-                                <td>{{ $order['oid'] }}</td>
+                                <td>{{ $order['id'] }}</td>
                                 <td>{{ $order['customer'] }}</td>
                                 <td>{{ $order['total'] }}</td>
                                 <td>
@@ -42,14 +42,14 @@
                                 </td>
                                 <td>{{ \Carbon\Carbon::parse($order['created_at'])->format('Y-m-d') }}</td>
                                 <td>
-                                    <a href="{{ route('reviewOrderPageSecured', $order['oid']) }}" class="btn btn-success"><i class="ti-pencil"></i></a>
+                                    <a href="{{ route('reviewOrderPageSecured', $order['id']) }}" class="btn btn-success"><i class="ti-pencil"></i></a>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger">Delete?</button>
                                         <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a href="{{ route('removeOrderAPI', ['oid' => $order['oid']]) }}">Yes, remove</a>
+                                            <a href="{{ route('removeOrderAPI', ['id' => $order['id']]) }}">Yes, remove</a>
                                         </div>
                                     </div>
                                 </td>

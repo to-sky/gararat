@@ -26,14 +26,14 @@ class SecuredOrdersController extends Controller
         return view('secured.orders.orders', $data);
     }
 
-    public function reviewOrderPageSecured($oid)
+    public function reviewOrderPageSecured($id)
     {
         $ordersModel = new Orders;
-        $getOrder = $ordersModel->getOrderById($oid);
+        $getOrder = $ordersModel->getOrderById($id);
 
-        $data['pageTitle'] = 'Order #' . $getOrder->oid;
+        $data['pageTitle'] = 'Order #' . $getOrder->id;
         $data['order'] = $getOrder;
-        $data['products'] = $ordersModel->getOrderProducts($oid);
+        $data['products'] = $ordersModel->getOrderProducts($id);
 
         return view('secured.orders.order', $data);
     }
@@ -47,7 +47,7 @@ class SecuredOrdersController extends Controller
     public function changeOrderStatusAPI(Request $request)
     {
         DB::table('orders')
-            ->where('oid', $request->get('oid'))
+            ->where('id', $request->get('id'))
             ->update([
                 'status' => $request->get('orderStatus')
             ]);
@@ -55,24 +55,24 @@ class SecuredOrdersController extends Controller
     }
 
     /**
-     * @param $oid
-     * @param $nid
+     * @param $order_id
+     * @param $node_id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function removeProductFromOrderAPI($oid, $nid)
+    public function removeProductFromOrderAPI($order_id, $node_id)
     {
-        DB::table('orders_to_nodes')->where('order', $oid)->where('node', $nid)->delete();
+        DB::table('orders_to_nodes')->where('order', $order_id)->where('node', $node_id)->delete();
         return redirect()->back();
     }
 
     /**
-     * @param $oid
+     * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function removeOrderAPI($oid)
+    public function removeOrderAPI($id)
     {
-        DB::table('orders_to_nodes')->where('order', $oid)->delete();
-        DB::table('orders')->where('oid', $oid)->delete();
+        DB::table('orders_to_nodes')->where('order', $id)->delete();
+        DB::table('orders')->where('id', $id)->delete();
         return redirect()->back();
     }
 }

@@ -16,7 +16,7 @@
                                 <img src="{{ asset($figure->fig_image) }}" alt="{{ $parentCatalog->cat_name_en }}">
                                 @foreach($nodes as $node)
                                     @if($node->pos_x != 0 && $node->pos_y != 0)
-                                        <div class="item-block" @if($node->in_stock === 1) data-stock="1" @else data-stock="0" @endif data-target="targetConstructorNode_{{ $node->nid }}" style="position: absolute; top: {{ $node->pos_y - ($node->size_y / 2) }}px; left: {{ $node->pos_x - ($node->size_x / 2) }}px; border: 1px solid {{ $node->color }}; z-index: 9999; width: {{ $node->size_x }}px; height: {{ $node->size_y }}px;"></div>
+                                        <div class="item-block" @if($node->in_stock === 1) data-stock="1" @else data-stock="0" @endif data-target="targetConstructorNode_{{ $node->id }}" style="position: absolute; top: {{ $node->pos_y - ($node->size_y / 2) }}px; left: {{ $node->pos_x - ($node->size_x / 2) }}px; border: 1px solid {{ $node->color }}; z-index: 9999; width: {{ $node->size_x }}px; height: {{ $node->size_y }}px;"></div>
                                     @endif
                                 @endforeach
                             </div>
@@ -48,9 +48,9 @@
                                 <tbody>
                                 @foreach($nodes as $node)
                                     @if($node->price >= 0)
-                                        <tr id="targetConstructorNode_{{ $node->nid }}">
+                                        <tr id="targetConstructorNode_{{ $node->id }}">
                                             <td>{{ $node->pos_no }}</td>
-                                            <td><a href="{{ route('singleNodePage', $node->nid) }}">{{ $node->producer_id }}</a></td>
+                                            <td><a href="{{ route('singleNodePage', $node->id) }}">{{ $node->producer_id }}</a></td>
                                             <td>{{ $node->qty }}</td>
                                             <td>
                                                 @if(App::isLocale('en'))
@@ -61,7 +61,7 @@
                                             </td>
                                             <td>
                                                 @if($node->price > 0)
-                                                    <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->nid }}">
+                                                    <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->id }}">
                                                         @if(App::isLocale('en'))
                                                             order
                                                         @else
@@ -69,7 +69,7 @@
                                                         @endif
                                                     </a>
                                                 @else($node->price == 0)
-                                                    <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->nid }}">
+                                                    <a href="#" class="collapsible-row-activator" data-target="collapsibleNode_{{ $node->id }}">
                                                         @if(App::isLocale('en'))
                                                             order
                                                         @else
@@ -79,17 +79,17 @@
                                                 @endif
                                             </td>
                                         </tr>
-                                        <tr class="collapsible-row" id="collapsibleNode_{{ $node->nid }}">
+                                        <tr class="collapsible-row" id="collapsibleNode_{{ $node->id }}">
                                             <td colspan="5">
                                                 <form action="#" method="post" id="addToCartHandler">
                                                     @csrf
-                                                    <input type="hidden" name="nid" value="{{ $node->nid }}">
+                                                    <input type="hidden" name="id" value="{{ $node->id }}">
                                                     <input type="hidden" name="userKey">
                                                     <div class="d-flex justify-content-end products__part-cart">
                                                         <div class="products__part-cart-qty">
                                                             <div class="d-flex justify-content-around product__qty">
                                                                 <a href="#" class="sub-qty"><i class="fas fa-minus"></i></a>
-                                                                <input type="number" name="qty" id="qty_{{ $node->nid }}" value="1" min="1" style="max-width: 40px;">
+                                                                <input type="number" name="qty" id="qty_{{ $node->id }}" value="1" min="1" style="max-width: 40px;">
                                                                 <a href="#" class="add-qty"><i class="fas fa-plus"></i></a>
                                                             </div>
                                                             <!-- /.product__qty -->

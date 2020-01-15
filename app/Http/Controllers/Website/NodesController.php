@@ -13,18 +13,18 @@ use \App\Models\Nodes;
 class NodesController extends Controller
 {
     /**
-     * @param $nid
+     * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function singleNodePage($nid)
+    public function singleNodePage($id)
     {
         $catalogModel = new Catalog;
         $helpers = new Helpers;
         $nodesModel = new Nodes;
         $locale = App::getLocale();
 
-        $getNodeCatalog = $catalogModel->getCatalogByNodeId($nid);
-        $getNode = $nodesModel->getNodeByCatalogType($nid, $getNodeCatalog->cat_type);
+        $getNodeCatalog = $catalogModel->getCatalogByNodeId($id);
+        $getNode = $nodesModel->getNodeByCatalogType($id, $getNodeCatalog->cat_type);
 
         if($locale == 'ar') {
             if($getNode->n_title_ar === NULL) {
@@ -44,8 +44,8 @@ class NodesController extends Controller
         $breadcrumbs[] = array('name' => $getNode->n_name_en, 'route' => NULL, 'param' => NULL);
         $data['breadcrumbs'] = $breadcrumbs;
         $data['product'] = $getNode;
-        $data['images'] = $nodesModel->getNodeImagesWithParams($nid, 0);
-        $data['featuredImage'] = $nodesModel->getNodeImagesWithParams($nid, 1);
+        $data['images'] = $nodesModel->getNodeImagesWithParams($id, 0);
+        $data['featuredImage'] = $nodesModel->getNodeImagesWithParams($id, 1);
 
         switch($getNodeCatalog->cat_type) {
             case 0:

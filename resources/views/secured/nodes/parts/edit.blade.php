@@ -3,7 +3,7 @@
 @section('content')
     <form action="{{ route('updatePartsAPI') }}" method="post" autocomplete="off" enctype="multipart/form-data">
         @csrf
-        <input type="hidden" name="nid" value="{{ $node->nid }}">
+        <input type="hidden" name="id" value="{{ $node->id }}">
         <div class="row">
             <!-- Basic Fields -->
             <div class="col-12" style="margin-bottom: 20px;">

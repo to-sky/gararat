@@ -22,7 +22,7 @@
                     <tbody>
                         @foreach($products as $product)
                             <tr>
-                                <td>{{ $product->nid }}</td>
+                                <td>{{ $product->id }}</td>
                                 @if($product->has_photo != 0)
                                     <td><img src="{{ asset($product->thumb_path) }}" height="26"></td>
                                 @else
@@ -52,14 +52,14 @@
                                     @endswitch
                                 </td>
                                 <td>
-                                    <a href="{{ route('editNode', ['product_type' => $product_type, 'nid' => $product->nid]) }}" class="btn btn-success"><i class="ti-pencil"></i></a>
+                                    <a href="{{ route('editNode', ['product_type' => $product_type, 'id' => $product->id]) }}" class="btn btn-success"><i class="ti-pencil"></i></a>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger">Delete?</button>
                                         <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a href="{{ route('removeProductAPI', $product->nid) }}">Yes, remove</a>
+                                            <a href="{{ route('removeProductAPI', $product->id) }}">Yes, remove</a>
                                         </div>
                                     </div>
                                 </td>

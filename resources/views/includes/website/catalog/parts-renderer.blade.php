@@ -59,9 +59,9 @@
                             <div class="col-4 col-lg-3">
                                 <div class="products__part-image">
                                     @if($product->has_photo === 0)
-                                        <a href="{{ route('singleNodePage', $product->nid) }}"><img src="{{ asset('assets/logos/logo.jpg') }}" class="image" alt="{{ $product->n_name_en }}"></a>
+                                        <a href="{{ route('singleNodePage', $product->id) }}"><img src="{{ asset('assets/logos/logo.jpg') }}" class="image" alt="{{ $product->n_name_en }}"></a>
                                     @else
-                                        <a href="{{ route('singleNodePage', $product->nid) }}"><img src="{{ asset($product->thumb_path) }}" class="image" alt="{{ $product->n_name_en }}"></a>
+                                        <a href="{{ route('singleNodePage', $product->id) }}"><img src="{{ asset($product->thumb_path) }}" class="image" alt="{{ $product->n_name_en }}"></a>
                                     @endif
                                 </div>
                                 <!-- /.products__part-image -->
@@ -70,11 +70,11 @@
                             <div class="col-12 col-lg-4">
                                 @if(App::isLocale('en'))
                                     <div class="products__part-name">
-                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->producer_id }}</a>
+                                        <a href="{{ route('singleNodePage', $product->id) }}">{{ $product->producer_id }}</a>
                                     </div>
                                 @else
                                     <div class="products__part-name text-right" style="display: grid;">
-                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->producer_id }}</a>
+                                        <a href="{{ route('singleNodePage', $product->id) }}">{{ $product->producer_id }}</a>
                                     </div>
                                 @endif
                                 <!-- /.products__part-name -->
@@ -83,11 +83,11 @@
                             <div class="col-12 col-lg-5">
                                 @if(App::isLocale('en'))
                                     <div class="products__part-name">
-                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_en . ' - ' . $product->fig_name_en }}</a>
+                                        <a href="{{ route('singleNodePage', $product->id) }}">{{ $product->npf_name_en . ' - ' . $product->fig_name_en }}</a>
                                     </div>
                                 @else
                                     <div class="products__part-name text-right" style="display: grid;">
-                                        <a href="{{ route('singleNodePage', $product->nid) }}">{{ $product->npf_name_ar . ' - ' . $product->fig_name_ar }}</a>
+                                        <a href="{{ route('singleNodePage', $product->id) }}">{{ $product->npf_name_ar . ' - ' . $product->fig_name_ar }}</a>
                                     </div>
                                 @endif
                             </div>
@@ -99,7 +99,7 @@
                     <div class="col-12 col-lg-5">
                         <form action="#" method="post" id="addToCartHandler">
                             @csrf
-                            <input type="hidden" name="nid" value="{{ $product->nid }}">
+                            <input type="hidden" name="id" value="{{ $product->id }}">
                             <input type="hidden" name="userKey">
                             <div class="d-flex justify-content-end products__part-cart">
                                 <div class="products__part-cart-price">
@@ -131,7 +131,7 @@
                                 <div class="products__part-cart-qty">
                                     <div class="d-flex justify-content-around product__qty">
                                         <a href="#" class="sub-qty"><i class="fas fa-minus"></i></a>
-                                        <input type="number" name="qty" id="qty_{{ $product->nid }}" value="1" min="1" style="max-width: 40px;">
+                                        <input type="number" name="qty" id="qty_{{ $product->id }}" value="1" min="1" style="max-width: 40px;">
                                         <a href="#" class="add-qty"><i class="fas fa-plus"></i></a>
                                     </div>
                                     <!-- /.product__qty -->

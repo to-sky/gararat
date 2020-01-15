@@ -50,7 +50,7 @@
                     <div class="shadow product__purchase">
                         <form action="#" method="post" id="addToCartHandler">
                             @csrf
-                            <input type="hidden" name="nid" value="{{ $product->nid }}">
+                            <input type="hidden" name="id" value="{{ $product->id }}">
                             <input type="hidden" name="userKey">
                             <div class="product__purchase-top">
                                 <div class="row">

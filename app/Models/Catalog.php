@@ -271,13 +271,13 @@ class Catalog extends Model
     }
 
     /**
-     * @param $nid
+     * @param $id
      * @return array
      */
-    public function getSelectedCatalogItem($nid)
+    public function getSelectedCatalogItem($id)
     {
         $request = DB::table('nodes_to_catalog')
-            ->where('node', $nid)
+            ->where('node', $id)
             ->join('catalog', 'nodes_to_catalog.catalog', '=', 'catalog.cid')
             ->select('catalog.cat_number')
             ->get();
@@ -291,13 +291,13 @@ class Catalog extends Model
     }
 
     /**
-     * @param $nid
+     * @param $id
      * @return mixed
      */
-    public function getCatalogByNodeId($nid)
+    public function getCatalogByNodeId($id)
     {
         return DB::table('nodes_to_catalog')
-            ->where('node', $nid)
+            ->where('node', $id)
             ->join('catalog', 'nodes_to_catalog.catalog', '=', 'catalog.cid')
             ->first();
     }

@@ -37,7 +37,7 @@
                                 <form action="{{ route('changeOrderStatusAPI') }}" method="post" autocomplete="off">
                                     @csrf
                                     <div class="form-group">
-                                        <input type="hidden" name="oid" value="{{ $order->oid }}">
+                                        <input type="hidden" name="id" value="{{ $order->id }}">
                                         <select class="form-control" name="orderStatus" id="orderStatus" autocomplete="off">
                                             <option @if($order->status == 0) selected @endif value="0">Queue</option>
                                             <option @if($order->status == 1) selected @endif value="1">In Progress</option>
@@ -72,7 +72,7 @@
                         <?php $totalPrice = 0; ?>
                         @foreach($products as $product)
                             <tr>
-                                <td>{{ $product->nid }}</td>
+                                <td>{{ $product->id }}</td>
                                 @if($product->has_photo != 0)
                                     <td><img src="{{ asset($product->thumb_path) }}" height="26"></td>
                                 @else
@@ -99,7 +99,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('removeProductFromOrderAPI', ['oid' => $order->oid, 'nid' => $product->nid]) }}" class="btn btn-danger"><i class="ti-trash"></i></a>
+                                    <a href="{{ route('removeProductFromOrderAPI', ['order_id' => $order->id, 'node_id' => $product->id]) }}" class="btn btn-danger"><i class="ti-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach

@@ -130,7 +130,7 @@ class Figures extends Model
      */
     public function saveParamsForFigureNode($data)
     {
-        return DB::table('figures_to_nodes')->where('node', $data['nid'])->where('figure', $data['fig_id'])->update([
+        return DB::table('figures_to_nodes')->where('node', $data['id'])->where('figure', $data['fig_id'])->update([
             'pos_x' => $data['pos_x'],
             'pos_y' => $data['pos_y'],
             'size_x' => $data['size_x'],
@@ -143,7 +143,7 @@ class Figures extends Model
      */
     public function clearFigureNode($data)
     {
-        return DB::table('figures_to_nodes')->where('node', $data['nid'])->where('figure', $data['fig_id'])->update([
+        return DB::table('figures_to_nodes')->where('node', $data['id'])->where('figure', $data['fig_id'])->update([
             'pos_x' => 0,
             'pos_y' => 0
         ]);

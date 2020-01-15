@@ -43234,7 +43234,7 @@ function scrollToAnchor(aid, stock) {
 
   $(document).on('click', '#editNodePositionConstructor', function (e) {
     e.preventDefault();
-    node = $(this).parent().data('nid');
+    node = $(this).parent().data('id');
     color = $(this).parent().data('color');
     width = $(this).parent().parent().find('input[name="size_x"]').val();
     height = $(this).parent().parent().find('input[name="size_y"]').val();
@@ -43244,13 +43244,13 @@ function scrollToAnchor(aid, stock) {
   $(document).on('click', '#saveNodePositionConstructor', function (e) {
     e.preventDefault();
     $('.c-preloader').fadeIn(150);
-    node = $(this).parent().data('nid');
+    node = $(this).parent().data('id');
     width = $(this).parent().parent().find('input[name="size_x"]').val();
     height = $(this).parent().parent().find('input[name="size_y"]').val();
     posX = $(this).parent().parent().find('span[data-target="pos_x"]').text();
     posY = $(this).parent().parent().find('span[data-target="pos_y"]').text();
     axios.post('/api/v1.0/constructor/init/build/save', {
-      nid: node,
+      id: node,
       fig_id: figure,
       pos_x: posX,
       pos_y: posY,
@@ -43268,9 +43268,9 @@ function scrollToAnchor(aid, stock) {
   $(document).on('click', '#removeNodePositionConstructor', function (e) {
     e.preventDefault();
     $('.c-preloader').fadeIn(150);
-    node = $(this).parent().data('nid');
+    node = $(this).parent().data('id');
     axios.post('/api/v1.0/constructor/init/build/clear', {
-      nid: node,
+      id: node,
       fig_id: figure
     }).then(function (response) {
       // console.log(response);
@@ -43321,10 +43321,10 @@ function updateCart() {
   });
 }
 
-function addToCart(key, nid, qty) {
+function addToCart(key, id, qty) {
   axios.post('/api/cart/actions/add/item', {
     userKey: key,
-    nid: nid,
+    id: id,
     qty: qty
   }).then(function (response) {
     console.log(response);
@@ -43344,9 +43344,9 @@ function addToCart(key, nid, qty) {
   $(document).on('submit', '#addToCartHandler', function (e) {
     e.preventDefault();
     var userKey = $(this).find('input[name="userKey"]').val(),
-        nid = $(this).find('input[name="nid"]').val(),
+        id = $(this).find('input[name="id"]').val(),
         qty = $(this).find('input[name="qty"]').val();
-    addToCart(userKey, nid, qty);
+    addToCart(userKey, id, qty);
   });
 
   if ($('#cartTableRenderer').length !== 0) {

@@ -30,12 +30,12 @@ Route::group(['middleware' => 'app.locale'], function() {
     Route::get('/catalog/{cid}', 'Website\CatalogController@catalogPage')->name('catalogPage');
     Route::get('/catalog/{cid}/construct/figures', 'Website\CatalogController@figuresCatalogPage')->name('figuresCatalogPage');
     // Nodes
-    Route::get('/node/{nid}', 'Website\NodesController@singleNodePage')->name('singleNodePage');
+    Route::get('/node/{id}', 'Website\NodesController@singleNodePage')->name('singleNodePage');
     // Cart
     Route::get('/cart', 'Website\OrdersController@cartPage')->name('cartPage');
     Route::get('/cart/checkout', 'Website\OrdersController@cartPage')->name('cartPage');
     Route::get('/cart/checkout/proceed', 'Website\OrdersController@cartProceedPage')->name('cartProceedPage');
-    Route::get('/cart/checkout/success/{oid}', 'Website\OrdersController@cartProceedSuccessPage')->name('cartProceedSuccessPage');
+    Route::get('/cart/checkout/success/{id}', 'Website\OrdersController@cartProceedSuccessPage')->name('cartProceedSuccessPage');
     // News
     Route::get('/news', 'Website\PagesController@newsPage')->name('newsPage');
     Route::get('/news/{nw_id}', 'Website\PagesController@singleNewsPage')->name('singleNewsPage');
@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/search', 'Secured\SecuredPagesController@securedSearchPage')->name('securedSearchPage');
         // Orders
         Route::get('/secured/admin/orders', 'Secured\SecuredOrdersController@ordersListPageSecured')->name('ordersListPageSecured');
-        Route::get('/secured/admin/orders/{oid}', 'Secured\SecuredOrdersController@reviewOrderPageSecured')->name('reviewOrderPageSecured');
+        Route::get('/secured/admin/orders/{id}', 'Secured\SecuredOrdersController@reviewOrderPageSecured')->name('reviewOrderPageSecured');
         // Catalog
         Route::get('/secured/admin/catalog', 'Secured\SecuredCatalogController@securedCatalogListPage')->name('securedCatalogListPage');
         Route::get('/secured/admin/catalog/add', 'Secured\SecuredCatalogController@securedAddCatalogItemPage')->name('securedAddCatalogItemPage');
@@ -79,8 +79,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/products/sections/{product_type}', 'Secured\SecuredProductsController@productsListSecuredPage')->name('productsListSecuredPage');
         Route::get('/secured/admin/products/{product_type}/add', 'Secured\SecuredProductsController@addNewProduct')->name('addNewProduct');
         Route::get('/secured/admin/products/{product_type}/add', 'Secured\SecuredProductsController@addNewProduct')->name('addNewProduct');
-        Route::get('/secured/admin/products/{product_type}/{nid}/actions/edit', 'Secured\SecuredProductsController@editNode')->name('editNode');
-        Route::get('/secured/admin/products/{nid}/actions/delete', 'Secured\SecuredProductsController@deleteNode')->name('deleteNode');
+        Route::get('/secured/admin/products/{product_type}/{id}/actions/edit', 'Secured\SecuredProductsController@editNode')->name('editNode');
+        Route::get('/secured/admin/products/{id}/actions/delete', 'Secured\SecuredProductsController@deleteNode')->name('deleteNode');
         // Parts Constructor
         Route::get('/secured/admin/constructor/list', 'Secured\SecuredPartsConstructor@listConstructorPage')->name('listConstructorPage');
         Route::get('/secured/admin/constructor/add/init', 'Secured\SecuredPartsConstructor@initNewConstructorDrawingPage')->name('initNewConstructorDrawingPage');
@@ -109,8 +109,8 @@ Route::group(['middleware' => 'auth'], function() {
         ########################################################################
         // Orders
         Route::post('/api/v1.0/orders/change/status', 'Secured\SecuredOrdersController@changeOrderStatusAPI')->name('changeOrderStatusAPI');
-        Route::get('/api/v1.0/orders/change/products/{oid}/{nid}', 'Secured\SecuredOrdersController@removeProductFromOrderAPI')->name('removeProductFromOrderAPI');
-        Route::get('/api/v1.0/orders/change/delete/{oid}', 'Secured\SecuredOrdersController@removeOrderAPI')->name('removeOrderAPI');
+        Route::get('/api/v1.0/orders/change/products/{order_id}/{node_id}', 'Secured\SecuredOrdersController@removeProductFromOrderAPI')->name('removeProductFromOrderAPI');
+        Route::get('/api/v1.0/orders/change/delete/{id}', 'Secured\SecuredOrdersController@removeOrderAPI')->name('removeOrderAPI');
         // Catalog
         Route::post('/api/v1.0/catalog/new/save', 'Secured\SecuredCatalogController@saveNewCatalogItemAPI')->name('saveNewCatalogItemAPI');
         Route::post('/api/v1.0/catalog/edit/update', 'Secured\SecuredCatalogController@updateCatalogItemAPI')->name('updateCatalogItemAPI');
@@ -120,7 +120,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/api/v1.0/products/parts/save', 'Secured\SecuredProductsController@saveNewPartsAPI')->name('saveNewPartsAPI');
         Route::post('/api/v1.0/products/parts/update', 'Secured\SecuredProductsController@updatePartsAPI')->name('updatePartsAPI');
         Route::get('/api/v1.0/products/images/remove/{ni_id}', 'Secured\SecuredProductsController@removeProductImage')->name('removeProductImage');
-        Route::get('/api/v1.0/products/remove/{nid}', 'Secured\SecuredProductsController@removeProductAPI')->name('removeProductAPI');
+        Route::get('/api/v1.0/products/remove/{id}', 'Secured\SecuredProductsController@removeProductAPI')->name('removeProductAPI');
         // Parts Constructor
         Route::post('/api/v1.0/constructor/init/save', 'Secured\SecuredPartsConstructor@saveConstructorInitAPI')->name('saveConstructorInitAPI');
         Route::post('/api/v1.0/constructor/init/build/save', 'Secured\SecuredPartsConstructor@saveConstructorBuilderAPI')->name('saveConstructorBuilderAPI');

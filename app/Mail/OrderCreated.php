@@ -8,7 +8,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class OrderCreated extends Mailable
 {
@@ -30,16 +31,13 @@ class OrderCreated extends Mailable
      * Build the message.
      *
      * @return $this
-     * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
     public function build()
     {
         return $this->markdown('emails.orders.created')
                     ->attach(
                         Excel::download(
-                            new OrderExport($this->order),
-                            'order.xlsx'
+                            new OrderExport($this->order), 'order.xlsx'
                         )->getFile(), ['as' => 'order.xlsx']
                     );
     }

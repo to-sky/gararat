@@ -20,7 +20,7 @@
     // Edit click
     $(document).on('click', '#editNodePositionConstructor', function(e) {
         e.preventDefault();
-        node = $(this).parent().data('nid');
+        node = $(this).parent().data('id');
         color = $(this).parent().data('color');
         width = $(this).parent().parent().find('input[name="size_x"]').val();
         height = $(this).parent().parent().find('input[name="size_y"]').val();
@@ -30,13 +30,13 @@
     $(document).on('click', '#saveNodePositionConstructor', function(e) {
         e.preventDefault();
         $('.c-preloader').fadeIn(150);
-        node = $(this).parent().data('nid');
+        node = $(this).parent().data('id');
         width = $(this).parent().parent().find('input[name="size_x"]').val();
         height = $(this).parent().parent().find('input[name="size_y"]').val();
         posX = $(this).parent().parent().find('span[data-target="pos_x"]').text();
         posY = $(this).parent().parent().find('span[data-target="pos_y"]').text();
         axios.post('/api/v1.0/constructor/init/build/save', {
-            nid: node,
+            id: node,
             fig_id: figure,
             pos_x: posX,
             pos_y: posY,
@@ -55,9 +55,9 @@
     $(document).on('click', '#removeNodePositionConstructor', function(e) {
         e.preventDefault();
         $('.c-preloader').fadeIn(150);
-        node = $(this).parent().data('nid');
+        node = $(this).parent().data('id');
         axios.post('/api/v1.0/constructor/init/build/clear', {
-            nid: node,
+            id: node,
             fig_id: figure
         }).then(function (response) {
             // console.log(response);

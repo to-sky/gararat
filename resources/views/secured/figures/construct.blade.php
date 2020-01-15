@@ -12,7 +12,7 @@
                             <img src="{{ asset($figure->fig_image) }}" alt="{{ $pageTitle }}">
                             @foreach($nodes as $node)
                                 @if($node->pos_x != 0 && $node->pos_y != 0)
-                                    <div id="targetConstructorNode_{{ $node->nid }}" style="position: absolute; top: {{ $node->pos_y - ($node->size_y / 2) }}px; left: {{ $node->pos_x - ($node->size_x / 2) }}px; border: 1px solid {{ $node->color }}; z-index: 9999; width: {{ $node->size_x }}px; height: {{ $node->size_y }}px;"></div>
+                                    <div id="targetConstructorNode_{{ $node->id }}" style="position: absolute; top: {{ $node->pos_y - ($node->size_y / 2) }}px; left: {{ $node->pos_x - ($node->size_x / 2) }}px; border: 1px solid {{ $node->color }}; z-index: 9999; width: {{ $node->size_x }}px; height: {{ $node->size_y }}px;"></div>
                                 @endif
                             @endforeach
                         </div>
@@ -41,7 +41,7 @@
                         <tbody>
                         @foreach($nodes as $node)
                             <tr>
-                                <td style="color: {{ $node->color }} !important; font-weight: 600;">{{ $node->nid }}</td>
+                                <td style="color: {{ $node->color }} !important; font-weight: 600;">{{ $node->id }}</td>
                                 <td>
                                     @if($node->has_photo != 0)
                                         <img src="{{ asset($node->thumb_path) }}" height="26" />
@@ -52,12 +52,12 @@
                                 <td>{{ $node->n_name_en }} - {{ $node->fig_name_en }}</td>
                                 <td>{{ $node->pos_no }}</td>
                                 <td>{{ $node->qty }}</td>
-                                <td>X:<span id="pos_x_{{ $node->nid }}" data-target="pos_x">{{ $node->pos_x }}</span>; Y:<span id="pos_y_{{ $node->nid }}" data-target="pos_y">{{ $node->pos_y }}</span></td>
+                                <td>X:<span id="pos_x_{{ $node->id }}" data-target="pos_x">{{ $node->pos_x }}</span>; Y:<span id="pos_y_{{ $node->id }}" data-target="pos_y">{{ $node->pos_y }}</span></td>
                                 <td><input type="text" name="size_x" value="{{ $node->size_x }}" style="max-width: 50px; text-align: center;"></td>
                                 <td><input type="text" name="size_y" value="{{ $node->size_y }}" style="max-width: 50px; text-align: center;"></td>
                                 <td
                                     data-color="{{ $node->color }}"
-                                    data-nid="{{ $node->nid }}"
+                                    data-id="{{ $node->id }}"
                                 >
                                     <a href="#" id="editNodePositionConstructor" style="font-size: 16px; padding: 5px;"><i class="c-blue-500 ti-pencil"></i></a>
                                     <a href="#" id="saveNodePositionConstructor" style="font-size: 16px; padding: 5px;"><i class="c-green-500 ti-save"></i></a>

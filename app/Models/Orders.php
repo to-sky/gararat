@@ -49,6 +49,14 @@ class Orders extends Model
         return $this->country . ', ' . $this->city . ', ' . $this->address . ', ' . $this->post;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function nodes()
+    {
+        return $this->belongsToMany(Nodes::class, 'orders_to_nodes', 'order', 'node');
+    }
+
     //======================================================================
     // CREATE
     //======================================================================
@@ -135,6 +143,8 @@ class Orders extends Model
 
         Mail::to([$order->email, config('mail.to.sales')])->send(new OrderCreated($order));
 
+        dd($order);
+
         return $order;
     }
     //======================================================================
@@ -153,8 +163,8 @@ class Orders extends Model
         $array = [];
         foreach ($getOrders as $order) {
             $getNodes = DB::table('orders_to_nodes')
-                ->where('orders_to_nodes.order', $order->oid)
-                ->join('nodes', 'orders_to_nodes.node', '=', 'nodes.nid')
+                ->where('orders_to_nodes.order', $order->id)
+                ->join('nodes', 'orders_to_nodes.node', '=', 'nodes.id')
                 ->get();
             $total = 0;
             foreach ($getNodes as $node) {
@@ -165,7 +175,7 @@ class Orders extends Model
                 }
             }
             $array[] = array(
-                'oid' => $order->oid,
+                'id' => $order->id,
                 'customer' => $order->first_name . ' ' . $order->last_name,
                 'total' => '$' . number_format($total, 0, '.', ' '),
                 'status' => $order->status,
@@ -176,13 +186,13 @@ class Orders extends Model
     }
 
     /**
-     * @param $oid
+     * @param $id
      * @return mixed
      */
-    public function getOrderById($oid)
+    public function getOrderById($id)
     {
         return DB::table('orders')
-            ->where('orders.oid', $oid)
+            ->where('orders.id', $id)
             ->join('users', 'orders.user_id', '=', 'users.id')
             ->select('orders.*', 'users.name')
             ->orderBy('orders.created_at', 'DESC')
@@ -190,16 +200,16 @@ class Orders extends Model
     }
 
     /**
-     * @param $oid
+     * @param $id
      * @return mixed
      */
-    public function getOrderProducts($oid)
+    public function getOrderProducts($id)
     {
         $getNodes = DB::table('orders_to_nodes')
-            ->where('orders_to_nodes.order', $oid)
-            ->join('nodes', 'orders_to_nodes.node', '=', 'nodes.nid')
+            ->where('orders_to_nodes.order', $id)
+            ->join('nodes', 'orders_to_nodes.node', '=', 'nodes.id')
             ->leftJoin('nodes_images', function($join) {
-                $join->on('nodes.nid', '=', 'nodes_images.node')
+                $join->on('nodes.id', '=', 'nodes_images.node')
                     ->where('nodes_images.is_featured', '=', 1);
             })
             ->get();
@@ -217,7 +227,7 @@ class Orders extends Model
         $getCart = DB::table('cart')
             ->where('cart.user_key', $userKey)
             ->join('cart_nodes', 'cart.cart_id', '=', 'cart_nodes.cart')
-            ->leftJoin('nodes', 'cart_nodes.node', '=', 'nodes.nid')
+            ->leftJoin('nodes', 'cart_nodes.node', '=', 'nodes.id')
             ->get();
 
         foreach ($getCart as $item) {
@@ -247,11 +257,11 @@ class Orders extends Model
         $getCart = DB::table('cart')
             ->where('cart.user_key', $userKey)
             ->join('cart_nodes', 'cart.cart_id', '=', 'cart_nodes.cart')
-            ->leftJoin('nodes', 'cart_nodes.node', '=', 'nodes.nid')
-            ->leftJoin('nodes_machinery_fields', 'nodes.nid', '=', 'nodes_machinery_fields.node')
-            ->leftJoin('nodes_parts_fields', 'nodes.nid', '=', 'nodes_parts_fields.node')
+            ->leftJoin('nodes', 'cart_nodes.node', '=', 'nodes.id')
+            ->leftJoin('nodes_machinery_fields', 'nodes.id', '=', 'nodes_machinery_fields.node')
+            ->leftJoin('nodes_parts_fields', 'nodes.id', '=', 'nodes_parts_fields.node')
             ->leftJoin('nodes_images', function($join) {
-                $join->on('nodes.nid', '=', 'nodes_images.node')
+                $join->on('nodes.id', '=', 'nodes_images.node')
                     ->where('nodes_images.is_featured', '=', 1);
             })
             ->get();
@@ -296,11 +306,11 @@ class Orders extends Model
             // Return
             if($locale === 'en') {
                 $return .= '<tr>';
-                $return .= '<td><a href="/node/' . $item->nid . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_en . '" width="50" /></a></td>';
+                $return .= '<td><a href="/node/' . $item->id . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_en . '" width="50" /></a></td>';
                 if(isset($item->nmf_name_en)) {
-                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->nmf_name_en . '</a></td>';
+                    $return .= '<td><a href="/node/' . $item->id . '" target="_blank">' . $item->nmf_name_en . '</a></td>';
                 } else {
-                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->producer_id . ' - ' . $item->npf_name_en . '</a></td>';
+                    $return .= '<td><a href="/node/' . $item->id . '" target="_blank">' . $item->producer_id . ' - ' . $item->npf_name_en . '</a></td>';
                 }
                 $return .= '<td>' . $item->order_qty . '</td>';
                 $return .= '<td>' . $unitPrice . '</td>';
@@ -309,11 +319,11 @@ class Orders extends Model
                 $return .= '</tr>';
             } else {
                 $return .= '<tr>';
-                $return .= '<td><a href="/node/' . $item->nid . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_ar . '" width="50" /></a></td>';
+                $return .= '<td><a href="/node/' . $item->id . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_ar . '" width="50" /></a></td>';
                 if(isset($item->nmf_name_en)) {
-                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->nmf_name_ar . '</a></td>';
+                    $return .= '<td><a href="/node/' . $item->id . '" target="_blank">' . $item->nmf_name_ar . '</a></td>';
                 } else {
-                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->producer_id . ' - ' . $item->npf_name_ar . '</a></td>';
+                    $return .= '<td><a href="/node/' . $item->id . '" target="_blank">' . $item->producer_id . ' - ' . $item->npf_name_ar . '</a></td>';
                 }
                 $return .= '<td>' . $item->order_qty . '</td>';
                 $return .= '<td>' . $unitPrice . '</td>';
@@ -333,11 +343,11 @@ class Orders extends Model
         $getCart = DB::table('cart')
             ->where('cart.user_key', $userKey)
             ->join('cart_nodes', 'cart.cart_id', '=', 'cart_nodes.cart')
-            ->leftJoin('nodes', 'cart_nodes.node', '=', 'nodes.nid')
-            ->leftJoin('nodes_machinery_fields', 'nodes.nid', '=', 'nodes_machinery_fields.node')
-            ->leftJoin('nodes_parts_fields', 'nodes.nid', '=', 'nodes_parts_fields.node')
+            ->leftJoin('nodes', 'cart_nodes.node', '=', 'nodes.id')
+            ->leftJoin('nodes_machinery_fields', 'nodes.id', '=', 'nodes_machinery_fields.node')
+            ->leftJoin('nodes_parts_fields', 'nodes.id', '=', 'nodes_parts_fields.node')
             ->leftJoin('nodes_images', function($join) {
-                $join->on('nodes.nid', '=', 'nodes_images.node')
+                $join->on('nodes.id', '=', 'nodes_images.node')
                     ->where('nodes_images.is_featured', '=', 1);
             })
             ->get();
@@ -375,22 +385,22 @@ class Orders extends Model
             // Return
             if($locale === 'en') {
                 $return .= '<tr>';
-                $return .= '<td><a href="/node/' . $item->nid . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_en . '" width="50" /></a></td>';
+                $return .= '<td><a href="/node/' . $item->id . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_en . '" width="50" /></a></td>';
                 if (isset($item->nmf_name_en)) {
-                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->nmf_name_en . '</a></td>';
+                    $return .= '<td><a href="/node/' . $item->id . '" target="_blank">' . $item->nmf_name_en . '</a></td>';
                 } else {
-                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->producer_id . ' - ' . $item->npf_name_en . '</a></td>';
+                    $return .= '<td><a href="/node/' . $item->id . '" target="_blank">' . $item->producer_id . ' - ' . $item->npf_name_en . '</a></td>';
                 }
                 $return .= '<td>' . $item->order_qty . '</td>';
                 $return .= '<td style="width: 15%;">' . $priceTotal . '</td>';
                 $return .= '</tr>';
             } else {
                 $return .= '<tr>';
-                $return .= '<td><a href="/node/' . $item->nid . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_ar . '" width="50" /></a></td>';
+                $return .= '<td><a href="/node/' . $item->id . '" target="_blank"><img src="' . $image . '" alt="' . $item->n_name_ar . '" width="50" /></a></td>';
                 if (isset($item->nmf_name_en)) {
-                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->nmf_name_ar . '</a></td>';
+                    $return .= '<td><a href="/node/' . $item->id . '" target="_blank">' . $item->nmf_name_ar . '</a></td>';
                 } else {
-                    $return .= '<td><a href="/node/' . $item->nid . '" target="_blank">' . $item->producer_id . ' - ' . $item->npf_name_ar . '</a></td>';
+                    $return .= '<td><a href="/node/' . $item->id . '" target="_blank">' . $item->producer_id . ' - ' . $item->npf_name_ar . '</a></td>';
                 }
                 $return .= '<td>' . $item->order_qty . '</td>';
                 $return .= '<td style="width: 15%;">' . $priceTotal . '</td>';

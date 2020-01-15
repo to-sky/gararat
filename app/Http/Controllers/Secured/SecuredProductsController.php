@@ -74,23 +74,23 @@ class SecuredProductsController extends Controller
 
     /**
      * @param $product_type
-     * @param $nid
+     * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function editNode($product_type, $nid)
+    public function editNode($product_type, $id)
     {
         $helpersModel = new Helpers;
         $catalogModel = new Catalog;
         $nodesModel = new Nodes;
         // Catalog operations
-        $selectedCatalogs = $catalogModel->getSelectedCatalogItem($nid);
+        $selectedCatalogs = $catalogModel->getSelectedCatalogItem($id);
         $getCatalog = $catalogModel->getAllCatalogItems();
         $getCatalogArray = $helpersModel->convertQueryBuilderToArray($getCatalog);
         $buildCatalogOptions = $helpersModel->buildCatalogOptionsWithLevels($getCatalogArray, 0, '---', $selectedCatalogs, $product_type);
 
         $data['catalog'] = $buildCatalogOptions;
-        $data['node'] = $nodesModel->getNodeById($nid, $product_type);
-        $data['images'] = $nodesModel->getNodeImages($nid);
+        $data['node'] = $nodesModel->getNodeById($id, $product_type);
+        $data['images'] = $nodesModel->getNodeImages($id);
 
         switch($product_type) {
             case 0:
@@ -107,7 +107,7 @@ class SecuredProductsController extends Controller
         }
     }
 
-    public function deleteNode($nid)
+    public function deleteNode($id)
     {
 
     }
@@ -154,13 +154,13 @@ class SecuredProductsController extends Controller
         $additionalImages = $request->file('additionalImages');
         $nodesModel->updateBasicNode($data);
         $nodesModel->updateEquipmentNode($data);
-        $nodesModel->setNodeToCatalog($data['nid'], $data['catalog']);
+        $nodesModel->setNodeToCatalog($data['id'], $data['catalog']);
         if($mainImage !== NULL) {
-            $nodesModel->saveNewNodeImage($data['nid'], $mainImage, 1);
+            $nodesModel->saveNewNodeImage($data['id'], $mainImage, 1);
         }
         if($additionalImages !== NULL) {
             foreach ($additionalImages as $image) {
-                $nodesModel->saveNewNodeImage($data['nid'], $image, 0);
+                $nodesModel->saveNewNodeImage($data['id'], $image, 0);
             }
         }
         return redirect()->back();
@@ -202,26 +202,26 @@ class SecuredProductsController extends Controller
         $additionalImages = $request->file('additionalImages');
         $nodesModel->updateBasicNode($data);
         $nodesModel->updatePartsNode($data);
-        $nodesModel->setNodeToCatalog($data['nid'], $data['catalog']);
+        $nodesModel->setNodeToCatalog($data['id'], $data['catalog']);
         if($mainImage !== NULL) {
-            $nodesModel->saveNewNodeImage($data['nid'], $mainImage, 1);
+            $nodesModel->saveNewNodeImage($data['id'], $mainImage, 1);
         }
         if($additionalImages !== NULL) {
             foreach ($additionalImages as $image) {
-                $nodesModel->saveNewNodeImage($data['nid'], $image, 0);
+                $nodesModel->saveNewNodeImage($data['id'], $image, 0);
             }
         }
         return redirect()->back();
     }
 
     /**
-     * @param $nid
+     * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function removeProductAPI($nid)
+    public function removeProductAPI($id)
     {
         $nodesModel = new Nodes;
-        $nodesModel->removeNodeById($nid);
+        $nodesModel->removeNodeById($id);
         return redirect()->back();
     }
 

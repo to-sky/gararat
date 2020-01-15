@@ -13,10 +13,10 @@ function updateCart() {
         });
 }
 
-function addToCart(key, nid, qty) {
+function addToCart(key, id, qty) {
     axios.post('/api/cart/actions/add/item', {
         userKey: key,
-        nid: nid,
+        id: id,
         qty: qty
     })
         .then(function (response) {
@@ -37,9 +37,9 @@ function addToCart(key, nid, qty) {
     $(document).on('submit', '#addToCartHandler', function(e) {
         e.preventDefault();
         let userKey = $(this).find('input[name="userKey"]').val(),
-            nid = $(this).find('input[name="nid"]').val(),
+            id = $(this).find('input[name="id"]').val(),
             qty = $(this).find('input[name="qty"]').val();
-        addToCart(userKey, nid, qty);
+        addToCart(userKey, id, qty);
     });
 
     if($('#cartTableRenderer').length !== 0) {

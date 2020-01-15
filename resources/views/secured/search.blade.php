@@ -19,7 +19,7 @@
                     <tbody>
                     @foreach($products as $product)
                         <tr>
-                            <td>{{ $product->nid }}</td>
+                            <td>{{ $product->id }}</td>
                             @if($product->has_photo != 0)
                                 <td><img src="{{ asset($product->thumb_path) }}" height="26"></td>
                             @else
@@ -51,8 +51,8 @@
                                 @endswitch
                             </td>
                             <td>
-                                <a href="{{ route('editNode', ['product_type' => $product->cat_type, 'nid' => $product->nid]) }}" class="btn btn-success"><i class="ti-pencil"></i></a>
-                                <a href="{{ route('removeProductAPI', $product->nid) }}" class="btn btn-danger"><i class="ti-trash"></i></a>
+                                <a href="{{ route('editNode', ['product_type' => $product->cat_type, 'id' => $product->id]) }}" class="btn btn-success"><i class="ti-pencil"></i></a>
+                                <a href="{{ route('removeProductAPI', $product->id) }}" class="btn btn-danger"><i class="ti-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach

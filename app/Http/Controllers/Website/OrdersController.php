@@ -48,10 +48,10 @@ class OrdersController extends Controller
     }
 
     /**
-     * @param $oid
+     * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function cartProceedSuccessPage($oid)
+    public function cartProceedSuccessPage($id)
     {
         $locale = App::getLocale();
         if($locale == 'ar') {
@@ -60,7 +60,7 @@ class OrdersController extends Controller
             $data['pageTitle'] = 'Order created successfully';
         }
         $data['pageDescription'] = '';
-        $data['oid'] = $oid;
+        $data['id'] = $id;
         return view('website.cart.cart-success', $data);
     }
     //======================================================================
@@ -107,7 +107,7 @@ class OrdersController extends Controller
     {
         $ordersModel = new Orders;
         $userKey = $request->get('userKey');
-        $node = $request->get('nid');
+        $node = $request->get('id');
         $qty = $request->get('qty');
         $createCart = $ordersModel->createCart($userKey);
         $ordersModel->createCartItems($createCart, $node, $qty);
