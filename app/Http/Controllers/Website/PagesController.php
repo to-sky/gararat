@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Website;
 
+use App\Mail\ContactUsForm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
 use Mail;
 use App;
 
-use \App\Models\Helpers;
-use \App\Models\Slider;
-use \App\Models\News;
-use \App\Models\Pages;
-use \App\Models\Nodes;
+use App\Models\{
+    Slider, News, Pages, Nodes
+};
 
 class PagesController extends Controller
 {
@@ -145,6 +144,7 @@ class PagesController extends Controller
     public function langSwitcherPage($lang)
     {
         Session::put('locale', $lang);
+
         return redirect()->back();
     }
 
@@ -154,16 +154,12 @@ class PagesController extends Controller
      */
     public function sendContactsMail(Request $request)
     {
-        $data = $request->all();
         $checkCode = 'g29853qg-(*&H@#O(*&FH0908hj2dc89hncole9r8whcd';
-        if($checkCode == $data['checkCode']) {
-            Mail::raw('Message from ' . $data['name'] . '. Email: ' . $data['email'] . '. Phone: ' . $data['phone'] . '. Message: ' . $data['message'], function($message)
-            {
-                $message->subject('Message From Gararat Contact Form');
-                $message->from(config('mail.from.address'), 'Gararat');
-                $message->to('sales@gararat.com');
-            });
+
+        if ($checkCode == $request->checkCode) {
+            Mail::to(config('mail.to.sales'))->send(new ContactUsForm($request));
         }
+
         return redirect()->back();
     }
 }

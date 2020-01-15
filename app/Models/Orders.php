@@ -2,14 +2,53 @@
 
 namespace App\Models;
 
+use App\Mail\OrderCreated;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
 use App;
 use Hash;
 use DB;
+use Mail;
 
 class Orders extends Model
 {
+
+    protected $fillable = [
+        'first_name', 'last_name', 'email', 'phone', 'comment', 'created_at', 'user_id', 'country', 'city', 'post',
+        'address', 'status'
+    ];
+
+    /**
+     * Display id with lead zeros
+     *
+     * @return string
+     */
+    public function displayId()
+    {
+        return sprintf('%06d', $this->id);
+    }
+
+    /**
+     * Return client full name
+     *
+     * @return string
+     */
+    public function fullName()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    /**
+     * Full client address
+     *
+     * @return string
+     */
+    public function fullAddress()
+    {
+        return $this->country . ', ' . $this->city . ', ' . $this->address . ', ' . $this->post;
+    }
+
     //======================================================================
     // CREATE
     //======================================================================
@@ -58,43 +97,45 @@ class Orders extends Model
      */
     public function createOrder($data)
     {
-        $getCart = DB::table('cart')
+        $cart = DB::table('cart')
             ->where('cart.user_key', $data['userKey'])
             ->join('cart_nodes', 'cart.cart_id', '=', 'cart_nodes.cart')
             ->get();
-        $userID = $data['uid'];
-        if($data['uid'] == 'guest') {
-            $createUser = DB::table('users')->insertGetId([
-                'name'        => $data['orderEmail'],
-                'email'       => $data['orderEmail'],
-                'password'    => Hash::make(uniqid())
-            ]);
-            $userID = $createUser;
-        }
-        $createOrder = DB::table('orders')->insertGetId([
+
+        $user = User::firstOrCreate(['email'  => $data['orderEmail']], [
+            'name' => $data['orderEmail'],
+            'email'  => $data['orderEmail'],
+            'password' => Hash::make(uniqid())
+        ]);
+
+        $order = Orders::create([
             'first_name' => $data['firstName'],
             'last_name' => $data['lastName'],
             'email' => $data['orderEmail'],
             'phone' => $data['orderPhone'],
             'comment' => $data['orderComment'],
             'created_at' => Carbon::now(),
-            'user_id' => $userID,
+            'user_id' => $user->id,
             'country' => $data['orderCountry'],
             'city' => $data['orderCity'],
             'post' => $data['orderPost'],
             'address' => $data['orderAddress'],
             'status' => 0
         ]);
-        foreach ($getCart as $cart) {
+
+        foreach ($cart as $item) {
             DB::table('orders_to_nodes')->insert([
-                'order' => $createOrder,
-                'node' => $cart->node,
-                'order_qty' => $cart->order_qty
+                'order' => $order->id,
+                'node' => $item->node,
+                'order_qty' => $item->order_qty
             ]);
-            DB::table('cart_nodes')->where('cart', $cart->cart)->where('node', $cart->node)->delete();
+            DB::table('cart_nodes')->where('cart', $item->cart)->where('node', $item->node)->delete();
         }
         DB::table('cart')->where('user_key', $data['userKey']);
-        return $createOrder;
+
+        Mail::to([$order->email, config('mail.to.sales')])->send(new OrderCreated($order));
+
+        return $order;
     }
     //======================================================================
     // READ

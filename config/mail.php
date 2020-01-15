@@ -56,8 +56,19 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'sales@gararat.com'),
+        'name' => env('MAIL_FROM_NAME', 'Gararat'),
+    ],
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Global "To" Addresses
+    |--------------------------------------------------------------------------
+    |
+    */
+    'to' => [
+        'sales' => 'sales@gararat.com'
     ],
 
     /*

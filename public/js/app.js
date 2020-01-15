@@ -43077,10 +43077,10 @@ __webpack_require__(/*! ./handlers/lang */ "./resources/js/handlers/lang.js");
   });
   $(document).on("cut copy", function (e) {
     e.preventDefault();
-  });
-  $(document).on("contextmenu", function () {
-    return false;
-  });
+  }); // $(document).on("contextmenu",function(){
+  //     return false;
+  // });
+
   $('#contactFormPageForm button[type="submit"]').on('click', function () {
     $('#checkCode').val('g29853qg-(*&H@#O(*&FH0908hj2dc89hncole9r8whcd');
   });

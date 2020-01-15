@@ -133,8 +133,8 @@ class OrdersController extends Controller
     public function proceedOrderAPI(Request $request)
     {
         $ordersModel = new Orders;
-        $data = $request->all();
-        $createOrder = $ordersModel->createOrder($data);
+        $createOrder = $ordersModel->createOrder($request->all());
+
         return redirect()->route('cartProceedSuccessPage', $createOrder);
     }
 }
