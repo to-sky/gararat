@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Secured;
 
+use App\Models\Machinery;
+use App\Models\Part;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use \App\Models\Catalog;
 use \App\Models\Helpers;
-use \App\Models\Nodes;
+use \App\Models\Node;
 
 class SecuredProductsController extends Controller
 {
@@ -20,7 +22,7 @@ class SecuredProductsController extends Controller
      */
     public function productsListSecuredPage($product_type)
     {
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
         $catalogModel = new Catalog;
         $getAllChildsCategories = $catalogModel->getAllChildsCategories($product_type);
         $getNodes = $nodesModel->getNodesForProductType($getAllChildsCategories);
@@ -50,9 +52,9 @@ class SecuredProductsController extends Controller
     {
         $helpersModel = new Helpers;
         $catalogModel = new Catalog;
+
         // Catalog operations
-        $getCatalog = $catalogModel->getAllCatalogItems();
-        $getCatalogArray = $helpersModel->convertQueryBuilderToArray($getCatalog);
+        $getCatalogArray = $helpersModel->convertQueryBuilderToArray($catalogModel->get());
         $buildCatalogOptions = $helpersModel->buildCatalogOptionsWithLevels($getCatalogArray, 0, '---', NULL, $product_type);
 
         $data['catalog'] = $buildCatalogOptions;
@@ -81,11 +83,10 @@ class SecuredProductsController extends Controller
     {
         $helpersModel = new Helpers;
         $catalogModel = new Catalog;
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
         // Catalog operations
         $selectedCatalogs = $catalogModel->getSelectedCatalogItem($id);
-        $getCatalog = $catalogModel->getAllCatalogItems();
-        $getCatalogArray = $helpersModel->convertQueryBuilderToArray($getCatalog);
+        $getCatalogArray = $helpersModel->convertQueryBuilderToArray($catalogModel->get());
         $buildCatalogOptions = $helpersModel->buildCatalogOptionsWithLevels($getCatalogArray, 0, '---', $selectedCatalogs, $product_type);
 
         $data['catalog'] = $buildCatalogOptions;
@@ -120,7 +121,7 @@ class SecuredProductsController extends Controller
      */
     public function saveNewEquipmentAPI(Request $request)
     {
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
         $data = $request->all();
         $mainImage = $request->file('mainImage');
         $additionalImages = $request->file('additionalImages');
@@ -148,7 +149,7 @@ class SecuredProductsController extends Controller
      */
     public function updateEquipmentAPI(Request $request)
     {
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
         $data = $request->all();
         $mainImage = $request->file('mainImage');
         $additionalImages = $request->file('additionalImages');
@@ -172,14 +173,19 @@ class SecuredProductsController extends Controller
      */
     public function saveNewPartsAPI(Request $request)
     {
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
         $data = $request->all();
         $mainImage = $request->file('mainImage');
         $additionalImages = $request->file('additionalImages');
         // Save node
         $saveNode = $nodesModel->createBasicNode($data);
+
+
         // Save parts node
         $nodesModel->savePartsNode($saveNode, $data);
+
+
+
         // Set node to catalog
         $nodesModel->setNodeToCatalog($saveNode, $data['catalog']);
         // Proceed images
@@ -196,7 +202,7 @@ class SecuredProductsController extends Controller
 
     public function updatePartsAPI(Request $request)
     {
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
         $data = $request->all();
         $mainImage = $request->file('mainImage');
         $additionalImages = $request->file('additionalImages');
@@ -220,7 +226,7 @@ class SecuredProductsController extends Controller
      */
     public function removeProductAPI($id)
     {
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
         $nodesModel->removeNodeById($id);
         return redirect()->back();
     }
@@ -231,7 +237,7 @@ class SecuredProductsController extends Controller
      */
     public function removeProductImage($ni_id)
     {
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
         $nodesModel->deleteImageById($ni_id);
         return redirect()->back();
     }

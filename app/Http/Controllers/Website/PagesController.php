@@ -10,7 +10,7 @@ use Mail;
 use App;
 
 use App\Models\{
-    Slider, News, Pages, Nodes
+    Slider, News, Pages, Node
 };
 
 class PagesController extends Controller
@@ -121,7 +121,7 @@ class PagesController extends Controller
      */
     public function searchResults(Request $request)
     {
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
         $query = $request->query('q');
         $locale = App::getLocale();
 

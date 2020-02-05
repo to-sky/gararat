@@ -54,7 +54,7 @@ class Orders extends Model
      */
     public function nodes()
     {
-        return $this->belongsToMany(Nodes::class, 'orders_to_nodes', 'order', 'node');
+        return $this->belongsToMany(Node::class, 'orders_to_nodes', 'order', 'node');
     }
 
     //======================================================================

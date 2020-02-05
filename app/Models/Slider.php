@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Image;
 use DB;
 
-use \App\Models\Nodes;
+use \App\Models\Node;
 
 class Slider extends Model
 {
@@ -20,7 +20,7 @@ class Slider extends Model
      */
     public function saveNewSlide($data, $file)
     {
-        $nodeModel = new Nodes;
+        $nodeModel = new Node;
         $saveImage = $nodeModel->proceedNodeImage($file, null, 'slider');
         return DB::table('slider')->insert([
             'sl_order' => $data['positionNumber'],
@@ -59,7 +59,7 @@ class Slider extends Model
     public function updateSlider($data, $file)
     {
         if(isset($file) && $file !== null) {
-            $nodeModel = new Nodes;
+            $nodeModel = new Node;
             $saveImage = $nodeModel->proceedNodeImage($file, null, 'slider');
             return DB::table('slider')->where('sl_id', $data['sliderId'])->update([
                 'sl_order' => $data['positionNumber'],

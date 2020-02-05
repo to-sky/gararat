@@ -8,7 +8,7 @@ use App;
 
 use \App\Models\Catalog;
 use \App\Models\Helpers;
-use \App\Models\Nodes;
+use \App\Models\Node;
 use \App\Models\Figures;
 use \App\Models\Pages;
 
@@ -21,82 +21,55 @@ class CatalogController extends Controller
      */
     public function catalogPage(Request $request, $cid)
     {
-        $catalogModel = new Catalog;
+        $catalog = Catalog::find($cid);
+
         $helpers = new Helpers;
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
         $pagesModel = new Pages;
         $locale = App::getLocale();
+
         // Params
-        $target = $request->query('target');
-        $destination = $request->query('dest');
-        $perPage = $request->query('per_page');
-        if($target === NULL) { $target = 'price'; }
-        if($destination === NULL) { $destination = 'ASC'; }
-        if($perPage === NULL) { $perPage = 20; }
-        $neededDest = $destination;
-        switch($destination) {
-            case 'ASC':
-                $neededTarget = 'DESC';
-                break;
-            case 'DESC':
-                $neededTarget = 'ASC';
-                break;
-            default:
-                $neededTarget = 'ASC';
-                break;
-        }
-        $getCatalogByCid = $catalogModel->getCatalogByCid($cid);
-        if($locale == 'ar') {
-            if($getCatalogByCid->cat_title_ar === NULL) {
-                $data['pageTitle'] = $getCatalogByCid->cat_name_ar;
-            } else {
-                $data['pageTitle'] = $getCatalogByCid->cat_title_ar;
-            }
-        } else {
-            if($getCatalogByCid->cat_title_en === NULL) {
-                $data['pageTitle'] = $getCatalogByCid->cat_name_en;
-            } else {
-                $data['pageTitle'] = $getCatalogByCid->cat_title_en;
-            }
-        }
-        $getAllChildsCategories = $catalogModel->getAllChildsCategoriesFrontEnd($getCatalogByCid->cat_number);
-        $data['catalogChilds'] = $catalogModel->getCatalogChilds($getCatalogByCid->cat_number);
-        if($getCatalogByCid->cat_type === 1) {
+        $target = $request->target ?? 'price';
+        $destination = $request->dest ?? 'ASC';
+        $perPage = $request->per_page ?? 20;
+
+        $data['pageTitle'] = $catalog->{'cat_title_'.$locale} ?? $catalog->{'cat_name_'.$locale};
+
+        $getAllChildsCategories = $catalog->getAllChildsCategoriesFrontEnd($catalog->cat_number);
+        $data['catalogChilds'] = $catalog->getCatalogChilds($catalog->cat_number);
+        if($catalog->cat_type === 1) {
             $alias = 'parts';
-            $stepsToRoot = $catalogModel->countParentsToRoot($getCatalogByCid->parent_cat);
+            $stepsToRoot = $catalog->countParentsToRoot($catalog->parent_cat);
             if($stepsToRoot >= 2) {
-                $getCatalogs = $catalogModel->getAllCatalogItemsByTypeWithoutRoot(1);
+                $getCatalogs = $catalog->getAllCatalogItemsByTypeWithoutRoot(1);
                 if(count($data['catalogChilds']) > 0) {
-                    $data['preRenderedCatalog'] = $helpers->buildFrontendPartsCatalogMenu($cid, $helpers->convertQueryBuilderToArray($getCatalogs), $getCatalogByCid->cat_number);
+                    $data['preRenderedCatalog'] = $helpers->buildFrontendPartsCatalogMenu($cid, $helpers->convertQueryBuilderToArray($getCatalogs), $catalog->cat_number);
                 } else {
-                    $data['preRenderedCatalog'] = $helpers->buildFrontendPartsCatalogMenu($cid, $helpers->convertQueryBuilderToArray($getCatalogs), $getCatalogByCid->parent_cat);
+                    $data['preRenderedCatalog'] = $helpers->buildFrontendPartsCatalogMenu($cid, $helpers->convertQueryBuilderToArray($getCatalogs), $catalog->parent_cat);
                 }
             }
         } else {
             $alias = 'equipment';
         }
         $data['cid'] = $cid;
-        $data['currentCatalog'] = $getCatalogByCid;
-        if($locale == 'ar') {
-            $data['catalogName'] = $getCatalogByCid->cat_name_ar;
-            $data['pageDescription'] = $getCatalogByCid->cat_description_ar;
-        } else {
-            $data['catalogName'] = $getCatalogByCid->cat_name_en;
-            $data['pageDescription'] = $getCatalogByCid->cat_description_en;
-        }
-        $data['catalogType'] = $getCatalogByCid->cat_type;
-        $data['catalogView'] = $getCatalogByCid->cat_view;
-        $data['parentCatalog'] = $catalogModel->getCatalogByCatNumber($getCatalogByCid->parent_cat);
-        $data['breadcrumbs'] = $helpers->buildCatalogBreadcrumbs($getCatalogByCid, false);
+        $data['currentCatalog'] = $catalog;
+        $data['catalogName'] = $catalog->{'cat_name_'.$locale};
+        $data['pageDescription'] = $catalog->{'cat_description_'.$locale};
+        $data['catalogType'] = $catalog->cat_type;
+        $data['catalogView'] = $catalog->cat_view;
+        $data['parentCatalog'] = $catalog->getCatalogByCatNumber($catalog->parent_cat);
+        $data['breadcrumbs'] = $helpers->buildCatalogBreadcrumbs($catalog, false);
+
         // Get products
         $getNodes = $nodesModel->getNodesForProductType($getAllChildsCategories);
-        $data['products'] = $nodesModel->getNodesByType($getNodes, $getCatalogByCid->cat_type, $perPage, $target, $destination);
+        $data['products'] = $nodesModel->getNodesByType($getNodes, $catalog->cat_type, $perPage, $target, $destination);
         $data['target'] = $target;
-        $data['neededTarget'] = $neededTarget;
+        $data['neededTarget'] = $destination == 'ASC' ? 'DESC' : 'ASC';
         $data['destination'] = $destination;
         $data['perPage'] = $perPage;
         $data['page'] = $pagesModel->getPageByAlias($alias);
-        if($getCatalogByCid->is_drawing === 1) {
+
+        if($catalog->is_drawing === 1) {
             return redirect()->route('figuresCatalogPage', $cid);
         } else {
             return view('website.catalog.catalog', $data);
@@ -107,12 +80,13 @@ class CatalogController extends Controller
     {
         $catalogModel = new Catalog;
         $helpers = new Helpers;
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
         $figuresModel = new Figures;
 
         $locale = App::getLocale();
 
-        $getCatalogByCid = $catalogModel->getCatalogByCid($cid);
+        $getCatalogByCid = $catalogModel->find($cid);
+
         if($locale === 'en') {
             if($getCatalogByCid->cat_title_en === NULL) {
                 $data['pageTitle'] = $getCatalogByCid->cat_name_en;

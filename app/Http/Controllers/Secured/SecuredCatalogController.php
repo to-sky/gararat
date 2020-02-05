@@ -22,7 +22,7 @@ class SecuredCatalogController extends Controller
         $helper = new Helpers;
 
         $data['pageTitle'] = 'Catalog';
-        $getCatalogArray = $helper->convertQueryBuilderToArray($catalogModel->getAllCatalogItems());
+        $getCatalogArray = $helper->convertQueryBuilderToArray($catalogModel->get());
         $data['catalog'] = $helper->buildCatalogMenuWithLevels($getCatalogArray, 0);
 
         return view('secured.catalog.list', $data);
@@ -37,7 +37,7 @@ class SecuredCatalogController extends Controller
         $helper = new Helpers;
 
         $data['pageTitle'] = 'New Catalog Item';
-        $getCatalogArray = $helper->convertQueryBuilderToArray($catalogModel->getAllCatalogItems());
+        $getCatalogArray = $helper->convertQueryBuilderToArray($catalogModel->get());
         $data['catalogs'] = $helper->buildCatalogOptionsWithLevels($getCatalogArray, 0, '', NULL, NULL);
 
         return view('secured.catalog.add', $data);
@@ -51,10 +51,10 @@ class SecuredCatalogController extends Controller
     {
         $catalogModel = new Catalog;
         $helper = new Helpers;
-        $getCatalogItem = $catalogModel->getCatalogItemById($cid);
+        $getCatalogItem = $catalogModel->find($cid);
 
         $data['pageTitle'] = 'Edit Catalog: ' . $getCatalogItem->cat_name_en;
-        $getCatalogArray = $helper->convertQueryBuilderToArray($catalogModel->getAllCatalogItems());
+        $getCatalogArray = $helper->convertQueryBuilderToArray($catalogModel->get());
         $data['catalogs'] = $helper->buildCatalogOptionsWithLevels($getCatalogArray, 0, '---', $getCatalogItem->parent_cat, NULL);
         $data['catalogItem'] = $getCatalogItem;
 

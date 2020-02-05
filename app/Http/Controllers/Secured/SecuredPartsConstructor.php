@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use \App\Models\Catalog;
 use \App\Models\Figures;
 use \App\Models\Helpers;
-use \App\Models\Nodes;
+use \App\Models\Node;
 
 class SecuredPartsConstructor extends Controller
 {
@@ -51,7 +51,7 @@ class SecuredPartsConstructor extends Controller
     {
         $catalogModel = new Catalog;
         $figuresModel = new Figures;
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
 
         $getFigure = $figuresModel->getFigureById($fig_id);
         $figuresModel->createOrUpdateNodeForFigure($fig_id, $getFigure->fig_no);

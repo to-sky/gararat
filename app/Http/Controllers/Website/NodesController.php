@@ -8,7 +8,7 @@ use App;
 
 use \App\Models\Catalog;
 use \App\Models\Helpers;
-use \App\Models\Nodes;
+use \App\Models\Node;
 
 class NodesController extends Controller
 {
@@ -20,7 +20,7 @@ class NodesController extends Controller
     {
         $catalogModel = new Catalog;
         $helpers = new Helpers;
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
         $locale = App::getLocale();
 
         $getNodeCatalog = $catalogModel->getCatalogByNodeId($id);

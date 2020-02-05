@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Nodes;
+use App\Models\Node;
 use App\Models\Orders;
 use App\Models\OrdersToNodes;
 use Maatwebsite\Excel\Concerns\{FromCollection, WithHeadings};
@@ -28,7 +28,7 @@ class OrderExport implements FromCollection, WithHeadings
     {
          return OrdersToNodes::whereOrder($this->order->id)->get()->map(function ($item) {
              return [
-                 'Item' => Nodes::find($item->node)->n_name_en,
+                 'Item' => Node::find($item->node)->n_name_en,
                  'Quantity' => $item->order_qty
              ];
          });

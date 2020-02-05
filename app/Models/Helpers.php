@@ -159,7 +159,7 @@ class Helpers extends Model
         $parentCat = $currentCatalog->parent_cat;
         if($parentCat > 0) {
             while($parentCat > 0) {
-                $getCatalog = $catalogModel->getCatalogParent($parentCat);
+                $getCatalog = $catalogModel->getCatalogByCatNumber($parentCat);
                 if($locale === 'en') {
                     $breadcrumbsArray[] = array('name' => $getCatalog->cat_name_en, 'route' => 'catalogPage', 'param' => $getCatalog->cid);
                 } else {

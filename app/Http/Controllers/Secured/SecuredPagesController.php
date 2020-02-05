@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use League\Csv\Reader;
 use \Carbon\Carbon;
 
-use \App\Models\Nodes;
+use \App\Models\Node;
 
 class SecuredPagesController extends Controller
 {
@@ -19,7 +19,7 @@ class SecuredPagesController extends Controller
      */
     public function securedDashboardPage()
     {
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
 
         $data['pageTitle'] = 'Dashboard';
         $data['partsCount'] = $nodesModel->countPartsNodes();
@@ -34,7 +34,7 @@ class SecuredPagesController extends Controller
      */
     public function securedSearchPage(Request $request)
     {
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
         $query = $request->query('q');
 
         $data['pageTitle'] = 'Search results for: ' . $query;
@@ -77,7 +77,7 @@ class SecuredPagesController extends Controller
         $reader->setHeaderOffset(0);
         $records = $reader->getRecords();
         // Loop each part and check if exist and create/update it
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
         foreach ($records as $offset => $record) {
             // dd($record);
             $nodesModel->getEQCsvRecordToAnalyze($record);
@@ -106,7 +106,7 @@ class SecuredPagesController extends Controller
         $reader->setHeaderOffset(0);
         $records = $reader->getRecords();
         // Loop each part and check if exist and create/update it
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
         foreach ($records as $offset => $record) {
             // dd($record);
             $nodesModel->getPartsCsvRecordToAnalyze($record);

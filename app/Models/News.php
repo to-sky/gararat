@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
 use DB;
 
-use \App\Models\Nodes;
+use \App\Models\Node;
 
 class News extends Model
 {
@@ -20,7 +20,7 @@ class News extends Model
      */
     public function createNewsItem($data, $file)
     {
-        $nodeModel = new Nodes;
+        $nodeModel = new Node;
         return DB::table('news')->insert([
             'nw_name' => $data['newsName'],
             'nw_body' => $data['newsBody'],
@@ -73,7 +73,7 @@ class News extends Model
      */
     public function updateNewsItem($data, $file)
     {
-        $nodeModel = new Nodes;
+        $nodeModel = new Node;
         if($file !== NULL) {
             return DB::table('news')->where('nw_id', $data['nw_id'])->update([
                 'nw_name' => $data['newsName'],

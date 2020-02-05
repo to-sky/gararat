@@ -6,10 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
 use DB;
 
-use \App\Models\Nodes;
+use \App\Models\Node;
 
 class Catalog extends Model
 {
+
+    protected $table = 'catalog';
+
+    protected $primaryKey = 'cid';
+
+
     //======================================================================
     // CREATE
     //======================================================================
@@ -20,11 +26,11 @@ class Catalog extends Model
      */
     public function saveNewCatalogItem($data, $file)
     {
-        $nodesModel = new Nodes;
+        $nodesModel = new Node;
 
         $getParentCatalog = $this->getCatalogByCatNumber($data['catalogParent']);
 
-        $saveCatalog =  DB::table('catalog')->insertGetId([
+        $saveCatalog =  $this->insertGetId([
             'cat_number' => $data['catalogNumber'],
             'parent_cat' => $data['catalogParent'],
             'cat_name_en' => $data['catalogNameEn'],
@@ -39,7 +45,7 @@ class Catalog extends Model
         ]);
 
         if($file !== null) {
-            DB::table('catalog')->where('cid', $saveCatalog)->update([
+            $this->where('cid', $saveCatalog)->update([
                 'cat_image' => $nodesModel->proceedNodeImage($file, 512, 'catalog')
             ]);
         }
@@ -55,7 +61,7 @@ class Catalog extends Model
      */
     public function findCatalogItemByCatId($catId)
     {
-        return DB::table('catalog')->where('cat_number', $catId)->count();
+        return $this->where('cat_number', $catId)->count();
     }
 
     /**
@@ -65,7 +71,7 @@ class Catalog extends Model
      */
     public function findCatalogItemByCatIdAndCid($catId, $cid)
     {
-        return DB::table('catalog')
+        return $this
             ->where('cat_number', $catId)
             ->where('cid', '!=', $cid)
             ->count();
@@ -74,17 +80,9 @@ class Catalog extends Model
     /**
      * @return mixed
      */
-    public function getAllCatalogItems()
-    {
-        return DB::table('catalog')->get();
-    }
-
-    /**
-     * @return mixed
-     */
     public function getAllCatalogItemsByType($type)
     {
-        return DB::table('catalog')->where('cat_type', $type)->get();
+        return $this->where('cat_type', $type)->get();
     }
 
     /**
@@ -92,7 +90,7 @@ class Catalog extends Model
      */
     public function getAllCatalogItemsByTypeWithoutRoot($type)
     {
-        return DB::table('catalog')
+        return $this
             ->where('cat_type', $type)
             ->where('parent_cat', '!=', 0)
             ->get();
@@ -104,16 +102,7 @@ class Catalog extends Model
      */
     public function getCatalogItemParentId($cid)
     {
-        return DB::table('catalog')->where('cid', $cid)->select('parent_cat')->first();
-    }
-
-    /**
-     * @param $cid
-     * @return mixed
-     */
-    public function getCatalogItemById($cid)
-    {
-        return DB::table('catalog')->where('cid', $cid)->first();
+        return $this->find($cid)->select('parent_cat')->first();
     }
 
     /**
@@ -122,16 +111,7 @@ class Catalog extends Model
      */
     public function getCatalogByCatNumber($catNumber)
     {
-        return DB::table('catalog')->where('cat_number', $catNumber)->first();
-    }
-
-    /**
-     * @param $cid
-     * @return mixed
-     */
-    public function getCatalogByCid($cid)
-    {
-        return DB::table('catalog')->where('cid', $cid)->first();
+        return $this->where('cat_number', $catNumber)->first();
     }
 
     /**
@@ -140,16 +120,7 @@ class Catalog extends Model
      */
     public function getCatalogChilds($catNumber)
     {
-        return DB::table('catalog')->where('parent_cat', $catNumber)->get();
-    }
-
-    /**
-     * @param $catParent
-     * @return mixed
-     */
-    public function getCatalogParent($catParent)
-    {
-        return DB::table('catalog')->where('cat_number', $catParent)->first();
+        return $this->where('parent_cat', $catNumber)->get();
     }
 
     /**
@@ -158,7 +129,7 @@ class Catalog extends Model
      */
     public function getCatalogListByCatalogNumber($catNumber)
     {
-        return DB::table('catalog')->where('cat_number', $catNumber)->get();
+        return $this->where('cat_number', $catNumber)->get();
     }
 
     /**
@@ -177,8 +148,8 @@ class Catalog extends Model
             default:
                 break;
         }
-        $allCategories = $this->getAllCatalogItems();
-        $categories = json_decode(json_encode($allCategories), true);
+        $categories = $this->get()->toArray();
+
         $array = [];
         if($needed != 1 && $needed != 2) {
             $parent = $needed;
@@ -214,8 +185,7 @@ class Catalog extends Model
                 $needed = $category;
                 break;
         }
-        $allCategories = $this->getAllCatalogItems();
-        $categories = json_decode(json_encode($allCategories), true);
+        $categories = $this->get()->toArray();
         $array = [];
         if($needed != 1 && $needed != 2) {
             $parent = $needed;
@@ -316,6 +286,7 @@ class Catalog extends Model
         }
         return $i;
     }
+
     //======================================================================
     // UPDATE
     //======================================================================
@@ -326,7 +297,7 @@ class Catalog extends Model
      */
     public function changeParentCategory($oldParent, $newParent)
     {
-        return DB::table('catalog')->where('parent_cat', $oldParent)->update([
+        return $this->where('parent_cat', $oldParent)->update([
             'parent_cat' => $newParent
         ]);
     }
@@ -338,7 +309,7 @@ class Catalog extends Model
      */
     public function updateCatalogItem($data, $file)
     {
-        $updateCatalog =  DB::table('catalog')->where('cid', $data['cid'])->update([
+        $updateCatalog =  $this->find($data['cid'])->update([
             'cat_number' => $data['catalogNumber'],
             'parent_cat' => $data['catalogParent'],
             'cat_name_en' => $data['catalogNameEn'],
@@ -352,13 +323,14 @@ class Catalog extends Model
         ]);
 
         if($file !== null) {
-            $nodesModel = new Nodes;
-            DB::table('catalog')->where('cid', $data['cid'])->update([
+            $nodesModel = new Node;
+            $this->where('cid', $data['cid'])->update([
                 'cat_image' => $nodesModel->proceedNodeImage($file, 512, 'catalog')
             ]);
         }
         return $updateCatalog;
     }
+
     //======================================================================
     // DELETE
     //======================================================================
@@ -368,11 +340,12 @@ class Catalog extends Model
      */
     public function deleteCategoryItem($cid)
     {
-        $getCatalog = $this->getCatalogByCid($cid);
-        DB::table('catalog')->where('parent_cat', $getCatalog->cat_number)->update([
+        $getCatalog = $this->find($cid);
+        $this->where('parent_cat', $getCatalog->cat_number)->update([
             'parent_cat' => $getCatalog->parent_cat
         ]);
         DB::table('nodes_to_catalog')->where('catalog', $cid)->delete();
-        return DB::table('catalog')->where('cid', $cid)->delete();
+
+        return $this->where('cid', $cid)->delete();
     }
 }

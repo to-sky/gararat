@@ -7,7 +7,7 @@ use \Carbon\Carbon;
 use Image;
 use DB;
 
-class Nodes extends Model
+class Node extends Model
 {
     //======================================================================
     // HELPERS
@@ -25,8 +25,8 @@ class Nodes extends Model
         $image_filename = md5($image2->getClientOriginalName() . $img_salt);
         $path = public_path('uploads/' . $pathFolder . '/' . $image_filename . '.' . $image2->getClientOriginalExtension());
         $filename_to_store = 'uploads/' . $pathFolder . '/' . $image_filename . '.' . $image2->getClientOriginalExtension();
-        if($size !== NULL) {
-            Image::make($image2->getRealPath())->resize($size, null, function($constraint) {
+        if ($size !== NULL) {
+            Image::make($image2->getRealPath())->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             })->save($path);
@@ -42,7 +42,7 @@ class Nodes extends Model
     public function getPartsCsvRecordToAnalyze($data)
     {
         $checkIfNodeExist = DB::table('nodes_parts_fields')->where('our_id', $data['OUR ID'])->select('node')->first();
-        if($checkIfNodeExist && $checkIfNodeExist !== null) {
+        if ($checkIfNodeExist && $checkIfNodeExist !== null) {
             $this->updateBasicPartsNodeFromCSV($checkIfNodeExist->node, $data);
         } else {
             $this->createBasicPartsNodeFromCSV($data);
@@ -55,7 +55,7 @@ class Nodes extends Model
     public function getEQCsvRecordToAnalyze($data)
     {
         $checkIfNodeExist = DB::table('nodes_machinery_fields')->where('our_id', $data['OUR ID'])->select('node')->first();
-        if($checkIfNodeExist && $checkIfNodeExist !== null) {
+        if ($checkIfNodeExist && $checkIfNodeExist !== null) {
             $this->updateEQNodeFromCSV($checkIfNodeExist->node, $data);
         } else {
             $this->createEQNodeFromCSV($data);
@@ -72,10 +72,10 @@ class Nodes extends Model
     {
         $seoTitleEn = NULL;
         $seoTitleAr = NULL;
-        if($data['seoTitleEn'] === NULL) {
+        if ($data['seoTitleEn'] === NULL) {
             $seoTitleEn = $data['nameEn'];
         }
-        if($data['seoTitleAr'] === NULL) {
+        if ($data['seoTitleAr'] === NULL) {
             $seoTitleAr = $data['nameAr'];
         }
 
@@ -102,13 +102,13 @@ class Nodes extends Model
     public function createBasicPartsNodeFromCSV($data)
     {
         $specialPrice = 0;
-        if($data['Special price'] != '' && $data['Special price'] !== null) {
+        if ($data['Special price'] != '' && $data['Special price'] !== null) {
             $specialPrice = $data['Special price'];
         }
 
         $getCatalog = DB::table('catalog')->where('cat_number', $data['Catalog'])->select('cid')->first();
 
-        if($getCatalog && $getCatalog !== null) {
+        if ($getCatalog && $getCatalog !== null) {
             $saveNode = DB::table('nodes')->insertGetId([
                 'n_name_en' => $data['Drawing name Eng.'] . ' - ' . $data['Name Eng.'],
                 'n_title_en' => $data['Drawing name Eng.'] . ' - ' . $data['Name Eng.'],
@@ -131,14 +131,14 @@ class Nodes extends Model
             // Save parts fields
             $positionNumber = null;
             $qty = null;
-            if($data['Pos. No.'] != '' && $data['Pos. No.'] !== null) {
+            if ($data['Pos. No.'] != '' && $data['Pos. No.'] !== null) {
                 $positionNumber = $data['Pos. No.'];
             }
-            if($data['Q-ty on the drawing'] != '' && $data['Q-ty on the drawing'] !== null) {
+            if ($data['Q-ty on the drawing'] != '' && $data['Q-ty on the drawing'] !== null) {
                 $qty = $data['Q-ty on the drawing'];
             }
             $producerId = $data['Producer ID'];
-            if(strlen($producerId) > 200) {
+            if (strlen($producerId) > 200) {
                 $producerId = substr($producerId, 0, 200);
             }
             DB::table('nodes_parts_fields')->insert([
@@ -165,12 +165,12 @@ class Nodes extends Model
     public function createEQNodeFromCSV($data)
     {
         $specialPrice = 0;
-        if($data['Special price'] != '' && $data['Special price'] !== null) {
+        if ($data['Special price'] != '' && $data['Special price'] !== null) {
             $specialPrice = $data['Special price'];
         }
 
         $getCatalog = DB::table('catalog')->where('cat_number', $data['Catalog'])->select('cid')->first();
-        if($getCatalog && $getCatalog !== null) {
+        if ($getCatalog && $getCatalog !== null) {
             $saveNode = DB::table('nodes')->insertGetId([
                 'n_name_en' => $data['Name Eng.'],
                 'n_title_en' => $data['Name Eng.'],
@@ -275,7 +275,7 @@ class Nodes extends Model
      */
     public function saveNewNodeImage($id, $image, $isFeatured)
     {
-        if($isFeatured == 1) {
+        if ($isFeatured == 1) {
             DB::table('nodes_images')->where('node', $id)->where('is_featured', 1)->delete();
         }
         return DB::table('nodes_images')->insert([
@@ -302,7 +302,7 @@ class Nodes extends Model
         $get = DB::table('nodes')
             ->whereIn('nodes.id', $nodes)
             ->where('nodes.price', '>=', 0);
-        switch($type) {
+        switch ($type) {
             case 0:
                 $get->join('nodes_machinery_fields', 'nodes.id', '=', 'nodes_machinery_fields.node');
                 break;
@@ -312,7 +312,7 @@ class Nodes extends Model
             default:
                 break;
         }
-        $get->leftJoin('nodes_images', function($join) {
+        $get->leftJoin('nodes_images', function ($join) {
             $join->on('nodes.id', '=', 'nodes_images.node')
                 ->where('nodes_images.is_featured', '=', 1);
         });
@@ -329,7 +329,7 @@ class Nodes extends Model
     public function getNodeById($id, $type)
     {
         $get = DB::table('nodes')->where('id', $id);
-        switch($type) {
+        switch ($type) {
             case 0:
                 $get->join('nodes_machinery_fields', 'nodes.id', '=', 'nodes_machinery_fields.node');
                 break;
@@ -350,7 +350,7 @@ class Nodes extends Model
     public function getNodeByCatalogType($id, $type)
     {
         $get = DB::table('nodes')->where('id', $id);
-        switch($type) {
+        switch ($type) {
             case 0:
                 $get->leftJoin('nodes_machinery_fields', 'nodes.id', '=', 'nodes_machinery_fields.node');
                 break;
@@ -370,23 +370,23 @@ class Nodes extends Model
     public function getNodesBySearchRequest($search)
     {
         $get = DB::table('nodes')
-            ->where('nodes.n_name_en', 'like', '%' . $search .'%')
+            ->where('nodes.n_name_en', 'like', '%' . $search . '%')
             ->where('nodes.price', '>=', '0')
             ->leftJoin('nodes_machinery_fields', 'nodes.id', '=', 'nodes_machinery_fields.node')
             ->leftJoin('nodes_parts_fields', 'nodes.id', '=', 'nodes_parts_fields.node');
-        $get->leftJoin('nodes_images', function($join) {
+        $get->leftJoin('nodes_images', function ($join) {
             $join->on('nodes.id', '=', 'nodes_images.node')
                 ->where('nodes_images.is_featured', '=', 1);
         });
         $return = $get->paginate(50);
-        if(count($return) === 0) {
+        if (count($return) === 0) {
             $get = DB::table('nodes')
                 ->where('nodes.price', '>=', '0')
-                ->join('nodes_parts_fields', function($join) use($search) {
+                ->join('nodes_parts_fields', function ($join) use ($search) {
                     $join->on('nodes.id', '=', 'nodes_parts_fields.node')
-                        ->where('nodes_parts_fields.producer_id', 'like', '%' . $search .'%');
+                        ->where('nodes_parts_fields.producer_id', 'like', '%' . $search . '%');
                 });
-            $get->leftJoin('nodes_images', function($join) {
+            $get->leftJoin('nodes_images', function ($join) {
                 $join->on('nodes.id', '=', 'nodes_images.node')
                     ->where('nodes_images.is_featured', '=', 1);
             });
@@ -402,24 +402,24 @@ class Nodes extends Model
      */
     public function getNodesBySearchRequestSecured($search)
     {
-        $get = DB::table('nodes')->where('nodes.n_name_en', 'like', '%' . $search .'%')
+        $get = DB::table('nodes')->where('nodes.n_name_en', 'like', '%' . $search . '%')
             ->join('nodes_to_catalog', 'nodes.id', '=', 'nodes_to_catalog.node')
             ->leftJoin('catalog', 'nodes_to_catalog.catalog', '=', 'catalog.cid');
-        $get->leftJoin('nodes_images', function($join) {
+        $get->leftJoin('nodes_images', function ($join) {
             $join->on('nodes.id', '=', 'nodes_images.node')
                 ->where('nodes_images.is_featured', '=', 1);
         });
         $return = $get->paginate(50);
-        if(count($return) === 0) {
+        if (count($return) === 0) {
             $get = DB::table('nodes')
                 ->where('nodes.price', '>=', '0')
                 ->join('nodes_to_catalog', 'nodes.id', '=', 'nodes_to_catalog.node')
                 ->leftJoin('catalog', 'nodes_to_catalog.catalog', '=', 'catalog.cid')
-                ->join('nodes_parts_fields', function($join) use($search) {
+                ->join('nodes_parts_fields', function ($join) use ($search) {
                     $join->on('nodes.id', '=', 'nodes_parts_fields.node')
-                        ->where('nodes_parts_fields.producer_id', 'like', '%' . $search .'%');
+                        ->where('nodes_parts_fields.producer_id', 'like', '%' . $search . '%');
                 });
-            $get->leftJoin('nodes_images', function($join) {
+            $get->leftJoin('nodes_images', function ($join) {
                 $join->on('nodes.id', '=', 'nodes_images.node')
                     ->where('nodes_images.is_featured', '=', 1);
             });
@@ -438,7 +438,7 @@ class Nodes extends Model
         $nodes = [];
         $getNodes = DB::table('nodes_to_catalog')->whereIn('catalog', $catalog)->get();
         foreach ($getNodes as $node) {
-            if(!in_array($node->node, $nodes)) {
+            if (!in_array($node->node, $nodes)) {
                 $nodes[] = $node->node;
             }
         }
@@ -486,7 +486,7 @@ class Nodes extends Model
             ->where('figures_to_nodes.figure', $fig_number)
             ->join('nodes_parts_fields', 'figures_to_nodes.node', '=', 'nodes_parts_fields.node')
             ->leftJoin('nodes', 'nodes_parts_fields.node', '=', 'nodes.id')
-            ->leftJoin('nodes_images', function($join) {
+            ->leftJoin('nodes_images', function ($join) {
                 $join->on('nodes.id', '=', 'nodes_images.node')
                     ->where('nodes_images.is_featured', '=', 1);
             })
@@ -520,10 +520,10 @@ class Nodes extends Model
     {
         $seoTitleEn = NULL;
         $seoTitleAr = NULL;
-        if($data['seoTitleEn'] === NULL) {
+        if ($data['seoTitleEn'] === NULL) {
             $seoTitleEn = $data['nameEn'];
         }
-        if($data['seoTitleAr'] === NULL) {
+        if ($data['seoTitleAr'] === NULL) {
             $seoTitleAr = $data['nameAr'];
         }
 
@@ -590,13 +590,13 @@ class Nodes extends Model
     public function updateBasicPartsNodeFromCSV($id, $data)
     {
         $specialPrice = 0;
-        if($data['Special price'] != '' && $data['Special price'] !== null) {
+        if ($data['Special price'] != '' && $data['Special price'] !== null) {
             $specialPrice = $data['Special price'];
         }
 
         $getCatalog = DB::table('catalog')->where('cat_number', $data['Catalog'])->select('cid')->first();
 
-        if($getCatalog && $getCatalog !== null) {
+        if ($getCatalog && $getCatalog !== null) {
             $saveNode = DB::table('nodes')->where('id', $id)->update([
                 'n_name_en' => $data['Drawing name Eng.'] . ' - ' . $data['Name Eng.'],
                 'n_title_en' => $data['Drawing name Eng.'] . ' - ' . $data['Name Eng.'],
@@ -618,14 +618,14 @@ class Nodes extends Model
             // Save parts fields
             $positionNumber = null;
             $qty = null;
-            if($data['Pos. No.'] != '' && $data['Pos. No.'] !== null) {
+            if ($data['Pos. No.'] != '' && $data['Pos. No.'] !== null) {
                 $positionNumber = $data['Pos. No.'];
             }
-            if($data['Q-ty on the drawing'] != '' && $data['Q-ty on the drawing'] !== null) {
+            if ($data['Q-ty on the drawing'] != '' && $data['Q-ty on the drawing'] !== null) {
                 $qty = $data['Q-ty on the drawing'];
             }
             $producerId = $data['Producer ID'];
-            if(strlen($producerId) > 200) {
+            if (strlen($producerId) > 200) {
                 $producerId = substr($producerId, 0, 200);
             }
             DB::table('nodes_parts_fields')->where('node', $id)->update([
@@ -652,11 +652,11 @@ class Nodes extends Model
     public function updateEQNodeFromCSV($id, $data)
     {
         $specialPrice = 0;
-        if($data['Special price'] != '' && $data['Special price'] !== null) {
+        if ($data['Special price'] != '' && $data['Special price'] !== null) {
             $specialPrice = $data['Special price'];
         }
         $getCatalog = DB::table('catalog')->where('cat_number', $data['Catalog'])->select('cid')->first();
-        if($getCatalog && $getCatalog !== null) {
+        if ($getCatalog && $getCatalog !== null) {
             $saveNode = DB::table('nodes')->where('id', $id)->update([
                 'n_name_en' => $data['Name Eng.'],
                 'n_title_en' => $data['Name Eng.'],
@@ -699,6 +699,7 @@ class Nodes extends Model
         DB::table('nodes')->where('id', $id)->delete();
         return true;
     }
+
     /**
      * @param $ni_id
      * @return mixed
@@ -711,5 +712,23 @@ class Nodes extends Model
     public function removeProductByNodeId($id)
     {
 
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function part()
+    {
+        return $this->hasOne(Part::class, 'node');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function machinery()
+    {
+        return $this->hasOne(Machinery::class, 'node');
     }
 }
