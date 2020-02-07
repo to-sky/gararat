@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group">
                         <label for="catalogParent">Catalog Parent</label>
-                        <select name="catalogParent" id="catalogParent" class="form-control" autocomplete="off">
+                        <select name="catalogParent" id="catalogParent" class="form-control select2-element" autocomplete="off">
                             <option @if($catalogItem->cat_number == 0) selected @endif value="0">Root Element</option>
                             {!! $catalogs !!}
                         </select>

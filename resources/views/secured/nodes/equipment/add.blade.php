@@ -32,10 +32,11 @@
                             <h6 class="c-grey-900">Common</h6>
                             <div class="form-group">
                                 <label for="catalog">Catalog</label>
-                                <select name="catalog[]" id="catalog" class="form-control" multiple style="min-height: 150px;" autocomplete="off">
+                                <select name="catalog[]" id="catalog" class="form-control select2-element" multiple autocomplete="off" data-placeholder="Select a Catalog">
                                     {!! $catalog !!}
                                 </select>
                             </div>
+
                             <div class="form-group row">
                                 <div class="col-4">
                                     <label for="hasPhoto">Has photo</label>
