@@ -10,6 +10,7 @@
         </div>
         <!-- /.sidebar__back -->
     @endif
+
     @if(!isset($preRenderedCatalog))
         <ul>
             @if(count($catalogChilds) !== 0)
@@ -33,6 +34,7 @@
     @endif
 </div>
 <!-- /.sidebar -->
+
 @if(isset($preRenderedCatalog) && $preRenderedCatalog !== NULL)
     <div class="tree-sidebar">
         {!! $preRenderedCatalog !!}

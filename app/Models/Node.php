@@ -9,6 +9,11 @@ use DB;
 
 class Node extends Model
 {
+    protected $fillable = [
+        'n_name_en', 'n_title_en', 'n_description_en', 'n_name_ar', 'n_title_ar', 'n_description_ar', 'has_photo',
+        'in_stock', 'is_special', 'price', 'special_price'
+    ];
+
     //======================================================================
     // HELPERS
     //======================================================================
@@ -79,7 +84,7 @@ class Node extends Model
             $seoTitleAr = $data['nameAr'];
         }
 
-        return DB::table('nodes')->insertGetId([
+        return $this->create([
             'n_name_en' => $data['nameEn'],
             'n_title_en' => $seoTitleEn,
             'n_description_en' => $data['seoDescriptionEn'],
@@ -275,10 +280,13 @@ class Node extends Model
      */
     public function saveNewNodeImage($id, $image, $isFeatured)
     {
+        if (is_null($image)) return null;
+
         if ($isFeatured == 1) {
-            DB::table('nodes_images')->where('node', $id)->where('is_featured', 1)->delete();
+            NodeImage::where('node', $id)->where('is_featured', 1)->delete();
         }
-        return DB::table('nodes_images')->insert([
+
+        return NodeImage::create([
             'node' => $id,
             'full_path' => $this->proceedNodeImage($image, 2048, 'products'),
             'mid_path' => $this->proceedNodeImage($image, 1024, 'products-mid'),
@@ -683,6 +691,7 @@ class Node extends Model
         }
         return true;
     }
+
     //======================================================================
     // DELETE
     //======================================================================
@@ -697,23 +706,9 @@ class Node extends Model
         DB::table('nodes_parts_fields')->where('node', $id)->delete();
         DB::table('nodes_to_catalog')->where('node', $id)->delete();
         DB::table('nodes')->where('id', $id)->delete();
+
         return true;
     }
-
-    /**
-     * @param $ni_id
-     * @return mixed
-     */
-    public function deleteImageById($ni_id)
-    {
-        return DB::table('nodes_images')->where('ni_id', $ni_id)->delete();
-    }
-
-    public function removeProductByNodeId($id)
-    {
-
-    }
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

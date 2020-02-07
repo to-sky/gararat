@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
 use DB;
 
-use \App\Models\Node;
-
 class Catalog extends Model
 {
 
     protected $table = 'catalog';
 
     protected $primaryKey = 'cid';
+
+    protected $guarded = ['id'];
 
 
     //======================================================================

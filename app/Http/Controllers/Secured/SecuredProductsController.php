@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers\Secured;
 
-use App\Models\Machinery;
-use App\Models\Part;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-use \App\Models\Catalog;
-use \App\Models\Helpers;
-use \App\Models\Node;
+use App\Models\{Catalog, Helpers, Node, NodeImage};
 
 class SecuredProductsController extends Controller
 {
@@ -108,10 +103,7 @@ class SecuredProductsController extends Controller
         }
     }
 
-    public function deleteNode($id)
-    {
 
-    }
     //======================================================================
     // API
     //======================================================================
@@ -123,23 +115,19 @@ class SecuredProductsController extends Controller
     {
         $nodesModel = new Node;
         $data = $request->all();
-        $mainImage = $request->file('mainImage');
-        $additionalImages = $request->file('additionalImages');
+
         // Save node
         $saveNode = $nodesModel->createBasicNode($data);
+
         // Save equipment data
-        $nodesModel->saveEquipmentNode($saveNode, $data);
+        $nodesModel->saveEquipmentNode($saveNode->id, $data);
+
         // Set node to catalog
-        $nodesModel->setNodeToCatalog($saveNode, $data['catalog']);
+        $nodesModel->setNodeToCatalog($saveNode->id, $data['catalog']);
+
         // Proceed images
-        if($mainImage !== NULL) {
-            $nodesModel->saveNewNodeImage($saveNode, $mainImage, 1);
-        }
-        if($additionalImages !== NULL) {
-            foreach ($additionalImages as $image) {
-                $nodesModel->saveNewNodeImage($saveNode, $image, 0);
-            }
-        }
+        $this->saveProductImage($saveNode->id);
+
         return redirect()->route('productsListSecuredPage', 0);
     }
 
@@ -151,19 +139,14 @@ class SecuredProductsController extends Controller
     {
         $nodesModel = new Node;
         $data = $request->all();
-        $mainImage = $request->file('mainImage');
-        $additionalImages = $request->file('additionalImages');
+
         $nodesModel->updateBasicNode($data);
         $nodesModel->updateEquipmentNode($data);
         $nodesModel->setNodeToCatalog($data['id'], $data['catalog']);
-        if($mainImage !== NULL) {
-            $nodesModel->saveNewNodeImage($data['id'], $mainImage, 1);
-        }
-        if($additionalImages !== NULL) {
-            foreach ($additionalImages as $image) {
-                $nodesModel->saveNewNodeImage($data['id'], $image, 0);
-            }
-        }
+
+        // Proceed images
+        $this->saveProductImage($data['id']);
+
         return redirect()->back();
     }
 
@@ -175,28 +158,19 @@ class SecuredProductsController extends Controller
     {
         $nodesModel = new Node;
         $data = $request->all();
-        $mainImage = $request->file('mainImage');
-        $additionalImages = $request->file('additionalImages');
+
         // Save node
         $saveNode = $nodesModel->createBasicNode($data);
 
-
         // Save parts node
-        $nodesModel->savePartsNode($saveNode, $data);
-
-
+        $nodesModel->savePartsNode($saveNode->id, $data);
 
         // Set node to catalog
-        $nodesModel->setNodeToCatalog($saveNode, $data['catalog']);
+        $nodesModel->setNodeToCatalog($saveNode->id, $data['catalog']);
+
         // Proceed images
-        if($mainImage !== NULL) {
-            $nodesModel->saveNewNodeImage($saveNode, $mainImage, 1);
-        }
-        if($additionalImages !== NULL) {
-            foreach ($additionalImages as $image) {
-                $nodesModel->saveNewNodeImage($saveNode, $image, 0);
-            }
-        }
+        $this->saveProductImage($saveNode->id);
+
         return redirect()->route('productsListSecuredPage', 1);
     }
 
@@ -204,20 +178,36 @@ class SecuredProductsController extends Controller
     {
         $nodesModel = new Node;
         $data = $request->all();
-        $mainImage = $request->file('mainImage');
-        $additionalImages = $request->file('additionalImages');
+
         $nodesModel->updateBasicNode($data);
         $nodesModel->updatePartsNode($data);
         $nodesModel->setNodeToCatalog($data['id'], $data['catalog']);
-        if($mainImage !== NULL) {
-            $nodesModel->saveNewNodeImage($data['id'], $mainImage, 1);
+
+        // Proceed images
+        $this->saveProductImage($data['id']);
+
+        return redirect()->back();
+    }
+
+    /**
+     * Save product images (main and additional)
+     *
+     * @param $id | Node id
+     * @return bool
+     */
+    public function saveProductImage($id)
+    {
+        if ($mainImage = request()->file('mainImage')) {
+            (new Node())->saveNewNodeImage($id, $mainImage, 1);
         }
-        if($additionalImages !== NULL) {
+
+        if ($additionalImages = request()->file('additionalImages')) {
             foreach ($additionalImages as $image) {
-                $nodesModel->saveNewNodeImage($data['id'], $image, 0);
+                (new Node())->saveNewNodeImage($id, $image, 0);
             }
         }
-        return redirect()->back();
+
+        return null;
     }
 
     /**
@@ -232,13 +222,13 @@ class SecuredProductsController extends Controller
     }
 
     /**
-     * @param $ni_id
+     * @param $id | Node Image
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function removeProductImage($ni_id)
+    public function removeProductImage($id)
     {
-        $nodesModel = new Node;
-        $nodesModel->deleteImageById($ni_id);
+        NodeImage::destroy($id);
+
         return redirect()->back();
     }
 }
