@@ -3,7 +3,7 @@
 namespace App\Mail;
 
 use App\Exports\OrderExport;
-use App\Models\Orders;
+use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -20,9 +20,9 @@ class OrderCreated extends Mailable
     /**
      * Create a new message instance.
      *
-     * @param Orders $order
+     * @param Order $order
      */
-    public function __construct(Orders $order)
+    public function __construct(Order $order)
     {
         $this->order = $order;
     }

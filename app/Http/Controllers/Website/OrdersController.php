@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App;
 use DB;
 
-use \App\Models\Orders;
+use \App\Models\Order;
 
 class OrdersController extends Controller
 {
@@ -72,7 +72,7 @@ class OrdersController extends Controller
      */
     public function getCartPreviewData($userKey)
     {
-        $ordersModel = new Orders;
+        $ordersModel = new Order;
         $getCart = $ordersModel->getCurrentUserCartData($userKey);
         return response()->json(['userKey' => $userKey, 'qty' => $getCart['qty'], 'total' => $getCart['total']]);
     }
@@ -83,7 +83,7 @@ class OrdersController extends Controller
      */
     public function getCartTableData($userKey)
     {
-        $ordersModel = new Orders;
+        $ordersModel = new Order;
         $getCart = $ordersModel->getCartTableData($userKey);
         return response()->json(['userKey' => $userKey, 'return' => $getCart]);
     }
@@ -94,7 +94,7 @@ class OrdersController extends Controller
      */
     public function getCartProceedTableData($userKey)
     {
-        $ordersModel = new Orders;
+        $ordersModel = new Order;
         $getCart = $ordersModel->getCartProceedTableData($userKey);
         return response()->json(['userKey' => $userKey, 'return' => $getCart]);
     }
@@ -105,7 +105,7 @@ class OrdersController extends Controller
      */
     public function addItemToCart(Request $request)
     {
-        $ordersModel = new Orders;
+        $ordersModel = new Order;
         $userKey = $request->get('userKey');
         $node = $request->get('id');
         $qty = $request->get('qty');
@@ -121,7 +121,7 @@ class OrdersController extends Controller
      */
     public function removeItemFromCart($userKey, $cartNode)
     {
-        $ordersModel = new Orders;
+        $ordersModel = new Order;
         $ordersModel->removeNodeFromCart($cartNode);
         return redirect()->back();
     }
@@ -132,7 +132,7 @@ class OrdersController extends Controller
      */
     public function proceedOrderAPI(Request $request)
     {
-        $ordersModel = new Orders;
+        $ordersModel = new Order;
         $createOrder = $ordersModel->createOrder($request->all());
 
         return redirect()->route('cartProceedSuccessPage', $createOrder);

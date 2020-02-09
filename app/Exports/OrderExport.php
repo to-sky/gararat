@@ -3,7 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Node;
-use App\Models\Orders;
+use App\Models\Order;
 use App\Models\OrdersToNodes;
 use Maatwebsite\Excel\Concerns\{FromCollection, WithHeadings};
 
@@ -11,7 +11,7 @@ class OrderExport implements FromCollection, WithHeadings
 {
     public $order;
 
-    public function __construct(Orders $order)
+    public function __construct(Order $order)
     {
         $this->order = $order;
     }

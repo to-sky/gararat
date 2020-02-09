@@ -11,13 +11,25 @@ use Hash;
 use DB;
 use Mail;
 
-class Orders extends Model
+class Order extends Model
 {
+    const STATUS_QUEUED = 0;
+    const STATUS_IN_PROGRESS = 1;
+    const STATUS_COMPLETED = 2;
+    const STATUS_CANCELED = 3;
 
     protected $fillable = [
         'first_name', 'last_name', 'email', 'phone', 'comment', 'created_at', 'user_id', 'country', 'city', 'post',
         'address', 'status'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function nodes()
+    {
+        return $this->belongsToMany(Node::class, 'orders_to_nodes', 'order', 'node')->withPivot('order_qty');
+    }
 
     /**
      * Display id with lead zeros
@@ -34,7 +46,7 @@ class Orders extends Model
      *
      * @return string
      */
-    public function fullName()
+    public function getfullNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
     }
@@ -44,17 +56,71 @@ class Orders extends Model
      *
      * @return string
      */
-    public function fullAddress()
+    public function getFullAddressAttribute()
     {
         return $this->country . ', ' . $this->city . ', ' . $this->address . ', ' . $this->post;
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * Display order status
+     *
+     * @return string
      */
-    public function nodes()
+    public function displayStatus()
     {
-        return $this->belongsToMany(Node::class, 'orders_to_nodes', 'order', 'node');
+        switch($this->status) {
+            case self::STATUS_QUEUED : return 'Queued';
+                break;
+            case self::STATUS_IN_PROGRESS : return 'In Progress';
+                break;
+            case self::STATUS_COMPLETED : return 'Completed';
+                break;
+            case self::STATUS_CANCELED : return 'Canceled';
+                break;
+            default: return 'Status is not defined';
+        }
+    }
+
+    /**
+     * Display created in format 'Y-m-d'
+     *
+     * @return mixed
+     */
+    public function getCreatedAttribute()
+    {
+        return $this->created_at->format('Y-m-d');
+    }
+
+    /**
+     * Get total price for order (with special condition)
+     *
+     * @return mixed
+     */
+    public function getTotalPriceAttribute()
+    {
+        $totalPrice = 0;
+
+        return $this->nodes()->get()->sum(function($item) use ($totalPrice) {
+            $totalPrice += floatval($item->current_price) * $item->pivot->order_qty;
+
+            return $totalPrice;
+        });
+    }
+
+    /**
+     * Show order total price with currency symbol
+     *
+     * @param string $symbolPosition
+     * @param string $currencySymbol
+     * @return string
+     */
+    public function displayTotalPrice($symbolPosition = 'left', $currencySymbol = '$')
+    {
+        $displayPrice = number_format( (float) $this->total_price, 2, '.', ',' );
+
+        return $symbolPosition == 'right'
+                ? $displayPrice . ' ' . $currencySymbol
+                : $currencySymbol . ' ' . $displayPrice;
     }
 
     //======================================================================
@@ -116,7 +182,7 @@ class Orders extends Model
             'password' => Hash::make(uniqid())
         ]);
 
-        $order = Orders::create([
+        $order = Order::create([
             'first_name' => $data['firstName'],
             'last_name' => $data['lastName'],
             'email' => $data['orderEmail'],
@@ -143,46 +209,7 @@ class Orders extends Model
 
         Mail::to([$order->email, config('mail.to.sales')])->send(new OrderCreated($order));
 
-        dd($order);
-
         return $order;
-    }
-    //======================================================================
-    // READ
-    //======================================================================
-    /**
-     * @return array
-     */
-    public function getOrders()
-    {
-        $getOrders = DB::table('orders')
-            ->join('users', 'orders.user_id', '=', 'users.id')
-            ->select('orders.*', 'users.name')
-            ->orderBy('orders.created_at', 'DESC')
-            ->paginate(50);
-        $array = [];
-        foreach ($getOrders as $order) {
-            $getNodes = DB::table('orders_to_nodes')
-                ->where('orders_to_nodes.order', $order->id)
-                ->join('nodes', 'orders_to_nodes.node', '=', 'nodes.id')
-                ->get();
-            $total = 0;
-            foreach ($getNodes as $node) {
-                if($node->is_special == 1) {
-                    $total = $total + ($node->order_qty * $node->special_price);
-                } else {
-                    $total = $total + ($node->order_qty * $node->price);
-                }
-            }
-            $array[] = array(
-                'id' => $order->id,
-                'customer' => $order->first_name . ' ' . $order->last_name,
-                'total' => '$' . number_format($total, 0, '.', ' '),
-                'status' => $order->status,
-                'created_at' => $order->created_at
-            );
-        }
-        return $array;
     }
 
     /**

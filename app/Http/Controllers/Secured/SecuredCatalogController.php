@@ -21,7 +21,6 @@ class SecuredCatalogController extends Controller
         $catalogModel = new Catalog;
         $helper = new Helpers;
 
-        $data['pageTitle'] = 'Catalog';
         $getCatalogArray = $helper->convertQueryBuilderToArray($catalogModel->get());
         $data['catalog'] = $helper->buildCatalogMenuWithLevels($getCatalogArray, 0);
 

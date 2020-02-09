@@ -1,10 +1,15 @@
 @extends('layouts.secured')
 
+@section('title') Catalog @endsection
+
+@section('button')
+    @include('includes.secured.elements._add-btn', ['href' => route('securedAddCatalogItemPage'), 'item' => 'Catalog'])
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-12">
             <div class="bgc-white p-20 bd">
-                <h6 class="c-grey-900">{{ $pageTitle }}</h6>
                 {!! $catalog !!}
             </div>
         </div>

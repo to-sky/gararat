@@ -71,7 +71,7 @@ class Helpers extends Model
         $result = '';
         foreach($array as $key => $value) {
             if($value['parent_cat'] == $parent) {
-                $result .= '<li style="font-size: 18px;">' . "\n";
+                $result .= '<li class="list-group-item fsz-md">' . "\n";
                 if($value['parent_cat'] !== 0) {
                     $result .= $value['cat_number'] . ' - ' . $value['cat_name_en'] . '<a href="/secured/admin/catalog/edit/' . $value['cid'] . '" class="c-blue-500" style="margin-left: 10px; font-size: 14px;"><i class="ti-pencil"></i> Edit</a> <a class="c-red-500" href="/secured/admin/catalog/delete/' . $value['cid'] . '" style="font-size: 14px;"><i class="c-red-500 ti-trash"></i> Delete</a>';
                 } else {
@@ -81,7 +81,8 @@ class Helpers extends Model
                 $result .= '</li>' . "\n";
             }
         }
-        return $result ? '<ul style="list-style-type: none;">' . $result . '</ul>' . "\n" : '';
+
+        return $result ? '<ul class="list-group list-group-flush">' . $result . '</ul>' . "\n" : '';
     }
 
     /**

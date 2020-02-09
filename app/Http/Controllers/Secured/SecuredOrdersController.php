@@ -5,38 +5,33 @@ namespace App\Http\Controllers\Secured;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
-
-use \App\Models\Orders;
+use App\Models\Order;
 
 class SecuredOrdersController extends Controller
 {
-    //======================================================================
-    // PAGES
-    //======================================================================
     /**
+     * Show all items
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function ordersListPageSecured()
+    public function index()
     {
-        $ordersModel = new Orders;
-
-        $data['pageTitle'] = 'Orders';
-        $data['orders'] = $ordersModel->getOrders();
-
-        return view('secured.orders.orders', $data);
+        return view('secured.orders.index', [
+            'orders' => Order::latest()->paginate()
+        ]);
     }
 
-    public function reviewOrderPageSecured($id)
+    /**
+     * Edit item
+     *
+     * @param Order $order
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit(Order $order)
     {
-        $ordersModel = new Orders;
-        $getOrder = $ordersModel->getOrderById($id);
-
-        $data['pageTitle'] = 'Order #' . $getOrder->id;
-        $data['order'] = $getOrder;
-        $data['products'] = $ordersModel->getOrderProducts($id);
-
-        return view('secured.orders.order', $data);
+        return view('secured.orders.edit', compact('order'));
     }
+
     //======================================================================
     // API
     //======================================================================
@@ -62,6 +57,7 @@ class SecuredOrdersController extends Controller
     public function removeProductFromOrderAPI($order_id, $node_id)
     {
         DB::table('orders_to_nodes')->where('order', $order_id)->where('node', $node_id)->delete();
+
         return redirect()->back();
     }
 
@@ -73,6 +69,7 @@ class SecuredOrdersController extends Controller
     {
         DB::table('orders_to_nodes')->where('order', $id)->delete();
         DB::table('orders')->where('id', $id)->delete();
+
         return redirect()->back();
     }
 }

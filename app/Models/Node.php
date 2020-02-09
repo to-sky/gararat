@@ -14,6 +14,80 @@ class Node extends Model
         'in_stock', 'is_special', 'price', 'special_price'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function part()
+    {
+        return $this->hasOne(Part::class, 'node');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function machinery()
+    {
+        return $this->hasOne(Machinery::class, 'node');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function nodeImages()
+    {
+        return $this->hasMany(NodeImage::class, 'node');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'orders_to_nodes', 'node', 'order')->withPivot('order_qty');
+    }
+
+    /**
+     * Get thumbnail path for main image
+     *
+     * @return mixed
+     */
+    public function getMainImagePath()
+    {
+        if (! $mainImage = $this->nodeImages()->whereIsFeatured(1)->first()) {
+            return null;
+        }
+
+        return $mainImage->thumb_path;
+    }
+    /**
+     * Get image path or empty image path, if image is not uploaded
+     *
+     * @return mixed|string
+     */
+    public function getImageOrEmpty()
+    {
+        return $this->getMainImagePath() ?? 'assets/logos/logo.jpg';
+    }
+
+    /**
+     * Get price current price with special condition
+     *
+     * @return mixed
+     */
+    public function getCurrentPriceAttribute()
+    {
+        $currentPrice = (float) $this->is_special ? $this->special_price : $this->price;
+
+        return number_format($currentPrice, 2, '.', ',' );
+    }
+
+    public function getSumPerQtyAttribute()
+    {
+        $priceForOrder = $this->current_price * $this->pivot->order_qty;
+
+        return number_format($priceForOrder, 2, '.', ',' );
+    }
+
     //======================================================================
     // HELPERS
     //======================================================================
@@ -708,22 +782,5 @@ class Node extends Model
         DB::table('nodes')->where('id', $id)->delete();
 
         return true;
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function part()
-    {
-        return $this->hasOne(Part::class, 'node');
-    }
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function machinery()
-    {
-        return $this->hasOne(Machinery::class, 'node');
     }
 }
