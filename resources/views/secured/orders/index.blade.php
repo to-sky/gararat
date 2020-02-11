@@ -11,7 +11,7 @@
                 <table class="table table-borderless table-hover table-striped">
                     <thead class="shadow-sm">
                     <tr>
-                        <th>ID</th>
+                        <th>#</th>
                         <th>Customer</th>
                         <th>Total Price</th>
                         <th>Status</th>

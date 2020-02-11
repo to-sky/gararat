@@ -1,6 +1,6 @@
 @extends('layouts.secured')
 
-@section('title') Order №{{ $order->id }} @endsection
+@section('title') Order {{ $order->id }} @endsection
 
 @include('includes.secured.modals._deleteItem', ['item' => 'product'])
 

@@ -8,7 +8,7 @@
 
     <ul class="nav-right">
         <li>
-            <a href="/" class="d-b td-n bgcH-grey-100 c-grey-700" title="Go to website">
+            <a href="/" class="d-b td-n bgcH-grey-100 c-grey-700" title="Go to website" target="_blank">
                 <i class="ti-home mR-10"></i>
                 <span>Go to website</span>
             </a>

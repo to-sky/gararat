@@ -35,7 +35,7 @@ class PagesController extends Controller
             $data['pageDescription'] = 'GARARAT –the first e-hypermarket for agricultural tractors, equipment and spare parts!';
         }
         $data['home'] = $pagesModel->getHomePage();
-        $data['slides'] = $sliderModel->getAllSlides();
+        $data['slides'] = Slider::orderBy('sl_order', 'ASC')->get();
         $data['news'] = $newsModel->getLimitedNews(4);
 
         return view('website.home', $data);

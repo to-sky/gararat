@@ -1,10 +1,11 @@
 @extends('layouts.secured')
 
+@section('title') Add new slide @endsection
+
 @section('content')
     <div class="row">
         <div class="col-12">
             <div class="bgc-white p-20 bd">
-                <h6 class="c-grey-900">{{ $pageTitle }}</h6>
                 <form action="{{ route('saveNewSlideAPI') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">

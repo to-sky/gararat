@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Image;
 use DB;
 
-use \App\Models\Node;
-
 class Slider extends Model
 {
+    protected $table = 'slider';
+
+    protected $primaryKey = 'sl_id';
+
+    protected $fillable = ['sl_order', 'sl_title', 'sl_description', 'sl_image'];
+
     //======================================================================
     // CREATE
     //======================================================================
@@ -29,25 +33,7 @@ class Slider extends Model
             'sl_image' => $saveImage,
         ]);
     }
-    //======================================================================
-    // READ
-    //======================================================================
-    /**
-     * @return mixed
-     */
-    public function getAllSlides()
-    {
-        return DB::table('slider')->orderBy('sl_order', 'ASC')->get();
-    }
 
-    /**
-     * @param $slider
-     * @return mixed
-     */
-    public function getSliderById($slider)
-    {
-        return DB::table('slider')->where('sl_id', $slider)->first();
-    }
     //======================================================================
     // UPDATE
     //======================================================================
@@ -74,16 +60,5 @@ class Slider extends Model
                 'sl_description' => $data['sliderDescription']
             ]);
         }
-    }
-    //======================================================================
-    // DELETE
-    //======================================================================
-    /**
-     * @param $sl_id
-     * @return mixed
-     */
-    public function removeSlide($sl_id)
-    {
-        return DB::table('slider')->where('sl_id', $sl_id)->delete();
     }
 }

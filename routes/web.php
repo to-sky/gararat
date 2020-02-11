@@ -86,16 +86,18 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/constructor/add/init', 'Secured\SecuredPartsConstructor@initNewConstructorDrawingPage')->name('initNewConstructorDrawingPage');
         Route::get('/secured/admin/constructor/add/create/{fig_id}', 'Secured\SecuredPartsConstructor@createNewConstructorDrawingPage')->name('createNewConstructorDrawingPage');
         Route::get('/secured/admin/constructor/add/delete/{fig_id}', 'Secured\SecuredPartsConstructor@deleteConstructorDrawingPage')->name('deleteConstructorDrawingPage');
+
         // Slider
-        Route::get('/secured/admin/slider', 'Secured\SecuredCommonController@securedSlidesPage')->name('securedSlidesPage');
-        Route::get('/secured/admin/slider/add', 'Secured\SecuredCommonController@securedAddSlidePage')->name('securedAddSlidePage');
-        Route::get('/secured/admin/slider/edit/{sl_id}', 'Secured\SecuredCommonController@securedEditSlidePage')->name('securedEditSlidePage');
-        Route::get('/secured/admin/slider/remove/{sl_id}', 'Secured\SecuredCommonController@securedRemoveSlide')->name('securedRemoveSlide');
+        Route::get('/secured/admin/slider', 'Secured\SecuredSliderController@index')->name('admin.slider.index');
+        Route::get('/secured/admin/slider/add', 'Secured\SecuredSliderController@create')->name('admin.slider.create');
+        Route::get('/secured/admin/slider/edit/{slider}', 'Secured\SecuredSliderController@edit')->name('admin.slider.edit');
+        Route::get('/secured/admin/slider/remove/{slider}', 'Secured\SecuredSliderController@delete')->name('admin.slider.delete');
+
         // News
-        Route::get('/secured/admin/news', 'Secured\SecuredCommonController@securedNewsListPage')->name('securedNewsListPage');
-        Route::get('/secured/admin/news/add', 'Secured\SecuredCommonController@securedAddNewNewsItem')->name('securedAddNewNewsItem');
-        Route::get('/secured/admin/news/edit/{nw_id}', 'Secured\SecuredCommonController@securedUpdateNewsItem')->name('securedUpdateNewsItem');
-        Route::get('/secured/admin/news/remove/{nw_id}', 'Secured\SecuredCommonController@securedRemoveNewsItem')->name('securedRemoveNewsItem');
+        Route::get('/secured/admin/news', 'Secured\SecuredCommonController@securedNewsListPage')->name('admin.news.index');
+        Route::get('/secured/admin/news/add', 'Secured\SecuredCommonController@securedAddNewNewsItem')->name('admin.news.create');
+        Route::get('/secured/admin/news/edit/{nw_id}', 'Secured\SecuredCommonController@securedUpdateNewsItem')->name('admin.news.update');
+        Route::get('/secured/admin/news/remove/{nw_id}', 'Secured\SecuredCommonController@securedRemoveNewsItem')->name('admin.news.delete');
         // Pages
         Route::get('/secured/admin/pages', 'Secured\SecuredCommonController@securedPagesListPage')->name('securedPagesListPage');
         Route::get('/secured/admin/pages/edit/home', 'Secured\SecuredCommonController@securedHomePageEditPage')->name('securedHomePageEditPage');

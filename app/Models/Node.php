@@ -81,6 +81,11 @@ class Node extends Model
         return number_format($currentPrice, 2, '.', ',' );
     }
 
+    /**
+     * Get sum products in order per quantity
+     *
+     * @return string
+     */
     public function getSumPerQtyAttribute()
     {
         $priceForOrder = $this->current_price * $this->pivot->order_qty;

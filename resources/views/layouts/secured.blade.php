@@ -17,15 +17,15 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha256-nbyata2PJRjImhByQzik2ot6gSHSU4Cqdz5bNYL2zcU=" crossorigin="anonymous" />
     </head>
 
-    <body class="app">
+    <body class="app" style="display: none">
         <div id='loader'>
             <div class="spinner"></div>
         </div>
 
         {{-- TODO: remove after debug title --}}
-        {{--@if(isset($pageTitle))--}}
-            {{--<h1 class="text-danger pos-a z-2">pageTitle isset!</h1>--}}
-        {{--@endif--}}
+        @if(isset($pageTitle))
+            <h1 class="text-danger pos-a z-2">pageTitle isset!</h1>
+        @endif
 
         <div id="appRoot">
             <div class="sidebar">

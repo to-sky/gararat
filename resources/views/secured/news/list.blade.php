@@ -1,10 +1,11 @@
 @extends('layouts.secured')
 
+@section('title') News @endsection
+
 @section('content')
     <div class="row">
         <div class="col-12">
             <div class="bgc-white p-20 bd">
-                <h6 class="c-grey-900">{{ $pageTitle }}</h6>
                 <table class="table">
                     <thead>
                     <tr>
@@ -23,14 +24,14 @@
                             <td>{{ $item->nw_name }}</td>
                             <td>{{ \Carbon\Carbon::parse($item->nw_created)->format('Y-m-d') }}</td>
                             <td>
-                                <a href="{{ route('securedUpdateNewsItem', $item->nw_id) }}" class="btn btn-success"><i class="ti-pencil"></i></a>
+                                <a href="{{ route('admin.news.update', $item->nw_id) }}" class="btn btn-success"><i class="ti-pencil"></i></a>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-danger">Delete?</button>
                                     <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a href="{{ route('securedRemoveNewsItem', $item->nw_id) }}">Yes, remove</a>
+                                        <a href="{{ route('admin.news.delete', $item->nw_id) }}">Yes, remove</a>
                                     </div>
                                 </div>
                             </td>

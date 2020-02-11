@@ -11,58 +11,10 @@ use \App\Models\Pages;
 
 class SecuredCommonController extends Controller
 {
-    //======================================================================
-    // PAGE
-    //======================================================================
-    ########################################################################
-    ### Slider
-    ########################################################################
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * News methods
      */
-    public function securedSlidesPage()
-    {
-        $sliderModel = new Slider;
-        $data['pageTitle'] = 'Slider';
-        $data['slides'] = $sliderModel->getAllSlides();
-        return view('secured.slider.list', $data);
-    }
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function securedAddSlidePage()
-    {
-        $data['pageTitle'] = 'Add New Slide';
 
-        return view('secured.slider.add', $data);
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function securedEditSlidePage($sl_id)
-    {
-        $sliderModel = new Slider;
-
-        $data['pageTitle'] = 'Edit Slide';
-        $data['slider'] = $sliderModel->getSliderById($sl_id);
-
-        return view('secured.slider.edit', $data);
-    }
-
-    /**
-     * @param $sl_id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function securedRemoveSlide($sl_id)
-    {
-        $sliderModel = new Slider;
-        $sliderModel->removeSlide($sl_id);
-        return redirect()->back();
-    }
-    ########################################################################
-    ### News
-    ########################################################################
     public function securedNewsListPage()
     {
         $newsModel = new News;
@@ -188,7 +140,8 @@ class SecuredCommonController extends Controller
         $data = $request->all();
         $file = $request->file('slideImage');
         $sliderModel->saveNewSlide($data, $file);
-        return redirect()->route('securedSlidesPage');
+
+        return redirect()->route('admin.slider.index');
     }
 
     /**
@@ -201,7 +154,7 @@ class SecuredCommonController extends Controller
         $data = $request->all();
         $file = $request->file('slideImage');
         $sliderModel->updateSlider($data, $file);
-        return redirect()->route('securedSlidesPage');
+        return redirect()->route('admin.slider.index');
     }
     ########################################################################
     ### News
