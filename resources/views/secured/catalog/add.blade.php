@@ -1,5 +1,7 @@
 @extends('layouts.secured')
 
+@section('title') Add catalog @endsection
+
 @section('content')
     <form action="{{ route('saveNewCatalogItemAPI') }}" method="post" autocomplete="off" enctype="multipart/form-data">
         @csrf
@@ -75,11 +77,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12" style="margin-top: 30px;">
-                <div class="bgc-white p-20 bd" style="display: inline-block; width: 100%;">
-                    <button class="float-right btn btn-primary" type="submit">Save</button>
-                    <a href="{{ route('securedCatalogListPage') }}" class="float-left btn cur-p btn-outline-secondary">Cancel</a>
-                </div>
+
+            <div class="col-12 mt-3">
+                @include('includes.secured.elements._save_or_back_btns', ['href' => route('securedCatalogListPage') ])
             </div>
         </div>
     </form>

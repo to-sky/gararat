@@ -86,11 +86,9 @@ class PagesController extends Controller
      */
     public function newsPage()
     {
-        $newsModel = new News;
-
         $data['pageTitle'] = 'News';
         $data['pageDescription'] = '';
-        $data['news'] = $newsModel->getAllNews(40);
+        $data['news'] = News::paginate(40);
 
         return view('website.news.list', $data);
     }
@@ -101,9 +99,8 @@ class PagesController extends Controller
      */
     public function singleNewsPage($nw_id)
     {
-        $newsModel = new News;
         $locale = App::getLocale();
-        $getNews = $newsModel->getNewsItemById($nw_id);
+        $getNews = News::find($nw_id);
         if ($locale == 'ar') {
             $data['pageTitle'] = $getNews->nw_name_ar;
             $data['pageDescription'] = $getNews->nw_description_ar;

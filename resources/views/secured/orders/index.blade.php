@@ -36,7 +36,7 @@
 
                                             @include('includes.secured.elements._delete-btn' , [
                                                 'href' => route('removeOrderAPI', ['id' => $order->id]),
-                                                'modalText' => 'order №' . $order->id
+                                                'modalText' => 'order ' . $order->id
                                             ])
                                         </div>
                                     </div>

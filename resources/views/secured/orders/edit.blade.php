@@ -7,7 +7,7 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <div class="bd bg-white shadow-sm">
+            <div class="bd bg-white">
                 <table class="table table-stripped m-0 fsz-sm">
                     <tbody >
                         <tr>

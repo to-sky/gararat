@@ -1,5 +1,7 @@
 @extends('layouts.secured')
 
+@section('title') Dashboard @endsection
+
 @section('content')
     <div class="row masonry pos-r" style="margin: -10px!important;">
         <div class="masonry-item w-100">

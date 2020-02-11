@@ -1,13 +1,13 @@
 @extends('layouts.secured')
 
-@section('title') Add new slide @endsection
+@section('title') Add slide @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="bgc-white p-20 bd">
-                <form action="{{ route('saveNewSlideAPI') }}" method="post" enctype="multipart/form-data">
-                    @csrf
+    <form action="{{ route('saveNewSlideAPI') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <div class="row">
+            <div class="col-12">
+                <div class="bgc-white p-20 bd">
                     <div class="form-group">
                         <label for="slideTitle">Title</label>
                         <input type="text" class="form-control" name="slideTitle" id="slideTitle" required>
@@ -24,11 +24,14 @@
                         <label for="positionNumber">Position Number</label>
                         <input type="number" class="form-control" name="positionNumber" id="positionNumber" value="1" required>
                     </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Save</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                @include('includes.secured.elements._save_or_back_btns', ['href' => route('admin.slider.index') ])
+            </div>
+        </div>
+    </form>
 @endsection

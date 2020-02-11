@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Secured;
 
+use App\Models\Pages;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use League\Csv\Reader;
@@ -11,9 +12,89 @@ use \App\Models\Node;
 
 class SecuredPagesController extends Controller
 {
-    //======================================================================
-    // PAGES
-    //======================================================================
+    /**
+     * Show list of all pages
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        return view('secured.pages.index');
+    }
+
+    /**
+     * Edit homepage
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function home()
+    {
+        $pagesModel = new Pages;
+        $getPage = $pagesModel->getHomePage();
+        if($getPage === null) {
+            $pagesModel->createDefaultHomePage();
+        }
+
+        $data['pageData'] = $pagesModel->getHomePage();
+        return view('secured.pages.home', $data);
+    }
+
+    /**
+     * Edit services page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function services()
+    {
+        $pagesModel = new Pages;
+        $getPage = $pagesModel->getPageByAlias('services');
+        if($getPage === null) {
+            $pagesModel->createDefaultPage('services', 'Services', 'Services');
+        }
+        $data['pageData'] = $pagesModel->getPageByAlias('services');
+        $data['title'] = 'Services';
+
+        return view('secured.pages.contacts', $data);
+    }
+
+    /**
+     * Edit contacts page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function contacts()
+    {
+        $pagesModel = new Pages;
+        $getPage = $pagesModel->getPageByAlias('contacts');
+        if($getPage === null) {
+            $pagesModel->createDefaultPage('contacts', 'Contacts', 'Contacts');
+        }
+        $data['pageData'] = $pagesModel->getPageByAlias('contacts');
+        $data['title'] = 'Contacts';
+
+        return view('secured.pages.contacts', $data);
+    }
+
+
+    /**
+     * Edit parts or equipment page
+     *
+     * @param $catalog
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function catalog($catalog)
+    {
+        $pagesModel = new Pages;
+        $getPage = $pagesModel->getPageByAlias($catalog);
+        if($getPage === null) {
+            $pagesModel->createDefaultPage('services', 'Services', 'Services');
+        }
+        $data['pageData'] = $pagesModel->getPageByAlias($catalog);
+        $data['title'] = ucfirst($catalog);
+
+        return view('secured.pages.catalog', $data);
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -21,7 +102,6 @@ class SecuredPagesController extends Controller
     {
         $nodesModel = new Node;
 
-        $data['pageTitle'] = 'Dashboard';
         $data['partsCount'] = $nodesModel->countPartsNodes();
         $data['eqCount'] = $nodesModel->countEquipmentsNodes();
 

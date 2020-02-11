@@ -94,16 +94,18 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/slider/remove/{slider}', 'Secured\SecuredSliderController@delete')->name('admin.slider.delete');
 
         // News
-        Route::get('/secured/admin/news', 'Secured\SecuredCommonController@securedNewsListPage')->name('admin.news.index');
-        Route::get('/secured/admin/news/add', 'Secured\SecuredCommonController@securedAddNewNewsItem')->name('admin.news.create');
-        Route::get('/secured/admin/news/edit/{nw_id}', 'Secured\SecuredCommonController@securedUpdateNewsItem')->name('admin.news.update');
-        Route::get('/secured/admin/news/remove/{nw_id}', 'Secured\SecuredCommonController@securedRemoveNewsItem')->name('admin.news.delete');
+        Route::get('/secured/admin/news', 'Secured\SecuredNewsController@index')->name('admin.news.index');
+        Route::get('/secured/admin/news/add', 'Secured\SecuredNewsController@create')->name('admin.news.create');
+        Route::get('/secured/admin/news/edit/{news}', 'Secured\SecuredNewsController@edit')->name('admin.news.edit');
+        Route::get('/secured/admin/news/remove/{news}', 'Secured\SecuredNewsController@delete')->name('admin.news.delete');
+
         // Pages
-        Route::get('/secured/admin/pages', 'Secured\SecuredCommonController@securedPagesListPage')->name('securedPagesListPage');
-        Route::get('/secured/admin/pages/edit/home', 'Secured\SecuredCommonController@securedHomePageEditPage')->name('securedHomePageEditPage');
-        Route::get('/secured/admin/pages/edit/services', 'Secured\SecuredCommonController@securedServicesPageEditPage')->name('securedServicesPageEditPage');
-        Route::get('/secured/admin/pages/edit/contacts', 'Secured\SecuredCommonController@securedContactsPageEditPage')->name('securedContactsPageEditPage');
-        Route::get('/secured/admin/pages/edit/{catalog}', 'Secured\SecuredCommonController@securedCatalogPageEditPage')->name('securedCatalogPageEditPage');
+        Route::get('/secured/admin/pages', 'Secured\SecuredPagesController@index')->name('admin.pages.index');
+        Route::get('/secured/admin/pages/edit/home', 'Secured\SecuredPagesController@home')->name('admin.pages.home');
+        Route::get('/secured/admin/pages/edit/services', 'Secured\SecuredPagesController@services')->name('admin.pages.services');
+        Route::get('/secured/admin/pages/edit/contacts', 'Secured\SecuredPagesController@contacts')->name('admin.pages.contacts');
+        Route::get('/secured/admin/pages/edit/{catalog}', 'Secured\SecuredPagesController@catalog')->name('admin.pages.catalog');
+
         // Upload
         Route::get('/secured/admin/upload/csv', 'Secured\SecuredPagesController@uploadCSVPage')->name('uploadCSVPage');
         ########################################################################

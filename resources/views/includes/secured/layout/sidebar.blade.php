@@ -9,7 +9,11 @@
     </li>
 
     <li class="nav-item">
-        <a href="{{ route('admin.order.index') }}" class="nav-link {{ request()->routeIs('admin.order.index') || request()->routeIs('admin.order.edit')? 'active' : '' }}">
+        <a href="{{ route('admin.order.index') }}"
+           class="nav-link {{
+                request()->routeIs('admin.order.index') ||
+                request()->routeIs('admin.order.edit')? 'active' : ''
+            }}">
             <span class="icon-holder">
                 <i class="c-blue-500 ti-bar-chart"></i>
             </span>
@@ -18,7 +22,12 @@
     </li>
 
     <li class="nav-item">
-        <a href="{{ route('securedCatalogListPage') }}" class="nav-link {{ request()->routeIs('securedCatalogListPage') ? 'active' : '' }}">
+        <a href="{{ route('securedCatalogListPage') }}"
+           class="nav-link {{
+                request()->routeIs('securedCatalogListPage') ||
+                request()->routeIs('securedAddCatalogItemPage') ||
+                request()->routeIs('securedEditCatalogItemPage') ? 'active' : ''
+            }}">
             <span class="icon-holder"><i class="c-blue-500 ti-layout-list-thumb"></i></span>
             <span class="title">Catalog</span>
         </a>
@@ -50,27 +59,27 @@
         </ul>
     </li>
 
-
-    {{--<li class="nav-item">--}}
-        {{--<a href="{{ route('securedPagesListPage') }}" class="nav-link">--}}
-            {{--<span class="icon-holder"><i class="c-blue-500 ti-files"></i></span>--}}
-            {{--<span class="title">Pages</span>--}}
-        {{--</a>--}}
-    {{--</li>--}}
-    {{--<li class="nav-item dropdown">--}}
-        {{--<a href="#" class="dropdown-toggle">--}}
-            {{--<span class="icon-holder"><i class="c-blue-500 ti-files"></i></span>--}}
-            {{--<span class="title">News</span>--}}
-            {{--<span class="arrow"><i class="ti-angle-right"></i></span>--}}
-        {{--</a>--}}
-        {{--<ul class="dropdown-menu">--}}
-            {{--<li><a class="nav-link" href="{{ route('securedAddNewNewsItem') }}">Add</a></li>--}}
-            {{--<li><a class="nav-link" href="{{ route('securedNewsListPage') }}">List</a></li>--}}
-        {{--</ul>--}}
-    {{--</li>--}}
+    <li class="nav-item">
+        <a href="{{ route('admin.pages.index') }}"
+           class="nav-link {{
+                request()->routeIs('admin.pages.index') ||
+                request()->routeIs('admin.pages.home') ||
+                request()->routeIs('admin.pages.contacts') ||
+                request()->routeIs('admin.pages.services') ||
+                request()->routeIs('admin.pages.catalog') ? 'active' : ''
+             }}">
+            <span class="icon-holder"><i class="c-blue-500 ti-files"></i></span>
+            <span class="title">Pages</span>
+        </a>
+    </li>
 
     <li class="nav-item">
-        <a href="{{ route('admin.news.index') }}" class="nav-link {{ request()->routeIs('admin.news.index') || request()->routeIs('admin.news.create') || request()->routeIs('admin.news.edit') ? 'active' : '' }}">
+        <a href="{{ route('admin.news.index') }}"
+           class="nav-link {{
+                request()->routeIs('admin.news.index') ||
+                request()->routeIs('admin.news.create') ||
+                request()->routeIs('admin.news.edit') ? 'active' : ''
+            }}">
             <span class="icon-holder">
                 <i class="c-blue-500 ti-write"></i>
             </span>
@@ -79,7 +88,12 @@
     </li>
 
     <li class="nav-item">
-        <a href="{{ route('admin.slider.index') }}" class="nav-link {{ request()->routeIs('admin.slider.index') || request()->routeIs('admin.slider.create') || request()->routeIs('admin.slider.edit') ? 'active' : '' }}">
+        <a href="{{ route('admin.slider.index') }}"
+           class="nav-link {{
+                request()->routeIs('admin.slider.index') ||
+                request()->routeIs('admin.slider.create') ||
+                request()->routeIs('admin.slider.edit') ? 'active' : ''
+            }}">
             <span class="icon-holder">
                 <i class="c-blue-500 ti-layout-slider"></i>
             </span>
@@ -87,13 +101,12 @@
         </a>
     </li>
 
-    <!--
     <li class="nav-item">
-        <a href="" class="nav-link"><span class="icon-holder"><i class="c-blue-500 ti-user"></i> </span><span class="title">Users</span></a>
-    </li>
-    -->
-
-    <li class="nav-item">
-        <a href="{{ route('uploadCSVPage') }}" class="nav-link"><span class="icon-holder"><i class="c-blue-500 ti-save"></i> </span><span class="title">Import CSV</span></a>
+        <a href="{{ route('uploadCSVPage') }}" class="nav-link">
+            <span class="icon-holder">
+                <i class="c-blue-500 ti-save"></i>
+            </span>
+            <span class="title">Import CSV</span>
+        </a>
     </li>
 </ul>

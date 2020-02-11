@@ -5,125 +5,12 @@ namespace App\Http\Controllers\Secured;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use \App\Models\Slider;
-use \App\Models\News;
-use \App\Models\Pages;
+use App\Models\{
+    Slider, News, Pages
+};
 
 class SecuredCommonController extends Controller
 {
-    /**
-     * News methods
-     */
-
-    public function securedNewsListPage()
-    {
-        $newsModel = new News;
-
-        $data['pageTitle'] = 'News';
-        $data['news'] = $newsModel->getAllNews(100);
-
-        return view('secured.news.list', $data);
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function securedAddNewNewsItem()
-    {
-        $data['pageTitle'] = 'Add News Item';
-
-        return view('secured.news.add', $data);
-    }
-
-    /**
-     * @param $nw_id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function securedUpdateNewsItem($nw_id)
-    {
-        $newsModel = new News;
-        $getNews = $newsModel->getNewsItemById($nw_id);
-        $data['pageTitle'] = $getNews->nw_name;
-        $data['news'] = $getNews;
-        return view('secured.news.edit', $data);
-    }
-
-    /**
-     * @param $nw_id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function securedRemoveNewsItem($nw_id)
-    {
-        $newsModel = new News;
-        $newsModel->removeNewsItem($nw_id);
-        return redirect()->back();
-    }
-    ########################################################################
-    ### Pages
-    ########################################################################
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function securedPagesListPage()
-    {
-        $data['pageTitle'] = 'Pages';
-
-        return view('secured.pages.list', $data);
-    }
-
-    public function securedHomePageEditPage()
-    {
-        $pagesModel = new Pages;
-        $getPage = $pagesModel->getHomePage();
-        if($getPage === null) {
-            $pagesModel->createDefaultHomePage();
-        }
-        $data['pageTitle'] = 'Edit Home Page';
-        $data['pageData'] = $pagesModel->getHomePage();
-        return view('secured.pages.home', $data);
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function securedContactsPageEditPage()
-    {
-        $pagesModel = new Pages;
-        $getPage = $pagesModel->getPageByAlias('contacts');
-        if($getPage === null) {
-            $pagesModel->createDefaultPage('contacts', 'Contacts', 'Contacts');
-        }
-        $data['pageTitle'] = 'Edit Contacts Page';
-        $data['pageData'] = $pagesModel->getPageByAlias('contacts');
-        return view('secured.pages.contacts', $data);
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function securedServicesPageEditPage()
-    {
-        $pagesModel = new Pages;
-        $getPage = $pagesModel->getPageByAlias('services');
-        if($getPage === null) {
-            $pagesModel->createDefaultPage('services', 'Services', 'Services');
-        }
-        $data['pageTitle'] = 'Edit Contacts Page';
-        $data['pageData'] = $pagesModel->getPageByAlias('services');
-        return view('secured.pages.contacts', $data);
-    }
-
-    public function securedCatalogPageEditPage($catalog)
-    {
-        $pagesModel = new Pages;
-        $getPage = $pagesModel->getPageByAlias($catalog);
-        if($getPage === null) {
-            $pagesModel->createDefaultPage('services', 'Services', 'Services');
-        }
-        $data['pageTitle'] = 'Edit ' . $catalog . ' Page';
-        $data['pageData'] = $pagesModel->getPageByAlias($catalog);
-        return view('secured.pages.catalog', $data);
-    }
     //======================================================================
     // API
     //======================================================================
@@ -169,7 +56,8 @@ class SecuredCommonController extends Controller
         $data = $request->all();
         $file = $request->file('newsImage');
         $newsModel->createNewsItem($data, $file);
-        return redirect()->route('securedNewsListPage');
+
+        return redirect()->route('admin.news.index');
     }
 
     /**
@@ -182,7 +70,8 @@ class SecuredCommonController extends Controller
         $data = $request->all();
         $file = $request->file('newsImage');
         $newsModel->updateNewsItem($data, $file);
-        return redirect()->route('securedNewsListPage');
+
+        return redirect()->route('admin.news.index');
     }
     ########################################################################
     ### Pages
@@ -196,7 +85,8 @@ class SecuredCommonController extends Controller
         $pagesModel = new Pages;
         $data = $request->all();
         $pagesModel->updateDefaultPage($data);
-        return redirect()->back();
+
+        return redirect()->route('admin.pages.index');
     }
 
     /**
@@ -208,6 +98,7 @@ class SecuredCommonController extends Controller
         $pagesModel = new Pages;
         $data = $request->all();
         $pagesModel->updateHomePage($data);
-        return redirect()->back();
+
+        return redirect()->route('admin.pages.index');
     }
 }

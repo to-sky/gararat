@@ -9,7 +9,7 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <div class="bgc-white p-20 bd">
+            <div class="bgc-white bd">
                 {!! $catalog !!}
             </div>
         </div>

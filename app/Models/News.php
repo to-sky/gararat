@@ -10,6 +10,16 @@ use \App\Models\Node;
 
 class News extends Model
 {
+
+    protected $table = 'news';
+
+    protected $primaryKey = 'nw_id';
+
+    protected $fillable = [
+        'nw_name', 'nw_body', 'nw_title', 'nw_description', 'nw_created', 'nw_image', 'nw_name_ar', 'nw_title_ar',
+        'nw_body_ar', 'nw_description_ar'
+    ];
+
     //======================================================================
     // CREATE
     //======================================================================
@@ -34,18 +44,10 @@ class News extends Model
             'nw_created' => $data['newsDate'],
         ]);
     }
+
     //======================================================================
     // READ
     //======================================================================
-    /**
-     * @param $perPage
-     * @return mixed
-     */
-    public function getAllNews($perPage)
-    {
-        return DB::table('news')->orderBy('nw_created', 'DESC')->paginate($perPage);
-    }
-
     /**
      * @param $limit
      * @return mixed

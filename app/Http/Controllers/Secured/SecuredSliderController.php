@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Secured;
 
+use App\Http\Controllers\Controller;
 use App\Models\Slider;
 
-class SecuredSliderController
+class SecuredSliderController extends Controller
 {
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

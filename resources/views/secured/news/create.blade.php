@@ -1,12 +1,14 @@
 @extends('layouts.secured')
 
+@section('title') Add news @endsection
+
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="bgc-white p-20 bd">
-                <h6 class="c-grey-900">{{ $pageTitle }}</h6>
-                <form action="{{ route('saveNewNewsItemAPI') }}" method="post" enctype="multipart/form-data">
-                    @csrf
+    <form action="{{ route('saveNewNewsItemAPI') }}" method="post" enctype="multipart/form-data">
+        @csrf
+
+        <div class="row">
+            <div class="col-12">
+                <div class="bgc-white p-20 bd">
                     <div class="form-group row">
                         <div class="col-6">
                             <label for="newsName">Name</label>
@@ -19,26 +21,12 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-6">
-                            <label for="newsDate">Created At</label>
-                            <input type="text" class="form-control" name="newsDate" id="newsDate" required value="{{ \Carbon\Carbon::now()->format('Y-m-d h:m') }}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-12">
                             <label for="newsBody">Body</label>
                             <textarea name="newsBody" id="newsBody" class="summernote"></textarea>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-12">
+                        <div class="col-6">
                             <label for="newsBodyAr">Body Ar.</label>
                             <textarea name="newsBodyAr" id="newsBodyAr" class="summernote"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <label for="newsImage">Upload News Image</label>
-                            <input type="file" class="form-control-file" name="newsImage" id="newsImage" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -61,13 +49,31 @@
                             <textarea name="newsDescriptionAr" id="newsDescriptionAr" class="form-control"></textarea>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <button class="btn btn-primary" type="submit">Save</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bgc-white p-20 bd mt-3">
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="newsImage">Upload News Image</label>
+                            <input type="file" class="form-control-file" name="newsImage" id="newsImage" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="newsDate">Created</label>
+                            <input type="text" class="form-control" name="newsDate" id="newsDate" required value="{{ \Carbon\Carbon::now()->format('Y-m-d h:m') }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                @include('includes.secured.elements._save_or_back_btns', ['href' => route('admin.news.index') ])
+            </div>
+        </div>
+    </form>
 @endsection

@@ -5,3 +5,8 @@
         }
     }
 }
+
+// Fix summernote jumping
+.note-editor .note-toolbar {
+    position: relative !important;
+}

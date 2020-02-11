@@ -1,12 +1,14 @@
 @extends('layouts.secured')
 
+@section('title') {{ $news->nw_name }} @endsection
+
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="bgc-white p-20 bd">
-                <h6 class="c-grey-900">{{ $pageTitle }}</h6>
-                <form action="{{ route('updateNewsItemAPI') }}" method="post" enctype="multipart/form-data">
-                    @csrf
+    <form action="{{ route('updateNewsItemAPI') }}" method="post" enctype="multipart/form-data">
+        @csrf
+
+        <div class="row">
+            <div class="col-12">
+                <div class="bgc-white p-20 bd">
                     <input type="hidden" name="nw_id" value="{{ $news->nw_id }}">
                     <div class="form-group row">
                         <div class="col-6">
@@ -20,27 +22,12 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-6">
-                            <label for="newsDate">Created At</label>
-                            <input type="text" class="form-control" name="newsDate" id="newsDate" required value="{{ \Carbon\Carbon::parse($news->nw_created)->format('Y-m-d h:m') }}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-12">
                             <label for="newsBody">Body</label>
                             <textarea name="newsBody" id="newsBody" class="summernote">{{ $news->nw_body }}</textarea>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-12">
+                        <div class="col-6">
                             <label for="newsBodyAr">Body Ar.</label>
                             <textarea name="newsBodyAr" id="newsBodyAr" class="summernote">{{ $news->nw_body_ar }}</textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <p><img src="{{ asset($news->nw_image) }}" height="48" alt=""></p>
-                            <label for="newsImage">Upload News Image (Leave empty to keep previous image)</label>
-                            <input type="file" class="form-control-file" name="newsImage" id="newsImage">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -63,11 +50,33 @@
                             <textarea name="newsDescriptionAr" id="newsDescriptionAr" class="form-control">{{ $news->nw_description_ar }}</textarea>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <button class="btn btn-primary" type="submit">Save</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bgc-white p-20 bd mt-3">
+                    <div class="form-group row">
+                        <div class="col-6">
+                            <p><img src="{{ asset($news->nw_image) }}" height="48" alt=""></p>
+                            <label for="newsImage">Upload News Image (Leave empty to keep previous image)</label>
+                            <input type="file" class="form-control-file" name="newsImage" id="newsImage">
+                        </div>
+
+                        <div class="col-6 mt-5">
+                            <label for="newsDate">Created</label>
+                            <input type="text" class="form-control" name="newsDate" id="newsDate" required value="{{ \Carbon\Carbon::parse($news->nw_created)->format('Y-m-d h:m') }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                @include('includes.secured.elements._save_or_back_btns', ['href' => route('admin.news.index') ])
+            </div>
+        </div>
+    </form>
 @endsection

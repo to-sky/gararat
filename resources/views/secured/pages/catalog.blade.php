@@ -1,12 +1,14 @@
 @extends('layouts.secured')
 
+@section('title') {{ $title }} @endsection
+
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="bgc-white p-20 bd">
-                <h6 class="c-grey-900">{{ $pageTitle }}</h6>
-                <form action="{{ route('updatePageItemAPI') }}" method="post" enctype="multipart/form-data">
-                    @csrf
+    <form action="{{ route('updatePageItemAPI') }}" method="post" enctype="multipart/form-data">
+        @csrf
+
+        <div class="row">
+            <div class="col-12">
+                <div class="bgc-white p-20 bd">
                     <input type="hidden" name="pageId" value="{{ $pageData->pg_id }}">
                     <div class="form-group row">
                         <div class="col-6">
@@ -19,13 +21,11 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-12">
+                        <div class="col-6">
                             <label for="pageBody">Body</label>
                             <textarea name="pageBody" id="pageBody" class="summernote">{{ $pageData->pg_body }}</textarea>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-12">
+                        <div class="col-6">
                             <label for="pageBodyAr">Body Ar.</label>
                             <textarea name="pageBodyAr" id="pageBodyAr" class="summernote">{{ $pageData->pg_body_ar }}</textarea>
                         </div>
@@ -50,13 +50,14 @@
                             <textarea name="pageDescriptionAr" id="pageDescriptionAr" class="form-control">{{ $pageData->pg_description_ar }}</textarea>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <button class="btn btn-primary" type="submit">Save</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                @include('includes.secured.elements._save_or_back_btns', ['href' => route('admin.pages.index') ])
+            </div>
+        </div>
+    </form>
 @endsection

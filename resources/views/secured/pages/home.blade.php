@@ -1,12 +1,13 @@
 @extends('layouts.secured')
 
+@section('title') Homepage @endsection
+
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="bgc-white p-20 bd">
-                <h6 class="c-grey-900">{{ $pageTitle }}</h6>
-                <form action="{{ route('updateHomePageItemAPI') }}" method="post" enctype="multipart/form-data">
-                    @csrf
+    <form action="{{ route('updateHomePageItemAPI') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <div class="row">
+            <div class="col-12">
+                <div class="bgc-white p-20 bd">
                     <input type="hidden" name="pageId" value="{{ $pageData->hp_id }}">
                     <div class="form-group row">
                         <div class="col-6">
@@ -58,13 +59,14 @@
                             <textarea name="block5Ar" id="block5Ar" class="summernote">{{ $pageData->block_5_ar }}</textarea>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <button class="btn btn-primary" type="submit">Save</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                @include('includes.secured.elements._save_or_back_btns', ['href' => route('admin.pages.index') ])
+            </div>
+        </div>
+    </form>
 @endsection
