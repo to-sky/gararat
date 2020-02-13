@@ -3,14 +3,14 @@
 @section('title') Catalog @endsection
 
 @section('button')
-    @include('includes.secured.elements._add-btn', ['href' => route('securedAddCatalogItemPage'), 'item' => 'Catalog'])
+    @include('includes.secured.elements._add-btn', ['href' => route('admin.catalog.create'), 'item' => 'Catalog'])
 @endsection
 
 @section('content')
     <div class="row">
         <div class="col-12">
             <div class="bgc-white bd">
-                {!! $catalog !!}
+                {!! $catalogRender !!}
             </div>
         </div>
     </div>

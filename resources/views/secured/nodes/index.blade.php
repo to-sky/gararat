@@ -1,12 +1,21 @@
 @extends('layouts.secured')
 
+@section('title') {{ $product_type ? 'Parts' : 'Equipment' }} @endsection
+
+@include('includes.secured.modals._deleteItem', ['item' => $product_type ? 'part' : 'equipment'])
+
+@section('button')
+    @include('includes.secured.elements._add-btn', [
+    'href' => route('admin.products.create', ['product_type' => $product_type]), 'item' => $product_type ? 'part' : 'equipment'
+    ])
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-12">
-            <div class="bgc-white p-20 bd">
-                <h6 class="c-grey-900">{{ $pageTitle }}</h6>
-                <table class="table table-striped table-hover">
-                    <thead class="thead-dark">
+            <div class="bgc-white bd">
+                <table class="table table-borderless table-hover table-striped">
+                    <thead class="shadow-sm">
                         <tr>
                             <th>#</th>
                             <th>Image</th>
@@ -16,7 +25,7 @@
                             @endif
                             <th>Price</th>
                             <th>In Stock?</th>
-                            <th>Actions</th>
+                            <th class="text-right">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,14 +61,16 @@
                                     @endswitch
                                 </td>
                                 <td>
-                                    <a href="{{ route('editNode', ['product_type' => $product_type, 'id' => $product->id]) }}" class="btn btn-success"><i class="ti-pencil"></i></a>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Delete?</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a href="{{ route('removeProductAPI', $product->id) }}">Yes, remove</a>
+                                    <div class="pull-right">
+                                        <div class="btn-group btn-group-sm shadow-sm" role="group">
+                                            @include('includes.secured.elements._edit-btn' , [
+                                                'href' => route('admin.products.edit', ['product_type' => $product_type, 'id' => $product->id])
+                                            ])
+
+                                            @include('includes.secured.elements._delete-btn' , [
+                                                'href' => route('removeProductAPI', $product->id),
+                                                'modalText' => 'product "' . $product->n_name_en . '"'
+                                            ])
                                         </div>
                                     </div>
                                 </td>
@@ -68,7 +79,10 @@
                     </tbody>
                 </table>
             </div>
+
+            <div class="mt-20 pull-right">
+                {{ $products->links() }}
+            </div>
         </div>
     </div>
-    {{ $products->links() }}
 @endsection

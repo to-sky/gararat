@@ -5,60 +5,45 @@ namespace App\Http\Controllers\Secured;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use \App\Models\Catalog;
-use \App\Models\Helpers;
+use App\Models\{
+    Catalog, Helpers
+};
 
 class SecuredCatalogController extends Controller
 {
-    //======================================================================
-    // PAGES
-    //======================================================================
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function securedCatalogListPage()
+    public function index()
     {
-        $catalogModel = new Catalog;
-        $helper = new Helpers;
-
-        $getCatalogArray = $helper->convertQueryBuilderToArray($catalogModel->get());
-        $data['catalog'] = $helper->buildCatalogMenuWithLevels($getCatalogArray, 0);
-
-        return view('secured.catalog.list', $data);
+        return view('secured.catalog.index', [
+            'catalogRender' => (new Helpers)->buildCatalogMenuWithLevels(Catalog::all()->toArray(), 0)
+        ]);
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function securedAddCatalogItemPage()
+    public function create()
     {
-        $catalogModel = new Catalog;
-        $helper = new Helpers;
-
-        $data['pageTitle'] = 'New Catalog Item';
-        $getCatalogArray = $helper->convertQueryBuilderToArray($catalogModel->get());
-        $data['catalogs'] = $helper->buildCatalogOptionsWithLevels($getCatalogArray, 0, '', NULL, NULL);
-
-        return view('secured.catalog.add', $data);
+        return view('secured.catalog.create', [
+            'catalogRender' => (new Helpers)->buildCatalogOptionsWithLevels(Catalog::all()->toArray(), 0, '', NULL, NULL)
+        ]);
     }
 
     /**
-     * @param $cid
+     * @param Catalog $catalog
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function securedEditCatalogItemPage($cid)
+    public function edit(Catalog $catalog)
     {
-        $catalogModel = new Catalog;
-        $helper = new Helpers;
-        $getCatalogItem = $catalogModel->find($cid);
+        $catalogRender = (new Helpers())->buildCatalogOptionsWithLevels(
+            Catalog::all()->toArray(), 0, '---', $catalog->parent_cat, NULL
+        );
 
-        $data['pageTitle'] = 'Edit Catalog: ' . $getCatalogItem->cat_name_en;
-        $getCatalogArray = $helper->convertQueryBuilderToArray($catalogModel->get());
-        $data['catalogs'] = $helper->buildCatalogOptionsWithLevels($getCatalogArray, 0, '---', $getCatalogItem->parent_cat, NULL);
-        $data['catalogItem'] = $getCatalogItem;
-
-        return view('secured.catalog.edit', $data);
+        return view('secured.catalog.edit', compact('catalog', 'catalogRender'));
     }
+
     //======================================================================
     // API
     //======================================================================
@@ -73,7 +58,7 @@ class SecuredCatalogController extends Controller
         $findDublicatesCatId = $catalogModel->findCatalogItemByCatId($data['catalogNumber']);
         if($findDublicatesCatId == 0) {
             $catalogModel->saveNewCatalogItem($data, $request->file('catalogImage'));
-            return redirect()->route('securedCatalogListPage');
+            return redirect()->route('admin.catalog.index');
         } else {
             return redirect()->back()->withErrors('Catalog number must be unique');
         }
@@ -90,7 +75,7 @@ class SecuredCatalogController extends Controller
         $findDublicatesCatId = $catalogModel->findCatalogItemByCatIdAndCid($data['catalogNumber'], $data['cid']);
         if($findDublicatesCatId == 0) {
             $catalogModel->updateCatalogItem($data, $request->file('catalogImage'));
-            return redirect()->route('securedCatalogListPage');
+            return redirect()->route('admin.catalog.index');
         } else {
             return redirect()->back()->withErrors('Catalog number must be unique');
         }

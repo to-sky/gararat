@@ -19,7 +19,7 @@ class Node extends Model
      */
     public function part()
     {
-        return $this->hasOne(Part::class, 'node');
+        return $this->hasOne(Part::class, 'node', 'id');
     }
 
     /**
@@ -27,13 +27,13 @@ class Node extends Model
      */
     public function machinery()
     {
-        return $this->hasOne(Machinery::class, 'node');
+        return $this->hasOne(Machinery::class, 'node', 'id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function nodeImages()
+    public function images()
     {
         return $this->hasMany(NodeImage::class, 'node');
     }
@@ -47,13 +47,21 @@ class Node extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function catalogs()
+    {
+        return $this->belongsToMany(Catalog::class, 'nodes_to_catalog', 'node', 'catalog');
+    }
+
+    /**
      * Get thumbnail path for main image
      *
      * @return mixed
      */
     public function getMainImagePath()
     {
-        if (! $mainImage = $this->nodeImages()->whereIsFeatured(1)->first()) {
+        if (! $mainImage = $this->images()->whereIsFeatured(1)->first()) {
             return null;
         }
 
@@ -416,6 +424,8 @@ class Node extends Model
     public function getNodeById($id, $type)
     {
         $get = DB::table('nodes')->where('id', $id);
+
+
         switch ($type) {
             case 0:
                 $get->join('nodes_machinery_fields', 'nodes.id', '=', 'nodes_machinery_fields.node');
@@ -426,6 +436,7 @@ class Node extends Model
             default:
                 break;
         }
+
         return $get->first();
     }
 

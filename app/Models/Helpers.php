@@ -2,26 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use App;
 
-use \App\Models\Catalog;
-
 class Helpers extends Model
 {
-    //======================================================================
-    // Catalog Menu Builder
-    //======================================================================
-    /**
-     * @param $qb_result
-     * @return mixed
-     */
-    public function convertQueryBuilderToArray($qb_result)
-    {
-        return json_decode(json_encode($qb_result), true);
-    }
-
     /**
      * @param $array
      * @param $parent
@@ -176,12 +161,5 @@ class Helpers extends Model
         }
 
         return array_reverse($breadcrumbsArray);
-    }
-    //======================================================================
-    // Cart Builder
-    //======================================================================
-    public function cartPreview()
-    {
-
     }
 }

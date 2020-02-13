@@ -65,27 +65,28 @@ Route::group(['middleware' => 'auth'], function() {
         # Pages
         ########################################################################
         // Dashboard
-        Route::get('/secured/admin', 'Secured\SecuredPagesController@securedDashboardPage')->name('securedDashboardPage');
-        Route::get('/secured/admin/search', 'Secured\SecuredPagesController@securedSearchPage')->name('securedSearchPage');
+        Route::get('/secured/admin', 'Secured\SecuredPagesController@dashboard')->name('dashboard');
+        Route::get('/secured/admin/search', 'Secured\SecuredPagesController@adminSearch')->name('adminSearch');
         // Order
         Route::get('/secured/admin/orders', 'Secured\SecuredOrdersController@index')->name('admin.order.index');
         Route::get('/secured/admin/orders/{order}', 'Secured\SecuredOrdersController@edit')->name('admin.order.edit');
+
         // Catalog
-        Route::get('/secured/admin/catalog', 'Secured\SecuredCatalogController@securedCatalogListPage')->name('securedCatalogListPage');
-        Route::get('/secured/admin/catalog/add', 'Secured\SecuredCatalogController@securedAddCatalogItemPage')->name('securedAddCatalogItemPage');
-        Route::get('/secured/admin/catalog/edit/{cid}', 'Secured\SecuredCatalogController@securedEditCatalogItemPage')->name('securedEditCatalogItemPage');
+        Route::get('/secured/admin/catalog', 'Secured\SecuredCatalogController@index')->name('admin.catalog.index');
+        Route::get('/secured/admin/catalog/add', 'Secured\SecuredCatalogController@create')->name('admin.catalog.create');
+        Route::get('/secured/admin/catalog/edit/{catalog}', 'Secured\SecuredCatalogController@edit')->name('admin.catalog.edit');
         Route::get('/secured/admin/catalog/delete/{cid}', 'Secured\SecuredCatalogController@securedDeleteCatalogItemPage')->name('securedDeleteCatalogItemPage');
         // Products
-        Route::get('/secured/admin/products/sections/{product_type}', 'Secured\SecuredProductsController@productsListSecuredPage')->name('productsListSecuredPage');
-        Route::get('/secured/admin/products/{product_type}/add', 'Secured\SecuredProductsController@addNewProduct')->name('addNewProduct');
-        Route::get('/secured/admin/products/{product_type}/add', 'Secured\SecuredProductsController@addNewProduct')->name('addNewProduct');
-        Route::get('/secured/admin/products/{product_type}/{id}/actions/edit', 'Secured\SecuredProductsController@editNode')->name('editNode');
+        Route::get('/secured/admin/products/sections/{product_type}', 'Secured\SecuredProductsController@index')->name('admin.products.index');
+        Route::get('/secured/admin/products/{product_type}/add', 'Secured\SecuredProductsController@create')->name('admin.products.create');
+        Route::get('/secured/admin/products/{product_type}/{id}/actions/edit', 'Secured\SecuredProductsController@edit')->name('admin.products.edit');
         Route::get('/secured/admin/products/{id}/actions/delete', 'Secured\SecuredProductsController@deleteNode')->name('deleteNode');
+
         // Parts Constructor
-        Route::get('/secured/admin/constructor/list', 'Secured\SecuredPartsConstructor@listConstructorPage')->name('listConstructorPage');
-        Route::get('/secured/admin/constructor/add/init', 'Secured\SecuredPartsConstructor@initNewConstructorDrawingPage')->name('initNewConstructorDrawingPage');
-        Route::get('/secured/admin/constructor/add/create/{fig_id}', 'Secured\SecuredPartsConstructor@createNewConstructorDrawingPage')->name('createNewConstructorDrawingPage');
-        Route::get('/secured/admin/constructor/add/delete/{fig_id}', 'Secured\SecuredPartsConstructor@deleteConstructorDrawingPage')->name('deleteConstructorDrawingPage');
+        Route::get('/secured/admin/constructor/list', 'Secured\SecuredPartsConstructor@index')->name('admin.figures.index');
+        Route::get('/secured/admin/constructor/add/init', 'Secured\SecuredPartsConstructor@create')->name('admin.figures.create');
+        Route::get('/secured/admin/constructor/add/create/{figure}', 'Secured\SecuredPartsConstructor@createConstructor')->name('admin.figures.constructor.create');
+        Route::get('/secured/admin/constructor/add/delete/{figure}', 'Secured\SecuredPartsConstructor@delete')->name('admin.figures.delete');
 
         // Slider
         Route::get('/secured/admin/slider', 'Secured\SecuredSliderController@index')->name('admin.slider.index');

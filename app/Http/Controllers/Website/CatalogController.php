@@ -9,7 +9,7 @@ use App;
 use \App\Models\Catalog;
 use \App\Models\Helpers;
 use \App\Models\Node;
-use \App\Models\Figures;
+use \App\Models\Figure;
 use \App\Models\Pages;
 
 class CatalogController extends Controller
@@ -40,12 +40,14 @@ class CatalogController extends Controller
         if($catalog->cat_type === 1) {
             $alias = 'parts';
             $stepsToRoot = $catalog->countParentsToRoot($catalog->parent_cat);
+
             if($stepsToRoot >= 2) {
-                $getCatalogs = $catalog->getAllCatalogItemsByTypeWithoutRoot(1);
+                $getCatalogs = $catalog->getAllCatalogItemsByTypeWithoutRoot(1)->toArray();
+
                 if(count($data['catalogChilds']) > 0) {
-                    $data['preRenderedCatalog'] = $helpers->buildFrontendPartsCatalogMenu($cid, $helpers->convertQueryBuilderToArray($getCatalogs), $catalog->cat_number);
+                    $data['preRenderedCatalog'] = $helpers->buildFrontendPartsCatalogMenu($cid, $getCatalogs, $catalog->cat_number);
                 } else {
-                    $data['preRenderedCatalog'] = $helpers->buildFrontendPartsCatalogMenu($cid, $helpers->convertQueryBuilderToArray($getCatalogs), $catalog->parent_cat);
+                    $data['preRenderedCatalog'] = $helpers->buildFrontendPartsCatalogMenu($cid, $getCatalogs, $catalog->parent_cat);
                 }
             }
         } else {
@@ -81,11 +83,9 @@ class CatalogController extends Controller
         $catalogModel = new Catalog;
         $helpers = new Helpers;
         $nodesModel = new Node;
-        $figuresModel = new Figures;
 
         $locale = App::getLocale();
-
-        $getCatalogByCid = $catalogModel->find($cid);
+        $getCatalogByCid = Catalog::find($cid);
 
         if($locale === 'en') {
             if($getCatalogByCid->cat_title_en === NULL) {
@@ -111,7 +111,7 @@ class CatalogController extends Controller
         }
         $data['breadcrumbs'] = $helpers->buildCatalogBreadcrumbs($getCatalogByCid, false);
         // Figure
-        $getFigure = $figuresModel->getFigureById($getCatalogByCid->figure);
+        $getFigure = Figure::find($getCatalogByCid->figure);
         $data['figure'] = $getFigure;
         if(isset($getFigure) && $getFigure !== null) {
             $getNodes = $nodesModel->getNodesForFigure($getFigure->fig_id);

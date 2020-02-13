@@ -1,6 +1,6 @@
 @extends('layouts.secured')
 
-@section('title') Homepage @endsection
+@section('title') Edit page: Homepage @endsection
 
 @section('content')
     <form action="{{ route('updateHomePageItemAPI') }}" method="post" enctype="multipart/form-data">

@@ -1,19 +1,22 @@
 @extends('layouts.secured')
 
+@section('title') Search results for: {{ request()->q }} @endsection
+
+@include('includes.secured.modals._deleteItem', ['item' => 'product'])
+
 @section('content')
     <div class="row">
         <div class="col-12">
-            <div class="bgc-white p-20 bd">
-                <h6 class="c-grey-900">{{ $pageTitle }}</h6>
-                <table class="table table-striped table-hover">
-                    <thead class="thead-dark">
+            <div class="bgc-white bd">
+                <table class="table table-borderless table-hover table-striped">
+                    <thead class="shadow-sm">
                     <tr>
                         <th>#</th>
                         <th>Image</th>
                         <th>Name</th>
                         <th>Price</th>
                         <th>In Stock?</th>
-                        <th>Actions</th>
+                        <th class="text-right">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -51,15 +54,28 @@
                                 @endswitch
                             </td>
                             <td>
-                                <a href="{{ route('editNode', ['product_type' => $product->cat_type, 'id' => $product->id]) }}" class="btn btn-success"><i class="ti-pencil"></i></a>
-                                <a href="{{ route('removeProductAPI', $product->id) }}" class="btn btn-danger"><i class="ti-trash"></i></a>
+                                <div class="pull-right">
+                                    <div class="btn-group btn-group-sm shadow-sm" role="group">
+                                        @include('includes.secured.elements._edit-btn' , [
+                                            'href' => route('admin.products.edit', ['product_type' => $product->cat_type, 'id' => $product->id])
+                                        ])
+
+                                        @include('includes.secured.elements._delete-btn' , [
+                                            'href' => route('removeProductAPI', ['id' => $product->id]),
+                                            'modalText' => 'product "' .  $product->n_name_en . '"'
+                                        ])
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
             </div>
+
+            <div class="mt-3 pull-right">
+                {{ $products->links() }}
+            </div>
         </div>
     </div>
-    {{ $products->links() }}
 @endsection

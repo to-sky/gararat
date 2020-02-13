@@ -7,8 +7,51 @@ use \Carbon\Carbon;
 use Image;
 use DB;
 
-class Figures extends Model
+class Figure extends Model
 {
+    protected $table = 'figures';
+
+    protected $primaryKey = 'fig_id';
+
+    protected $fillable = ['fig_no', 'fig_image', 'catalog'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function catalog()
+    {
+        return $this->hasOne(Catalog::class, 'cat_number', 'catalog');
+    }
+
+    public function nodes()
+    {
+        return $this->belongsToMany(Node::class, 'figures_to_nodes', 'figure', 'node')->withPivot(['pos_x', 'pos_y', 'size_x', 'size_y', 'color']);
+    }
+
+    /**
+     * Get nodes with parts
+     * Return array with nested 2 array
+     * inTheDraw contain parts where position number > 0
+     * notInTheDraw contain parts where position number == 0
+     *
+     * @return array
+     */
+    public function getSeparatedNodesWithParts()
+    {
+        $nodes = [
+            'inTheDraw' => [],
+            'notInTheDraw' => []
+        ];
+
+        $this->nodes()->with('part')->get()->map(function ($node) use (&$nodes) {
+            $type = $node->part->pos_no ? 'inTheDraw' : 'notInTheDraw';
+
+            $nodes[$type][] = $node;
+        });
+
+        return $nodes;
+    }
+
     //======================================================================
     // HELPERS
     //======================================================================
@@ -52,7 +95,7 @@ class Figures extends Model
      * @param $fig_no
      * @return bool
      */
-    public function createOrUpdateNodeForFigure($figure, $fig_no)
+    public static function createOrUpdateNodeForFigure($figure, $fig_no)
     {
         $get = DB::table('nodes_parts_fields')->where('fig_no', $fig_no)->get();
         foreach ($get as $value) {
@@ -100,27 +143,7 @@ class Figures extends Model
         ]);
         return $createFigure;
     }
-    //======================================================================
-    // READ
-    //======================================================================
-    /**
-     * @param $fig_id
-     * @return mixed
-     */
-    public function getFigureById($fig_id)
-    {
-        return DB::table('figures')->where('fig_id', $fig_id)->first();
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getFiguresList()
-    {
-        return DB::table('figures')
-            ->join('catalog', 'figures.catalog', '=', 'catalog.cat_number')
-            ->get();
-    }
     //======================================================================
     // UPDATE
     //======================================================================

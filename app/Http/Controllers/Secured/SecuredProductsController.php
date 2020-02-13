@@ -8,101 +8,65 @@ use App\Models\{Catalog, Helpers, Node, NodeImage};
 
 class SecuredProductsController extends Controller
 {
-    //======================================================================
-    // PAGES
-    //======================================================================
     /**
      * @param $product_type
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function productsListSecuredPage($product_type)
+    public function index($product_type)
     {
         $nodesModel = new Node;
         $catalogModel = new Catalog;
         $getAllChildsCategories = $catalogModel->getAllChildsCategories($product_type);
         $getNodes = $nodesModel->getNodesForProductType($getAllChildsCategories);
 
-        switch($product_type) {
-            case 0:
-                $data['pageTitle'] = 'Equipment nodes';
-                break;
-            case 1:
-                $data['pageTitle'] = 'Parts nodes';
-                break;
-            default:
-                $data['pageTitle'] = 'Nodes';
-                break;
-        }
-
         $data['products'] = $nodesModel->getNodesByType($getNodes, $product_type);
         $data['product_type'] = $product_type;
 
-        return view('secured.nodes.list', $data);
-    }
-    /**
-     * @param $product_type
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
-     */
-    public function addNewProduct($product_type)
-    {
-        $helpersModel = new Helpers;
-        $catalogModel = new Catalog;
-
-        // Catalog operations
-        $getCatalogArray = $helpersModel->convertQueryBuilderToArray($catalogModel->get());
-        $buildCatalogOptions = $helpersModel->buildCatalogOptionsWithLevels($getCatalogArray, 0, '---', NULL, $product_type);
-
-        $data['catalog'] = $buildCatalogOptions;
-
-        switch($product_type) {
-            case 0:
-                $data['pageTitle'] = 'Add new equipment node';
-                return view('secured.nodes.equipment.add', $data);
-                break;
-            case 1:
-                $data['pageTitle'] = 'Add new parts node';
-                return view('secured.nodes.parts.add', $data);
-                break;
-            default:
-                return redirect()->route('productsListSecuredPage', $product_type);
-                break;
-        }
+        return view('secured.nodes.index', $data);
     }
 
     /**
      * @param $product_type
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function editNode($product_type, $id)
+    public function create($product_type)
     {
-        $helpersModel = new Helpers;
-        $catalogModel = new Catalog;
-        $nodesModel = new Node;
-        // Catalog operations
-        $selectedCatalogs = $catalogModel->getSelectedCatalogItem($id);
-        $getCatalogArray = $helpersModel->convertQueryBuilderToArray($catalogModel->get());
-        $buildCatalogOptions = $helpersModel->buildCatalogOptionsWithLevels($getCatalogArray, 0, '---', $selectedCatalogs, $product_type);
-
-        $data['catalog'] = $buildCatalogOptions;
-        $data['node'] = $nodesModel->getNodeById($id, $product_type);
-        $data['images'] = $nodesModel->getNodeImages($id);
-
-        switch($product_type) {
-            case 0:
-                $data['pageTitle'] = 'Edit';
-                return view('secured.nodes.equipment.edit', $data);
-                break;
-            case 1:
-                $data['pageTitle'] = 'Edit';
-                return view('secured.nodes.parts.edit', $data);
-                break;
-            default:
-                return redirect()->route('productsListSecuredPage', $product_type);
-                break;
-        }
+        return view($this->generateRouteView($product_type, 'create'), [
+            'catalogRender' => (new Helpers())->buildCatalogOptionsWithLevels(Catalog::all()->toArray(), 0, '---', NULL, $product_type)
+        ]);
     }
 
+    /**
+     * @param $product_type
+     * @param Node $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit($product_type, $id)
+    {
+        $relation = $product_type ? 'part' : 'machinery';
+
+        $node = Node::with($relation)->find($id);
+
+        $catalogRender = (new Helpers())->buildCatalogOptionsWithLevels(
+            Catalog::all()->toArray(), 0, '---', $node->catalogs->map->cat_number->toArray(), $product_type
+        );
+
+        return view($this->generateRouteView($product_type, 'edit'), compact('node', 'catalogRender'));
+    }
+
+    /**
+     * Generate path to view layout for product type
+     *
+     * @param $productType
+     * @param $pageType
+     * @return string
+     */
+    public function generateRouteView($productType, $pageType)
+    {
+        $nodeType = $productType ? 'parts' : 'equipment';
+
+        return 'secured.nodes.' . $nodeType . '.' . $pageType;
+    }
 
     //======================================================================
     // API
@@ -128,7 +92,7 @@ class SecuredProductsController extends Controller
         // Proceed images
         $this->saveProductImage($saveNode->id);
 
-        return redirect()->route('productsListSecuredPage', 0);
+        return redirect()->route('admin.products.index', 0);
     }
 
     /**
@@ -171,7 +135,7 @@ class SecuredProductsController extends Controller
         // Proceed images
         $this->saveProductImage($saveNode->id);
 
-        return redirect()->route('productsListSecuredPage', 1);
+        return redirect()->route('admin.products.index', 1);
     }
 
     public function updatePartsAPI(Request $request)

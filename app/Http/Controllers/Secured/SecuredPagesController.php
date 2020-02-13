@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Secured;
 
+use App\Models\Machinery;
+use App\Models\Order;
 use App\Models\Pages;
+use App\Models\Part;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use League\Csv\Reader;
@@ -31,6 +35,7 @@ class SecuredPagesController extends Controller
     {
         $pagesModel = new Pages;
         $getPage = $pagesModel->getHomePage();
+
         if($getPage === null) {
             $pagesModel->createDefaultHomePage();
         }
@@ -48,9 +53,11 @@ class SecuredPagesController extends Controller
     {
         $pagesModel = new Pages;
         $getPage = $pagesModel->getPageByAlias('services');
+
         if($getPage === null) {
             $pagesModel->createDefaultPage('services', 'Services', 'Services');
         }
+
         $data['pageData'] = $pagesModel->getPageByAlias('services');
         $data['title'] = 'Services';
 
@@ -66,15 +73,16 @@ class SecuredPagesController extends Controller
     {
         $pagesModel = new Pages;
         $getPage = $pagesModel->getPageByAlias('contacts');
+
         if($getPage === null) {
             $pagesModel->createDefaultPage('contacts', 'Contacts', 'Contacts');
         }
+
         $data['pageData'] = $pagesModel->getPageByAlias('contacts');
         $data['title'] = 'Contacts';
 
         return view('secured.pages.contacts', $data);
     }
-
 
     /**
      * Edit parts or equipment page
@@ -86,9 +94,11 @@ class SecuredPagesController extends Controller
     {
         $pagesModel = new Pages;
         $getPage = $pagesModel->getPageByAlias($catalog);
+
         if($getPage === null) {
             $pagesModel->createDefaultPage('services', 'Services', 'Services');
         }
+
         $data['pageData'] = $pagesModel->getPageByAlias($catalog);
         $data['title'] = ucfirst($catalog);
 
@@ -96,32 +106,31 @@ class SecuredPagesController extends Controller
     }
 
     /**
+     * Admin dashboard main page
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function securedDashboardPage()
+    public function dashboard()
     {
-        $nodesModel = new Node;
-
-        $data['partsCount'] = $nodesModel->countPartsNodes();
-        $data['eqCount'] = $nodesModel->countEquipmentsNodes();
-
-        return view('secured.dashboard', $data);
+        return view('secured.dashboard', [
+            'parts' => Part::all(),
+            'equipments' => Machinery::all(),
+            'orders' => Order::all(),
+            'users' => User::all()
+        ]);
     }
 
     /**
+     * Admin search page
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function securedSearchPage(Request $request)
+    public function adminSearch(Request $request)
     {
-        $nodesModel = new Node;
-        $query = $request->query('q');
-
-        $data['pageTitle'] = 'Search results for: ' . $query;
-        $data['searchRequest'] = $query;
-        $data['products'] = $nodesModel->getNodesBySearchRequestSecured($query);
-
-        return view('secured.search', $data);
+        return view('secured.search', [
+            'products' => (new Node)->getNodesBySearchRequestSecured($request->q)
+        ]);
     }
 
     /**
@@ -129,10 +138,9 @@ class SecuredPagesController extends Controller
      */
     public function uploadCSVPage()
     {
-        $data['pageTitle'] = 'Upload CSV';
-
-        return view('secured.upload', $data);
+        return view('secured.upload');
     }
+
     //======================================================================
     // API
     //======================================================================
@@ -162,7 +170,7 @@ class SecuredPagesController extends Controller
             // dd($record);
             $nodesModel->getEQCsvRecordToAnalyze($record);
         }
-        return redirect()->route('productsListSecuredPage', 0);
+        return redirect()->route('admin.products.index', 0);
     }
 
     /**
@@ -191,6 +199,6 @@ class SecuredPagesController extends Controller
             // dd($record);
             $nodesModel->getPartsCsvRecordToAnalyze($record);
         }
-        return redirect()->route('productsListSecuredPage', 1);
+        return redirect()->route('admin.products.index', 1);
     }
 }

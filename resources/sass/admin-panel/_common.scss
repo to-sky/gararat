@@ -1,12 +1,14 @@
 .app {
-    a {
-        &:focus {
-            color: $white;
+    table {
+        a {
+            &:focus {
+                color: $white;
+            }
         }
     }
 }
 
 // Fix summernote jumping
 .note-editor .note-toolbar {
-    position: relative !important;
+    //position: relative !important;
 }

@@ -5,7 +5,7 @@
 @include('includes.secured.modals._deleteItem', ['item' => 'news'])
 
 @section('button')
-    @include('includes.secured.elements._add-btn', ['href' => route('admin.news.create'), 'item' => 'News'])
+    @include('includes.secured.elements._add-btn', ['href' => route('admin.news.create'), 'item' => 'news'])
 @endsection
 
 @section('content')

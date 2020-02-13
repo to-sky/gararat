@@ -1,6 +1,6 @@
 @extends('layouts.secured')
 
-@section('title') Order {{ $order->id }} @endsection
+@section('title') Edit order: {{ $order->id }} @endsection
 
 @include('includes.secured.modals._deleteItem', ['item' => 'product'])
 
@@ -96,7 +96,7 @@
                                     <div class="pull-right">
                                         @include('includes.secured.elements._delete-btn' , [
                                                'href' => route('removeProductFromOrderAPI', ['order_id' => $order->id, 'node_id' => $node->id]),
-                                               'modalText' => 'product ' . $node->n_name_en
+                                               'modalText' => 'product "' . $node->n_name_en . '"'
                                            ])
                                     </div>
                                 </td>

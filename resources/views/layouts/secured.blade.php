@@ -42,13 +42,13 @@
                 <main class="main-content bgc-grey-100">
                     <div id="mainContent">
                         <div class="row">
-                            <div class="col-md-11">
+                            <div class="col-md-10">
                                 <h3>
                                     @yield('title')
                                 </h3>
                             </div>
 
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                                 @yield('button')
                             </div>
                         </div>
@@ -59,6 +59,7 @@
                 <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600"><span>Copyright © {{ \Carbon\Carbon::now()->format('Y') }} Developed by <a href="https://www.protus.by" target="_blank" title="Protus" rel="noopener noreferrer">Protus</a>. All rights reserved.</span></footer>
             </div>
         </div>
+        <div id="c-preloader" style="position: absolute;top: 0;left: 0;background: RGBA(0, 0, 0, 0.5);z-index: 9999999999999999999999;width: 100%;height: 100%;display: none;"></div>
 
         <!-- Scripts -->
         <script src="{{ asset('admin-panel/vendor.js') }}"></script>
@@ -70,10 +71,10 @@
 
         <script src="{{ asset('admin-panel/summernote/summernote-lite.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
 
         @include('includes.secured.layout.scripts')
 
         @stack('scripts')
-        <div id="c-preloader" style="position: absolute;top: 0;left: 0;background: RGBA(0, 0, 0, 0.5);z-index: 9999999999999999999999;width: 100%;height: 100%;display: none;"></div>
     </body>
 </html>

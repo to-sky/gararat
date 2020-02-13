@@ -58,12 +58,15 @@
                 <div class="bgc-white p-20 bd mt-3">
                     <div class="form-group row">
                         <div class="col-md-6">
-                            <label for="newsImage">Upload News Image</label>
-                            <input type="file" class="form-control-file" name="newsImage" id="newsImage" required>
+                            <p class="mb-1">Upload news image</p>
+                            @include('includes.secured.elements._input-file', [
+                                'name' => 'newsImage',
+                                'required' => 'true'
+                            ])
                         </div>
                         <div class="col-md-6">
                             <label for="newsDate">Created</label>
-                            <input type="text" class="form-control" name="newsDate" id="newsDate" required value="{{ \Carbon\Carbon::now()->format('Y-m-d h:m') }}">
+                            <input type="text" class="form-control datetimepicker" name="newsDate" id="newsDate" required value="{{ \Carbon\Carbon::now()->format('Y-m-d h:m') }}">
                         </div>
                     </div>
                 </div>

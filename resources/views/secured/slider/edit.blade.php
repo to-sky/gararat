@@ -1,6 +1,6 @@
 @extends('layouts.secured')
 
-@section('title') Slide {{ $slider->sl_id }} @endsection
+@section('title') Edit slide: {{ $slider->sl_id }} @endsection
 
 @section('content')
     <form action="{{ route('updateSlideAPI') }}" method="post" enctype="multipart/form-data">
@@ -15,15 +15,21 @@
                         <input type="text" class="form-control" name="slideTitle" id="slideTitle" required value="{{ $slider->sl_title }}">
                     </div>
                     <div class="form-group">
-                        <p>Upload New Image To Replace Current</p>
-                        <img src="{{ asset($slider->sl_image) }}" height="64" alt="">
-                        <br><br><br>
-                        <label for="slideImage">Upload Image (1110 x 400px)</label>
-                        <input type="file" class="form-control-file" name="slideImage" id="slideImage">
+                        <p class="mb-1">Upload New Image To Replace Current</p>
+
+                        @include('includes.secured.elements._input-file', [
+                            'name' => 'slideImage',
+                            'label' => 'Size: 1110x400px',
+                            'placeholder' => $slider->sl_image
+                        ])
+
+                        <p class="mt-2 mb-0">
+                            <img src="{{ asset($slider->sl_image) }}" height="64" alt="{{ $slider->sl_title }}">
+                        </p>
                     </div>
                     <div class="form-group">
                         <label for="sliderDescription">Link</label>
-                        <input type="text" class="form-control-file" name="sliderDescription" id="sliderDescription" placeholder="Example: /catalog/2" value="{{ $slider->sl_description }}">
+                        <input type="text" class="form-control" name="sliderDescription" id="sliderDescription" placeholder="Example: /catalog/2" value="{{ $slider->sl_description }}">
                     </div>
                     <div class="form-group">
                         <label for="positionNumber">Position Number</label>

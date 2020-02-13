@@ -15,6 +15,23 @@ class Catalog extends Model
 
     protected $guarded = ['id'];
 
+    /**
+     * Show catalog number with name
+     *
+     * @return string
+     */
+    public function displayCatalogName()
+    {
+        return $this->cat_number . ' - ' . $this->cat_name_en;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function nodes()
+    {
+        return $this->belongsToMany(Node::class, 'nodes_to_catalog', 'catalog', 'node');
+    }
 
     //======================================================================
     // CREATE
@@ -78,11 +95,12 @@ class Catalog extends Model
     }
 
     /**
+     * @param $type
      * @return mixed
      */
-    public function getAllCatalogItemsByType($type)
+    public static function getAllCatalogItemsByType($type)
     {
-        return $this->where('cat_type', $type)->get();
+        return self::where('cat_type', $type)->get();
     }
 
     /**
@@ -238,26 +256,6 @@ class Catalog extends Model
             }
         }
         return $array;
-    }
-
-    /**
-     * @param $id
-     * @return array
-     */
-    public function getSelectedCatalogItem($id)
-    {
-        $request = DB::table('nodes_to_catalog')
-            ->where('node', $id)
-            ->join('catalog', 'nodes_to_catalog.catalog', '=', 'catalog.cid')
-            ->select('catalog.cat_number')
-            ->get();
-        $catalog = [];
-        foreach ($request as $key => $value) {
-            if(!in_array($value->cat_number, $catalog)) {
-                $catalog[] = $value->cat_number;
-            }
-        }
-        return $catalog;
     }
 
     /**

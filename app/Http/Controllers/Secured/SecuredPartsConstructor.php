@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Secured;
 
+use App\Models\FigureNode;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use \App\Models\Catalog;
-use \App\Models\Figures;
+use \App\Models\Figure;
 use \App\Models\Helpers;
 use \App\Models\Node;
 
@@ -15,69 +16,61 @@ class SecuredPartsConstructor extends Controller
     //======================================================================
     // PAGES
     //======================================================================
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function listConstructorPage()
-    {
-        $figuresModel = new Figures;
-
-        $data['pageTitle'] = 'Figures List';
-        $data['figures'] = $figuresModel->getFiguresList();
-
-        return view('secured.figures.list', $data);
-    }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function initNewConstructorDrawingPage()
+    public function index()
     {
-        $catalogModel = new Catalog;
-        $helper = new Helpers;
-
-        $data['pageTitle'] = 'Init New Constructor Item';
-        $getCatalogArray = $helper->convertQueryBuilderToArray($catalogModel->getAllCatalogItemsByType(1));
-        $data['catalogs'] = $helper->buildCatalogOptionsWithLevels($getCatalogArray, 0, '', NULL, NULL);
-
-        return view('secured.figures.init', $data);
+        return view('secured.figures.index', [
+            'figures' => Figure::paginate(20)
+        ]);
     }
 
     /**
-     * @param $fig_id
+     * Create new figure
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function createNewConstructorDrawingPage($fig_id)
+    public function create()
     {
-        $catalogModel = new Catalog;
-        $figuresModel = new Figures;
-        $nodesModel = new Node;
-
-        $getFigure = $figuresModel->getFigureById($fig_id);
-        $figuresModel->createOrUpdateNodeForFigure($fig_id, $getFigure->fig_no);
-        $getCatalgoByCatNumber = $catalogModel->getCatalogByCatNumber($getFigure->catalog);
-        $getNodes = $nodesModel->getNodesForFigure($getFigure->fig_id);
-
-        $data['pageTitle'] = $getCatalgoByCatNumber->cat_name_en . ' Figure';
-        $data['figure'] = $getFigure;
-        $data['nodes'] = $getNodes;
-        $data['fig_id'] = $fig_id;
-
-        return view('secured.figures.construct', $data);
+        return view('secured.figures.create', [
+            'catalogRender' => (new Helpers)->buildCatalogOptionsWithLevels(
+                Catalog::getAllCatalogItemsByType(1)->toArray(), 0, '', NULL, NULL)
+        ]);
     }
 
     /**
+     * Show constructor page and update node for figure
+     *
+     * @param Figure $figure
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function createConstructor(Figure $figure)
+    {
+        Figure::createOrUpdateNodeForFigure($figure->fig_id, $figure->fig_no);
+
+        $separatedNodesParts = $figure->getSeparatedNodesWithParts();
+
+        return view('secured.figures.construct', compact('figure', 'separatedNodesParts'));
+    }
+
+    /**
+     * Delete figure
+     *
      * @param Request $request
      * @param $fig_no
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function deleteConstructorDrawingPage(Request $request, $fig_no)
+    public function delete(Request $request, $fig_no)
     {
-        $figuresModel = new Figures;
+        $figuresModel = new Figure;
         $catalog = $request->query('catalog');
         $figuresModel->removeFigure($fig_no, $catalog);
+
         return redirect()->back();
     }
+
     //======================================================================
     // API
     //======================================================================
@@ -87,11 +80,12 @@ class SecuredPartsConstructor extends Controller
      */
     public function saveConstructorInitAPI(Request $request)
     {
-        $figuresModel = new Figures;
+        $figuresModel = new Figure;
         $data = $request->all();
         $file = $request->file('figureImage');
         $createFigure = $figuresModel->initFigure($data, $file);
-        return redirect()->route('createNewConstructorDrawingPage', $createFigure);
+
+        return redirect()->route('admin.figures.constructor.create', $createFigure);
     }
 
     /**
@@ -100,7 +94,7 @@ class SecuredPartsConstructor extends Controller
      */
     public function saveConstructorBuilderAPI(Request $request)
     {
-        $figuresModel = new Figures;
+        $figuresModel = new Figure;
         $data = $request->all();
         $figuresModel->saveParamsForFigureNode($data);
         return response()->json(['response' => 200]);
@@ -112,7 +106,7 @@ class SecuredPartsConstructor extends Controller
      */
     public function clearConstructorBuilderAPI(Request $request)
     {
-        $figuresModel = new Figures;
+        $figuresModel = new Figure;
         $data = $request->all();
         $figuresModel->clearFigureNode($data);
         return response()->json(['response' => 200]);

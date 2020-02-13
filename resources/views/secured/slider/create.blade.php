@@ -13,12 +13,16 @@
                         <input type="text" class="form-control" name="slideTitle" id="slideTitle" required>
                     </div>
                     <div class="form-group">
-                        <label for="slideImage">Upload Image (1110 x 400px)</label>
-                        <input type="file" class="form-control-file" name="slideImage" id="slideImage" required>
+                        <p class="mb-1">Upload image</p>
+
+                        @include('includes.secured.elements._input-file', [
+                            'name' => 'slideImage',
+                            'label' => 'Size: 1110x400px'
+                        ])
                     </div>
                     <div class="form-group">
                         <label for="sliderDescription">Link</label>
-                        <input type="text" class="form-control-file" name="sliderDescription" id="sliderDescription" placeholder="Example: /catalog/2">
+                        <input type="text" class="form-control" name="sliderDescription" id="sliderDescription" placeholder="Example: /catalog/2">
                     </div>
                     <div class="form-group">
                         <label for="positionNumber">Position Number</label>

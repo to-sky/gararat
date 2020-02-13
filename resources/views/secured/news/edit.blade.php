@@ -1,6 +1,6 @@
 @extends('layouts.secured')
 
-@section('title') {{ $news->nw_name }} @endsection
+@section('title') Edit news: {{ $news->nw_name }} @endsection
 
 @section('content')
     <form action="{{ route('updateNewsItemAPI') }}" method="post" enctype="multipart/form-data">
@@ -59,12 +59,22 @@
                 <div class="bgc-white p-20 bd mt-3">
                     <div class="form-group row">
                         <div class="col-6">
-                            <p><img src="{{ asset($news->nw_image) }}" height="48" alt=""></p>
-                            <label for="newsImage">Upload News Image (Leave empty to keep previous image)</label>
-                            <input type="file" class="form-control-file" name="newsImage" id="newsImage">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="{{ asset($news->nw_image) }}" class="img-fluid mt-2" alt="{{ $news->nw_name }}">
+                                </div>
+                                <div class="col-md-10">
+                                    <p class="mb-1">Upload News Image (Leave empty to keep previous image)</p>
+
+                                    @include('includes.secured.elements._input-file', [
+                                        'name' => 'newsImage',
+                                        'placeholder' => $news->nw_image
+                                    ])
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="col-6 mt-5">
+                        <div class="col-6">
                             <label for="newsDate">Created</label>
                             <input type="text" class="form-control" name="newsDate" id="newsDate" required value="{{ \Carbon\Carbon::parse($news->nw_created)->format('Y-m-d h:m') }}">
                         </div>

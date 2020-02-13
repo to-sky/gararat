@@ -20,7 +20,7 @@
                         <label for="catalogParent">Catalog Parent</label>
                         <select name="catalogParent" id="catalogParent" class="form-control select2-element" autocomplete="off">
                             <option value="0">Root Element</option>
-                            {!! $catalogs !!}
+                            {!! $catalogRender !!}
                         </select>
                     </div>
                 </div>
@@ -29,11 +29,13 @@
                 <div class="bgc-white p-20 bd">
                     <h6 class="c-grey-900">Catalog View</h6>
                     <div class="form-group row">
-                        <div class="col-6">
-                            <label for="catalogImage">Catalog Image</label>
-                            <input type="file" class="form-control-file" name="catalogImage" id="catalogImage">
+                        <div class="col-6 mt-1">
+                            @include('includes.secured.elements._input-file', [
+                              'name' => 'catalogImage',
+                              'label' => 'Catalog Image'
+                            ])
                         </div>
-                        <div class="col-6">
+                        <div class="col-6 mt-n4">
                             <label for="catalogViewType">View Type</label>
                             <select name="catalogViewType" id="catalogViewType" class="form-control" autocomplete="off">
                                 <option value="0">Nodes</option>
@@ -79,7 +81,7 @@
             </div>
 
             <div class="col-12 mt-3">
-                @include('includes.secured.elements._save_or_back_btns', ['href' => route('securedCatalogListPage') ])
+                @include('includes.secured.elements._save_or_back_btns', ['href' => route('admin.catalog.index') ])
             </div>
         </div>
     </form>
