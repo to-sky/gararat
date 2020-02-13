@@ -2,8 +2,6 @@
 
 @section('title') Pages @endsection
 
-@include('includes.secured.modals._deleteItem', ['item' => 'order'])
-
 @section('content')
     <div class="row">
         <div class="col-12">

@@ -7,9 +7,9 @@ window._ = require('lodash');
  */
 try {
     window.$ = window.jQuery = require('jquery');
-    window.Popper = require('popper.js').default;
-    require('bootstrap');
-    require('slider-pro');
+    window.moment = require('moment');
+    // window.Popper = require('popper.js').default;
+    // require('bootstrap');
 } catch (e) {}
 
 /**

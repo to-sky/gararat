@@ -76,7 +76,7 @@
 
                         <div class="col-6">
                             <label for="newsDate">Created</label>
-                            <input type="text" class="form-control" name="newsDate" id="newsDate" required value="{{ \Carbon\Carbon::parse($news->nw_created)->format('Y-m-d h:m') }}">
+                            <input type="text" class="form-control datetimepicker-element-time" name="newsDate" id="newsDate" required value="{{ \Carbon\Carbon::parse($news->nw_created)->format('Y-m-d h:m') }}">
                         </div>
                     </div>
                 </div>

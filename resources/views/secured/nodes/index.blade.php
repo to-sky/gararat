@@ -2,8 +2,6 @@
 
 @section('title') {{ $product_type ? 'Parts' : 'Equipment' }} @endsection
 
-@include('includes.secured.modals._deleteItem', ['item' => $product_type ? 'part' : 'equipment'])
-
 @section('button')
     @include('includes.secured.elements._add-btn', [
     'href' => route('admin.products.create', ['product_type' => $product_type]), 'item' => $product_type ? 'part' : 'equipment'
@@ -85,4 +83,6 @@
             </div>
         </div>
     </div>
+
+    @include('includes.secured.modals._deleteItem', ['item' => $product_type ? 'part' : 'equipment'])
 @endsection

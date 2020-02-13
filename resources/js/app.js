@@ -1,16 +1,19 @@
-
+require('./bootstrap');
 /**
  * First, we will load all of this project's Javascript utilities and other
  * dependencies. Then, we will be ready to develop a robust and powerful
  * application frontend using useful Laravel and JavaScript libraries.
  */
 
-require('./bootstrap');
+// Custom for site
 require('./handlers/qty-handler');
 require('./handlers/user-identity');
 require('./handlers/cart');
-require('./handlers/slider');
 require('./handlers/lang');
+
+// Plugins for site
+require('./sliderPro');
+// require('./blueImpGallery')
 
 (function($) {
     if($('#figureConstructorWrapperTarget').length !== 0) {
@@ -38,4 +41,5 @@ require('./handlers/lang');
         $('#checkCode').val('g29853qg-(*&H@#O(*&FH0908hj2dc89hncole9r8whcd');
     });
 })(jQuery);
+
 require('./figures/frontend-fogure');

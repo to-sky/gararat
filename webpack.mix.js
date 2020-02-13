@@ -11,7 +11,23 @@ const mix = require('laravel-mix');
  |
  */
 
+mix.webpackConfig(webpack => {
+    return {
+        plugins: [
+            new webpack.ProvidePlugin({
+                $: 'jquery',
+                jQuery: 'jquery',
+                'window.jQuery': 'jquery',
+                Popper: ['popper.js', 'default'],
+            })
+        ]
+    };
+});
+
 mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css')
-   .sass('resources/sass/admin.scss', 'public/admin-panel')
-    .version();
+    .js('resources/js/admin.js', 'public/admin-panel')
+    .sass('resources/sass/admin.scss', 'public/admin-panel')
+    .sass('resources/sass/app.scss', 'public/css')
+    .copyDirectory('resources/sass/admin-panel/vendor/static/images','public/images')
+    .copyDirectory('resources/images','public/images');
+

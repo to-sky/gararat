@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Website;
 
+use App\Models\FigureNode;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App;

@@ -65,8 +65,8 @@ Route::group(['middleware' => 'auth'], function() {
         # Pages
         ########################################################################
         // Dashboard
-        Route::get('/secured/admin', 'Secured\SecuredPagesController@dashboard')->name('dashboard');
-        Route::get('/secured/admin/search', 'Secured\SecuredPagesController@adminSearch')->name('adminSearch');
+        Route::get('/secured/admin', 'Secured\SecuredPagesController@dashboard')->name('admin.dashboard');
+        Route::get('/secured/admin/search', 'Secured\SecuredPagesController@adminSearch')->name('admin.search');
         // Order
         Route::get('/secured/admin/orders', 'Secured\SecuredOrdersController@index')->name('admin.order.index');
         Route::get('/secured/admin/orders/{order}', 'Secured\SecuredOrdersController@edit')->name('admin.order.edit');

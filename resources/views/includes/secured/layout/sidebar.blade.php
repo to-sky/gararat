@@ -1,6 +1,6 @@
 <ul class="sidebar-menu scrollable pos-r ps">
     <li class="nav-item mT-30">
-        <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+        <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
             <span class="icon-holder">
                 <i class="c-blue-500 ti-home"></i>
             </span>

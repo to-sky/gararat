@@ -2,8 +2,6 @@
 
 @section('title') Figures @endsection
 
-@include('includes.secured.modals._deleteItem', ['item' => 'figure'])
-
 @section('button')
     @include('includes.secured.elements._add-btn', ['href' => route('admin.figures.create'), 'item' => 'figure'])
 @endsection
@@ -53,4 +51,6 @@
             </div>
         </div>
     </div>
+
+    @include('includes.secured.modals._deleteItem', ['item' => 'figure'])
 @endsection

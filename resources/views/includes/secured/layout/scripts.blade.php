@@ -8,27 +8,6 @@
             }, 300);
         });
 
-        // Added summernote WYSIWYG
-        $('.summernote').summernote({
-            height: 300,
-            toolbar: [
-                // [groupName, [list of button]]
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough', 'superscript', 'subscript', 'fontsize', 'color', 'forecolor', 'backcolor']],
-                ['para', ['style', 'ul', 'ol', 'paragraph', 'height']],
-                ['insert', ['link', 'table', 'picture', 'video', 'hr']],
-                ['misc', ['fullscreen', 'undo', 'redo', 'help']]
-            ]
-        });
-
-        // Set bootstrap theme for Select2 and added select2 to class
-        $.fn.select2.defaults.set( "theme", "bootstrap" );
-
-        // Init select2
-        $('.select2-element').select2({
-            width: '100%'
-        });
-
         // Modals
         $('#deleteItemModal').on('show.bs.modal', function (e) {
             let target = $(e.relatedTarget);
@@ -48,4 +27,7 @@
 
             $(this).next('.custom-file-label').html(fileName);
         });
+
+        // Init datetime
+        // $('.datetimepicker').datetimepicker()
 </script>

@@ -2,8 +2,6 @@
 
 @section('title') News @endsection
 
-@include('includes.secured.modals._deleteItem', ['item' => 'news'])
-
 @section('button')
     @include('includes.secured.elements._add-btn', ['href' => route('admin.news.create'), 'item' => 'news'])
 @endsection
@@ -54,4 +52,6 @@
             </div>
         </div>
     </div>
+
+    @include('includes.secured.modals._deleteItem', ['item' => 'news'])
 @endsection

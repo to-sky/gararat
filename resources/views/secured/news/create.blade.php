@@ -66,7 +66,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="newsDate">Created</label>
-                            <input type="text" class="form-control datetimepicker" name="newsDate" id="newsDate" required value="{{ \Carbon\Carbon::now()->format('Y-m-d h:m') }}">
+                            <input type="text" class="form-control datetimepicker-element-time" name="newsDate" id="newsDate" required value="{{ \Carbon\Carbon::now()->format('Y-m-d h:m') }}">
                         </div>
                     </div>
                 </div>

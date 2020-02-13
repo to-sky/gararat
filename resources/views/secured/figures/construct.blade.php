@@ -31,12 +31,12 @@
         <ul class="nav nav-tabs mt-4" id="productsTab" role="tablist">
             <li class="nav-item bg-white">
                 <a class="nav-link bg-white active" id="inTheDraw-tab" data-toggle="tab" href="#inTheDrawTab" role="tab" aria-controls="inTheDraw" aria-selected="true">
-                    Products in the draw <span class="badge badge-pill border pt-1 text-black-50">{{ count($separatedNodesParts['inTheDraw']) }}</span>
+                    Displayed products on the image <span class="badge badge-pill border pt-1 text-black-50">{{ count($separatedNodesParts['inTheDraw']) }}</span>
                 </a>
             </li>
             <li class="nav-item bg-white">
                 <a class="nav-link bg-white" id="notIneTheDraw-tab" data-toggle="tab" href="#notInTheDrawTab" role="tab" aria-controls="notIneTheDraw" aria-selected="false">
-                    Products not in the draw <span class="badge badge-pill border pt-1 text-black-50">{{ count($separatedNodesParts['notInTheDraw']) }}</span>
+                    Not displayed products on the image <span class="badge badge-pill border pt-1 text-black-50">{{ count($separatedNodesParts['notInTheDraw']) }}</span>
                 </a>
             </li>
         </ul>

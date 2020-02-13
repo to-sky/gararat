@@ -2,8 +2,6 @@
 
 @section('title') Slider @endsection
 
-@include('includes.secured.modals._deleteItem', ['item' => 'slide'])
-
 @section('button')
     @include('includes.secured.elements._add-btn', ['href' => route('admin.slider.create'), 'item' => 'Slide'])
 @endsection
@@ -54,4 +52,6 @@
             </div>
         </div>
     </div>
+
+    @include('includes.secured.modals._deleteItem', ['item' => 'slide'])
 @endsection
