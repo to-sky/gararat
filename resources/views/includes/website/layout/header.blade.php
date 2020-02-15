@@ -11,7 +11,7 @@
             <!-- /.col-12 col-lg-6 -->
             <div class="col-12 col-lg-6">
                 <div class="d-flex justify-content-end @if(!App::isLocale('en')) flex-row-reverse @endif search__mobile">
-                    <div class="header__top-search">
+                    <div class="header__top-search px-5">
                         <form action="{{ route('searchResults') }}" method="get" autocomplete="off">
                             <input type="text" name="q" required @if(isset($searchRequest) && $searchRequest !== null) value="{{ $searchRequest }} @endif" autocomplete="off" />
                             <button type="submit"><i class="fas fa-search"></i></button>
@@ -21,10 +21,30 @@
 
                     <!-- /.header__top-auth -->
                     <div class="header__top-lang" id="changeLangHandler">
-                        <select name="lang" id="lang" autocomplete="off">
-                            <option @if(Session::get('locale') == 'en') selected @endif value="en">English</option>
-                            <option @if(Session::get('locale') == 'ar') selected @endif value="ar">عربى</option>
-                        </select>
+                        <div class="lang__header text-white">
+                            <i class="fa fa-globe text-white"></i>
+                            <span class="px-2">@if (Session::get('locale') == 'ar')عربى@else English @endif</span>
+                            <i class="fa fa-caret-down text-white"></i>
+                        </div>
+
+                        <div class="lang__body text-white shadow animated" style="@if(Session::get('locale') == 'en') right: 0 @endif">
+                            <ul class="lang__body_switcher">
+                                <li class="lang__body_switcher-item">
+                                    <input type="radio" name="lang" id="en" value="en" class="d-none" @if (Session::get('locale') == 'en') checked @endif>
+                                    <label for="en" class="lang__body_switcher-text">
+                                        <img src="{{ asset('images/en.svg') }}" alt="en">
+                                        <span>English</span>
+                                    </label>
+                                </li>
+                                <li class="lang__body_switcher-item">
+                                    <input type="radio" name="lang" id="ar" value="ar" @if (Session::get('locale') == 'ar') checked @endif>
+                                    <label for="ar" class="lang__body_switcher-text">
+                                        <img src="{{ asset('images/ar.svg') }}" alt="ar">
+                                        <span>عربى</span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <!-- /.header__top-lang -->
                 </div>

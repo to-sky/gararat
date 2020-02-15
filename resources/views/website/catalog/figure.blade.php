@@ -16,7 +16,16 @@
                                 <img src="{{ asset($figure->fig_image) }}" alt="{{ $parentCatalog->cat_name_en }}">
                                 @foreach($nodes as $node)
                                     @if($node->pos_x != 0 && $node->pos_y != 0)
-                                        <div class="item-block" @if($node->in_stock === 1) data-stock="1" @else data-stock="0" @endif data-target="targetConstructorNode_{{ $node->id }}" style="position: absolute; top: {{ $node->pos_y - ($node->size_y / 2) }}px; left: {{ $node->pos_x - ($node->size_x / 2) }}px; border: 1px solid {{ $node->color }}; z-index: 9999; width: {{ $node->size_x }}px; height: {{ $node->size_y }}px;"></div>
+                                        <div class="item-block"
+                                             @if($node->in_stock === 1) data-stock="1" @else data-stock="0" @endif
+                                             data-target="targetConstructorNode_{{ $node->id }}"
+                                             style="position: absolute;
+                                                     top: {{ $node->pos_y - ($node->size_y / 2) }}px;
+                                                     left: {{ $node->pos_x - ($node->size_x / 2) }}px;
+                                                     border: 2px solid {{ $node->color }} !important;
+                                                     z-index: 9999;
+                                                     width: {{ $node->size_x }}px;
+                                                     height: {{ $node->size_y }}px;"></div>
                                     @endif
                                 @endforeach
                             </div>

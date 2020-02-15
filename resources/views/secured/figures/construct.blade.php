@@ -7,7 +7,7 @@
         <div class="row" id="figureConstructorWrapperTarget" data-figure="{{ $figure->fig_id }}">
             <div class="col-12">
                 <div class="text-center bg-white bd">
-                    <div class="figure p-20" style="position: relative; display: inline-block;">
+                    <div class="figure" style="position: relative; display: inline-block;">
                         <img src="{{ asset($figure->fig_image) }}" alt="{{ $figure->catalog()->first()->cat_name_en }}">
                         @foreach($figure->nodes as $node)
                             @if($node->pivot->pos_x && $node->pivot->pos_y)
