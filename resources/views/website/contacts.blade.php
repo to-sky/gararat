@@ -24,6 +24,23 @@
                             اتصل بنا
                         @endif
                     </h3>
+
+
+
+                    {{----}}
+
+                    {{--<form action="?" method="POST">--}}
+                        {{--<div class="g-recaptcha" data-sitekey="your_site_key"></div>--}}
+                        {{--<br/>--}}
+                        {{--<input type="submit" value="Submit">--}}
+                    {{--</form>--}}
+
+
+
+
+
+
+
                     <form action="{{ route('sendContactsMail') }}" method="post" autocomplete="off" id="contactFormPageForm">
                         @csrf
                         <input type="hidden" name="checkCode" id="checkCode" value="">
@@ -81,8 +98,23 @@
                         </div>
                         <!-- /.form-group row -->
                         <div class="form-group row">
-                            <div class="col-12">
-                                <button class="btn btn-primary" type="submit">
+                            <div class="col-md-8">
+                                @if(env('GOOGLE_RECAPTCHA_KEY'))
+                                    <div class="g-recaptcha"
+                                         data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
+                                    </div>
+
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="pt-3">
+                                            <strong>Are you a robot?</strong>
+                                        </span>
+                                    @endif
+                                @endif
+                            </div>
+
+
+                            <div class="col-4">
+                                <button class="btn btn-primary float-right" type="submit">
                                     @if(App::isLocale('en'))
                                         Send
                                     @else

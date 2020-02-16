@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Website;
 
+use App\Rules\GoogleRecaptcha;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App;
@@ -132,6 +133,10 @@ class OrdersController extends Controller
      */
     public function proceedOrderAPI(Request $request)
     {
+        $request->validate([
+            'g-recaptcha-response' => ['required', new GoogleRecaptcha()]
+        ]);
+
         $ordersModel = new Order;
         $createOrder = $ordersModel->createOrder($request->all());
 

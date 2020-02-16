@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Secured;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\{Catalog, Helpers, Node, NodeImage};
+use App\Models\{Catalog, Helpers, Machinery, Node, NodeImage};
 
 class SecuredProductsController extends Controller
 {
@@ -16,10 +16,13 @@ class SecuredProductsController extends Controller
     {
         $nodesModel = new Node;
         $catalogModel = new Catalog;
-        $getAllChildsCategories = $catalogModel->getAllChildsCategories($product_type);
-        $getNodes = $nodesModel->getNodesForProductType($getAllChildsCategories);
+//        $getAllChildsCategories = $catalogModel->getAllChildsCategories($product_type);
+//        $getNodes = $nodesModel->getNodesForProductType($getAllChildsCategories);
+        $machineryIds = Machinery::all()->map->node;
+        $getNodes = $product_type ? Node::whereNotIn('id', $machineryIds)->get()->map->id : $machineryIds;
 
-        $data['products'] = $nodesModel->getNodesByType($getNodes, $product_type);
+        $data['products'] = $nodesModel->getNodesByType($getNodes->toArray(), $product_type);
+//        $data['products'] = $product_type ? Node::paginate(20) : Machinery::paginate(20);
         $data['product_type'] = $product_type;
 
         return view('secured.nodes.index', $data);

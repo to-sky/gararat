@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Mail\ContactUsForm;
+use App\Rules\GoogleRecaptcha;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
@@ -151,11 +152,11 @@ class PagesController extends Controller
      */
     public function sendContactsMail(Request $request)
     {
-        $checkCode = 'g29853qg-(*&H@#O(*&FH0908hj2dc89hncole9r8whcd';
+        $request->validate([
+            'g-recaptcha-response' => ['required', new GoogleRecaptcha()]
+        ]);
 
-        if ($checkCode == $request->checkCode) {
-            Mail::to(config('mail.to.sales'))->send(new ContactUsForm($request));
-        }
+        Mail::to(config('mail.to.sales'))->send(new ContactUsForm($request));
 
         return redirect()->back();
     }

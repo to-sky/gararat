@@ -171,23 +171,44 @@
                         -->
                         <!-- /.total-price -->
                         <div class="cart-page__actions">
-                            <div class="d-flex justify-content-between">
-                                <a href="{{ route('cartPage') }}" class="btn btn-home-page">
-                                    @if(App::isLocale('en'))
-                                        Return to cart
-                                    @else
-                                        العودة إلى السلة
-                                    @endif
-                                </a>
-                                <!-- /.btn btn-checkout -->
-                                <button class="btn btn-checkout" type="submit">
-                                    @if(App::isLocale('en'))
-                                        Checkout
-                                    @else
-                                        الدفع
-                                    @endif
-                                </button>
-                                <!-- /.btn btn-checkout -->
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a href="{{ route('cartPage') }}" class="btn btn-home-page">
+                                        @if(App::isLocale('en'))
+                                            Return to cart
+                                        @else
+                                            العودة إلى السلة
+                                        @endif
+                                    </a>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-5 offset-7">
+                                            @if(env('GOOGLE_RECAPTCHA_KEY'))
+                                                <div class="g-recaptcha float-right"
+                                                     data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
+                                                </div>
+
+                                                @if ($errors->has('g-recaptcha-response'))
+                                                    <span class="float-right pt-3 text-danger">
+                                                        <strong>Are you a robot?</strong>
+                                                    </span>
+                                                @endif
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-1">
+                                    <button class="btn btn-checkout float-right" type="submit">
+                                        @if(App::isLocale('en'))
+                                            Checkout
+                                        @else
+                                            الدفع
+                                        @endif
+                                    </button>
+                                </div>
                             </div>
                             <!-- /.d-flex justify-content-between -->
                         </div>

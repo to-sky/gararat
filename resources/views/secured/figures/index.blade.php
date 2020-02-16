@@ -46,7 +46,7 @@
                 </table>
             </div>
 
-            <div class="mt-20 pull-right">
+            <div class="mt-2 pull-right">
                 {{ $figures->links() }}
             </div>
         </div>

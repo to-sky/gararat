@@ -58,6 +58,7 @@
                                             @break
                                     @endswitch
                                 </td>
+
                                 <td>
                                     <div class="pull-right">
                                         <div class="btn-group btn-group-sm shadow-sm" role="group">
@@ -78,7 +79,7 @@
                 </table>
             </div>
 
-            <div class="mt-20 pull-right">
+            <div class="mt-2 pull-right">
                 {{ $products->links() }}
             </div>
         </div>

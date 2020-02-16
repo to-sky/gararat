@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Models\FigureNode;
+use App\Models\Machinery;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App;
@@ -63,9 +64,12 @@ class CatalogController extends Controller
         $data['parentCatalog'] = $catalog->getCatalogByCatNumber($catalog->parent_cat);
         $data['breadcrumbs'] = $helpers->buildCatalogBreadcrumbs($catalog, false);
 
+        $machineryIds = Machinery::all()->map->node;
+        $getNodes = $catalog->cat_type ? Node::whereNotIn('id', $machineryIds)->get()->map->id : $machineryIds;
+
         // Get products
-        $getNodes = $nodesModel->getNodesForProductType($getAllChildsCategories);
-        $data['products'] = $nodesModel->getNodesByType($getNodes, $catalog->cat_type, $perPage, $target, $destination);
+//        $getNodes = $nodesModel->getNodesForProductType($getAllChildsCategories);
+        $data['products'] = $nodesModel->getNodesByType($getNodes->toArray(), $catalog->cat_type, $perPage, $target, $destination);
         $data['target'] = $target;
         $data['neededTarget'] = $destination == 'ASC' ? 'DESC' : 'ASC';
         $data['destination'] = $destination;
