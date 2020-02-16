@@ -8,15 +8,15 @@ require('./bootstrap');
 // import './googleMaps';
 // import './vectorMaps';
 
-import './datatable';
-import './masonry';
-import './popover';
-import './scrollbar';
-import './search';
-import './sidebar';
-import './skycons';
+import './admin/datatable';
+import './admin/masonry';
+import './admin/popover';
+import './admin/scrollbar';
+import './admin/search';
+import './admin/sidebar';
+import './admin/skycons';
 import './utils';
 
-import './select2';
-import './datetimepicker';
-import './summernote';
+import './admin/select2';
+import './admin/datetimepicker';
+import './admin/summernote';

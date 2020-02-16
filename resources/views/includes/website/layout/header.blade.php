@@ -1,5 +1,5 @@
 <div class="header__top">
-    <div class="container">
+    <div class="container" style="position:relative; z-index: 20;">
         <div class="row @if(!App::isLocale('en')) flex-row-reverse @endif">
             <div class="col-12 col-lg-6">
                 <div class="header__top-contacts @if(!App::isLocale('en')) text-right @endif">
@@ -20,14 +20,14 @@
                     <!-- /.header__top-search -->
 
                     <!-- /.header__top-auth -->
-                    <div class="header__top-lang" id="changeLangHandler">
+                    <div class="header__top-lang" id="changeLangHandler" style="z-index: 10;">
                         <div class="lang__header text-white">
                             <i class="fa fa-globe text-white"></i>
                             <span class="px-2">@if (Session::get('locale') == 'ar')عربى@else English @endif</span>
                             <i class="fa fa-caret-down text-white"></i>
                         </div>
 
-                        <div class="lang__body text-white shadow animated" style="@if(Session::get('locale') == 'en') right: 0 @endif">
+                        <div class="lang__body text-white shadow" style="@if(Session::get('locale') == 'en') right: 0 @endif">
                             <ul class="lang__body_switcher">
                                 <li class="lang__body_switcher-item">
                                     <input type="radio" name="lang" id="en" value="en" class="d-none" @if (Session::get('locale') == 'en') checked @endif>

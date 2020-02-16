@@ -27,7 +27,4 @@
 
             $(this).next('.custom-file-label').html(fileName);
         });
-
-        // Init datetime
-        // $('.datetimepicker').datetimepicker()
 </script>
