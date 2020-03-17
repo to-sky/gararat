@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('website.layouts.master')
 
 @section('content')
     <div class="container" style="margin-bottom: 30px; min-height: 400px;">

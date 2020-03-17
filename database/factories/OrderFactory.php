@@ -15,7 +15,7 @@ $factory->define(App\Models\Order::class, function (Faker $faker) {
         'comment' => $faker->text(),
         'country' => App\Models\Country::all()->random()->country,
         'city' => $faker->city,
-        'user_id' => App\User::all()->random()->id,
+        'user_id' => App\Models\User::all()->random()->id,
         'status' => array_rand([
             Order::STATUS_QUEUED, Order::STATUS_IN_PROGRESS, Order::STATUS_COMPLETED, Order::STATUS_CANCELED
         ])

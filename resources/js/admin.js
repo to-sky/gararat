@@ -1,4 +1,9 @@
 require('./bootstrap');
+require('jquery.repeater');
+require('jquery-ui/ui/widgets/sortable');
+
+// Main custom scripts for admin
+require('./handlers/media');
 
 // Not using
 // import './charts';
@@ -20,3 +25,5 @@ import './utils';
 import './admin/select2';
 import './admin/datetimepicker';
 import './admin/summernote';
+import './admin/confirm';
+import './admin/fontawesome';

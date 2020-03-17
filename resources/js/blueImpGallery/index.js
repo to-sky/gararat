@@ -1,4 +1,5 @@
 import * as $ from 'jquery';
+import 'blueimp-gallery'
 import 'blueimp-gallery/css/blueimp-gallery.min.css';
 import 'blueimp-gallery/js/jquery.blueimp-gallery.min'
 

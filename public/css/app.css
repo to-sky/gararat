@@ -7591,11 +7591,6 @@ footer.footer .footer__bottom p a {
     max-height: 500px;
   }
 
-  .drawing .drawing__nodes table tbody tr td,
-  .drawing .drawing__nodes table thead tr th {
-    font-size: 10px;
-  }
-
   .contacts__form {
     margin: 30px 0;
   }

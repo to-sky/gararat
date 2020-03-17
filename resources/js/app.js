@@ -29,9 +29,9 @@ require('./sliderPro');
         }
     });
 
-    $(document).on("cut copy", function(e) {
-        e.preventDefault();
-    });
+    // $(document).on("cut copy", function(e) {
+    //     e.preventDefault();
+    // });
 
     // $(document).on("contextmenu",function(){
     //     return false;

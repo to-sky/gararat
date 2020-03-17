@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('website.layouts.master')
 
 @section('content')
     @if(App::isLocale('en'))
@@ -13,14 +13,14 @@
     <div class="products">
         @if($catalogView === 1)
             <div class="row @if(!App::isLocale('en')) flex-row-reverse @endif">
-                @include('includes.website.catalog.childs-renderer')
+                @include('website.catalog.includes.childs-renderer')
             </div>
         @else
             <div class="row @if($catalogView !== 1 && $catalogType == 0 && !App::isLocale('en')) flex-row-reverse @endif">
                 @if($catalogType == 0)
-                    @include('includes.website.catalog.equipment-renderer')
+                    @include('website.catalog.includes.equipment-renderer')
                 @else
-                    @include('includes.website.catalog.parts-renderer', ['hideFilters' => false])
+                    @include('website.catalog.includes.parts-renderer', ['hideFilters' => false])
                 @endif
             </div>
         @endif

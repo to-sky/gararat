@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Mail\OrderCreated;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
 use App;
@@ -114,7 +114,7 @@ class Order extends Model
      * @param string $currencySymbol
      * @return string
      */
-    public function displayTotalPrice($symbolPosition = 'left', $currencySymbol = '$')
+    public function displayTotalPrice($symbolPosition = 'left', $currencySymbol = 'EGP')
     {
         $displayPrice = number_format( (float) $this->total_price, 2, '.', ',' );
 

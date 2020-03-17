@@ -25,9 +25,10 @@ mix.webpackConfig(webpack => {
 });
 
 mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/admin.js', 'public/admin-panel')
-    .sass('resources/sass/admin.scss', 'public/admin-panel')
+    .js('resources/js/admin.js', 'public/admin')
+    .sass('resources/sass/admin.scss', 'public/admin')
     .sass('resources/sass/app.scss', 'public/css')
-    .copyDirectory('resources/sass/admin-panel/vendor/static/images','public/images')
-    .copyDirectory('resources/images','public/images');
+    .copyDirectory('resources/sass/admin/vendor/static/images','public/images')
+    .copyDirectory('resources/images','public/images')
+    .sourceMaps();
 
