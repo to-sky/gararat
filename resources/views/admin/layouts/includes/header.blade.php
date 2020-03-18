@@ -25,6 +25,13 @@
         </li>
 
         <li>
+            <a href="{{ route('admin.user.edit', auth()->user()) }}" class="d-b td-n bgcH-grey-100 c-grey-700" title="Profile">
+                <i class="ti-user mR-10"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        <li>
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="d-b td-n bgcH-grey-100 c-grey-700">
                 <i class="ti-power-off mR-10"></i>
                 <span>Logout</span>

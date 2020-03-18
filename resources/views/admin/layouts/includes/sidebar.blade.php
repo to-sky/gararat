@@ -1,5 +1,6 @@
 <ul class="sidebar-menu scrollable pos-r ps">
-    <li class="nav-item mT-30">
+    {{-- Dashboard --}}
+    <li class="nav-item">
         <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
             <span class="icon-holder">
                 <i class="c-blue-500 ti-home"></i>
@@ -37,22 +38,32 @@
         </a>
     </li>
 
-    {{-- Equipment groups --}}
-    <li class="nav-item">
-        <a href="{{ route('admin.equipment-group.index') }}"
-           class="nav-link {{ request()->routeIs('admin.equipment-group.*') ? 'active' : '' }}">
-            <span class="icon-holder"><i class="c-blue-500 fas fa-layer-group"></i></span>
-            <span class="title">Equipment groups</span>
-        </a>
-    </li>
-
-    {{-- Equipment --}}
-    <li class="nav-item">
-        <a href="{{ route('admin.equipment.index') }}"
-           class="nav-link {{ request()->routeIs('admin.equipment.*') ? 'active' : '' }}">
+    {{-- Equipment with equipment groups--}}
+    <li class="nav-item dropdown {{ request()->routeIs('admin.equipment.*') || request()->routeIs('admin.equipment-group.*') ? 'open' : '' }}">
+        <a href="javascript:void(0);" class="dropdown-toggle">
             <span class="icon-holder"><i class="c-blue-500 fas fa-tractor"></i></span>
             <span class="title">Equipment</span>
+            <span class="arrow"><i class="ti-angle-right"></i></span>
         </a>
+        <ul class="dropdown-menu">
+            {{-- Equipment --}}
+            <li class="nav-item">
+                <a href="{{ route('admin.equipment.index') }}"
+                   class="nav-link {{ request()->routeIs('admin.equipment.*') ? 'active' : '' }}">
+                    <span class="icon-holder"><i class="c-blue-500 fas fa-tractor"></i></span>
+                    <span class="title ml-1">Equipment</span>
+                </a>
+            </li>
+
+            {{-- Equipment groups --}}
+            <li class="nav-item">
+                <a href="{{ route('admin.equipment-group.index') }}"
+                   class="nav-link {{ request()->routeIs('admin.equipment-group.*') ? 'active' : '' }}">
+                    <span class="icon-holder"><i class="c-blue-500 fas fa-layer-group"></i></span>
+                    <span class="title ml-1">Equipment groups</span>
+                </a>
+            </li>
+        </ul>
     </li>
 
     {{-- Parts --}}
@@ -75,31 +86,10 @@
         </a>
     </li>
 
-    {{-- Parts constructor --}}
-    {{--<li class="nav-item">--}}
-        {{--<a href="{{ route('admin.figures.index') }}"--}}
-           {{--class="nav-link {{--}}
-                {{--request()->routeIs('admin.figures.index') ||--}}
-                {{--request()->routeIs('admin.figures.create') ||--}}
-                {{--request()->routeIs('admin.figures.constructor.create') ? 'active' : ''--}}
-            {{--}}">--}}
-            {{--<span class="icon-holder">--}}
-                {{--<i class="c-blue-500 ti-pencil"></i>--}}
-            {{--</span>--}}
-            {{--<span class="title">Parts constructor</span>--}}
-        {{--</a>--}}
-    {{--</li>--}}
-
     {{-- Pages --}}
     <li class="nav-item">
         <a href="{{ route('admin.pages.index') }}"
-           class="nav-link {{
-                request()->routeIs('admin.pages.index') ||
-                request()->routeIs('admin.pages.home') ||
-                request()->routeIs('admin.pages.contacts') ||
-                request()->routeIs('admin.pages.services') ||
-                request()->routeIs('admin.pages.catalog') ? 'active' : ''
-             }}">
+           class="nav-link {{ request()->routeIs('admin.pages.*')  ? 'active' : '' }}">
             <span class="icon-holder"><i class="c-blue-500 ti-files"></i></span>
             <span class="title">Pages</span>
         </a>
@@ -108,11 +98,7 @@
     {{-- News --}}
     <li class="nav-item">
         <a href="{{ route('admin.news.index') }}"
-           class="nav-link {{
-                request()->routeIs('admin.news.index') ||
-                request()->routeIs('admin.news.create') ||
-                request()->routeIs('admin.news.edit') ? 'active' : ''
-            }}">
+           class="nav-link {{ request()->routeIs('admin.news.*') ? 'active' : '' }}">
             <span class="icon-holder">
                 <i class="c-blue-500 ti-write"></i>
             </span>
@@ -123,11 +109,7 @@
     {{-- Slider --}}
     <li class="nav-item">
         <a href="{{ route('admin.slider.index') }}"
-           class="nav-link {{
-                request()->routeIs('admin.slider.index') ||
-                request()->routeIs('admin.slider.create') ||
-                request()->routeIs('admin.slider.edit') ? 'active' : ''
-            }}">
+           class="nav-link {{ request()->routeIs('admin.slider.*') ? 'active' : '' }}">
             <span class="icon-holder">
                 <i class="c-blue-500 ti-layout-slider"></i>
             </span>
@@ -135,13 +117,13 @@
         </a>
     </li>
 
-    {{-- Upload CSV --}}
+    {{-- Importer --}}
     <li class="nav-item">
-        <a href="{{ route('uploadCSVPage') }}" class="nav-link">
+        <a href="{{ route('admin.importer.index') }}" class="nav-link">
             <span class="icon-holder">
                 <i class="c-blue-500 fas fa-file-upload"></i>
             </span>
-            <span class="title">Import CSV</span>
+            <span class="title">Importer</span>
         </a>
     </li>
 </ul>

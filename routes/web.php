@@ -57,27 +57,33 @@ Route::group(['middleware' => 'app.locale'], function() {
     });
 });
 
-//======================================================================
-// ADMIN PANEL
-//======================================================================
+/**
+ * Admin routes
+ */
 Route::group([
     'middleware' => ['auth', 'auth.admin'],
     'namespace' => 'Secured',
     'prefix' => 'secured/admin',
     'as' => 'admin.'
 ], function () {
-    Route::resource('manufacturer', 'ManufacturerController', ['except' => [ 'show']]);
-    Route::resource('equipment-group', 'EquipmentGroupController', ['except' => [ 'show']]);
+    Route::resource('user', 'UserController', ['only' => ['edit', 'update']]);
+    Route::resource('manufacturer', 'ManufacturerController', ['except' => ['show']]);
+    Route::resource('equipment-group', 'EquipmentGroupController', ['except' => ['show']]);
     Route::put('equipment/update-site-position', 'EquipmentController@updateSitePosition')->name('equipment.update-site-position');
-    Route::resource('equipment', 'EquipmentController', ['except' => [ 'show']]);
-    Route::resource('catalog', 'CatalogController', ['except' => [ 'show']]);
+    Route::resource('equipment', 'EquipmentController', ['except' => ['show']]);
+    Route::resource('catalog', 'CatalogController', ['except' => ['show']]);
+    Route::resource('part', 'PartController', ['except' => ['show']]);
+
     Route::put('unit/get-parts', 'UnitController@getParts')->name('unit.get-parts');
     Route::get('unit/collapse-units-state', 'UnitController@collapseUnitsState')->name('unit.collapse-units-state');
-
-    Route::resource('unit', 'UnitController', ['except' => [ 'show']]);
-    Route::resource('part', 'PartController', ['except' => [ 'show']]);
+    Route::resource('unit', 'UnitController', ['except' => ['show']]);
 
     Route::get('media/{media}', 'MediaController@destroy')->name('media.destroy');
+
+    Route::get('importer', 'ImporterController@index')->name('importer.index');
+    Route::get('importer/export', 'ImporterController@export')->name('importer.export');
+    Route::put('importer/import', 'ImporterController@import')->name('importer.import');
+
 });
 
 
@@ -132,7 +138,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/pages/edit/{catalog}', 'Secured\PagesController@catalog')->name('admin.pages.catalog');
 
         // Upload
-        Route::get('/secured/admin/upload/csv', 'Secured\PagesController@uploadCSVPage')->name('uploadCSVPage');
+//        Route::get('/secured/admin/upload/csv', 'Secured\PagesController@uploadCSVPage')->name('uploadCSVPage');
         ########################################################################
         # API
         ########################################################################
@@ -166,7 +172,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/api/v1.0/news/save', 'Secured\CommonController@saveNewNewsItemAPI')->name('saveNewNewsItemAPI');
         Route::post('/api/v1.0/news/update', 'Secured\CommonController@updateNewsItemAPI')->name('updateNewsItemAPI');
         // Upload
-        Route::post('/api/v1.0/upload/csv/equipment', 'Secured\PagesController@uploadEquipmentsCsvApi')->name('uploadEquipmentsCsvApi');
-        Route::post('/api/v1.0/upload/csv/parts', 'Secured\PagesController@uploadPartsCsvApi')->name('uploadPartsCsvApi');
+//        Route::post('/api/v1.0/upload/csv/equipment', 'Secured\PagesController@uploadEquipmentsCsvApi')->name('uploadEquipmentsCsvApi');
+//        Route::post('/api/v1.0/upload/csv/parts', 'Secured\PagesController@uploadPartsCsvApi')->name('uploadPartsCsvApi');
     });
 });

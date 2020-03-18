@@ -1,8 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title')
-    <span class="fsz-md">{{ $unit->catalog->name }} on {{ $unit->equipment->name }}</span>
-@endsection
+@section('title') Edit: {{ $unit->catalog->name }} on {{ $unit->equipment->name }} @endsection
 
 @section('content')
     <form action="{{ route('admin.unit.update', $unit) }}" method="post" autocomplete="off" enctype="multipart/form-data">

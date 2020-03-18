@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Services\MediaService;
+use App\Traits\Excludable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -10,7 +11,7 @@ use Spatie\MediaLibrary\Models\Media;
 
 class Part extends Model implements HasMedia
 {
-    use HasMediaTrait;
+    use HasMediaTrait, Excludable;
 
     protected $fillable = [
         'name', 'name_ar', 'price', 'special_price', 'producer_id', 'is_special', 'qty', 'equipment_id'
@@ -68,7 +69,6 @@ class Part extends Model implements HasMedia
             ->height(300)
             ->performOnCollections('main_image', 'additional_images');
     }
-
 
     /**
      * Display price with html structure
