@@ -32,12 +32,16 @@
                                     <img src="{{ asset($part->getFirstMediaUrl('main_image', 'thumb')) }}" width="50">
                                 </td>
                                 <td width="45%">{{ $part->name }}</td>
-                                <td>EGP {!! $part->displayPrice() !!}</td>
+                                <td>{!! $part->displayPrice() !!}</td>
                                 <td>{{ $part->producer_id }}</td>
                                 <td>{{ $part->qty }}</td>
                                 <td>
                                     <div class="pull-right">
                                         <div class="btn-group btn-group-sm shadow-sm" role="group">
+                                            @include('admin.includes._show-btn' , [
+                                               'href' => route('parts.show', $part)
+                                           ])
+
                                             @include('admin.includes._edit-btn' , [
                                                 'href' => route('admin.part.edit', $part)
                                             ])

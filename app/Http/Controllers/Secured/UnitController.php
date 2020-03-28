@@ -36,7 +36,7 @@ class UnitController extends Controller
     public function create()
     {
         return view('admin.unit.create', [
-            'childCatalogs' => Catalog::childCatalogs()->get(),
+            'parentCatalogs' => Catalog::parentCatalogs()->with('childs')->get(),
             'equipment' => Equipment::all()
         ]);
     }

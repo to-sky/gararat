@@ -34,3 +34,39 @@
         transition: $default_transition;
     }
 }
+
+.btn-outline-primary {
+    border: 1px solid $fourth_color;
+    color: $fourth_color;
+    font-size: 10px;
+    padding: 5px 8px;
+
+    &:hover {
+        background: $fourth_color;
+        color: $white;
+    }
+}
+
+.btn-outline-danger {
+    border: 1px solid $secondary_color;
+    color: $secondary_color;
+    font-size: 10px;
+    padding: 5px 8px;
+
+    &:hover {
+        color: $white;
+        background: $secondary_color;
+    }
+}
+
+.btn-outline-muted {
+    border: 1px solid $text_muted;
+    color: $text_muted;
+    font-size: 10px;
+    padding: 5px 8px;
+
+    &:hover {
+        color: $white;
+        background: $text_muted;
+    }
+}

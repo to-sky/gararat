@@ -36,10 +36,12 @@
                                             'href' => route('admin.catalog.edit', compact('catalog'))
                                         ])
 
-                                        @include('admin.includes._delete-btn' , [
-                                            'href' => route('admin.catalog.destroy', $catalog),
-                                            'modalText' => 'product "' . $catalog->name . '"'
-                                        ])
+                                        @if (! $catalog->hasChilds())
+                                            @include('admin.includes._delete-btn' , [
+                                                'href' => route('admin.catalog.destroy', $catalog),
+                                                'modalText' => 'product "' . $catalog->name . '"'
+                                            ])
+                                        @endif
                                     </div>
                                 </div>
                             </td>

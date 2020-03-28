@@ -51,6 +51,8 @@
                         <li class="list-group-item">
                             <a href="{{ route('admin.unit.edit', $unit) }}" class="bnt btn-link">
                                 - {{ $unit->catalog->name }}
+
+                                <span class="badge badge-light badge-pill border ml-2 text-muted">{{ $unit->parts->count() }}</span>
                             </a>
 
                             <div class="pull-right">

@@ -24,13 +24,13 @@ class ImporterController extends Controller
      * Export equipment or parts
      *
      * @param ExportRequest $request
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @return EquipmentExport|PartExport
      */
     public function export(ExportRequest $request)
     {
         return $request->export_type == 'equipment'
-            ? Excel::download(new EquipmentExport(), 'equipment.xlsx')
-            : Excel::download(new PartExport(), 'parts.xlsx');
+            ? new EquipmentExport()
+            : new PartExport();
 
     }
 

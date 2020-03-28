@@ -10,55 +10,77 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => 'app.locale'], function() {
-    Auth::routes();
-    Route::get('/home', function() {
-        return redirect()->back();
-    })->name('home');
-    //======================================================================
-    // WEBSITE
-    //======================================================================
-    ########################################################################
-    # Public routes
-    ########################################################################
-    Route::get('/', 'Website\PagesController@homePage')->name('homePage');
-    Route::get('/lang-switch/{lang}', 'Website\PagesController@langSwitcherPage')->name('langSwitcherPage');
-    Route::get('/services', 'Website\PagesController@servicesPage')->name('servicesPage');
-    Route::get('/contacts', 'Website\PagesController@contactsPage')->name('contactsPage');
-    Route::get('/search/results', 'Website\PagesController@searchResults')->name('searchResults');
-    // Catalog
-    Route::get('/catalog/{cid}', 'Website\CatalogController@catalogPage')->name('catalogPage');
-    Route::get('/catalog/{cid}/construct/figures', 'Website\CatalogController@figuresCatalogPage')->name('figuresCatalogPage');
-    // Nodes
-    Route::get('/node/{id}', 'Website\NodesController@singleNodePage')->name('singleNodePage');
-    // Cart
-    Route::get('/cart', 'Website\OrdersController@cartPage')->name('cartPage');
-    Route::get('/cart/checkout', 'Website\OrdersController@cartPage')->name('cartPage');
-    Route::get('/cart/checkout/proceed', 'Website\OrdersController@cartProceedPage')->name('cartProceedPage');
-    Route::get('/cart/checkout/success/{id}', 'Website\OrdersController@cartProceedSuccessPage')->name('cartProceedSuccessPage');
-    // News
-    Route::get('/news', 'Website\PagesController@newsPage')->name('newsPage');
-    Route::get('/news/{nw_id}', 'Website\PagesController@singleNewsPage')->name('singleNewsPage');
-    // API
-    Route::get('/api/cart/{userKey}', 'Website\OrdersController@getCartPreviewData');
-    Route::get('/api/cart/{userKey}/table', 'Website\OrdersController@getCartTableData');
-    Route::get('/api/cart/{userKey}/table-proceed', 'Website\OrdersController@getCartProceedTableData');
-    Route::get('/api/cart/remove/{userKey}/{cart_node}', 'Website\OrdersController@removeItemFromCart');
-    Route::post('/api/cart/actions/add/item', 'Website\OrdersController@addItemToCart');
-    Route::post('/api/cart/proceed/action', 'Website\OrdersController@proceedOrderAPI')->name('proceedOrderAPI');
-    Route::post('/api/contacts/mail/send', 'Website\PagesController@sendContactsMail')->name('sendContactsMail');
-    ########################################################################
-    # Auth routes
-    ########################################################################
-    Route::group(['middleware' => 'auth'], function() {
-        Route::group(['middleware' => 'auth.active'], function() {
 
-        });
-    });
+/**
+ * Auth
+ */
+Route::group([
+    'middleware' => 'app.locale',
+    'namespace' => 'Auth'
+], function () {
+    Route::get('login', 'LoginController@showLoginForm')->name('login');
+    Route::post('login', 'LoginController@login');
+    Route::post('logout', 'LoginController@logout')->name('logout');
 });
 
 /**
- * Admin routes
+ * Site
+ */
+Route::group([
+    'middleware' => 'app.locale',
+    'namespace' => 'Website'
+], function () {
+    Route::get('/', 'PageController@home')->name('home');
+    Route::get('/services', 'PageController@services')->name('services');
+
+    Route::get('/contacts', 'PageController@contacts')->name('contacts');
+    Route::post('/contact-us', 'PageController@contactUs')->name('contact-us');
+
+    Route::get('/search', 'PageController@search')->name('search');
+    Route::get('/language/{locale}', 'PageController@languageChange')->name('language');
+
+    Route::get('/equipment', 'EquipmentController@index')->name('equipment.index');
+    Route::get('/equipment/{equipment}', 'EquipmentController@show')->name('equipment.show');
+
+    Route::get('/parts', 'PartController@index')->name('parts.index');
+    Route::get('/parts/filter', 'PartController@filter')->name('parts.filter');
+    Route::get('/parts/{part}', 'PartController@show')->name('parts.show');
+
+    Route::get('/news', 'NewsController@index')->name('news.index');
+    Route::get('/news/{news}', 'NewsController@show')->name('news.show');
+
+    Route::get('/cart', 'OrderController@cart')->name('cart');
+    Route::get('/checkout', 'OrderController@checkout')->name('checkout');
+    Route::get('/checkout/success/{id}', 'OrderController@checkoutSuccess')->name('checkout-success');
+});
+
+
+
+
+
+Route::group(['middleware' => 'app.locale'], function() {
+//    // Catalog
+//    Route::get('/catalog/{cid}', 'Website\CatalogController@catalogPage')->name('catalogPage');
+//    Route::get('/catalog/{cid}/construct/figures', 'Website\CatalogController@figuresCatalogPage')->name('figuresCatalogPage');
+//    // Nodes
+//    Route::get('/node/{id}', 'Website\NodesController@singleNodePage')->name('singleNodePage');
+//
+//    // API
+    Route::get('/api/cart/{userKey}', 'Website\OrderController@getCartPreviewData');
+//    Route::get('/api/cart/{userKey}/table', 'Website\OrderController@getCartTableData');
+//    Route::get('/api/cart/{userKey}/table-proceed', 'Website\OrderController@getCartProceedTableData');
+//    Route::get('/api/cart/remove/{userKey}/{cart_node}', 'Website\OrderController@removeItemFromCart');
+//    Route::post('/api/cart/actions/add/item', 'Website\OrderController@addItemToCart');
+    Route::post('/api/cart/proceed/action', 'Website\OrderController@proceedOrderAPI')->name('proceedOrderAPI');
+//
+});
+
+
+
+
+
+/**
+ * Admin
  */
 Route::group([
     'middleware' => ['auth', 'auth.admin'],
@@ -83,7 +105,6 @@ Route::group([
     Route::get('importer', 'ImporterController@index')->name('importer.index');
     Route::get('importer/export', 'ImporterController@export')->name('importer.export');
     Route::put('importer/import', 'ImporterController@import')->name('importer.import');
-
 });
 
 
@@ -94,8 +115,8 @@ Route::group(['middleware' => 'auth'], function() {
         # Pages
         ########################################################################
         // Dashboard
-        Route::get('/secured/admin', 'Secured\PagesController@dashboard')->name('admin.dashboard');
-        Route::get('/secured/admin/search', 'Secured\PagesController@adminSearch')->name('admin.search');
+        Route::get('/secured/admin', 'Secured\PageController@dashboard')->name('admin.dashboard');
+        Route::get('/secured/admin/search', 'Secured\PageController@adminSearch')->name('admin.search');
         // Order
         Route::get('/secured/admin/orders', 'Secured\OrdersController@index')->name('admin.order.index');
         Route::get('/secured/admin/orders/{order}', 'Secured\OrdersController@edit')->name('admin.order.edit');
@@ -131,21 +152,21 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/secured/admin/news/remove/{news}', 'Secured\NewsController@destroy')->name('admin.news.delete');
 
         // Pages
-        Route::get('/secured/admin/pages', 'Secured\PagesController@index')->name('admin.pages.index');
-        Route::get('/secured/admin/pages/edit/home', 'Secured\PagesController@home')->name('admin.pages.home');
-        Route::get('/secured/admin/pages/edit/services', 'Secured\PagesController@services')->name('admin.pages.services');
-        Route::get('/secured/admin/pages/edit/contacts', 'Secured\PagesController@contacts')->name('admin.pages.contacts');
-        Route::get('/secured/admin/pages/edit/{catalog}', 'Secured\PagesController@catalog')->name('admin.pages.catalog');
+        Route::get('/secured/admin/pages', 'Secured\PageController@index')->name('admin.pages.index');
+        Route::get('/secured/admin/pages/edit/home', 'Secured\PageController@home')->name('admin.pages.home');
+        Route::get('/secured/admin/pages/edit/services', 'Secured\PageController@services')->name('admin.pages.services');
+        Route::get('/secured/admin/pages/edit/contacts', 'Secured\PageController@contacts')->name('admin.pages.contacts');
+        Route::get('/secured/admin/pages/edit/{catalog}', 'Secured\PageController@catalog')->name('admin.pages.catalog');
 
         // Upload
-//        Route::get('/secured/admin/upload/csv', 'Secured\PagesController@uploadCSVPage')->name('uploadCSVPage');
+//        Route::get('/secured/admin/upload/csv', 'Secured\PageController@uploadCSVPage')->name('uploadCSVPage');
         ########################################################################
         # API
         ########################################################################
         // Order
-        Route::post('/api/v1.0/orders/change/status', 'Secured\OrdersController@changeOrderStatusAPI')->name('changeOrderStatusAPI');
-        Route::get('/api/v1.0/orders/change/products/{order_id}/{node_id}', 'Secured\OrdersController@removeProductFromOrderAPI')->name('removeProductFromOrderAPI');
-        Route::get('/api/v1.0/orders/change/delete/{id}', 'Secured\OrdersController@removeOrderAPI')->name('removeOrderAPI');
+        Route::post('/api/v1.0/orders/change/status', 'Secured\OrderController@changeOrderStatusAPI')->name('changeOrderStatusAPI');
+        Route::get('/api/v1.0/orders/change/products/{order_id}/{node_id}', 'Secured\OrderController@removeProductFromOrderAPI')->name('removeProductFromOrderAPI');
+        Route::get('/api/v1.0/orders/change/delete/{id}', 'Secured\OrderController@removeOrderAPI')->name('removeOrderAPI');
         // Catalog
 //        Route::post('/api/v1.0/catalog/new/save', 'Secured\CatalogController@saveNewCatalogItemAPI')->name('saveNewCatalogItemAPI');
 //        Route::post('/api/v1.0/catalog/edit/update', 'Secured\CatalogController@updateCatalogItemAPI')->name('updateCatalogItemAPI');
@@ -172,7 +193,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/api/v1.0/news/save', 'Secured\CommonController@saveNewNewsItemAPI')->name('saveNewNewsItemAPI');
         Route::post('/api/v1.0/news/update', 'Secured\CommonController@updateNewsItemAPI')->name('updateNewsItemAPI');
         // Upload
-//        Route::post('/api/v1.0/upload/csv/equipment', 'Secured\PagesController@uploadEquipmentsCsvApi')->name('uploadEquipmentsCsvApi');
-//        Route::post('/api/v1.0/upload/csv/parts', 'Secured\PagesController@uploadPartsCsvApi')->name('uploadPartsCsvApi');
+//        Route::post('/api/v1.0/upload/csv/equipment', 'Secured\PageController@uploadEquipmentsCsvApi')->name('uploadEquipmentsCsvApi');
+//        Route::post('/api/v1.0/upload/csv/parts', 'Secured\PageController@uploadPartsCsvApi')->name('uploadPartsCsvApi');
     });
 });

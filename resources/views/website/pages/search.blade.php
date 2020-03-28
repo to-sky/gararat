@@ -1,19 +1,18 @@
 @extends('website.layouts.master')
 
+@section('title') {{ __('Search results for: :query', ['query' => request()->query('q')]) }} @endsection
+
 @section('content')
     <div class="container">
-        <h1 class="page-title">{{ $pageTitle }}</h1>
+        <h1 class="page-title">{{ __('Search results for: :query', ['query' => request()->query('q')]) }}</h1>
         <div class="products">
             <div class="row">
-                @include('website.catalog.includes.parts-renderer', ['hideFilters' => true])
+{{--                @include('website.catalog.includes.parts-renderer', ['hideFilters' => true])--}}
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.products -->
+
         <nav class="d-flex justify-content-center pagination__wrapper">
-            {{ $products->links() }}
+            {{--{{ $products->links() }}--}}
         </nav>
-        <!-- /.d-flex justify-content-center pagination -->
     </div>
-    <!-- /.container -->
 @endsection

@@ -62,6 +62,12 @@ main.main {
     min-height: 800px;
 }
 
+.rtl {
+    h2:after, h1.page-title:after {
+        right: 0 !important;
+    }
+}
+
 .rtl-separator {
     &:after {
         left: auto !important;

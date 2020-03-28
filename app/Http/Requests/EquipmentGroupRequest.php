@@ -28,7 +28,8 @@ class EquipmentGroupRequest extends FormRequest
             'name' => [
                 'required',
                 Rule::unique('equipment_groups')->ignore($this->equipment_group)
-            ]
+            ],
+            'name_ar' => 'required'
         ];
     }
 
@@ -40,7 +41,8 @@ class EquipmentGroupRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'english name'
+            'name' => 'english name',
+            'name_ar' => 'arabic name'
         ];
     }
 }

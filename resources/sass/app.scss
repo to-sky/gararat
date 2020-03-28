@@ -12,6 +12,7 @@
 @import "~bootstrap/scss/_grid";
 @import "~bootstrap/scss/_images";
 @import "~bootstrap/scss/_utilities";
+@import "~bootstrap-v4-rtl/scss/bootstrap-rtl";
 
 // BLUEIMP
 @import "./vendor/blueimp/css/blueimp-gallery";
@@ -31,16 +32,17 @@
 @import 'components/_breadcrumbs';
 @import 'components/_pagination';
 @import 'components/_figure';
+@import 'components/_product-counter';
 
 // Layout
 @import 'layout/_header';
-@import 'layout/_sidebar';
+@import 'layout/_sidebar-filter';
+@import 'layout/_parts';
 @import 'layout/_products';
 @import 'layout/_product';
 @import 'layout/_footer';
 
-// Pages
-@import 'pages/_home';
-
 // Responsive
 @import "_responsive";
+
+@import "helpers";

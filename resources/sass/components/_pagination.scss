@@ -2,6 +2,7 @@
 
     .pagination {
         display: flex;
+        justify-content: flex-end;
         padding-left: 0;
         list-style: none;
         border-radius: 0;
@@ -11,43 +12,59 @@
 
             a,
             span {
-                margin-left: 0;
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-                position: relative;
-                display: block;
-                padding: 8px 12px;
+                padding: 5px 15px;
                 line-height: 1.25;
-                color: $primary_color;
-                border: 1px solid $third_color;
-                background: $sidebar_background;
+                color: $text_muted;
+                border: 1px solid $border_color;
+                background: $white;
                 font-size: 1.6rem;
                 border-right: 0;
                 font-weight: 300;
             }
 
             a {
-
                 &:hover {
-                    color: #ffffff;
+                    color: $white;
                     background: $secondary_color;
+                    border-color: $secondary_color;
                 }
             }
 
             &:last-child {
-
                 a, span {
-                    border-right: 1px solid $third_color;
+                    border-right: 1px solid $border_color;
+
+                    &:hover {
+                        border-color: $secondary_color;
+                    }
                 }
             }
+
+            &.active {
+                a,
+                span {
+                    color: $white;
+                    background: $secondary_color;
+                    border-color: $secondary_color;
+                }
+            }
+
+            &.disabled {
+                cursor: no-drop;
+            }
         }
+    }
+}
 
-        li.active {
+.rtl .pagination__wrapper .pagination {
+    li {
+        &:first-child {
+            a, span {
+                border-right: 1px solid $border_color;
 
-            a,
-            span {
-                color: #fff;
-                background: $secondary_color;
+                &:hover {
+                    border-color: $secondary_color;
+                }
             }
         }
     }

@@ -110,6 +110,7 @@
             color: #525252 !important;
             border: 1px solid #d2d2d2;
             top: 39px;
+            left: 0;
             z-index: 10;
 
             .lang__body_switcher {
@@ -193,14 +194,16 @@
                     transition: $default_transition;
 
                     &:hover {
-                        color: $fourth_color;
+                        //color: $secondary_color;
                         transition: $default_transition;
+                        border-bottom: 3px solid $secondary_color;
                     }
                 }
             }
 
             .active a {
-                color: $fourth_color;
+                color: $secondary_color;
+                border-bottom: 3px solid $secondary_color;
             }
         }
     }

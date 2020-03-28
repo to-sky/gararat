@@ -16,7 +16,7 @@ class CreateManufacturersTable extends Migration
         Schema::create('manufacturers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();
-            $table->string('name_ar')->nullable();
+            $table->string('name_ar');
             $table->timestamps();
         });
     }

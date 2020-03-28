@@ -1,40 +1,6 @@
 .product {
-    margin-bottom: 30px;
-
-    .product__images {
-
-        .mip {
-            padding: 0 7.5px;
-        }
-
-        .featured-image {
-            border: 1px solid #f6f6f6;
-        }
-
-        .additional-images {
-
-            .additional-image {
-                overflow: hidden;
-                margin-bottom: 15px;
-                border: 1px solid #f6f6f6;
-
-                &:last-child {
-                    margin-bottom: 0;
-                }
-
-                a {
-
-                    img {
-                        max-width: 100%;
-                        height: auto;
-                    }
-                }
-            }
-        }
-    }
-
     .product__purchase {
-        padding: 15px;
+        padding: 20px;
 
         p {
             margin-bottom: 0;
@@ -44,73 +10,16 @@
             margin-bottom: 15px;
 
             .product__purchase-price {
-
-                p {
-                    line-height: 24px;
-
-                    .old {
-                        color: $primary_color;
-                        opacity: 0.5;
-                        padding-right: 5px;
-                        font-size: 1.4rem;
-                        text-decoration: line-through;
-                    }
-
-                    .current {
-                        color: $secondary_color;
-                        font-weight: 500;
-                        font-size: 1.8rem;
-                    }
-                }
-            }
-
-            .product__qty {
-
-                a {
-                    font-size: 1.4rem;
-                    line-height: 24px;
-                    color: $primary_color;
-                }
-
-                input {
-                    outline: none;
-                    border: 1px solid $primary_color_muted;
-                    padding: 0 5px;
-                    line-height: 24px;
-                    font-size: 1.6rem;
-                    color: $primary_color;
-                    background: #ffffff;
-                    text-align: center;
-                }
-
-                input[type='number'] {
-                    -moz-appearance:textfield;
-                }
-
-                input::-webkit-outer-spin-button,
-                input::-webkit-inner-spin-button {
-                    -webkit-appearance: none;
-                }
-            }
-
-            .btn-add-to-cart {
-                padding: 0;
-                background: $secondary_color;
-                outline: none;
-                border: 0;
-                color: #ffffff;
                 line-height: 24px;
-                width: 100%;
-                text-align: center;
-                font-size: 1.4rem;
-                font-weight: 400;
-                text-transform: uppercase;
-                transition: $default_transition;
-                cursor: pointer;
 
-                &:hover {
-                    background: darken($secondary_color, 10%);
-                    transition: $default_transition;
+                .product-price {
+                    color: $secondary_color;
+                    font-weight: 500;
+                    font-size: 1.8rem;
+
+                    small {
+                        color: $text_muted;
+                    }
                 }
             }
         }
@@ -118,9 +27,9 @@
         .product__purchase-bottom {
 
             .in-stock {
-                font-size: 2rem;
+                font-size: 1.8rem;
                 font-weight: 400;
-                color: $primary_color;
+                color: $text_muted;
 
                 i {
                     color: #41ad48;
@@ -137,86 +46,55 @@
         }
 
         .product__short-description {
-            margin-top: 15px;
-
-            p {
-                margin-bottom: 15px;
-
-                &:last-child {
-                    margin-bottom: 0;
-                }
-            }
+            padding-top: 15px;
+            font-size: 14px;
+            line-height: 18px;
+            color: $text_muted;
         }
     }
+}
 
-    .product__description {
+.product__description {
+    h2 {
+        font-size: 2.5rem;
         margin-top: 30px;
-        padding: 15px;
+    }
 
-        h4 {
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 2rem;
-            font-weight: 500;
-            line-height: 1;
-            color: $primary_color;
-            position: relative;
+    table {
+        margin-bottom: 30px;
+        font-size: 12px;
+        line-height: 22px;
+
+        th {
+            padding-top: 25px;
             padding-bottom: 10px;
-
-            &:after {
-                content: "";
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 40px;
-                height: 2px;
-                background: $secondary_color;
-            }
-        }
-
-        p {
-            font-size: 1.4rem;
-            line-height: 1.3;
-            margin-bottom: 10px;
+            border-top: none;
             color: $primary_color;
-        }
+            font-weight: 400;
 
-        strong,
-        b {
-            font-weight: 500;
-        }
-
-        ul,
-        ol {
-
-            li {
-                font-size: 1.4rem;
-                line-height: 1.3;
-                margin-bottom: 10px;
-                color: $primary_color;
+            &:first-child {
+                font-weight: 700;
+                font-size: 14px;
+                color: $secondary_color;
             }
         }
 
-        table {
-            width: 100%;
-            border: 1px solid RGBA(0, 0, 0, 0.2);
+        td {
+            padding: 6px 10px;
+            border-top: none;
 
-            tr {
+            &:first-child {
+                color: $third_color;
+            }
+        }
 
-                th,
-                td {
-                    padding: 5px;
-                    font-size: 1.4rem;
-                    line-height: 1.3;
-                    color: $primary_color;
-                    font-weight: normal;
-                    border: 1px solid RGBA(0, 0, 0, 0.2);
-                }
+        tr {
+            border-bottom-color: $border_color;
+            border-bottom-style: dotted;
+            border-bottom-width: 1px;
 
-                th {
-                    font-weight: 500;
-                    border-bottom: 2px solid RGBA(0, 0, 0, 0.2);
-                }
+            &:last-child {
+                border-bottom: none;
             }
         }
     }

@@ -78,7 +78,7 @@
                                         <label class="custom-file-label" for="importFile">Select .xlsx</label>
                                     </div>
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-primary" type="submit" id="importBtn">
+                                        <button class="btn btn-outline-success" type="submit" id="importBtn">
                                             <i class="fas fa-upload"></i>
                                         </button>
                                     </div>

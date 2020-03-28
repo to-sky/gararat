@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
 use DB;
 
 class Catalog extends Model
 {
+    use Translatable;
+
     protected $fillable = ['name', 'name_ar', 'parent_id'];
 
     /**
@@ -55,6 +58,16 @@ class Catalog extends Model
     }
 
     /**
+     * Check if catalog has childs catalogs
+     *
+     * @return bool
+     */
+    public function hasChilds()
+    {
+        return $this->childs->count() ? true : false;
+    }
+
+    /**
      * Get only child catalogs
      *
      * @param $query
@@ -75,7 +88,7 @@ class Catalog extends Model
     }
 
     /**
-     * Sorting catalogs by "parent next all childs"
+     * Sorting catalogs by "parent than all childs"
      *
      * @return array|\Illuminate\Support\Collection
      */

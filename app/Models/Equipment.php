@@ -3,15 +3,16 @@
 namespace App\Models;
 
 use App\Services\MediaService;
-use App\Traits\Excludable;
+use App\Traits\{Excludable, Filterable, Saleable, Translatable};
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia\{HasMedia, HasMediaTrait};
 use Spatie\MediaLibrary\Models\Media;
 
 class Equipment extends Model implements HasMedia
 {
-    use HasMediaTrait, Excludable;
+    use HasMediaTrait, Excludable, Translatable, Saleable, Filterable;
 
     protected $casts = [
         'specifications' => 'array',
@@ -25,6 +26,10 @@ class Equipment extends Model implements HasMedia
     protected static function boot()
     {
         parent::boot();
+
+        static::addGlobalScope('order', function (Builder $builder) {
+            $builder->orderBy('site_position', 'asc');
+        });
 
         self::saving(function($equipment) {
             MediaService::store($equipment, [
@@ -47,13 +52,13 @@ class Equipment extends Model implements HasMedia
     public function registerMediaCollections()
     {
         $this->addMediaCollection('main_image')
-            ->useFallbackUrl('images/blank.jpg')
-            ->useFallbackPath(public_path('images/blank.jpg'))
+            ->useFallbackUrl('/assets/blank.png')
+            ->useFallbackPath(public_path('/assets/blank.png'))
             ->singleFile();
 
         $this->addMediaCollection('additional_images')
-            ->useFallbackUrl('images/blank.jpg')
-            ->useFallbackPath(public_path('images/blank.jpg'));
+            ->useFallbackUrl('/images/blank.jpg')
+            ->useFallbackPath(public_path('/images/blank.jpg'));
     }
 
     /**
@@ -61,18 +66,23 @@ class Equipment extends Model implements HasMedia
      *
      * @param Media|null $media
      * @throws \Spatie\Image\Exceptions\InvalidManipulation
+     * @throws \League\Flysystem\FileNotFoundException
      */
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')
             ->width(150)
-            ->height(150)
-            ->performOnCollections('main_image', 'additional_images');
+            ->height(150);
 
         $this->addMediaConversion('medium')
             ->width(300)
-            ->height(300)
-            ->performOnCollections('main_image', 'additional_images');
+            ->height(300);
+
+        $this->addMediaConversion('large')
+            ->watermark(public_path('/assets/blank.png'))
+            ->watermarkOpacity(40)
+            ->watermarkPosition(Manipulations::POSITION_CENTER)
+            ->watermarkFit(Manipulations::FIT_STRETCH);
     }
 
     /**
@@ -104,40 +114,5 @@ class Equipment extends Model implements HasMedia
             'id',
             'catalog_id'
         )->distinct();
-    }
-
-    /**
-     * Show Yes or No if equipment in_stock
-     *
-     * @return string
-     */
-    public function displayInStock()
-    {
-        return $this->in_stock ? 'Yes' : 'No';
-    }
-
-    /**
-     * Get price current price with special condition
-     *
-     * @return mixed
-     */
-    public function getCurrentPriceAttribute()
-    {
-        $currentPrice = (float) $this->is_special ? $this->special_price : $this->price;
-
-        return number_format($currentPrice, 2, '.', ',' );
-    }
-
-    // TODO: refactor this
-    public function displayPrice()
-    {
-        $price = number_format($this->price, 2, '.', ',');
-        $specialPrice = number_format($this->special_price, 2, '.', ',');
-
-        if($this->is_special) {
-            return "$specialPrice <small><s>$price</s></small>";
-        }
-
-        return $price;
     }
 }

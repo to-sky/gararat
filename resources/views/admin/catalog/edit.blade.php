@@ -8,26 +8,28 @@
         @csrf
 
         @component('admin.components.name', ['item' => $catalog])
-            <div class="form-group">
-                <label for="parentCatalog">Parent catalog</label>
-                <select name="parent_id" id="parentCatalog"
-                        class="form-control select2-element-clear"
-                        data-placeholder="Select parent catalog">
-                    <option></option>
-                    @foreach($catalogs as $catalogItem)
-                        @if ($catalogItem->id == $catalog->id)
-                            @continue
-                        @endif
+            @if (! $catalog->hasChilds())
+                <div class="form-group">
+                    <label for="parentCatalog">Parent catalog</label>
+                    <select name="parent_id" id="parentCatalog"
+                            class="form-control select2-element-clear"
+                            data-placeholder="Select parent catalog">
+                        <option></option>
+                        @foreach($catalogs as $catalogItem)
+                            @if ($catalogItem->id == $catalog->id)
+                                @continue
+                            @endif
 
-                        <option value="{{ $catalogItem->id }}"
-                            @if($catalogItem->id == $catalog->parent_id
-                                || old('parent_id') == $catalog->id) selected
-                            @endif>
-                            {{ $catalogItem->name }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
+                            <option value="{{ $catalogItem->id }}"
+                                    @if($catalogItem->id == $catalog->parent_id
+                                        || old('parent_id') == $catalog->id) selected
+                                    @endif>
+                                {{ $catalogItem->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
         @endcomponent
 
         @include('admin.includes.blocks.save-or-back-btns', [

@@ -155,9 +155,9 @@ class Helpers extends Model
             }
         }
         if($locale === 'en') {
-            $breadcrumbsArray[] = array('name' => 'Home', 'route' => 'homePage', 'param' => NULL);
+            $breadcrumbsArray[] = array('name' => 'Home', 'route' => 'home', 'param' => NULL);
         } else {
-            $breadcrumbsArray[] = array('name' => 'الرئيسية', 'route' => 'homePage', 'param' => NULL);
+            $breadcrumbsArray[] = array('name' => 'الرئيسية', 'route' => 'home', 'param' => NULL);
         }
 
         return array_reverse($breadcrumbsArray);

@@ -27,8 +27,9 @@ class ManufacturerRequest extends FormRequest
         return [
             'name' => [
                 'required',
-                Rule::unique('parts')->ignore($this->manufacturer)
+                Rule::unique('manufacturers')->ignore($this->manufacturer)
             ],
+            'name_ar' => 'required'
         ];
     }
 
@@ -40,7 +41,8 @@ class ManufacturerRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'english name'
+            'name' => 'english name',
+            'name_ar' => 'arabic name'
         ];
     }
 }

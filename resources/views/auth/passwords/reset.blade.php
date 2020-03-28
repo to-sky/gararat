@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title') {{ __('Reset Password') }} @stop
+
 @section('content')
 <div class="container" style="margin-bottom: 30px; min-height: 400px;">
     <div class="row justify-content-center">

@@ -27,8 +27,9 @@ class CatalogRequest extends FormRequest
         return [
             'name' => [
                 'required',
-                Rule::unique('parts')->ignore($this->catalog)
+                Rule::unique('catalogs')->ignore($this->catalog)
             ],
+            'name_ar' => 'required'
         ];
     }
 
@@ -40,7 +41,8 @@ class CatalogRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'english name'
+            'name' => 'english name',
+            'name_ar' => 'arabic name'
         ];
     }
 }

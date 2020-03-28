@@ -82,4 +82,12 @@ class Unit extends Model implements HasMedia
     {
         return $this->hasMany(UnitPart::class)->with('part');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function parts()
+    {
+        return $this->hasManyThrough(Part::class, UnitPart::class, 'unit_id', 'id', 'id', 'part_id')->withoutGlobalScope('sort');
+    }
 }

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\{
-    Slider, News, Pages
+    Slider, News, Page
 };
 
 class CommonController extends Controller
@@ -82,7 +82,7 @@ class CommonController extends Controller
      */
     public function updatePageItemAPI(Request $request)
     {
-        $pagesModel = new Pages;
+        $pagesModel = new Page;
         $data = $request->all();
         $pagesModel->updateDefaultPage($data);
 
@@ -95,7 +95,7 @@ class CommonController extends Controller
      */
     public function updateHomePageItemAPI(Request $request)
     {
-        $pagesModel = new Pages;
+        $pagesModel = new Page;
         $data = $request->all();
         $pagesModel->updateHomePage($data);
 

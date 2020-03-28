@@ -25,10 +25,9 @@ class PartRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
-                'required',
-                Rule::unique('parts')->ignore($this->part)
-            ],
+            'name' => 'required',
+            'name_ar' => 'required',
+            'producer_id' => Rule::unique('parts')->ignore($this->part),
             'price' => 'required|numeric',
             'special_price' => 'nullable|numeric'
         ];
@@ -42,7 +41,8 @@ class PartRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'english name'
+            'name' => 'english name',
+            'name_ar' => 'arabic name'
         ];
     }
 }

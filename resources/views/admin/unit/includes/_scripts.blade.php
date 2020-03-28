@@ -23,8 +23,6 @@
                     return $(el).val();
                 });
 
-                console.log(excludedPartIds)
-
                 // Get table with parts
                 return $.get({
                     type: 'PUT',

@@ -33,12 +33,18 @@
                                     class="form-control select2-element @error('catalog_id') is-invalid @enderror"
                                     data-placeholder="Select catalog">
                                 <option></option>
-                                @foreach($childCatalogs as $catalog)
-                                    <option value="{{ $catalog->id }}" @if (old('catalog_id') && $catalog->id == old('catalog_id'))
-                                        selected
-                                    @endif>
-                                        {{ $catalog->name }}
-                                    </option>
+
+                                @foreach($parentCatalogs as $parentCatalog)
+                                    <optgroup label="{{ $parentCatalog->name }}">
+                                        @foreach($parentCatalog->childs as $child)
+                                            <option value="{{ $child->id }}"
+                                                    @if (old('catalog_id') && $catalog->id == old('catalog_id'))
+                                                        selected
+                                                    @endif>
+                                                {{ $child->name }}
+                                            </option>
+                                        @endforeach
+                                    </optgroup>
                                 @endforeach
                             </select>
 
@@ -53,7 +59,11 @@
 
         <div class="card form-group rounded-0 border">
             <div class="card-header border-0">
-                <h5 class="mb-0">Parts</h5>
+                <h5 class="mb-0">
+                    <span>Parts</span>
+                    <small id="partsCount" data-parts-count="0"
+                           class="badge border text-muted pull-right fsz-xs mt-1 mr-3 bg-light">0</small>
+                </h5>
             </div>
             <div class="card-body pt-0 px-0">
                 <div class="parts-content">

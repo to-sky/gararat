@@ -3,13 +3,20 @@
 namespace App\Exports;
 
 use App\Models\Equipment;
-use Maatwebsite\Excel\Concerns\FromQuery;
-use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
+use Illuminate\Contracts\Support\Responsable;
+use Maatwebsite\Excel\Concerns\{
+    Exportable, FromQuery, ShouldAutoSize, WithHeadings, WithStrictNullComparison
+};
 
-class EquipmentExport implements FromQuery, WithHeadings, WithStrictNullComparison,ShouldAutoSize
+class EquipmentExport implements FromQuery, Responsable, WithHeadings, WithStrictNullComparison,ShouldAutoSize
 {
+    use Exportable;
+
+    private $fileName = 'equipment.xlsx';
+
+    /**
+     * @return array
+     */
     public function headings(): array
     {
         return [
@@ -18,6 +25,9 @@ class EquipmentExport implements FromQuery, WithHeadings, WithStrictNullComparis
         ];
     }
 
+    /**
+     * @return \Illuminate\Database\Query\Builder
+     */
     public function query()
     {
         return Equipment::exclude(['specifications', 'created_at', 'updated_at']);

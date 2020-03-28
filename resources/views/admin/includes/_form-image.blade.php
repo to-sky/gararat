@@ -1,5 +1,5 @@
 @isset($mediaItem)
-    <div class="border mt-4 mr-3 position-relative shadow text-right text-white bgc-grey-100 @isset($class) {{ $class }} @endisset"
+    <div class="border mt-4 mr-3 position-relative shadow-sm text-right text-white bgc-grey-100 @isset($class) {{ $class }} @endisset"
          data-image-container
          style="width: 150px;">
         <img src="{{ $mediaItem->getUrl('medium') }}" class="card-img rounded-0" alt="{{ $mediaItem->name }}">

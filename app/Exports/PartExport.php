@@ -3,13 +3,17 @@
 namespace App\Exports;
 
 use App\Models\Part;
-use Maatwebsite\Excel\Concerns\FromQuery;
-use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
+use Illuminate\Contracts\Support\Responsable;
+use Maatwebsite\Excel\Concerns\{
+    Exportable, FromQuery, ShouldAutoSize, WithHeadings, WithStrictNullComparison, WithMapping
+};
 
-class PartExport implements FromQuery, WithHeadings, WithStrictNullComparison, ShouldAutoSize
+class PartExport implements FromQuery, Responsable, WithHeadings, WithMapping, WithStrictNullComparison, ShouldAutoSize
 {
+    use Exportable;
+
+    private $fileName = 'parts.xlsx';
+
     /**
      * @return array
      */
@@ -21,10 +25,28 @@ class PartExport implements FromQuery, WithHeadings, WithStrictNullComparison, S
     }
 
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function query()
     {
-        return Part::exclude(['created_at', 'updated_at']);
+        return Part::query();
+    }
+
+    /**
+     * @param $part
+     * @return array
+     */
+    public function map($part): array
+    {
+        return [
+            $part->id,
+            $part->name,
+            $part->name_ar,
+            $part->producer_id,
+            $part->price,
+            $part->special_price,
+            $part->is_special,
+            $part->qty,
+        ];
     }
 }

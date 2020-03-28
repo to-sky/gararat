@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title') Edit: {{ $user->name }} @endsection
+@section('title') Profile @endsection
 
 @section('content')
     <form action="{{ route('admin.user.update', $user) }}" method="post" autocomplete="off" enctype="multipart/form-data">

@@ -19,8 +19,7 @@ class OrderExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            'Product',
-            'Quantity',
+            'Product', 'Quantity'
         ];
     }
 

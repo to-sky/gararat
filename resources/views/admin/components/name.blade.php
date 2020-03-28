@@ -7,10 +7,14 @@
                        class="form-control @error('name') is-invalid @enderror"
                        placeholder="English" value="{{ isset($item) ? $item->name : old('name') }}" required>
 
-                <input type="text" name="name_ar" class="form-control"
-                       placeholder="Arabic" value="{{ isset($item) ? $item->name_ar : old('name_ar') }}">
+                <input type="text" name="name_ar" class="form-control @error('name_ar') is-invalid @enderror"
+                       placeholder="Arabic" value="{{ isset($item) ? $item->name_ar : old('name_ar') }}" required>
 
                 @error('name')
+                    <div class="col invalid-feedback">{{ $message }}</div>
+                @enderror
+
+                @error('name_ar')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

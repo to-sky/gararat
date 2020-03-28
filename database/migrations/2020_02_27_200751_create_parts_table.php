@@ -15,9 +15,9 @@ class CreatePartsTable extends Migration
     {
         Schema::create('parts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unique();
-            $table->string('name_ar')->nullable();
-            $table->string('producer_id')->nullable();
+            $table->string('name');
+            $table->string('name_ar');
+            $table->string('producer_id')->unique()->nullable();
             $table->decimal('price');
             $table->decimal('special_price')->nullable();
             $table->boolean('is_special')->default(0);
