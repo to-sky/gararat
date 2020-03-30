@@ -19,14 +19,18 @@ class PartImport implements ToCollection, WithHeadingRow
         $row->each(function($part) {
             $part = $part->toArray();
 
-            if (is_null($part['name']) || is_null($part['price'])) {
+            if (is_null($part['name'])
+                || is_null($part['name_ar'])
+                || is_null($part['price'])
+                || is_null($part['producer_id'])
+            ) {
                 return null;
             }
 
             $id = $part['id'];
 
             return is_null($id)
-                ? Part::updateOrCreate(['name' => $part['name']], $part)
+                ? Part::updateOrCreate(['name' => $part['name'], 'producer_id' => $part['producer_id']], $part)
                 : Part::find($id)->update($part);
         });
     }

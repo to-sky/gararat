@@ -19,6 +19,7 @@ class EquipmentImport implements ToCollection, WithHeadingRow
         $row->each(function($equipment) {
             if (
                 is_null($equipment['name'])
+                || is_null($equipment['name_ar'])
                 || is_null($equipment['price'])
                 || is_null($equipment['manufacturer_id'])
                 || is_null($equipment['equipment_group_id'])
