@@ -20,8 +20,11 @@
                         @include('admin.includes._input-file', [
                             'name' => 'sl_image',
                             'label' => 'Size: 1110x400px',
-                            'placeholder' => $slider->sl_image
+                            'placeholder' => $slider->sl_image,
+                            'formats' => '.jpg,.png,.tiff'
                         ])
+
+                        @include('admin.includes._image_following_formats')
 
                         <p class="mt-2 mb-0">
                             <img src="{{ asset($slider->sl_image) }}" height="64" alt="{{ $slider->sl_title }}">

@@ -18,8 +18,11 @@
 
                         @include('admin.includes._input-file', [
                             'name' => 'sl_image',
-                            'label' => 'Size: 1110x400px'
+                            'label' => 'Size: 1110x400px',
+                            'formats' => '.jpg,.png,.tiff'
                         ])
+
+                        @include('admin.includes._image_following_formats')
                     </div>
                     <div class="form-group">
                         <label for="sliderDescription">Link</label>

@@ -110,7 +110,8 @@
         <p class="mb-1">Main image</p>
         @include('admin.includes._input-file', [
             'name' => 'main_image',
-            'placeholder' => 'Select image'
+            'placeholder' => 'Select image',
+            'formats' => '.jpg,.png,.tiff'
         ])
         @include('admin.includes._image_following_formats')
 
