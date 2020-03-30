@@ -21,7 +21,8 @@
                     <p class="mb-1">Figure</p>
                     @include('admin.includes._input-file', [
                         'name' => 'figure',
-                        'placeholder' => 'Select image'
+                        'placeholder' => 'Select image',
+                        'formats' => '.jpg,.png,.tiff'
                     ])
                     @include('admin.includes._image_following_formats')
                 </div>
