@@ -4,7 +4,10 @@
 
 @section('content')
     <div class="container">
+        {{ Breadcrumbs::render('parts.show', $part) }}
+
         <h1 class="page-title">{{ $part->trans('name') }}</h1>
+
         <div class="row">
             <div class="col-md-6">
                 @component('website.components.product_images', ['product' => $part])

@@ -8,7 +8,8 @@ class MediaService
      * Store and update media
      *
      * @param $model | Instance on model
-     * @param $inputNames | String or array names from form input fields
+     * @param $inputNames | string|array | Name(s) from form input fields
+    *         String for single image, array for multiple images
      * @return bool|null |null $model
      */
     public static function store($model, $inputNames)

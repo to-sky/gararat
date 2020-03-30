@@ -106,11 +106,7 @@
                     <div class="col-12">
                         <div class="cart-page__actions">
                             <div class="row">
-                                <div class="col-md-2">
-                                    <a href="{{ route('cart') }}" class="btn btn-home-page">{{ __('Return to cart') }}</a>
-                                </div>
-
-                                <div class="col-md-9">
+                                <div class="col-md-4 offset-7">
                                     <div class="row">
                                         <div class="col-md-5 offset-7">
                                             @if(env('GOOGLE_RECAPTCHA_KEY'))

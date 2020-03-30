@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title') Orders @endsection
+@section('title', 'Orders')
 
 @section('content')
     <div class="row">
@@ -29,11 +29,11 @@
                                     <div class="pull-right">
                                         <div class="btn-group btn-group-sm shadow-sm" role="group">
                                             @include('admin.includes._edit-btn' , [
-                                                'href' => route('admin.order.edit', $order->id)
+                                                'href' => route('admin.orders.edit', $order)
                                             ])
 
                                             @include('admin.includes._delete-btn' , [
-                                                'href' => route('removeOrderAPI', ['id' => $order->id]),
+                                                'href' => route('admin.orders.destroy', $order),
                                                 'modalText' => 'order ' . $order->id
                                             ])
                                         </div>
@@ -46,9 +46,7 @@
             </div>
 
             <div class="mt-2 pull-right">
-                @if($orders->isNotEmpty())
-                    {{ $orders->links() }}
-                @endif
+                {{ $orders->links() }}
             </div>
         </div>
     </div>

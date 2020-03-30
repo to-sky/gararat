@@ -2,7 +2,6 @@ require('./bootstrap');
 
 try {
     window.Url = require('domurl');
-    // window.blueimp.Gallery = require('blueimp-gallery');
 } catch (e) {}
 
 // Custom for site

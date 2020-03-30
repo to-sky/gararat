@@ -92,8 +92,8 @@
                                 </div>
 
                                 <div class="cart__checkout">
-                                    <a href="{{ route('cart') }}"
-                                       class="shadow-sm btn btn-checkout">{{ __('Cart') }}</a>
+                                    <a href="{{ route('checkout') }}"
+                                       class="shadow-sm btn btn-checkout">{{ __('Checkout') }}</a>
                                 </div>
                             </div>
                         </div>

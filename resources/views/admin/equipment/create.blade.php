@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title') Add equipment @endsection
+@section('title', 'Add equipment')
 
 @section('content')
     <form action="{{ route('admin.equipment.store') }}" method="post" autocomplete="off" enctype="multipart/form-data">

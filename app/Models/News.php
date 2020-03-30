@@ -2,108 +2,73 @@
 
 namespace App\Models;
 
+use App\Services\MediaService;
 use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
-class News extends Model
+class News extends Model implements HasMedia
 {
-    use Translatable;
-
-    protected $table = 'news';
-
-    protected $primaryKey = 'nw_id';
-
-    protected $casts = [
-       'nw_created' => 'datetime'
-    ];
+    use HasMediaTrait, Translatable;
 
     protected $fillable = [
-        'nw_name', 'nw_body', 'nw_title', 'nw_description', 'nw_created', 'nw_image', 'nw_name_ar', 'nw_title_ar',
-        'nw_body_ar', 'nw_description_ar'
+        'title', 'title_ar', 'short_description', 'short_description_ar', 'body', 'body_ar', 'created_at'
     ];
 
-    public function getNwCreatedAtAttribute()
+    protected static function boot()
     {
-        return $this->nw_created->format('Y-m-d');
+        parent::boot();
+
+        self::saving(function($news) {
+            MediaService::store($news, ['news_images']);
+
+            $news->slug = Str::slug($news->title.'-'.$news->created_at->toDateString());
+        });
+
+        self::deleting(function ($news) {
+            MediaService::destroy($news, ['news_images']);
+        });
     }
 
-
-    //======================================================================
-    // CREATE
-    //======================================================================
     /**
-     * @param $data
-     * @param $file
-     * @return mixed
+     * Register collection names
+     * Only single main_image
+     * Return blank image if not exists
      */
-//    public function createNewsItem($data, $file)
-//    {
-//        $nodeModel = new Node;
-//        return DB::table('news')->insert([
-//            'nw_name' => $data['newsName'],
-//            'nw_body' => $data['newsBody'],
-//            'nw_title' => $data['newsTitle'],
-//            'nw_description' => $data['newsDescription'],
-//            'nw_name_ar' => $data['newsNameAr'],
-//            'nw_body_ar' => $data['newsBodyAr'],
-//            'nw_title_ar' => $data['newsTitleAr'],
-//            'nw_description_ar' => $data['newsDescriptionAr'],
-//            'nw_image' => $nodeModel->proceedNodeImage($file, NULL, 'news'),
-//            'nw_created' => $data['newsDate'],
-//        ]);
-//    }
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('news_images')
+            ->useFallbackUrl('/assets/blank.png')
+            ->useFallbackPath(public_path('/assets/blank.png'));
+    }
 
-    //======================================================================
-    // READ
-    //======================================================================
+    /**
+     * Register sizes for media collections
+     *
+     * @param Media|null $media
+     * @throws \Spatie\Image\Exceptions\InvalidManipulation
+     */
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+            ->width(150)
+            ->height(150);
 
-    //======================================================================
-    // UPDATE
-    //======================================================================
+        $this->addMediaConversion('medium')
+            ->width(300)
+            ->height(300);
+    }
+
     /**
-     * @param $data
-     * @param $file
-     * @return mixed
+     * Get the route key for the model.
+     *
+     * @return string
      */
-//    public function updateNewsItem($data, $file)
-//    {
-//        $nodeModel = new Node;
-//        if($file !== NULL) {
-//            return DB::table('news')->where('nw_id', $data['nw_id'])->update([
-//                'nw_name' => $data['newsName'],
-//                'nw_body' => $data['newsBody'],
-//                'nw_title' => $data['newsTitle'],
-//                'nw_description' => $data['newsDescription'],
-//                'nw_name_ar' => $data['newsNameAr'],
-//                'nw_body_ar' => $data['newsBodyAr'],
-//                'nw_title_ar' => $data['newsTitleAr'],
-//                'nw_description_ar' => $data['newsDescriptionAr'],
-//                'nw_image' => $nodeModel->proceedNodeImage($file, NULL, 'news'),
-//                'nw_created' => $data['newsDate'],
-//            ]);
-//        } else {
-//            return DB::table('news')->where('nw_id', $data['nw_id'])->update([
-//                'nw_name' => $data['newsName'],
-//                'nw_body' => $data['newsBody'],
-//                'nw_title' => $data['newsTitle'],
-//                'nw_description' => $data['newsDescription'],
-//                'nw_name_ar' => $data['newsNameAr'],
-//                'nw_body_ar' => $data['newsBodyAr'],
-//                'nw_title_ar' => $data['newsTitleAr'],
-//                'nw_description_ar' => $data['newsDescriptionAr'],
-//                'nw_created' => $data['newsDate'],
-//            ]);
-//        }
-//    }
-    //======================================================================
-    // DELETE
-    //======================================================================
-    /**
-     * @param $nw_id
-     * @return mixed
-     */
-//    public function removeNewsItem($nw_id)
-//    {
-//        return DB::table('news')->where('nw_id', $nw_id)->delete();
-//    }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

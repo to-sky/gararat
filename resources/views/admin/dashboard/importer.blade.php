@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title') Importer @endsection
+@section('title', 'Importer')
 
 @section('content')
     <div class="row">

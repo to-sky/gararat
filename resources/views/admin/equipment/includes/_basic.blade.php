@@ -112,12 +112,7 @@
             'name' => 'main_image',
             'placeholder' => 'Select image'
         ])
-        <small class="text-muted">
-            The following file formats are supported:
-            <span class="badge border p-3">jpg</span>
-            <span class="badge border p-3">png</span>
-            <span class="badge border p-3">tiff</span>
-        </small>
+        @include('admin.includes._image_following_formats')
 
         @if (isset($item) && $mainImage = $item->getFirstMedia('main_image'))
             @include('admin.includes._form-image', [
@@ -134,12 +129,7 @@
             'placeholder' => 'Select images',
             'formats' => '.jpg,.png,.tiff'
         ])
-        <small class="text-muted">
-            The following file formats are supported:
-            <span class="badge border p-3">jpg</span>
-            <span class="badge border p-3">png</span>
-            <span class="badge border p-3">tiff</span>
-        </small>
+        @include('admin.includes._image_following_formats')
 
         @error('additional_images')
             <div class="invalid-feedback">{{ $message }}</div>

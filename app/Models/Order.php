@@ -24,14 +24,6 @@ class Order extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function nodes()
-    {
-        return $this->belongsToMany(Node::class, 'orders_to_nodes', 'order', 'node')->withPivot('order_qty');
-    }
-
-    /**
      * Display id with lead zeros
      *
      * @return string
@@ -91,21 +83,21 @@ class Order extends Model
         return $this->created_at->format('Y-m-d');
     }
 
-    /**
-     * Get total price for order (with special condition)
-     *
-     * @return mixed
-     */
-    public function getTotalPriceAttribute()
-    {
-        $totalPrice = 0;
-
-        return $this->nodes()->get()->sum(function($item) use ($totalPrice) {
-            $totalPrice += floatval($item->current_price) * $item->pivot->order_qty;
-
-            return $totalPrice;
-        });
-    }
+//    /**
+//     * Get total price for order (with special condition)
+//     *
+//     * @return mixed
+//     */
+//    public function getTotalPriceAttribute()
+//    {
+//        $totalPrice = 0;
+//
+//        return $this->nodes()->get()->sum(function($item) use ($totalPrice) {
+//            $totalPrice += floatval($item->current_price) * $item->pivot->order_qty;
+//
+//            return $totalPrice;
+//        });
+//    }
 
     /**
      * Show order total price with currency symbol

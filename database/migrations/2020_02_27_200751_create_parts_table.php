@@ -17,6 +17,7 @@ class CreatePartsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('name_ar');
+            $table->string('slug')->unique();
             $table->string('producer_id')->unique()->nullable();
             $table->decimal('price');
             $table->decimal('special_price')->nullable();

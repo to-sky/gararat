@@ -4,6 +4,8 @@
 
 @section('content')
     <div class="container">
+        {{ Breadcrumbs::render('equipment.show', $equipment) }}
+
         <h1 class="page-title">
             {{ $equipment->trans('name') }}
             <span class="float-{{ isLocaleEn() ? 'right' : 'left' }}">
@@ -14,6 +16,7 @@
                 @endauth
             </span>
         </h1>
+
         <div class="row">
             <div class="col-md-6">
                 @component('website.components.product_images', ['product' => $equipment])

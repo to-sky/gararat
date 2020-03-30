@@ -8,7 +8,10 @@
 
 @section('content')
     <div class="container mb-5">
+        {{ Breadcrumbs::render('contacts') }}
+
         <h1 class="page-title">{{ __('Contacts') }}</h1>
+
         <div class="row contacts">
             <div class="col-12 col-lg-6">
                 <div class="contacts__info">

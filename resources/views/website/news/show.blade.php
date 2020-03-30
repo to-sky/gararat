@@ -1,20 +1,31 @@
 @extends('website.layouts.master')
 
-@section('title') {{ $news->trans('nw_title') }} @endsection
+@section('title') {{ $news->trans('title') }} @endsection
 
 @section('content')
     <div class="container">
-        <h1 class="page-title">{{ $news->trans('nw_title') }}</h1>
+        {{ Breadcrumbs::render('news.show', $news) }}
+
+        <h1 class="page-title">{{ $news->trans('title') }}</h1>
 
         <div class="single-news">
-            <div class="single-news__image">
-                <p><i class="far fa-clock"></i> {{ $news->nw_created_at }}</p>
-                <img src="{{ asset($news->nw_image) }}" alt="{{ $news->nw_name }}" class="image">
+            <div class="text-muted">
+                <p class="text-sm"><i class="far fa-clock"></i> {{ $news->created_at->calendar() }}</p>
             </div>
 
-            <div class="single-news__body my-5">
-                <div>{!! $news->trans('nw_body') !!}</div>
+            <div class="slider-pro" id="newsSlider">
+                <div class="sp-slides">
+                    @if($images = $news->getMedia('news_images'))
+                        @foreach($images as $image)
+                            <div class="sp-slide">
+                                <img src="{{ asset($image->getUrl()) }}" alt="{{ $image->name }}" class="image">
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
             </div>
+
+            <div class="single-news__body">{!! $news->trans('body') !!}</div>
         </div>
     </div>
 @endsection

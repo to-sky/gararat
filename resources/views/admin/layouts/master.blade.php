@@ -18,11 +18,6 @@
             <div class="spinner"></div>
         </div>
 
-        {{-- TODO: remove after debug title --}}
-        @if(isset($pageTitle))
-            <h1 class="text-danger pos-a z-2">pageTitle isset!</h1>
-        @endif
-
         <div id="appRoot">
             <div class="sidebar">
                 <div class="sidebar-inner">

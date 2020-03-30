@@ -22,7 +22,7 @@
                     </button>
 
                     @auth
-                    <a href="{{ route('admin.part.edit', $part) }}" class="btn btn-outline-muted" target="_blank">
+                    <a href="{{ route('admin.parts.edit', $part) }}" class="btn btn-outline-muted" target="_blank">
                         <i class="fas fa-edit"></i>
                     </a>
                     @endauth

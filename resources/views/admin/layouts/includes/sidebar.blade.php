@@ -11,8 +11,8 @@
 
     {{-- Orders --}}
     <li class="nav-item">
-        <a href="{{ route('admin.order.index') }}"
-           class="nav-link {{ request()->routeIs('admin.order.*')? 'active' : '' }}">
+        <a href="{{ route('admin.orders.index') }}"
+           class="nav-link {{ request()->routeIs('admin.orders.*')? 'active' : '' }}">
             <span class="icon-holder">
                 <i class="c-blue-500 ti-bar-chart"></i>
             </span>
@@ -22,17 +22,17 @@
 
     {{-- Catalog --}}
     <li class="nav-item">
-        <a href="{{ route('admin.catalog.index') }}"
-           class="nav-link {{ request()->routeIs('admin.catalog.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.catalogs.index') }}"
+           class="nav-link {{ request()->routeIs('admin.catalogs.*') ? 'active' : '' }}">
             <span class="icon-holder"><i class="c-blue-500 fas fa-stream"></i></span>
-            <span class="title">Catalog</span>
+            <span class="title">Catalogs</span>
         </a>
     </li>
 
     {{-- Manufacturers --}}
     <li class="nav-item">
-        <a href="{{ route('admin.manufacturer.index') }}"
-           class="nav-link {{ request()->routeIs('admin.manufacturer.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.manufacturers.index') }}"
+           class="nav-link {{ request()->routeIs('admin.manufacturers.*') ? 'active' : '' }}">
             <span class="icon-holder"><i class="c-blue-500 fas fa-industry"></i></span>
             <span class="title">Manufacturers</span>
         </a>
@@ -57,8 +57,8 @@
 
             {{-- Equipment groups --}}
             <li class="nav-item">
-                <a href="{{ route('admin.equipment-group.index') }}"
-                   class="nav-link {{ request()->routeIs('admin.equipment-group.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.equipment-groups.index') }}"
+                   class="nav-link {{ request()->routeIs('admin.equipment-groups.*') ? 'active' : '' }}">
                     <span class="icon-holder"><i class="c-blue-500 fas fa-layer-group"></i></span>
                     <span class="title ml-1">Equipment groups</span>
                 </a>
@@ -68,8 +68,8 @@
 
     {{-- Parts --}}
     <li class="nav-item">
-        <a href="{{ route('admin.part.index') }}"
-           class="nav-link {{ request()->routeIs('admin.part.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.parts.index') }}"
+           class="nav-link {{ request()->routeIs('admin.parts.*') ? 'active' : '' }}">
             <span class="icon-holder"><i class="c-blue-500 fas fa-cogs"></i></span>
             <span class="title">Parts</span>
         </a>
@@ -77,8 +77,8 @@
 
     {{-- Units --}}
     <li class="nav-item">
-        <a href="{{ route('admin.unit.index') }}"
-           class="nav-link {{ request()->routeIs('admin.unit.*')  ? 'active' : ''}}">
+        <a href="{{ route('admin.units.index') }}"
+           class="nav-link {{ request()->routeIs('admin.units.*')  ? 'active' : ''}}">
             <span class="icon-holder">
                 <i class="c-blue-500 fas fa-project-diagram"></i>
             </span>
@@ -108,12 +108,12 @@
 
     {{-- Slider --}}
     <li class="nav-item">
-        <a href="{{ route('admin.slider.index') }}"
-           class="nav-link {{ request()->routeIs('admin.slider.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.sliders.index') }}"
+           class="nav-link {{ request()->routeIs('admin.sliders.*') ? 'active' : '' }}">
             <span class="icon-holder">
                 <i class="c-blue-500 ti-layout-slider"></i>
             </span>
-            <span class="title">Slider</span>
+            <span class="title">Sliders</span>
         </a>
     </li>
 

@@ -66,16 +66,6 @@
             @include('website.layouts.includes.footer')
         </footer>
 
-        <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
-        <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
-            <div class="slides"></div>
-            <h3 class="title"></h3>
-            <a class="prev">‹</a>
-            <a class="next">›</a>
-            <a class="close">×</a>
-            <a class="play-pause"></a>
-            <ol class="indicator"></ol>
-        </div>
         <div class="cart-success">
             <span>Successfully Added to Cart</span>
         </div>

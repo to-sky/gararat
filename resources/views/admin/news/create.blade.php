@@ -1,73 +1,78 @@
 @extends('admin.layouts.master')
 
-@section('title') Add news @endsection
+@section('title', 'Add news')
 
 @section('content')
-    <form action="{{ route('saveNewNewsItemAPI') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('admin.news.store') }}" method="post" enctype="multipart/form-data">
         @csrf
 
-        <div class="row">
-            <div class="col-12">
-                <div class="bgc-white p-20 bd">
-                    <div class="form-group row">
-                        <div class="col-6">
-                            <label for="newsName">Name</label>
-                            <input type="text" class="form-control" name="newsName" id="newsName" required>
-                        </div>
-                        <div class="col-6">
-                            <label for="newsNameAr">Name Ar.</label>
-                            <input type="text" class="form-control" name="newsNameAr" id="newsNameAr" required>
-                        </div>
+        <div class="card mb-3 rounded-0 border">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="title">Title*</label>
+                    <div class="input-group">
+                        <input type="text" name="title"
+                               class="form-control @error('title') is-invalid @enderror"
+                               placeholder="English" value="{{ isset($item) ? $item->title : old('title') }}" required>
+
+                        <input type="text" name="title_ar" class="form-control @error('title_ar') is-invalid @enderror"
+                               placeholder="Arabic" value="{{ isset($item) ? $item->title_ar : old('title_ar') }}" required>
+
+                        @error('title')
+                            <div class="col invalid-feedback">{{ $message }}</div>
+                        @enderror
+
+                        @error('title_ar')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <div class="form-group row">
-                        <div class="col-6">
-                            <label for="newsBody">Body</label>
-                            <textarea name="newsBody" id="newsBody" class="summernote"></textarea>
-                        </div>
-                        <div class="col-6">
-                            <label for="newsBodyAr">Body Ar.</label>
-                            <textarea name="newsBodyAr" id="newsBodyAr" class="summernote"></textarea>
-                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="shortDescription">Short description</label>
+                    <div class="input-group">
+                        <textarea rows="5" name="short_description" id="shortDescription" class="form-control" placeholder="English">{{ isset($item) ? $item->short_description : old('short_description') }}</textarea>
+                        <textarea rows="5" name="short_description_ar" id="shortDescriptionAr" class="form-control" placeholder="Arabic">{{ isset($item) ? $item->short_description_ar : old('short_description_ar') }}</textarea>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-6">
-                            <label for="newsTitle">Title</label>
-                            <input type="text" class="form-control" name="newsTitle" id="newsTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <ul class="nav nav-tabs" id="bodyTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="bodyTab" data-toggle="tab" href="#body" role="tab" aria-controls="body" aria-selected="true">Body</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="bodyArTab" data-toggle="tab" href="#bodyAr" role="tab" aria-controls="bodyAr" aria-selected="false">Body ar</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="bodyContent">
+                        <div class="tab-pane fade show active" id="body" role="tabpanel" aria-labelledby="bodyTab">
+                            <textarea name="body" id="body" class="summernote @error('body') is-invalid @enderror" required></textarea>
+
+                            @error('body')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-                        <div class="col-6">
-                            <label for="newsTitleAr">Title Ar.</label>
-                            <input type="text" class="form-control" name="newsTitleAr" id="newsTitleAr" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-6">
-                            <label for="newsDescription">Preview and Description</label>
-                            <textarea name="newsDescription" id="newsDescription" class="form-control"></textarea>
-                        </div>
-                        <div class="col-6">
-                            <label for="newsDescriptionAr">Preview and Description Ar.</label>
-                            <textarea name="newsDescriptionAr" id="newsDescriptionAr" class="form-control"></textarea>
+                        <div class="tab-pane fade" id="bodyAr" role="tabpanel" aria-labelledby="bodyArTab">
+                            <textarea name="body_ar" id="bodyAr" class="summernote"></textarea>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="bgc-white p-20 bd mt-3">
-                    <div class="form-group row">
-                        <div class="col-md-6">
-                            <p class="mb-1">Upload news image</p>
-                            @include('admin.includes._input-file', [
-                                'name' => 'newsImage',
-                                'required' => 'true'
-                            ])
-                        </div>
-                        <div class="col-md-6">
-                            <label for="newsDate">Created</label>
-                            <input type="text" class="form-control datetimepicker-element-time" name="newsDate" id="newsDate" required value="{{ \Carbon\Carbon::now()->format('Y-m-d h:m') }}">
-                        </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <p class="mb-1">Images</p>
+                        @include('admin.includes._input-file', [
+                            'name' => 'news_images[]',
+                            'multiple' => true,
+                            'formats' => '.jpg,.png,.tiff'
+                        ])
+
+                        @include('admin.includes._image_following_formats')
+                    </div>
+                    <div class="col-md-6">
+                        <label for="newsDate">Created</label>
+                        <input type="text" class="form-control datetimepicker-element-time" name="created_at" id="newsDate" required value="{{ \Carbon\Carbon::now()->format('Y-m-d h:m') }}">
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ use App\Traits\{Excludable, Filterable, Saleable, Translatable};
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\{HasMedia, HasMediaTrait};
 use Spatie\MediaLibrary\Models\Media;
@@ -34,6 +35,8 @@ class Part extends Model implements HasMedia
             MediaService::store($part, [
                 'main_image', 'additional_images'
             ]);
+
+            $part->slug = Str::slug($part->name.'-'.$part->producer_id);
         });
 
         self::deleting(function ($part) {
@@ -41,6 +44,16 @@ class Part extends Model implements HasMedia
                 'main_image', 'additional_images'
             ]);
         });
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     /**

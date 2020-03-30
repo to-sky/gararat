@@ -4,6 +4,8 @@
 
 @section('content')
     <div class="container">
+        {{ Breadcrumbs::render('parts') }}
+
         <h1 class="page-title">{{ __('Parts') }}</h1>
 
         <div class="row mt-3">

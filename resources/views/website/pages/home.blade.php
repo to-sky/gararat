@@ -85,34 +85,6 @@
                     <img src="{{ asset('assets/sections/1.jpg') }}" alt="Belarus agriculture tractors" class="image">
                 </div>
             </div>
-
-            <div class="section__icons">
-                <div class="row">
-                    <div class="text-center col-6 col-md-6 col-lg-3 section__brg">
-                        <img src="{{ asset('assets/sections/5.png') }}" alt="530+ Happy customer">
-                        <p><strong>530+</strong></p>
-                        <p>{{ __('Happy customer') }}</p>
-                    </div>
-
-                    <div class="text-center col-6 col-md-6 col-lg-3 section__brg">
-                        <img src="{{ asset('assets/sections/6.png') }}" alt="12+ Years of experience">
-                        <p><strong>12+</strong></p>
-                        <p>{{ __('Years of experience') }}</p>
-                    </div>
-
-                    <div class="text-center col-6 col-md-6 col-lg-3 section__brg">
-                        <img src="{{ asset('assets/sections/7.png') }}" alt="24 Month warranty">
-                        <p><strong>24</strong></p>
-                        <p>{{ __('Month warranty') }}</p>
-                    </div>
-
-                    <div class="text-center col-6 col-md-6 col-lg-3">
-                        <img src="{{ asset('assets/sections/8.png') }}" alt="270+ Projects completed">
-                        <p><strong>270+</strong></p>
-                        <p>{{ __('Projects completed') }}</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -126,10 +98,10 @@
                             <div class="shadow-sm section__news-item">
                                 <div class="news-item__image">
                                     <a href="{{ route('news.show', $item) }}">
-                                        <img src="{{ asset($item->nw_image) }}" alt="{{ $item->nw_name }}" class="image">
+                                        <img src="{{ asset($item->getFirstMediaUrl('news_images', 'medium')) }}" alt="{{ $item->name }}" class="image">
                                         <div class="news-item__date">
-                                            <h4>{{ $item->nw_created->format('d') }}</h4>
-                                            <h6>{{ $item->nw_created->format('M') }}</h6>
+                                            <h4>{{ $item->created_at->format('d') }}</h4>
+                                            <h6>{{ $item->created_at->format('M') }}</h6>
                                         </div>
                                     </a>
                                 </div>
@@ -137,11 +109,11 @@
                                 <div class="news-item__body">
                                     <h3>
                                         <a href="{{ route('news.show', $item) }}">
-                                            {{ $item->trans('nw_name') }}
+                                            {{ $item->trans('name') }}
                                         </a>
                                     </h3>
 
-                                    <p>{{ $item->trans('nw_description') }}</p>
+                                    <p>{{ $item->trans('short_description') }}</p>
                                 </div>
                             </div>
                         </div>

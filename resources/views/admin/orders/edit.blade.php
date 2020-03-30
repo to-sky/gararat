@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title') Edit order: {{ $order->id }} @endsection
+@section('title', "Edit order: $order->id")
 
 @include('admin.includes.blocks.delete-item-modal', ['item' => 'product'])
 

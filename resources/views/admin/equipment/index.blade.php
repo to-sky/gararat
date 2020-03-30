@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title') Equipment @endsection
+@section('title', 'Equipment')
 
 @section('button')
     @include('admin.includes._add-btn', [

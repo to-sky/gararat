@@ -17,6 +17,7 @@ class CreateEquipmentTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('name_ar');
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->text('description_ar')->nullable();
             $table->unsignedBigInteger('equipment_group_id');

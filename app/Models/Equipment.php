@@ -6,6 +6,7 @@ use App\Services\MediaService;
 use App\Traits\{Excludable, Filterable, Saleable, Translatable};
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\{HasMedia, HasMediaTrait};
 use Spatie\MediaLibrary\Models\Media;
@@ -35,6 +36,8 @@ class Equipment extends Model implements HasMedia
             MediaService::store($equipment, [
                 'main_image', 'additional_images'
             ]);
+
+            $equipment->slug = Str::slug($equipment->name);
         });
 
         self::deleting(function ($equipment) {
@@ -42,6 +45,16 @@ class Equipment extends Model implements HasMedia
                 'main_image', 'additional_images'
             ]);
         });
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     /**

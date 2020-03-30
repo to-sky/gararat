@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title') Edit page: {{ $title }} @endsection
+@section('title', "Edit page: $title")
 
 @section('content')
     <form action="{{ route('updatePageItemAPI') }}" method="post" enctype="multipart/form-data">

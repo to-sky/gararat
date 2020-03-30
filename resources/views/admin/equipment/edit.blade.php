@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title') Edit equipment: {{ $equipment->name }} @endsection
+@section('title', "Edit equipment: $equipment->name")
 
 @section('content')
     <form action="{{ route('admin.equipment.update', $equipment) }}" method="post" autocomplete="off" enctype="multipart/form-data">

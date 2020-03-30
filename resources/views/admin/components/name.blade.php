@@ -1,7 +1,7 @@
 <div class="card mb-3 rounded-0 border">
     <div class="card-body">
         <div class="form-group">
-            <label for="">Name*</label>
+            <label for="name">Name*</label>
             <div class="input-group">
                 <input type="text" name="name"
                        class="form-control @error('name') is-invalid @enderror"

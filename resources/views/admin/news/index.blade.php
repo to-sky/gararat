@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title') News @endsection
+@section('title', 'News')
 
 @section('button')
     @include('admin.includes._add-btn', ['href' => route('admin.news.create'), 'item' => 'news'])
@@ -23,20 +23,26 @@
                     <tbody>
                     @foreach($news as $item)
                         <tr>
-                            <td>{{ $item->nw_id }}</td>
-                            <td><img src="{{ asset($item->nw_image) }}" height="28" alt=""></td>
-                            <td>{{ $item->nw_name }}</td>
-                            <td>{{ \Carbon\Carbon::parse($item->nw_created)->format('Y-m-d') }}</td>
+                            <td>{{ $item->id }}</td>
+                            <td>
+                                <img src="{{ asset($item->getFirstMediaUrl('news_images', 'thumb')) }}" height="50">
+                            </td>
+                            <td>{{ $item->title }}</td>
+                            <td>{{ $item->created_at->toDateString() }}</td>
                             <td>
                                 <div class="pull-right">
                                     <div class="btn-group btn-group-sm shadow-sm" role="group">
+                                        @include('admin.includes._show-btn' , [
+                                           'href' => route('news.show', $item)
+                                       ])
+
                                         @include('admin.includes._edit-btn' , [
-                                            'href' => route('admin.news.edit', $item->nw_id)
+                                            'href' => route('admin.news.edit', $item)
                                         ])
 
                                         @include('admin.includes._delete-btn' , [
-                                            'href' => route('admin.news.delete', ['news' => $item->nw_id]),
-                                            'modalText' => 'news "' . $item->nw_name . '"'
+                                            'href' => route('admin.news.destroy', ['news' => $item]),
+                                            'modalText' => 'news "' . $item->title . '"'
                                         ])
                                     </div>
                                 </div>
@@ -48,9 +54,7 @@
             </div>
 
             <div class="mt-2 pull-right">
-                @if($news->isNotEmpty())
-                    {{ $news->links() }}
-                @endif
+                {{ $news->links() }}
             </div>
         </div>
     </div>
