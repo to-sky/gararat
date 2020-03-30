@@ -41,8 +41,7 @@ class EquipmentRequest extends FormRequest
     {
         return [
             'name' => [
-                'required',
-                Rule::unique('equipment')->ignore($this->equipment)
+                'required', Rule::unique('equipment')->ignore($this->equipment)
             ],
             'name_ar' => 'required',
             'manufacturer_id' => 'required|integer',

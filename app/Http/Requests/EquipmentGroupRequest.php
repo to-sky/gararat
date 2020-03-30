@@ -26,8 +26,7 @@ class EquipmentGroupRequest extends FormRequest
     {
         return [
             'name' => [
-                'required',
-                Rule::unique('equipment_groups')->ignore($this->equipment_group)
+                'required', Rule::unique('equipment_groups')->ignore($this->equipment_group)
             ],
             'name_ar' => 'required'
         ];

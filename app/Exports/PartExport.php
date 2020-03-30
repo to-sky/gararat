@@ -20,7 +20,7 @@ class PartExport implements FromQuery, Responsable, WithHeadings, WithMapping, W
     public function headings(): array
     {
         return [
-            'id', 'Name', 'Name ar', 'Producer ID', 'Price', 'Special price', 'Is special', 'Qty'
+            'id', 'Name*', 'Name ar*', 'Producer ID*', 'Price*', 'Special price', 'Is special', 'Qty'
         ];
     }
 
@@ -29,7 +29,7 @@ class PartExport implements FromQuery, Responsable, WithHeadings, WithMapping, W
      */
     public function query()
     {
-        return Part::query();
+        return Part::exclude(['slug']);
     }
 
     /**

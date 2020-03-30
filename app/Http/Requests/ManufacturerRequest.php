@@ -26,8 +26,7 @@ class ManufacturerRequest extends FormRequest
     {
         return [
             'name' => [
-                'required',
-                Rule::unique('manufacturers')->ignore($this->manufacturer)
+                'required', Rule::unique('manufacturers')->ignore($this->manufacturer)
             ],
             'name_ar' => 'required'
         ];

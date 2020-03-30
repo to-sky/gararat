@@ -35,11 +35,11 @@
     </div>
 
     <div class="col-md-2">
-        <label for="producerId">Producer ID</label>
+        <label for="producerId">Producer ID*</label>
         <input type="text"
                class="form-control @error('producer_id') is-invalid @enderror"
                name="producer_id" id="producerId"
-               value="{{ isset($item) ? $item->producer_id : old('producer_id') }}">
+               value="{{ isset($item) ? $item->producer_id : old('producer_id') }}" required>
 
         @error('producer_id')
             <div class="invalid-feedback">{{ $message }}</div>

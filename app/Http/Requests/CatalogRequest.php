@@ -26,8 +26,7 @@ class CatalogRequest extends FormRequest
     {
         return [
             'name' => [
-                'required',
-                Rule::unique('catalogs')->ignore($this->catalog)
+                'required', Rule::unique('catalogs')->ignore($this->catalog)
             ],
             'name_ar' => 'required'
         ];

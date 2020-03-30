@@ -27,7 +27,9 @@ class PartRequest extends FormRequest
         return [
             'name' => 'required',
             'name_ar' => 'required',
-            'producer_id' => Rule::unique('parts')->ignore($this->part),
+            'producer_id' => [
+                'required', Rule::unique('parts')->ignore($this->part)
+            ],
             'price' => 'required|numeric',
             'special_price' => 'nullable|numeric'
         ];
