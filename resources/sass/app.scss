@@ -14,11 +14,6 @@
 @import "~bootstrap/scss/_utilities";
 @import "~bootstrap-v4-rtl/scss/bootstrap-rtl";
 
-// BLUEIMP
-@import "./vendor/blueimp/css/blueimp-gallery";
-// PRO_SLIDER
-//@import "~slider-pro/dist/css/slider-pro.css";
-
 @import "_variables";
 
 // Components
@@ -33,6 +28,7 @@
 @import 'components/_pagination';
 @import 'components/_figure';
 @import 'components/_product-counter';
+@import 'components/_home-slider';
 
 // Layout
 @import 'layout/_header';

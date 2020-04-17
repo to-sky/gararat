@@ -1,6 +1,6 @@
 @extends('website.layouts.master')
 
-@section('title') {{ $news->trans('title') }} @endsection
+@section('title', $news->trans('title'))
 
 @section('content')
     <div class="container">

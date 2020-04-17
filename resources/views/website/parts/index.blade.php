@@ -1,6 +1,6 @@
 @extends('website.layouts.master')
 
-@section('title') {{ __('Parts') }} @endsection
+@section('title', __('Parts'))
 
 @section('content')
     <div class="container">
@@ -8,9 +8,9 @@
 
         <h1 class="page-title">{{ __('Parts') }}</h1>
 
-        <div class="row mt-3">
-            <div class="col-md-3">
-                <div class="sidebar-filter shadow-sm border border-light-sm">
+        <div class="row">
+            <div class="col-md-12 col-lg-3">
+                <div class="sidebar-filter shadow-sm border border-light-sm mb-3">
                     <div class="sidebar-filter__item">
                         <h4 class="sidebar-filter__item__title">{{ __('Equipment groups') }}</h4>
 
@@ -63,10 +63,10 @@
                 </div>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-12 col-lg-9">
                 <div class="mb-3 border border-light-sm shadow-sm">
                     <div class="row p-3 parts-sorting">
-                        <div class="ml-4 form-inline">
+                        <div class="col form-inline">
                             <label for="price" class="parts-sorting__label">{{ __('Sort by price') }}: &nbsp;</label>
                             <select name="price" id="price" class="custom-select">
                                 <option value="asc">{{ __('Cheaper first') }}</option>
@@ -76,7 +76,7 @@
                             </select>
                         </div>
 
-                        <div class="ml-4 form-inline">
+                        <div class="col form-inline">
                             <label for="inStock" class="parts-sorting__label">{{ __('Group by')  }}: &nbsp;</label>
                             <select name="inStock" id="inStock" class="custom-select">
                                 <option value="desc">{{ __('In stock') }}</option>

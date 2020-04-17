@@ -88,12 +88,12 @@
                             <div class="d-flex justify-content-between">
                                 <div class="cart__item-count text-left">
                                     <i class="fas fa-shopping-cart"></i>
-                                    <span id="cartItems">0</span> {{ __('item(-s)') }}
+                                    <span id="cartItems">{{ Cart::count() }}</span> {{ __('item(-s)') }}
                                 </div>
 
                                 <div class="cart__checkout">
-                                    <a href="{{ route('checkout') }}"
-                                       class="shadow-sm btn btn-checkout">{{ __('Checkout') }}</a>
+                                    <a href="{{ route('cart') }}"
+                                       class="shadow-sm btn btn-checkout">{{ __('Cart') }}</a>
                                 </div>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 @extends('website.layouts.master')
 
-@section('title') {{ __('Search results for: :query', ['query' => request()->query('q')]) }} @endsection
+@section('title', __('Search results for: :query', ['query' => request()->query('q')]))
 
 @section('content')
     <div class="container">

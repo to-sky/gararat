@@ -10,7 +10,7 @@ use Session;
 use Mail;
 use App;
 
-use App\Models\{Slider, News, Page};
+use App\Models\{Slide, News, Page};
 
 class PageController extends Controller
 {
@@ -23,7 +23,7 @@ class PageController extends Controller
     {
         return view('website.pages.home', [
             'home' => Page::getHomePage(),
-            'slides' => Slider::orderBy('sl_order', 'ASC')->get(),
+            'slides' => Slide::all(),
             'news' => News::take(4)->get()
         ]);
     }

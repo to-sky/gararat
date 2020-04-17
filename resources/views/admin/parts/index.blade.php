@@ -40,7 +40,7 @@
                                         <div class="btn-group btn-group-sm shadow-sm" role="group">
                                             @include('admin.includes._show-btn' , [
                                                'href' => route('parts.show', $part)
-                                           ])
+                                            ])
 
                                             @include('admin.includes._edit-btn' , [
                                                 'href' => route('admin.parts.edit', $part)

@@ -1,72 +1,40 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::middleware('app.locale')->group(function() {
+   Route::namespace('Auth')->group(function () {
+       Route::get('login', 'LoginController@showLoginForm')->name('login');
+       Route::post('login', 'LoginController@login');
+       Route::post('logout', 'LoginController@logout')->name('logout');
+   });
 
-/**
- * Auth
- */
-Route::group([
-    'middleware' => 'app.locale',
-    'namespace' => 'Auth'
-], function () {
-    Route::get('login', 'LoginController@showLoginForm')->name('login');
-    Route::post('login', 'LoginController@login');
-    Route::post('logout', 'LoginController@logout')->name('logout');
-});
+    Route::namespace('Website')->group(function () {
+        Route::get('/', 'PageController@home')->name('home');
+        Route::get('/services', 'PageController@services')->name('services');
 
-/**
- * Site
- */
-Route::group([
-    'middleware' => 'app.locale',
-    'namespace' => 'Website'
-], function () {
-    Route::get('/', 'PageController@home')->name('home');
-    Route::get('/services', 'PageController@services')->name('services');
+        Route::get('/contacts', 'PageController@contacts')->name('contacts');
+        Route::post('/contact-us', 'PageController@contactUs')->name('contact-us');
 
-    Route::get('/contacts', 'PageController@contacts')->name('contacts');
-    Route::post('/contact-us', 'PageController@contactUs')->name('contact-us');
+        Route::get('/search', 'PageController@search')->name('search');
+        Route::get('/language/{locale}', 'PageController@languageChange')->name('language');
 
-    Route::get('/search', 'PageController@search')->name('search');
-    Route::get('/language/{locale}', 'PageController@languageChange')->name('language');
+        Route::get('/equipment', 'EquipmentController@index')->name('equipment.index');
+        Route::get('/equipment/{equipment:slug}', 'EquipmentController@show')->name('equipment.show');
 
-    Route::get('/equipment', 'EquipmentController@index')->name('equipment.index');
-    Route::get('/equipment/{equipment:slug}', 'EquipmentController@show')->name('equipment.show');
+        Route::get('/parts', 'PartController@index')->name('parts.index');
+        Route::get('/parts/filter', 'PartController@filter')->name('parts.filter');
+        Route::get('/parts/{part:slug}', 'PartController@show')->name('parts.show');
 
-    Route::get('/parts', 'PartController@index')->name('parts.index');
-    Route::get('/parts/filter', 'PartController@filter')->name('parts.filter');
-    Route::get('/parts/{part:slug}', 'PartController@show')->name('parts.show');
+        Route::get('/news', 'NewsController@index')->name('news.index');
+        Route::get('/news/{news:slug}', 'NewsController@show')->name('news.show');
 
-    Route::get('/news', 'NewsController@index')->name('news.index');
-    Route::get('/news/{news:slug}', 'NewsController@show')->name('news.show');
+        Route::get('/cart', 'CartController@index')->name('cart');
+        Route::post('/cart/store', 'CartController@store')->name('cart.store');
+        Route::patch('/cart/update', 'CartController@update')->name('cart.update');
+        Route::delete('/cart/remove', 'CartController@remove')->name('cart.remove');
 
-//    Route::get('/cart', 'OrderController@cart')->name('cart');
-    Route::get('/checkout', 'OrderController@checkout')->name('checkout');
-    Route::get('/checkout/success/{id}', 'OrderController@checkoutSuccess')->name('checkout-success');
-});
-
-
-
-
-
-Route::group(['middleware' => 'app.locale'], function() {
-//    // API
-//    Route::get('/api/cart/{userKey}', 'Website\OrderController@getCartPreviewData');
-//    Route::get('/api/cart/{userKey}/table', 'Website\OrderController@getCartTableData');
-//    Route::get('/api/cart/{userKey}/table-proceed', 'Website\OrderController@getCartProceedTableData');
-//    Route::get('/api/cart/remove/{userKey}/{cart_node}', 'Website\OrderController@removeItemFromCart');
-//    Route::post('/api/cart/actions/add/item', 'Website\OrderController@addItemToCart');
-    Route::post('/api/cart/proceed/action', 'Website\OrderController@proceedOrderAPI')->name('proceedOrderAPI');
-//
+        Route::get('/checkout', 'CheckoutController@index')->name('checkout');
+        Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
+    });
 });
 
 
@@ -90,7 +58,7 @@ Route::group([
     Route::resource('equipment', 'EquipmentController', ['except' => ['show']]);
     Route::resource('catalogs', 'CatalogController', ['except' => ['show']]);
     Route::resource('parts', 'PartController', ['except' => ['show']]);
-    Route::resource('sliders', 'SliderController', ['except' => ['show']]);
+    Route::resource('slides', 'SlideController', ['except' => ['show']]);
     Route::resource('news', 'NewsController', ['except' => ['show']]);
 
     Route::put('unit/get-parts', 'UnitController@getParts')->name('units.get-parts');
@@ -106,22 +74,24 @@ Route::group([
     Route::get('orders', 'OrderController@index')->name('orders.index');
     Route::get('orders/{order}', 'OrderController@edit')->name('orders.edit');
     Route::patch('orders/{order}/change-status', 'OrderController@changeStatus')->name('orders.changeStatus');
-    Route::patch('orders/{order}/delete-products', 'OrderController@deleteProducts')->name('orders.deleteProducts');
+    Route::delete('orders/{orderProduct}/delete-product', 'OrderController@deleteProduct')->name('orders.deleteProduct');
     Route::delete('orders/{order}', 'OrderController@destroy')->name('orders.destroy');
 });
 
 
 
+
+// TODO: need to be refactoring
 Route::group(['middleware' => 'auth'], function() {
     Route::group(['middleware' => 'auth.admin', 'namespace' => 'Admin'], function() {
         // Parts Constructor
-        Route::get('/secured/admin/constructor/list', 'PartsConstructor@index')->name('admin.figures.index');
-        Route::get('/secured/admin/constructor/add/init', 'PartsConstructor@create')->name('admin.figures.create');
-        Route::get('/secured/admin/constructor/add/create/{figure}', 'PartsConstructor@createConstructor')->name('admin.figures.constructor.create');
-        Route::get('/secured/admin/constructor/add/delete/{figure}', 'PartsConstructor@delete')->name('admin.figures.delete');
-        Route::post('/api/v1.0/constructor/init/save', 'PartsConstructor@saveConstructorInitAPI')->name('saveConstructorInitAPI');
-        Route::post('/api/v1.0/constructor/init/build/save', 'PartsConstructor@saveConstructorBuilderAPI')->name('saveConstructorBuilderAPI');
-        Route::post('/api/v1.0/constructor/init/build/clear', 'PartsConstructor@clearConstructorBuilderAPI')->name('clearConstructorBuilderAPI');
+//        Route::get('/secured/admin/constructor/list', 'PartsConstructor@index')->name('admin.figures.index');
+//        Route::get('/secured/admin/constructor/add/init', 'PartsConstructor@create')->name('admin.figures.create');
+//        Route::get('/secured/admin/constructor/add/create/{figure}', 'PartsConstructor@createConstructor')->name('admin.figures.constructor.create');
+//        Route::get('/secured/admin/constructor/add/delete/{figure}', 'PartsConstructor@delete')->name('admin.figures.delete');
+//        Route::post('/api/v1.0/constructor/init/save', 'PartsConstructor@saveConstructorInitAPI')->name('saveConstructorInitAPI');
+//        Route::post('/api/v1.0/constructor/init/build/save', 'PartsConstructor@saveConstructorBuilderAPI')->name('saveConstructorBuilderAPI');
+//        Route::post('/api/v1.0/constructor/init/build/clear', 'PartsConstructor@clearConstructorBuilderAPI')->name('clearConstructorBuilderAPI');
 
         // Pages
         Route::get('admin/pages', 'PageController@index')->name('admin.pages.index');

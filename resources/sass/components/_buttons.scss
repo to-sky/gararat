@@ -15,10 +15,14 @@
     -ms-user-select: none;
     user-select: none;
     background-image: none;
-    border: 1px solid transparent;
     border-radius: 4px;
     padding: 5px 16px;
     box-shadow: none !important;
+}
+
+.btn-sm-icon {
+    font-size: 10px;
+    padding: 5px 8px;
 }
 
 .btn-primary {
@@ -38,8 +42,6 @@
 .btn-outline-primary {
     border: 1px solid $fourth_color;
     color: $fourth_color;
-    font-size: 10px;
-    padding: 5px 8px;
 
     &:hover {
         background: $fourth_color;
@@ -50,8 +52,6 @@
 .btn-outline-danger {
     border: 1px solid $secondary_color;
     color: $secondary_color;
-    font-size: 10px;
-    padding: 5px 8px;
 
     &:hover {
         color: $white;
@@ -62,11 +62,19 @@
 .btn-outline-muted {
     border: 1px solid $text_muted;
     color: $text_muted;
-    font-size: 10px;
-    padding: 5px 8px;
 
     &:hover {
         color: $white;
         background: $text_muted;
+    }
+}
+
+button:disabled {
+    color: $text_muted !important;
+    cursor: not-allowed;
+
+    &:hover {
+        color: $text_muted !important;
+        background: none !important;
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DB;
 use App\Models\Order;
 
 class OrderController extends Controller
@@ -32,12 +32,9 @@ class OrderController extends Controller
         return view('admin.orders.edit', compact('order'));
     }
 
-
-
-
-
-
     /**
+     * Change order status
+     *
      * @param Request $request
      * @param Order $order
      * @return \Illuminate\Http\RedirectResponse
@@ -45,20 +42,22 @@ class OrderController extends Controller
     public function changeStatus(Request $request, Order $order)
     {
         $order->update([
-            'status' => $request->get('orderStatus')
+            'status' => $request->order_status
         ]);
 
         return redirect()->back();
     }
 
     /**
-     * @param Order $order
-     * @param $productIds
+     * Delete product from order
+     *
+     * @param OrderProduct $orderProduct
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function deleteProducts(Order $order, $productIds)
+    public function deleteProduct(OrderProduct $orderProduct)
     {
-        $order->products()->whereIn('id', $productIds)->map->delete();
+        $orderProduct->delete();
 
         return redirect()->back();
     }

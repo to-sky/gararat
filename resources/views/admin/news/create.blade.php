@@ -13,26 +13,25 @@
                     <div class="input-group">
                         <input type="text" name="title"
                                class="form-control @error('title') is-invalid @enderror"
-                               placeholder="English" value="{{ isset($item) ? $item->title : old('title') }}" required>
+                               placeholder="English" value="{{ old('title') }}" required>
 
                         <input type="text" name="title_ar" class="form-control @error('title_ar') is-invalid @enderror"
-                               placeholder="Arabic" value="{{ isset($item) ? $item->title_ar : old('title_ar') }}" required>
-
-                        @error('title')
-                            <div class="col invalid-feedback">{{ $message }}</div>
-                        @enderror
-
-                        @error('title_ar')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                               placeholder="Arabic" value="{{ old('title_ar') }}" required>
                     </div>
+                    @error('title')
+                        <div class="col invalid-feedback">{{ $message }}</div>
+                    @enderror
+
+                    @error('title_ar')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="shortDescription">Short description</label>
                     <div class="input-group">
-                        <textarea rows="5" name="short_description" id="shortDescription" class="form-control" placeholder="English">{{ isset($item) ? $item->short_description : old('short_description') }}</textarea>
-                        <textarea rows="5" name="short_description_ar" id="shortDescriptionAr" class="form-control" placeholder="Arabic">{{ isset($item) ? $item->short_description_ar : old('short_description_ar') }}</textarea>
+                        <textarea rows="5" name="short_description" id="shortDescription" class="form-control" placeholder="English">{{ old('short_description') }}</textarea>
+                        <textarea rows="5" name="short_description_ar" id="shortDescriptionAr" class="form-control" placeholder="Arabic">{{ old('short_description_ar') }}</textarea>
                     </div>
                 </div>
 
@@ -42,19 +41,19 @@
                             <a class="nav-link active" id="bodyTab" data-toggle="tab" href="#body" role="tab" aria-controls="body" aria-selected="true">Body</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="bodyArTab" data-toggle="tab" href="#bodyAr" role="tab" aria-controls="bodyAr" aria-selected="false">Body ar</a>
+                            <a class="nav-link" id="bodyArTab" data-toggle="tab" href="#bodyAr" role="tab" aria-controls="bodyAr" aria-selected="false">Body arabic</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="bodyContent">
                         <div class="tab-pane fade show active" id="body" role="tabpanel" aria-labelledby="bodyTab">
-                            <textarea name="body" id="body" class="summernote @error('body') is-invalid @enderror" required></textarea>
+                            <textarea name="body" id="body" class="summernote @error('body') is-invalid @enderror" required>{{ old('body') }}</textarea>
 
                             @error('body')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="tab-pane fade" id="bodyAr" role="tabpanel" aria-labelledby="bodyArTab">
-                            <textarea name="body_ar" id="bodyAr" class="summernote"></textarea>
+                            <textarea name="body_ar" id="bodyAr" class="summernote">{{ old('body_ar') }}</textarea>
                         </div>
                     </div>
                 </div>

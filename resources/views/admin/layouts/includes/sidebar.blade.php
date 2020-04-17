@@ -106,14 +106,14 @@
         </a>
     </li>
 
-    {{-- Slider --}}
+    {{-- Slides --}}
     <li class="nav-item">
-        <a href="{{ route('admin.sliders.index') }}"
-           class="nav-link {{ request()->routeIs('admin.sliders.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.slides.index') }}"
+           class="nav-link {{ request()->routeIs('admin.slides.*') ? 'active' : '' }}">
             <span class="icon-holder">
                 <i class="c-blue-500 ti-layout-slider"></i>
             </span>
-            <span class="title">Sliders</span>
+            <span class="title">Slides</span>
         </a>
     </li>
 

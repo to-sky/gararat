@@ -43,11 +43,11 @@
   "You are receiving this email because we received a password reset request for your account.": "لقد استلمت هذا الإيميل لأننا استقبلنا طلباً لاستعادة كلمة مرور حسابك.",
   "Your email address is not verified.": "بريدك الإلكتروني غير موثّق.",
   "Whoops!": "عذراً!",
-
   "GARARAT – the first e-hypermarket for agricultural tractors, equipment and spare parts!": "جرارات هو اول سوق إليكترونى للجرارات الزراعية و المعدات وقطع الغيار",
   "Agricultural tractors, equipment, genuine spare parts and service": "جرارات زراعية , معدات , قطع غيار اصلية و خدمة مؤهلة",
   "Thank you for your order our specialists will reply you shortly! Please feel free to contact us for any enquiry.": "نشكرك على طلبك. سيرد عليك المتخصصون لدينا قريبًا! لا تتردد في الاتصال بنا للحصول على أي استفسار.",
-  "Order :id created successfully!": "الطلب :id إنشاء المعرف بنجاح!",
+  "Order №:id created successfully!": "الطلب :id إنشاء المعرف بنجاح!",
+  "Thanks": "شكر",
   "Order created successfully": "تم إنشاء الطلب بنجاح",
   "Search results for: :query": "تم إنشاء الطلب بنجاح :query",
   "English": "عربى",
@@ -79,9 +79,11 @@
   "Our News": "أخبارنا",
   "All rights reserved": "كل الحقوق محفوظة",
   "Image": "صورة",
+  "Product": "المنتج",
   "Product name": "إسم المنتج",
   "Quantity": "الكمية",
   "Unit price": "سعر الوحدة",
+  "Total": "مجموع",
   "Total price": "السعر الاجمالى",
   "Delete": "إلغاء",
   "Return to home page": "العودة الى الصفحة الرئيسية",
@@ -105,5 +107,10 @@
   "Not in stock": "ليس في المخزون",
   "Yes" : "نعم",
   "No": "لا",
-  "Technical Description": "المواصفات الفنية"
+  "Technical Description": "المواصفات الفنية",
+  "Read more": "اقرأ المزيد",
+  "Your cart is empty.": "عربة التسوق فارغة.",
+  "Please add products to cart.": "يرجى إضافة المنتجات إلى سلة التسوق.",
+  "Go to Home": "انتقل إلى المنزل",
+  "Successfully added to cart": "تمت الإضافة إلى سلة التسوق بنجاح"
 }

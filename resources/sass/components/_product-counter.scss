@@ -6,11 +6,12 @@
     }
 
     input[type=number] {
-        padding: 12px 0;
-        height: 20px;
+        padding: 4.5px 0;
         max-width: 40px;
-        border-radius: 4px;
+        max-height: 26px;
+        line-height: 15px;
         border: 1px solid $border_color;
+        border-radius: 4px;
         text-align: center;
         color: $third_color;
         font-size: 13px;
@@ -28,7 +29,7 @@
             outline: none;
         }
 
-        &:hover i {
+        &:not([disabled]):hover i {
             color: $secondary_color;
         }
 

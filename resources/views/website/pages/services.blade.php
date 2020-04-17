@@ -1,6 +1,6 @@
 @extends('website.layouts.master')
 
-@section('title') {{ __('Services') }} @endsection
+@section('title', __('Services'))
 
 @section('content')
     <div class="container">

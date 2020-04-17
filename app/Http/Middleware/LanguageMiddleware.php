@@ -18,8 +18,10 @@ class LanguageMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $locale=Session::get('locale', Config::get('app.locale'));
+        $locale = Session::get('locale', Config::get('app.locale'));
+
         App::setLocale($locale);
+
         return $next($request);
     }
 }

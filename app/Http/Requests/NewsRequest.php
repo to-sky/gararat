@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class NewsRequest extends FormRequest
 {
@@ -14,6 +15,20 @@ class NewsRequest extends FormRequest
     public function authorize()
     {
         return true;
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        list($date) = explode(' ', $this->created_at);
+
+        $this->merge([
+            'slug' => Str::slug("{$this->title}-{$date}"),
+        ]);
     }
 
     /**

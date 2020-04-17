@@ -22,7 +22,7 @@
                             <tr>
                                 <td>{{ $order->id }}</td>
                                 <td>{{ $order->full_name }}</td>
-                                <td>{{ $order->displayTotalPrice() }}</td>
+                                <td>{!! displayPrice($order->total) !!}</td>
                                 <td>{{ $order->displayStatus() }}</td>
                                 <td>{{ $order->created }}</td>
                                 <td>

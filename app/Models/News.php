@@ -15,7 +15,7 @@ class News extends Model implements HasMedia
     use HasMediaTrait, Translatable;
 
     protected $fillable = [
-        'title', 'title_ar', 'short_description', 'short_description_ar', 'body', 'body_ar', 'created_at'
+        'title', 'title_ar', 'slug', 'short_description', 'short_description_ar', 'body', 'body_ar', 'created_at'
     ];
 
     protected static function boot()
@@ -24,8 +24,6 @@ class News extends Model implements HasMedia
 
         self::saving(function($news) {
             MediaService::store($news, ['news_images']);
-
-            $news->slug = Str::slug($news->title.'-'.$news->created_at->toDateString());
         });
 
         self::deleting(function ($news) {

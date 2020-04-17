@@ -29,6 +29,6 @@ class GoogleRecaptcha implements Rule
      */
     public function message()
     {
-        return 'Are you a robot?';
+        return __('Are you a robot?');
     }
 }

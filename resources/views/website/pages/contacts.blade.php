@@ -1,6 +1,6 @@
 @extends('website.layouts.master')
 
-@section('title') {{ __('Contacts') }} @endsection
+@section('title', __('Contacts'))
 
 @push('scripts')
     <script src="https://www.google.com/recaptcha/api.js"></script>
@@ -23,7 +23,7 @@
                 <div class="contacts__form">
                     <h3 class="mb-3">{{ __('Contact Us') }}</h3>
 
-                    <form action="{{ route('contact-us') }}" method="post" autocomplete="off"
+                    <form action="{{ route('contact-us') }}" method="post"
                           class="p-4 shadow-sm border border-light-sm contact-us" id="contactFormPageForm">
                         @csrf
 

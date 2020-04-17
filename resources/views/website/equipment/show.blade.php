@@ -1,6 +1,6 @@
 @extends('website.layouts.master')
 
-@section('title') {{ $equipment->trans('name') }} @endsection
+@section('title', $equipment->trans('name'))
 
 @section('content')
     <div class="container">
@@ -10,7 +10,7 @@
             {{ $equipment->trans('name') }}
             <span class="float-{{ isLocaleEn() ? 'right' : 'left' }}">
                 @auth
-                    <a href="{{ route('admin.equipment.edit', $equipment) }}" class="btn btn-outline-muted" target="_blank">
+                    <a href="{{ route('admin.equipment.edit', $equipment) }}" class="btn btn-sm-icon btn-outline-muted" target="_blank">
                         <i class="fas fa-edit"></i>
                     </a>
                 @endauth
@@ -19,11 +19,11 @@
 
         <div class="row">
             <div class="col-md-6">
-                @component('website.components.product_images', ['product' => $equipment])
+                @component('website.includes._product_images', ['product' => $equipment])
                 @endcomponent
             </div>
             <div class="col-md-5 offset-1">
-                @component('website.components.product_description', ['product' => $equipment])
+                @component('website.includes._product_description', ['product' => $equipment])
                 @endcomponent
             </div>
         </div>

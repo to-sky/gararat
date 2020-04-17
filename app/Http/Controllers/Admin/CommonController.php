@@ -4,17 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-use App\Models\{
-    Slider, News, Page
-};
+use App\Models\Page;
 
 class CommonController extends Controller
 {
-    ########################################################################
-    ### Pages
-    ########################################################################
     /**
+     * Update page
+     *
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -28,6 +24,8 @@ class CommonController extends Controller
     }
 
     /**
+     * Update Homepage
+     *
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */

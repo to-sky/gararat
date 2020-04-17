@@ -27,6 +27,8 @@ class PartImport implements ToCollection, WithHeadingRow
                 return null;
             }
 
+            $part['is_special'] = $part['is_special'] ?? 0;
+
             $id = $part['id'];
 
             return is_null($id)

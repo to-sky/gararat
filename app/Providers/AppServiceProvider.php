@@ -15,23 +15,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if(!isset($_COOKIE['userKey']) || $_COOKIE['userKey'] === NULL) {
-            setcookie('userKey', hash('sha256', uniqid()), time()+60*60*24*30);
-        }
-        //view()->share($data);
+        $this->addPaginateToCollection();
+    }
 
-
-
-
-        /**
-         * Paginate a standard Laravel Collection.
-         *
-         * @param int $perPage
-         * @param int $total
-         * @param int $page
-         * @param string $pageName
-         * @return array
-         */
+    /**
+     * Paginate a standard Laravel Collection.
+     *
+     */
+    public function addPaginateToCollection()
+    {
         Collection::macro('paginate', function($perPage = 15, $total = null, $page = null, $pageName = 'page') {
             $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
 

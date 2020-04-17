@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class EquipmentRequest extends FormRequest
@@ -27,9 +28,13 @@ class EquipmentRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
-        $filteredSpecificationData = collect($this->specifications)->flatten()->filter();
+        if (collect($this->specifications)->flatten()->filter()->isEmpty()) {
+            $this->merge(['specifications' => null]);
+        }
 
-        if($filteredSpecificationData->isEmpty()) $this->merge(['specifications' => null]);
+        $this->merge([
+            'slug' => Str::slug($this->name),
+        ]);
     }
 
     /**

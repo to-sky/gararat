@@ -1,32 +1,37 @@
 @extends('website.layouts.master')
 
-@section('title')
-    {{ __('Agricultural tractors, equipment, genuine spare parts and service') }}
-@endsection
+@section('title', __('Agricultural tractors, equipment, genuine spare parts and service'))
 
 @section('description')
     {{ __('GARARAT – the first e-hypermarket for agricultural tractors, equipment and spare parts!') }}
 @endsection
 
 @section('content')
-    <div class="slider__wrapper1 position-relative">
-        <div class="slider-pro" id="homeSlider">
-            <div class="sp-slides">
-                @foreach($slides as $slide)
-                    <div class="sp-slide">
-                        @if($slide->sl_description !== null)
-                            <a href="{{ $slide->sl_description }}">
-                                <img src="{{ asset($slide->sl_image) }}" alt="{{ $slide->sl_title }}">
-                            </a>
-                        @else
-                            <img src="{{ asset($slide->sl_image) }}" alt="{{ $slide->sl_title }}">
-                        @endif
-                    </div>
-                @endforeach
+    {{-- Slider --}}
+    <div id="homeSlider" class="carousel slide home-slider" data-ride="carousel" data-interval="7000">
+        <ol class="carousel-indicators">
+            @foreach($slides as $key => $slide)
+            <li data-target="#homeSlider" data-slide-to="{{ $key }}" @if($loop->first) class="active" @endif></li>
+            @endforeach
+        </ol>
+        <div class="carousel-inner">
+            @foreach($slides as $slide)
+            <div class="carousel-item @if($loop->first) active @endif blackout"
+                 style="background-image: url({{ asset($slide->getFirstMediaUrl('home_slide'))  }})">
+
+                <div class="carousel-caption container text-{{ $slide->displayTextPosition(true) }}">
+                    <h1 class="carousel-title text-uppercase">{{ $slide->trans('title') }}</h1>
+                    <p class="carousel-sub-title">{{ $slide->trans('sub_title') }}</p>
+                    @if ($slide->link)
+                        <p class="carousel-read-more"><a href="{{ $slide->link }}" class="btn btn-primary">{{ __('Read more') }}</a></p>
+                    @endif
+                </div>
             </div>
+            @endforeach
         </div>
     </div>
 
+    {{-- Main content --}}
     <div class="container">
         <h1 class="text-center homepage">{{ isLocaleEn() ? $home->block_1 : $home->block_1_ar }}</h1>
     </div>

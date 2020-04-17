@@ -1,11 +1,11 @@
 @component('mail::message')
-# Your order №{{ $order->displayId() }} is successfully created!
+# {{ __('Order №:id created successfully!', ['id' => $order->id]) }}
 
 <p>{{ $order->full_name }}</p>
-<p>Email: {{ $order->email }} | Phone: {{ $order->phone }}</p>
-<p>Address: {{ $order->full_address }}</p>
-<p>Comment: {{ $order->comment }}</p>
+<p>{{ __('Email') }}: {{ $order->email }} | {{ __('Phone') }}: {{ $order->phone }}</p>
+<p>{{ __('Address') }}: {{ $order->full_address }}</p>
+<p>{{ __('Comment') }}: {{ $order->comment }}</p>
 
-Thanks,<br>
+{{ __('Thanks') }},<br>
 {{ config('app.name') }}
 @endcomponent

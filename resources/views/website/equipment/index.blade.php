@@ -1,6 +1,6 @@
 @extends('website.layouts.master')
 
-@section('title') {{ __('Equipment') }} @endsection
+@section('title', __('Equipment'))
 
 @section('content')
     <div class="container">
@@ -8,7 +8,7 @@
 
         <h1 class="page-title">{{ __('Equipment') }}</h1>
 
-        <div class="row mt-3">
+        <div class="row">
             <div class="col-md-3">
                 <div class="sidebar-filter shadow-sm border border-light-sm">
                     <div class="sidebar-filter__item">
