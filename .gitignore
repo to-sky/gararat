@@ -1,8 +1,9 @@
 /node_modules
-/public/js
+/public/admin
 /public/css
+/public/fonts
 /public/images
-/public/admin-panel
+/public/js
 /public/storage
 /storage/*.key
 /vendor

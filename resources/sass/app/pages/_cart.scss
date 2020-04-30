@@ -1,0 +1,21 @@
+.cart-preloader {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: white;
+  opacity: .8;
+
+  i {
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+    top: calc(50% - 60px);
+    font-size: 60px;
+    color: $secondary_color;
+  }
+}
