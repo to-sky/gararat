@@ -1,0 +1,99 @@
+.homepage .section__news-item {
+    margin-bottom: 0;
+}
+
+.section__news {
+    .section__news-item {
+        margin-bottom: 50px;
+        background: $white;
+        overflow: hidden;
+
+        .news-item__image {
+            overflow: hidden;
+            max-height: 140px;
+
+            a {
+                display: block;
+                width: 100%;
+                position: relative;
+                color: $primary_color;
+                transition: $default_transition;
+
+                img {
+                    transition: $default_transition;
+                }
+
+                .news-item__date {
+                    position: absolute;
+                    top: 0;
+                    right: 10px;
+                    z-index: 99;
+                    background: $white;
+                    text-align: center;
+                    padding: 5px;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        left: 0.5px;
+                        bottom: -14px;
+                        border-left: 19.4px solid transparent;
+                        border-right: 17.6px solid transparent;
+                        border-top: 14px solid $white;
+                        height: 0px;
+                        width: 0px;
+                        display: none;
+                    }
+
+                    h4 {
+                        font-weight: 300;
+                        font-size: 1.6rem;
+                        margin-bottom: 5px;
+                    }
+
+                    h6 {
+                        margin-bottom: 0;
+                        font-weight: 300;
+                        font-size: 1.4rem;
+                    }
+                }
+            }
+        }
+
+        .news-item__body {
+            padding: 10px;
+
+            h3 {
+                margin-bottom: 10px;
+                line-height: 1;
+
+                a {
+                    font-weight: 400;
+                    font-size: 1.3rem;
+                    color: $primary_color;
+
+                    &:hover {
+                        color: $fourth_color;
+                    }
+                }
+            }
+        }
+
+        &:hover {
+
+            .news-item__image {
+                transition: $default_transition;
+
+                a {
+                    transition: $default_transition;
+
+                    img {
+                        transform: scale(1.15);
+                        transition: $default_transition;
+                    }
+                }
+            }
+        }
+    }
+}
+

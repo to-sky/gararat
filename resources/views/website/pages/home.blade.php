@@ -7,124 +7,96 @@
 @endsection
 
 @section('content')
-    {{-- Slider --}}
-    <div id="homeSlider" class="carousel slide home-slider" data-ride="carousel" data-interval="7000">
-        <ol class="carousel-indicators">
-            @foreach($slides as $key => $slide)
-            <li data-target="#homeSlider" data-slide-to="{{ $key }}" @if($loop->first) class="active" @endif></li>
-            @endforeach
-        </ol>
-        <div class="carousel-inner">
-            @foreach($slides as $slide)
-            <div class="carousel-item @if($loop->first) active @endif blackout"
-                 style="background-image: url({{ asset($slide->getFirstMediaUrl('home_slide'))  }})">
+    <div class="homepage">
+        {{-- Slider --}}
+        <div id="homeSlider" class="carousel slide home-slider" data-ride="carousel" data-interval="97000">
+            <div class="carousel-inner">
+                @foreach($slides as $slide)
+                    <div class="carousel-item
+                                @if($loop->first) active @endif
+                                @if($slide->trans('title') || $slide->trans('sub_title')) blackout @endif"
+                         style="background-image: url({{ asset($slide->getFirstMediaUrl('home_slide'))  }})">
 
-                <div class="carousel-caption container text-{{ $slide->displayTextPosition(true) }}">
-                    <h1 class="carousel-title text-uppercase">{{ $slide->trans('title') }}</h1>
-                    <p class="carousel-sub-title">{{ $slide->trans('sub_title') }}</p>
-                    @if ($slide->link)
-                        <p class="carousel-read-more"><a href="{{ $slide->link }}" class="btn btn-primary">{{ __('Read more') }}</a></p>
-                    @endif
-                </div>
+                        <div class="carousel-caption container text-{{ $slide->displayTextPosition(true) }}">
+                            @if($slide->trans('title'))
+                                <h1 class="carousel-title text-uppercase">{{ $slide->trans('title') }}</h1>
+                            @endif
+
+                            @if($slide->trans('sub_title'))
+                                <p class="carousel-sub-title">{{ $slide->trans('sub_title') }}</p>
+                            @endif
+
+                            @if ($slide->link)
+                                <p class="carousel-read-more"><a href="{{ $slide->link }}" class="btn btn-danger border-0">{{ __('Read more') }}</a></p>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
             </div>
-            @endforeach
+
+            <a class="carousel-control-prev" href="#homeSlider" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">{{ __('Previous') }}</span>
+            </a>
+            <a class="carousel-control-next" href="#homeSlider" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">{{ __('Next') }}</span>
+            </a>
         </div>
-    </div>
 
-    {{-- Main content --}}
-    <div class="container">
-        <h1 class="text-center homepage">{{ isLocaleEn() ? $home->block_1 : $home->block_1_ar }}</h1>
-    </div>
-
-    <div class="section bg-section">
-        <div class="container">
-            <div>
-                <h2>{{ isLocaleEn() ? $home->block_2 : $home->block_2_ar }}</h2>
-                <div>{!! isLocaleEn() ? $home->block_3 : $home->block_3_ar !!}</div>
-            </div>
-
-            <div class="section__blocks">
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <div class="section__block">
-                            <img src="{{ asset('assets/sections/2.jpg') }}" alt="Tractors">
-                            <a href="{{ route('equipment.index') }}">
-                                <span>{{ __('Equipment') }}</span>
-                            </a>
-                        </div>
+        {{-- Main content --}}
+        <section class="home-icons">
+            <div class="container">
+                <div class="d-flex flex-column flex-md-row justify-content-center">
+                    <div class="home-icons__item">
+                        <a href="{{ route('equipment.index') }}" class="home-icons__link">
+                            <i class="home-icons__icon equipment-icon"></i>
+                            {{ __('Equipment') }}
+                        </a>
                     </div>
 
-                    <div class="col-12 col-md-4">
-                        <div class="section__block">
-                            <img src="{{ asset('assets/sections/4.jpg') }}" alt="Parts">
-                            <a href="{{ route('parts.index') }}">
-                                <span>{{ __('Parts') }}</span>
-                            </a>
-                        </div>
+                    <div class="home-icons__item">
+                        <a href="{{ route('parts.index') }}" class="home-icons__link">
+                            <i class="home-icons__icon parts-icon icon_size_s"></i>
+                            {{ __('Parts') }}
+                        </a>
                     </div>
 
-                    <div class="col-12 col-md-4">
-                        <div class="section__block">
-                            <img src="{{ asset('assets/sections/3.jpg') }}" alt="Service">
-                            <a href="{{ route('services') }}">
-                                <span>{{ __('Services') }}</span>
-                            </a>
-                        </div>
+                    <div class="home-icons__item">
+                        <a href="{{ route('services') }}" class="home-icons__link">
+                            <i class="home-icons__icon services-icon icon_size_s"></i>
+                            {{ __('Services') }}
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-7">
-                    <div>
-                        <h2>{{ isLocaleEn() ? $home->block_4 : $home->block_4_ar }}</h2>
-                        <div>{!! isLocaleEn() ? $home->block_5 : $home->block_5_ar !!}</div>
+        <section>
+            <div class="container">
+                <h1 class="home-title">{{ isLocaleEn() ? $home->block_1 : $home->block_1_ar }}</h1>
+            </div>
+        </section>
+
+        {{-- TODO: remove hardcode --}}
+        <section class="bg-white">
+            <div class="container">
+                <h2 class="page-title">{{ __('GARARAT – the first e-hypermarket for agricultural tractors, equipment and spare parts!') }}</h2>
+                <p>{{ __('GARARAT is a reliable equipment, genuine spare parts and qualified service for all branches of agriculture. We provide a full range of services: from consultations when choosing equipment to warranty and post-warranty maintenance.') }}</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2 class="page-title">{{ __('Our News') }}</h2>
+                <div class="section__news">
+                    <div class="row">
+                        @foreach($news as $item)
+                            @include('website.includes._news-item')
+                        @endforeach
                     </div>
                 </div>
-
-                <div class="col-12 col-lg-5">
-                    <img src="{{ asset('assets/sections/1.jpg') }}" alt="Belarus agriculture tractors" class="image">
-                </div>
             </div>
-        </div>
-    </div>
-
-    <div class="section bg-section">
-        <div class="container">
-            <h2>{{ __('Our News') }}</h2>
-            <div class="section__news">
-                <div class="row">
-                    @foreach($news as $item)
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="shadow-sm section__news-item">
-                                <div class="news-item__image">
-                                    <a href="{{ route('news.show', $item) }}">
-                                        <img src="{{ asset($item->getFirstMediaUrl('news_images', 'medium')) }}" alt="{{ $item->name }}" class="image">
-                                        <div class="news-item__date">
-                                            <h4>{{ $item->created_at->format('d') }}</h4>
-                                            <h6>{{ $item->created_at->format('M') }}</h6>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="news-item__body">
-                                    <h3>
-                                        <a href="{{ route('news.show', $item) }}">
-                                            {{ $item->trans('name') }}
-                                        </a>
-                                    </h3>
-
-                                    <p>{{ $item->trans('short_description') }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+        </section>
     </div>
 @endsection

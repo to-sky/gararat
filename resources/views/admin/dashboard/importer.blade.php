@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="col-md-2">
-                                <button class="btn btn-outline-success pull-right" type="submit" id="exportBtn">
+                                <button class="btn btn-outline-success float-right" type="submit" id="exportBtn">
                                     <i class="fas fa-file-excel"></i>
                                 </button>
                             </div>
@@ -95,7 +95,7 @@
                                 @error('import_file')
                                 <div class="col">
                                     <div class="d-b invalid-feedback pr-3 w-50">
-                                        <span class="pull-right">{{ $message }}</span>
+                                        <span class="float-right">{{ $message }}</span>
                                     </div>
                                 </div>
                                 @enderror

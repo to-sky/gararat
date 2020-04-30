@@ -34,7 +34,7 @@
                 <h5 class="mb-0">
                     <span>Parts</span>
                     <small id="partsCount" data-parts-count="{{ $unit->unitParts->count() }}"
-                            class="badge border text-muted pull-right fsz-xs mt-1 mr-3 bg-light"
+                            class="badge border text-muted float-right fsz-xs mt-1 mr-3 bg-light"
                     >{{ $unit->unitParts->count() }}</small>
                 </h5>
             </div>

@@ -35,7 +35,7 @@
                                 </td>
 
                                 <td>
-                                    <div class="pull-right">
+                                    <div class="float-right">
                                         <div class="btn-group btn-group-sm shadow-sm" role="group">
                                             @include('admin.includes._edit-btn' , [
                                                 'href' => route('admin.slides.edit', $slide)

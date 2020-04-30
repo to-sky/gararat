@@ -15,6 +15,8 @@ return [
 
     'name' => env('APP_NAME', 'Gararat'),
 
+    'site_name' => env('APP_SITE_NAME', 'Gararat.com'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

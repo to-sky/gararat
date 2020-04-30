@@ -57,3 +57,15 @@ Breadcrumbs::for('contacts', function ($trail) {
     $trail->parent('home');
     $trail->push(__('Contacts'), route('admin.pages.contacts'));
 });
+
+// Home > Cart
+Breadcrumbs::for('cart', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('Cart'), route('cart'));
+});
+
+// Home > Cart > Checkout
+Breadcrumbs::for('checkout', function ($trail) {
+    $trail->parent('cart');
+    $trail->push(__('Checkout'), route('checkout'));
+});

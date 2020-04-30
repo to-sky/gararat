@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Website
+ */
 Route::middleware('app.locale')->group(function() {
    Route::namespace('Auth')->group(function () {
        Route::get('login', 'LoginController@showLoginForm')->name('login');
@@ -98,7 +100,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('admin/pages/edit/home', 'PageController@home')->name('admin.pages.home');
         Route::get('admin/pages/edit/services', 'PageController@services')->name('admin.pages.services');
         Route::get('admin/pages/edit/contacts', 'PageController@contacts')->name('admin.pages.contacts');
-        Route::get('admin/pages/edit/{catalog}', 'PageController@catalog')->name('admin.pages.catalog');
         Route::post('/api/v1.0/pages/update', 'CommonController@updatePageItemAPI')->name('updatePageItemAPI');
         Route::post('/api/v1.0/pages/home/update', 'CommonController@updateHomePageItemAPI')->name('updateHomePageItemAPI');
     });

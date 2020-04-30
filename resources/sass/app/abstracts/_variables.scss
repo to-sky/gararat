@@ -1,0 +1,30 @@
+// Colors
+$primary_color: #222;
+$primary_color_light: #333;
+
+$secondary_color: #fc0203;
+$secondary_color_muted: #e84141;
+$secondary_color_light: #ff6969;;
+
+$fourth_color: #2d7dd2;
+$fourth_color_grey_light: #828fab;
+
+$white: #fff;
+$white_muted: #f1f1f1;
+
+$muted_color: #666;
+$muted_color_light: #b3b3b3;
+$muted_color_ultra_light: #ececec;
+
+$success_color: #41ad48;
+
+// Borders
+$border_color: #dee2e6;
+$border_light: 1px solid $muted_color_ultra_light;
+
+// Transitions
+$default_transition: 0.3s all ease;
+
+// Shadow
+$shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+$shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);

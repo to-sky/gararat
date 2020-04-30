@@ -18,6 +18,10 @@ class Order extends Model
         'address', 'status'
     ];
 
+    protected $casts = [
+        'total' => 'float'
+    ];
+
     protected static function boot()
     {
         parent::boot();
@@ -51,6 +55,22 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Display price with html structure
+     *
+     * @return string
+     */
+    public function displayTotalPrice()
+    {
+        $productsWithEmptyPrice = $this->orderProducts->where('price', '0')->all();
+
+        if ($productsWithEmptyPrice) {
+            return displayPrice(0);
+        }
+
+        return displayPrice($this->total);
     }
 
     /**

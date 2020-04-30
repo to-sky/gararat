@@ -23,8 +23,8 @@
                 @component('website.includes._product_images', ['product' => $part])
                 @endcomponent
             </div>
-            <div class="col-md-5 offset-1">
-                @component('website.includes._product_description', ['product' => $part])
+            <div class="col-md-6">
+                @component('website.includes._product_description', ['product' => $part, 'btnClass' => 'w-100'])
                 @endcomponent
             </div>
         </div>

@@ -1,0 +1,29 @@
+.sidebar-filter {
+    background: $white;
+}
+
+.sidebar-filter__item__title {
+    margin-bottom: 0;
+    padding: 20px 15px;
+    border-bottom: 1px solid $border_color;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: $muted_color;
+}
+
+.sidebar-filter__item__filters {
+    padding: 15px;
+}
+
+.sidebar-filter__item__filter {
+    padding-bottom: 15px;
+}
+
+.sidebar-filter__item__filter:last-child {
+    padding-bottom: 0;
+}
+
+
+
+
+

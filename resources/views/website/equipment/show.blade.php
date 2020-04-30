@@ -17,13 +17,13 @@
             </span>
         </h1>
 
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-md-6">
                 @component('website.includes._product_images', ['product' => $equipment])
                 @endcomponent
             </div>
-            <div class="col-md-5 offset-1">
-                @component('website.includes._product_description', ['product' => $equipment])
+            <div class="col-md-6">
+                @component('website.includes._product_description', ['product' => $equipment, 'btnClass' => 'w-100'])
                 @endcomponent
             </div>
         </div>
@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="product__description">
-                        <h2>{{ __('Technical Description') }}</h2>
+                        <h2 class="page-title">{{ __('Technical Description') }}</h2>
 
                         <table class="table shadow">
                             <tbody>

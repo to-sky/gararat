@@ -10,7 +10,7 @@
 
         <div class="row">
             <div class="col-md-3">
-                <div class="sidebar-filter shadow-sm border border-light-sm">
+                <div class="sidebar-filter shadow-sm border-light-sm">
                     <div class="sidebar-filter__item">
                         <h4 class="sidebar-filter__item__title">{{ __('Manufacturers') }}</h4>
 
@@ -26,7 +26,7 @@
                                            @endif
                                            id="manufacturer_{{ $manufacturer->id }}">
 
-                                    <label class="custom-control-label pl-3 text-muted" for="manufacturer_{{ $manufacturer->id }}">
+                                    <label class="custom-control-label" for="manufacturer_{{ $manufacturer->id }}">
                                         {{ $manufacturer->trans('name') }}
                                     </label>
                                 </div>
@@ -37,7 +37,7 @@
             </div>
 
             <div class="col-md-9">
-                <div class="row products" id="equipmentContainer">
+                <div class="row" id="equipmentContainer">
                     @include('website.equipment._equipment_items', ['equipment' => $equipment])
                 </div>
             </div>

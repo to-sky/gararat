@@ -5,11 +5,11 @@
                 <div class="peers ai-c fxw-nw">
                     <div class="peer">
                         <div class="logo">
-                            <img src="{{ asset('images/logo.png') }}" alt="logo" style="width: auto; height: 49px;padding-top: 13px;">
+                            <img src="{{ asset('images/logo.png') }}" alt="logo" style="width: auto; height: 49px; padding-top: 13px;">
                         </div>
                     </div>
                     <div class="peer peer-greed">
-                        <h5 class="lh-1 mB-0 logo-text">Gararat Admin</h5>
+                        <h5 class="lh-1 mB-0 logo-text">{{ auth()->user()->name }}</h5>
                     </div>
                 </div>
             </a>

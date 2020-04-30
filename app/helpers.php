@@ -27,6 +27,20 @@ if (! function_exists('translate'))
 }
 
 /**
+ * Translate element from array
+ *
+ * @param array $array
+ * @return string
+ */
+if (! function_exists('translateArrayItem'))
+{
+    function translateArrayItem(array $array, $key)
+    {
+        return isLocaleEn() ? $array[$key] : $array[$key. '_ar'];
+    }
+}
+
+/**
  * Show formatted price from cart config file
  *
  * @param integer|float $price
@@ -48,28 +62,29 @@ if (! function_exists('getFormattedPrice'))
 
 /**
  * Show product price with currency and with special price if exists
- * Returns "By request" text when product is not in stock
+ * Returns "By request" text when product current price is 0
  *
- * @param null|integer|float $price
- * @param bool $model \App\Models\{Model} instance
- * @param bool $is_special
- * @param integer|integer|float $specialPrice
+ * @param null|integer|float $currentPrice
+ * @param bool $isSpecial
+ * @param integer|float $specialPrice
+ * @param integer|float $price
  * @return string A HTML formatted version of price.
  */
 if (! function_exists('displayPrice'))
 {
-    function displayPrice($price, $model = false, $is_special = false, $specialPrice = false)
+    function displayPrice($currentPrice, $isSpecial = false, $specialPrice = false, $price = false)
     {
-        if ($model && ! $model->in_stock) {
+        if (! $currentPrice) {
             return __('By request');
         }
 
         $currency = __('EGP');
 
-        $price = getFormattedPrice($price);
+        $currentPrice = getFormattedPrice($currentPrice);
 
-        if ($is_special) {
+        if ($isSpecial) {
             $specialPrice = getFormattedPrice($specialPrice);
+            $price = getFormattedPrice($price);
 
             return sprintf(
                 '<span class="text-muted">%1$s</span> %2$s <small><s>%3$s</s></small>',
@@ -77,6 +92,6 @@ if (! function_exists('displayPrice'))
             );
         }
 
-        return sprintf('<span class="text-muted">%1$s</span> %2$s', $currency, $price);
+        return sprintf('<span class="text-muted">%1$s</span> %2$s', $currency, $currentPrice);
     }
 }

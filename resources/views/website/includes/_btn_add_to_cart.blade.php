@@ -1,4 +1,4 @@
-<button class="btn btn-sm-icon btn-outline-danger {{ $class ?? '' }}"
+<button class="btn btn-sm-icon btn-outline-danger {{ $btnClass ?? '' }}"
         data-action="add-to-cart"
         data-product-type="{{ strtolower(class_basename($product)) }}"
         data-id="{{ $product->id }}"

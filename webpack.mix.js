@@ -24,11 +24,6 @@ mix.webpackConfig(webpack => {
     };
 });
 
-mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/admin.js', 'public/admin')
-    .sass('resources/sass/admin.scss', 'public/admin')
-    .sass('resources/sass/app.scss', 'public/css')
-    .copyDirectory('resources/sass/admin/vendor/static/images','public/images')
-    .copyDirectory('resources/images','public/images')
-    .sourceMaps();
-
+if (process.env.section) {
+    require(`${__dirname}/webpack.mix.${process.env.section}.js`);
+}

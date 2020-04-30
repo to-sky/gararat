@@ -27,7 +27,7 @@
                                 <td>{{ $figure->fig_no }}</td>
                                 <td>{{ $figure->catalog()->first()->displayCatalogName() }}</td>
                                 <td>
-                                    <div class="pull-right">
+                                    <div class="float-right">
                                         <div class="btn-group btn-group-sm shadow-sm" role="group">
                                             @include('admin.includes._edit-btn' , [
                                                 'href' => route('admin.figures.constructor.create', $figure->fig_id)
@@ -46,7 +46,7 @@
                 </table>
             </div>
 
-            <div class="mt-2 pull-right">
+            <div class="mt-2 float-right">
                 @if($figures->isNotEmpty())
                     {{ $figures->links() }}
                 @endif

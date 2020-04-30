@@ -9,8 +9,9 @@
         <h1 class="page-title">{{ __('Parts') }}</h1>
 
         <div class="row">
-            <div class="col-md-12 col-lg-3">
-                <div class="sidebar-filter shadow-sm border border-light-sm mb-3">
+            {{-- Sidebar filters --}}
+            <div class="col-md-12 col-lg-4">
+                <div class="sidebar-filter shadow-sm border-light-sm mb-3">
                     <div class="sidebar-filter__item">
                         <h4 class="sidebar-filter__item__title">{{ __('Equipment groups') }}</h4>
 
@@ -28,7 +29,7 @@
                                            @endif
                                            id="equipmentGroup_{{ $equipmentGroup->id }}">
 
-                                    <label class="custom-control-label pl-3 text-muted" for="equipmentGroup_{{ $equipmentGroup->id }}">
+                                    <label class="custom-control-label" for="equipmentGroup_{{ $equipmentGroup->id }}">
                                         {{ $equipmentGroup->trans('name') }}
                                     </label>
                                 </div>
@@ -53,7 +54,7 @@
                                            @endif
                                            id="catalog_{{ $catalog->id }}">
 
-                                    <label class="custom-control-label pl-3 text-muted" for="catalog_{{ $catalog->id }}">
+                                    <label class="custom-control-label" for="catalog_{{ $catalog->id }}">
                                         {{ $catalog->trans('name') }}
                                     </label>
                                 </div>
@@ -63,12 +64,14 @@
                 </div>
             </div>
 
-            <div class="col-md-12 col-lg-9">
-                <div class="mb-3 border border-light-sm shadow-sm">
-                    <div class="row p-3 parts-sorting">
-                        <div class="col form-inline">
-                            <label for="price" class="parts-sorting__label">{{ __('Sort by price') }}: &nbsp;</label>
-                            <select name="price" id="price" class="custom-select">
+            <div class="col-md-12 col-lg-8">
+                {{-- Sort fields --}}
+                <div class="parts-sorting shadow-sm">
+                    <div class="d-flex flex-row">
+                        <div class="form-inline">
+                            <label for="price">{{ __('Sort by price') }}: &nbsp;</label>
+
+                            <select name="price" id="price" class="custom-select custom-select-sm">
                                 <option value="asc">{{ __('Cheaper first') }}</option>
                                 <option value="desc" @if(request('price') == 'desc') selected @endif>
                                     {{ __('Expensive first') }}
@@ -76,9 +79,10 @@
                             </select>
                         </div>
 
-                        <div class="col form-inline">
-                            <label for="inStock" class="parts-sorting__label">{{ __('Group by')  }}: &nbsp;</label>
-                            <select name="inStock" id="inStock" class="custom-select">
+                        <div class="form-inline px-4">
+                            <label for="inStock">{{ __('Group by')  }}: &nbsp;</label>
+
+                            <select name="inStock" id="inStock" class="custom-select custom-select-sm">
                                 <option value="desc">{{ __('In stock') }}</option>
                                 <option value="asc" @if(request('inStock') == 'asc') selected @endif>
                                     {{ __('By request') }}
@@ -88,6 +92,7 @@
                     </div>
                 </div>
 
+                {{-- List of parts --}}
                 <div id="partsTableContainer">
                     @include('website.parts._parts_table')
                 </div>

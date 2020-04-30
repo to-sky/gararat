@@ -1,0 +1,37 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Roboto;
+    font-weight: 400;
+    line-height: 1;
+    font-size: 1rem;
+}
+
+body {
+    background: $white;
+}
+
+img.image {
+    max-width: 100%;
+    height: auto;
+}
+
+main.main {
+    min-height: 800px;
+    background: $white_muted;
+}
+
+.rtl {
+    h2:after, h1.page-title:after {
+        right: 0 !important;
+    }
+}
+
+.rtl-separator {
+    &:after {
+        left: auto !important;
+        right: 0;
+    }
+}

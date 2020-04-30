@@ -1,0 +1,219 @@
+.drawing {
+
+    .drawing__figure {
+        width: 100%;
+        margin-bottom: 30px;
+
+        .drawing__figure-wrapper {
+            width: 100%;
+            border: 1px solid $primary_color;
+            padding: 15px;
+            display: inline-block;
+            text-align: center;
+
+            .drawing__figure-inner {
+                position: relative;
+                display: inline-block;
+
+                .item-block {
+                    border: 1px solid #ffffff !important;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .drawing__nodes {
+
+        table {
+            width: 100%;
+            border: 1px solid $primary_color;
+
+            thead {
+
+                tr {
+                    border-bottom: 2px solid $primary_color;
+
+                    th {
+                        border: 1px solid $primary_color;
+                        padding: 10px 5px;
+                        font-size: 1.8rem;
+                        font-weight: 500;
+
+                        &:nth-child(1) {
+                            text-align: center;
+                            width: 70px;
+                        }
+
+                        &:nth-child(3) {
+                            text-align: center;
+                            width: 60px;
+                        }
+                    }
+                }
+            }
+
+            tbody {
+
+                tr {
+
+                    td {
+                        border: 1px solid $primary_color;
+                        padding: 5px;
+                        font-weight: 400;
+                        font-size: 1.6rem;
+
+                        &:nth-child(1) {
+                            text-align: center;
+                        }
+
+                        &:nth-child(3) {
+                            text-align: center;
+                        }
+
+                        a {
+                            color: $secondary_color;
+                        }
+
+                        .colps {
+                            color: $primary_color;
+                        }
+
+                        span {
+                            color: $primary_color;
+                            opacity: 0.7;
+                        }
+                    }
+                }
+
+                .hovered {
+                    background: RGBA(0, 0, 0, 0.05);
+
+                    td {
+                        color: $secondary_color;
+                        border: 0;
+                    }
+                }
+
+                .collapsible-row {
+                    display: none;
+
+                    td {
+                        border: 0;
+                        border-bottom: 1px solid $primary_color;
+                        vertical-align: middle;
+
+                        .products__part-image,
+                        .products__part-name,
+                        .products__part-cart-price,
+                        .products__part-cart-qty,
+                        .products__part-cart-button {
+                            height: 28px;
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        .products__part-cart-price,
+                        .products__part-cart-button {
+                            margin-left: 30px;
+                        }
+
+                        .products__part-cart-price {
+                            margin-left: 9px;
+                        }
+
+                        .products__part-image {
+                            border-radius: 5px;
+                            border: 1px solid $primary_color;
+                            overflow: hidden;
+                        }
+
+                        .products__part-name {
+                            color: $fourth_color;
+                            font-size: 1.6rem;
+                            line-height: 1;
+                            font-weight: 400;
+                        }
+
+                        .products__part-cart-price {
+                            width: 110px;
+
+                            .old {
+                                color: $primary_color;
+                                opacity: 0.5;
+                                padding-right: 5px;
+                                font-size: 1.4rem;
+                                text-decoration: line-through;
+                            }
+
+                            .current {
+                                font-weight: 500;
+                                font-size: 1.6rem;
+                                color: $primary_color;
+                            }
+
+                            .current-special {
+                                color: $secondary_color;
+                            }
+                        }
+
+                        .products__part-cart-qty {
+
+                            a {
+                                font-size: 1.4rem;
+                                line-height: 20px;
+                                color: $primary_color;
+                                padding: 0 5px;
+                            }
+
+                            input {
+                                outline: none;
+                                border: 1px solid $muted_color;
+                                padding: 0 5px;
+                                line-height: 20px;
+                                font-size: 1.6rem;
+                                color: $primary_color;
+                                background: #ffffff;
+                                text-align: center;
+                            }
+
+                            input[type='number'] {
+                                -moz-appearance:textfield;
+                            }
+
+                            input::-webkit-outer-spin-button,
+                            input::-webkit-inner-spin-button {
+                                -webkit-appearance: none;
+                            }
+                        }
+
+                        .products__part-cart-button {
+
+                            .btn-add-to-cart {
+                                width: 121px;
+                                background: $secondary_color;
+                                outline: none;
+                                border: 0;
+                                color: #ffffff;
+                                line-height: 20px;
+                                text-align: center;
+                                font-size: 1.2rem;
+                                font-weight: 400;
+                                text-transform: uppercase;
+                                transition: $default_transition;
+                                cursor: pointer;
+                                border-radius: 5px;
+                                padding: 4px 10px;
+
+                                &:hover {
+                                    background: darken($secondary_color, 10%);
+                                    transition: $default_transition;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

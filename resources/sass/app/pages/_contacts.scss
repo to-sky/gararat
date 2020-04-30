@@ -1,0 +1,56 @@
+#map {
+    height: 100%;
+    min-height: 400px;
+}
+
+.offices {
+    margin-bottom: 50px;
+}
+
+.office {
+    padding: 25px;
+    background: white;
+    box-shadow: $shadow-sm;
+    transition: $default_transition;
+
+    a, i {
+        color: $muted_color;
+        transition: $default_transition;
+    }
+
+    a:hover {
+        color: $secondary_color_light;
+    }
+
+    &:hover {
+        box-shadow: $shadow ;
+        border-color: $border_color;
+
+        i {
+            color: $secondary_color_light;
+        }
+    }
+
+}
+
+.office__item {
+    padding-bottom: 20px;
+}
+
+.office__title {
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.office__label {
+    font-size: .9rem;
+}
+
+.office__icon {
+    padding-right: 10px;
+}
+
+.rtl .office__icon {
+    padding-right: 0;
+    padding-left: 10px;
+}

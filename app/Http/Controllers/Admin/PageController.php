@@ -71,27 +71,6 @@ class PageController extends Controller
     }
 
     /**
-     * Edit parts or equipment page
-     *
-     * @param $catalog
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function catalog($catalog)
-    {
-        $pagesModel = new Page;
-        $getPage = $pagesModel->getPageByAlias($catalog);
-
-        if($getPage === null) {
-            $pagesModel->createDefaultPage('services', 'Services', 'Services');
-        }
-
-        $data['pageData'] = $pagesModel->getPageByAlias($catalog);
-        $data['title'] = ucfirst($catalog);
-
-        return view('admin.pages.catalog', $data);
-    }
-
-    /**
      * Admin dashboard main page
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

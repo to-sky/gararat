@@ -1,0 +1,47 @@
+// Headings
+h1, h2 {
+    margin: 0;
+    font-weight: 400;
+    color: $primary_color;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-family: MoolBoran, Roboto;
+}
+
+.page-title {
+    margin-bottom: 15px;
+    padding-bottom: 33px;
+    position: relative;
+    text-transform: none;
+    font-family: Roboto;
+
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 1rem;
+        width: 3rem;
+        height: 3px;
+        background: $secondary_color;
+    }
+}
+
+a {
+    text-decoration: none !important;
+    outline: none !important;
+    transition: $default_transition;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.2rem;
+    margin-bottom: 10px;
+    color: $muted_color;
+}
+
+strong,
+b {
+    font-weight: 500;
+}

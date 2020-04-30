@@ -56,13 +56,13 @@ abstract class Product extends Model implements HasMedia, Buyable
     public function registerMediaCollections()
     {
         $this->addMediaCollection('main_image')
-            ->useFallbackUrl('/assets/blank.png')
-            ->useFallbackPath(public_path('/assets/blank.png'))
+            ->useFallbackUrl('/images/blank.png')
+            ->useFallbackPath(public_path('/images/blank.png'))
             ->singleFile();
 
         $this->addMediaCollection('additional_images')
-            ->useFallbackUrl('/images/blank.jpg')
-            ->useFallbackPath(public_path('/images/blank.jpg'));
+            ->useFallbackUrl('/images/blank.png')
+            ->useFallbackPath(public_path('/images/blank.png'));
     }
 
     /**
@@ -83,33 +83,33 @@ abstract class Product extends Model implements HasMedia, Buyable
             ->height(300);
 
         $this->addMediaConversion('large')
-            ->watermark(public_path('/assets/watermark.png'))
-            ->watermarkPosition(Manipulations::POSITION_CENTER);
+            ->watermark(public_path('/images/watermark.png'))
+            ->watermarkPosition(Manipulations::POSITION_CENTER)
+            ->watermarkHeight(50, Manipulations::UNIT_PERCENT)
+            ->watermarkWidth(50, Manipulations::UNIT_PERCENT);
     }
 
     /**
      * Get current price
      *
-     * @return mixed
+     * @return float
      */
-    public function getCurrentPriceAttribute()
+    public function getCurrentPriceAttribute() : float
     {
-        return $this->is_special
+        return (float) $this->is_special
             ? $this->special_price ?? $this->price
             : $this->price;
     }
 
     /**
      * Check if product in stock
+     * Product in_stock if current_price > 0
      *
-     * @param $value
      * @return bool
      */
-    public function getInStockAttribute($value) : bool
+    public function getInStockAttribute() : bool
     {
-        $isInStock = $this instanceof Part ? $this->qty : $value;
-
-        return boolval($isInStock);
+        return (bool) $this->current_price;
     }
 
     /**
@@ -129,7 +129,7 @@ abstract class Product extends Model implements HasMedia, Buyable
      */
     public function displayPrice()
     {
-        return displayPrice($this->price, $this, $this->is_special, $this->special_price);
+        return displayPrice($this->current_price, $this->is_special, $this->special_price, $this->price);
     }
 
     /**
@@ -159,7 +159,7 @@ abstract class Product extends Model implements HasMedia, Buyable
      */
     public function getBuyablePrice($options = null)
     {
-        return $this->getCurrentPriceAttribute();
+        return $this->current_price;
     }
 
     /**

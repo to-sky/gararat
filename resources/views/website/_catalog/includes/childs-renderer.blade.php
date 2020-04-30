@@ -5,7 +5,7 @@
                 @if($child->cat_image !== null)
                     <img src="{{ asset($child->cat_image) }}" alt="{{ $child->cat_name_en }}" class="image">
                 @else
-                    <img src="{{ asset('assets/blank.png') }}" alt="{{ $child->cat_name_en }}" class="image">
+                    <img src="{{ asset('images/blank.png') }}" alt="{{ $child->cat_name_en }}" class="image">
                 @endif
             </a>
         </div>

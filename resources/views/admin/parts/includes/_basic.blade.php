@@ -6,9 +6,9 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">EGP</div>
             </div>
-            <input type="number" min="0" step="any"
+            <input type="number" min="0" step="1"
                    class="form-control @error('price') is-invalid @enderror"
-                   name="price" id="price" placeholder="0.00"
+                   name="price" id="price" placeholder="0"
                    value="{{ isset($item) ? $item->price : old('price') }}" required>
 
             @error('price')
@@ -23,9 +23,9 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">EGP</div>
             </div>
-            <input type="number" min="0" step="any"
+            <input type="number" min="0" step="1"
                    class="form-control @error('special_price') is-invalid @enderror"
-                   name="special_price" id="specialPrice" placeholder="0.00"
+                   name="special_price" id="specialPrice" placeholder="0"
                    value="{{ isset($item) ? $item->special_price : old('special_price') }}">
 
             @error('special_price')
@@ -70,45 +70,5 @@
     </div>
 </div>
 
-<div class="form-group row">
-    <div class="col">
-        <p class="mb-1">Main image</p>
-        @include('admin.includes._input-file', [
-            'name' => 'main_image',
-            'placeholder' => 'Select image',
-            'formats' => '.jpg,.png,.tiff'
-        ])
-        @include('admin.includes._image_following_formats')
-
-        @if (isset($item) && $mainImage = $item->getFirstMedia('main_image'))
-            @include('admin.includes._form-image', [
-                'mediaItem' => $mainImage
-            ])
-        @endif
-    </div>
-
-    <div class="col-md-8">
-        <p class="mb-1">Additional images</p>
-        @include('admin.includes._input-file', [
-            'name' => 'additional_images[]',
-            'multiple' => true,
-            'placeholder' => 'Select images',
-            'formats' => '.jpg,.png,.tiff'
-        ])
-        @include('admin.includes._image_following_formats')
-
-        @error('additional_images')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-
-        <div class="no-gutters row">
-            @if(isset($item) && $images = $item->getMedia('additional_images'))
-                @foreach($images as $image)
-                    @include('admin.includes._form-image', ['mediaItem' => $image])
-                @endforeach
-            @endif
-        </div>
-
-    </div>
-</div>
+@include('admin.includes._product_images', ['item' => $item ?? null])
 <!-- End Basic Fields -->

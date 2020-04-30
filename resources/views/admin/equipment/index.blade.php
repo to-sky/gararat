@@ -19,7 +19,7 @@
                             <th>Image</th>
                             <th>Name</th>
                             <th>Price</th>
-                            <th>In stock</th>
+                            <th>Qty</th>
                             <th class="text-right">Actions</th>
                         </tr>
                     </thead>
@@ -32,9 +32,9 @@
                                 </td>
                                 <td width="45%">{{ $item->name }}</td>
                                 <td>{!! $item->displayPrice() !!}</td>
-                                <td>{{ $item->displayInStock() }}</td>
+                                <td>{{ $item->qty }}</td>
                                 <td>
-                                    <div class="pull-right">
+                                    <div class="float-right">
                                         <div class="btn-group btn-group-sm shadow-sm" role="group">
                                             @include('admin.includes._show-btn' , [
                                                 'href' => route('equipment.show', $item)

@@ -1,9 +1,15 @@
 <!-- Basic Fields -->
-<div class="form-group">
-    <label for="description">Description</label>
-    <div class="input-group">
-        <textarea rows="5" name="description" id="description" class="form-control" placeholder="English">{{ isset($item) ? $item->description : old('description') }}</textarea>
-        <textarea rows="5" name="description_ar" class="form-control" placeholder="Arabic">{{ isset($item) ? $item->description_ar : old('description_ar') }}</textarea>
+<div class="form-group form-row">
+    <div class="col-md-6">
+        <label for="description">Description</label>
+        <div class="input-group">
+            <textarea rows="5" name="description" id="description" class="form-control" placeholder="English">{{ isset($item) ? $item->description : old('description') }}</textarea>
+            <textarea rows="5" name="description_ar" class="form-control" placeholder="Arabic">{{ isset($item) ? $item->description_ar : old('description_ar') }}</textarea>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        @include('admin.equipment.includes._main_specifications', ['item' => $item ?? ''])
     </div>
 </div>
 
@@ -58,9 +64,9 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">EGP</div>
             </div>
-            <input type="number" min="0" step="any"
+            <input type="number" min="0" step="1"
                    class="form-control @error('price') is-invalid @enderror"
-                   name="price" id="price" placeholder="0.00"
+                   name="price" id="price" placeholder="0"
                    value="{{ isset($item) ? $item->price : old('price') }}" required>
 
             @error('price')
@@ -75,9 +81,9 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">EGP</div>
             </div>
-            <input type="number" min="0" step="any"
+            <input type="number" min="0" step="1"
                    class="form-control @error('special_price') is-invalid @enderror"
-                   name="special_price" id="specialPrice" placeholder="0.00"
+                   name="special_price" id="specialPrice" placeholder="0"
                    value="{{ isset($item) ? $item->special_price : old('special_price') }}">
 
             @error('special_price')
@@ -86,12 +92,17 @@
         </div>
     </div>
 
-    <div class="col pt-4 mt-2">
-        <div class="custom-control custom-switch mt-1">
-            <input type="hidden" name="in_stock" value="0">
-            <input type="checkbox" name="in_stock" class="custom-control-input" id="inStock" value="1"
-                {{ isset($item) && $item->in_stock || old('in_stock') ? 'checked' : '' }}>
-            <label class="custom-control-label" for="inStock">In stock</label>
+    <div class="col">
+        <label for="qty">Qty</label>
+        <div class="input-group mb-2">
+            <input type="number" min="0" step="1"
+                   class="form-control @error('qty') is-invalid @enderror"
+                   name="qty" id="qty" placeholder="0"
+                   value="{{ isset($item) ? $item->qty : old('qty') ?? 0 }}">
+
+            @error('qty')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
     </div>
 
@@ -105,45 +116,5 @@
     </div>
 </div>
 
-<div class="form-group row">
-    <div class="col">
-        <p class="mb-1">Main image</p>
-        @include('admin.includes._input-file', [
-            'name' => 'main_image',
-            'placeholder' => 'Select image',
-            'formats' => '.jpg,.png,.tiff'
-        ])
-        @include('admin.includes._image_following_formats')
-
-        @if (isset($item) && $mainImage = $item->getFirstMedia('main_image'))
-            @include('admin.includes._form-image', [
-                'mediaItem' => $mainImage
-            ])
-        @endif
-
-    </div>
-    <div class="col-md-8">
-        <p class="mb-1">Additional images</p>
-        @include('admin.includes._input-file', [
-            'name' => 'additional_images[]',
-            'multiple' => true,
-            'placeholder' => 'Select images',
-            'formats' => '.jpg,.png,.tiff'
-        ])
-        @include('admin.includes._image_following_formats')
-
-        @error('additional_images')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-
-        <div class="no-gutters row">
-            @if(isset($item) && $images = $item->getMedia('additional_images'))
-                @foreach($images as $image)
-                    @include('admin.includes._form-image', ['mediaItem' => $image])
-                @endforeach
-            @endif
-        </div>
-
-    </div>
-</div>
+@include('admin.includes._product_images', ['item' => $item ?? null])
 <!-- End Basic Fields -->

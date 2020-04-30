@@ -55,21 +55,54 @@ class CartService
     }
 
     /**
-     * Get total sum for all products (which are available in stock) in the cart
+     * Get product models from cart
+     *
+     * @return mixed
+     */
+    public static function getProductModels()
+    {
+        return Cart::content()->map->model;
+    }
+
+    /**
+     * Get row ids for available products
+     *
+     * @return array
+     */
+    public static function getAvailableProductRowIds()
+    {
+        return array_keys(
+            self::getProductModels()->map->in_stock->filter()->toArray()
+        );
+    }
+
+    /**
+     * Get total sum for all available products in the cart
      *
      * @return string
      */
     public static function total()
     {
-        $productsRowIds = Cart::content()->map->model->map->in_stock->filter()->toArray();
-
         $total = 0;
 
-        foreach (array_keys($productsRowIds) as $rowId) {
+        foreach (self::getAvailableProductRowIds() as $rowId) {
             $total += self::itemTotal($rowId);
         }
 
-        return getFormattedPrice($total);
+        return $total;
+    }
+
+    /**
+     * Show total price
+     * Total price can been "By request" even if one product not in stock
+     */
+    public static function displayTotal()
+    {
+        if (Cart::content()->count() !== count(self::getAvailableProductRowIds())) {
+            return __('By request');
+        }
+
+        return displayPrice(self::total());
     }
 
     /**
@@ -86,6 +119,17 @@ class CartService
         $total = $cartItem->model->current_price * $cartItem->qty;
 
         return $formattedPrice ? getFormattedPrice($total) : $total;
+    }
+
+    /**
+     * Show formatted total price for product
+     *
+     * @param $rowId
+     * @return float|int|string
+     */
+    public static function displayItemTotal($rowId)
+    {
+        return displayPrice(self::itemTotal($rowId));
     }
 
     /**
@@ -111,6 +155,10 @@ class CartService
      */
     public static function updateProduct($cartItem, $rowId)
     {
+        if (is_null($cartItem->model)) {
+            return Cart::remove($rowId);
+        }
+
         $productCurrentPrice = (float) $cartItem->model->current_price;
 
         if ($cartItem->price !== $productCurrentPrice) {

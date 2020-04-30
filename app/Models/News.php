@@ -39,8 +39,8 @@ class News extends Model implements HasMedia
     public function registerMediaCollections()
     {
         $this->addMediaCollection('news_images')
-            ->useFallbackUrl('/assets/blank.png')
-            ->useFallbackPath(public_path('/assets/blank.png'));
+            ->useFallbackUrl('/images/blank.png')
+            ->useFallbackPath(public_path('/images/blank.png'));
     }
 
     /**

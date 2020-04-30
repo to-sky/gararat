@@ -1,0 +1,57 @@
+.homepage {
+    section {
+        padding: 60px 0;
+    }
+}
+
+.home-title {
+    text-align: center;
+    font-size: 3rem;
+}
+
+.home-icons {
+    margin-top: -50px;
+    position: relative;
+    z-index: 10;
+    padding: 0 !important;
+    background: transparent;
+}
+
+.home-icons__item {
+    margin: 15px;
+    width: 230px;
+    align-self: center;
+    text-align: center;
+    background: $white;
+}
+
+.home-icons__link {
+    padding: 15px;
+    font-size: 1.5rem;
+    display: block;
+    color: $muted_color;
+    box-shadow: $shadow-sm;
+
+    &:hover {
+        color: $secondary_color_muted;
+        box-shadow: $shadow;
+
+        i {
+            transform: scale(1.15);
+        }
+    }
+}
+
+.home-icons__icon {
+    margin-bottom: 10px;
+    height: 146px;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: center;
+    transition: $default_transition;
+}
+
+.icon_size_s {
+    background-size: 58%;
+}

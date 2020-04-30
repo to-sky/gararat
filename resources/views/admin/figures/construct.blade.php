@@ -84,7 +84,7 @@
                                             <input type="text" name="size_y" value="{{ $node->pivot->size_y }}" class="text-center" style="max-width: 50px;">
                                         </td>
                                         <td data-color="{{ $node->pivot->color }}" data-id="{{ $node->id }}" data-position="{{ $node->part->pos_no }}">
-                                            <div class="pull-right">
+                                            <div class="float-right">
                                                 <a href="#" class="editNodePositionConstructor fsz-def p-5"><i class="c-blue-500 ti-pencil"></i></a>
                                                 <a href="#" class="saveNodePositionConstructor fsz-def p-5"><i class="c-green-500 ti-save"></i></a>
                                                 <a href="#" class="removeNodePositionConstructor fsz-def p-5"><i class="c-red-500 ti-trash"></i></a>
@@ -136,7 +136,7 @@
                                             <input type="text" name="size_y" value="{{ $node->pivot->size_y }}" class="text-center" style="max-width: 50px;">
                                         </td>
                                         <td data-color="{{ $node->pivot->color }}" data-id="{{ $node->id }}" data-position="{{ $node->part->pos_no }}">
-                                            <div class="pull-right">
+                                            <div class="float-right">
                                                 <a href="#" class="editNodePositionConstructor fsz-def p-5"><i class="c-blue-500 ti-pencil"></i></a>
                                                 <a href="#" class="saveNodePositionConstructor fsz-def p-5"><i class="c-green-500 ti-save"></i></a>
                                                 <a href="#" class="removeNodePositionConstructor fsz-def p-5"><i class="c-red-500 ti-trash"></i></a>

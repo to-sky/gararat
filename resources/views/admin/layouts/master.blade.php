@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="{{ asset('admin/admin.css') }}">
     </head>
 
-    <body class="app" style="display: none">
+    <body style="display: none">
         <div id='loader'>
             <div class="spinner"></div>
         </div>

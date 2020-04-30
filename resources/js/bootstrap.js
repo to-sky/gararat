@@ -8,6 +8,7 @@ window._ = require('lodash');
 try {
     window.$ = window.jQuery = require('jquery');
     window.moment = require('moment');
+    window.matchHeight = require('jquery-match-height');
 } catch (e) {}
 
 /**

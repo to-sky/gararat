@@ -36,7 +36,7 @@
                                 <td>{{ $part->producer_id }}</td>
                                 <td>{{ $part->qty }}</td>
                                 <td>
-                                    <div class="pull-right">
+                                    <div class="float-right">
                                         <div class="btn-group btn-group-sm shadow-sm" role="group">
                                             @include('admin.includes._show-btn' , [
                                                'href' => route('parts.show', $part)
@@ -59,7 +59,7 @@
                 </table>
             </div>
 
-            <div class="mt-2 pull-right">
+            <div class="mt-2 float-right">
                 {{ $parts->links() }}
             </div>
         </div>

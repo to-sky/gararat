@@ -34,12 +34,7 @@
                 <div class="form-group row">
                     <div class="col-md-6">
                         <label for="link">Link</label>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">{{ config('app.url') }}</span>
-                            </div>
-                            <input type="text" name="link" class="form-control" id="link" value="{{ $slide->link }}">
-                        </div>
+                        <input type="text" name="link" class="form-control" id="link" value="{{ $slide->link }}"  placeholder="Button link">
                     </div>
 
                     <div class="col-md-4">

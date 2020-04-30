@@ -4,10 +4,10 @@
 
 @section('content')
 <div class="container" id="auth">
-    <h1 class="page-title">{{ __('Login') }}</h1>
+    <h1 class="page-title pt-3">{{ __('Login') }}</h1>
 
     <div class="row justify-content-center">
-        <div class="border border-light-sm col-md-5 col-md-6 py-5 px-0 shadow-sm">
+        <div class="border border-light-sm col-md-5 col-md-6 py-4 px-0 shadow-sm bg-white">
             <div class="card border-0">
 
                 <div class="card-body">
@@ -44,7 +44,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-danger">
                                     {{ __('Login') }}
                                 </button>
 

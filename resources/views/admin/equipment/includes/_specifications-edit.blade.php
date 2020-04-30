@@ -11,7 +11,7 @@
                             </div>
 
                             <div class="col-md-4">
-                                <div class="btn-group pull-right shadow-sm" role="group">
+                                <div class="btn-group float-right shadow-sm" role="group">
                                     <button class="btn btn-sm bg-white text-primary"
                                             type="button"
                                             data-toggle="collapse" data-target="#table{{ $loop->iteration }}"

@@ -25,7 +25,7 @@
         </select>
     </div>
 
-    <div class="col-md-1 pull-right">
+    <div class="col-md-1 float-right">
         <div class="btn-group">
             <button data-repeater-delete type="button" data-number="{{ $number }}"
                     class="btn btn-outline-light bg-white text-danger border">

@@ -11,6 +11,11 @@ class Part extends Product
         'name', 'name_ar', 'price', 'slug', 'special_price', 'producer_id', 'is_special', 'qty', 'equipment_id'
     ];
 
+    protected $casts = [
+        'price' => 'float',
+        'special_price' => 'float'
+    ];
+
     protected static function boot()
     {
         parent::boot();

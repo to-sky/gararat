@@ -22,11 +22,11 @@
                             <tr>
                                 <td>{{ $order->id }}</td>
                                 <td>{{ $order->full_name }}</td>
-                                <td>{!! displayPrice($order->total) !!}</td>
+                                <td>{!! $order->displayTotalPrice() !!}</td>
                                 <td>{{ $order->displayStatus() }}</td>
                                 <td>{{ $order->created }}</td>
                                 <td>
-                                    <div class="pull-right">
+                                    <div class="float-right">
                                         <div class="btn-group btn-group-sm shadow-sm" role="group">
                                             @include('admin.includes._edit-btn' , [
                                                 'href' => route('admin.orders.edit', $order)
@@ -45,7 +45,7 @@
                 </table>
             </div>
 
-            <div class="mt-2 pull-right">
+            <div class="mt-2 float-right">
                 {{ $orders->links() }}
             </div>
         </div>

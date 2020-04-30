@@ -25,8 +25,8 @@ class UpdateSliderTableChangeColumnsNames extends Migration
             $table->string('title_ar')->nullable();
             $table->string('sub_title_ar')->nullable();
             $table->string('link')->nullable();
-            $table->dropColumn('sl_image');
 
+            $table->dropColumn('sl_image');
             $table->dropIndex('slider_sl_order_index');
         });
     }

@@ -22,7 +22,7 @@
         <meta property="og:site_name" content="{{ config('app.name', 'Gararat') }}">
         <meta property="og:title" content="@yield('title') | {{ config('app.name', 'Gararat') }}">
         <meta property="og:description" content="@yield('description')">
-        <meta property="og:image" content="{{ asset('assets/logos/logo-og.png') }}">
+        <meta property="og:image" content="{{ asset('images/logo.png') }}">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="1200">
@@ -32,11 +32,11 @@
         <meta name="google-site-verification" content="" />
 
         <!-- Icons & Colors -->
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/logos/icons/apple-touch-icon.png') }}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/logos/icons/favicon-32x32.png') }}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/logos/icons/favicon-16x16.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicons/favicon-180.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicons/favicon-16.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicons/favicon-32.png') }}">
+
         <link rel="manifest" href="/site.webmanifest">
-        <link rel="mask-icon" href="{{ asset('assets/logos/icons/safari-pinned-tab.svg') }}" color="#191a1c">
         <meta name="application-name" content="{{ config('app.name', 'Gararat') }}"/>
         <meta name="msapplication-TileColor" content="#191a1c">
         <meta name="theme-color" content="#191a1c">
@@ -55,7 +55,7 @@
     </head>
 
     <body id="top" @if(! isLocaleEn()) class="rtl" @endif>
-        <header class="header shadow position-relative" style="z-index: 1">
+        <header class="header position-relative">
             @include('website.layouts.includes.header')
         </header>
 

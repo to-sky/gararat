@@ -3,7 +3,7 @@
         <div class="text-center shadow-sm product__inner">
             <a href="{{ route('singleNodePage', $product->id) }}" style="margin: 0 auto;">
                 @if($product->has_photo === 0)
-                    <img src="{{ asset('assets/logos/logo.jpg') }}" class="image" alt="{{ $product->n_name_en }}">
+                    <img src="{{ asset('images/logo.jpg') }}" class="image" alt="{{ $product->n_name_en }}">
                 @else
                     <img src="{{ asset($product->thumb_path) }}" class="image" alt="{{ $product->n_name_en }}">
                 @endif

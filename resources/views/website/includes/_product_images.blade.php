@@ -1,4 +1,4 @@
-<div class="product__images shadow border border-light-sm">
+<div class="product-carousel shadow">
     <div class="row">
         <div class="col-12">
             <div id="productSlider" class="slider-pro">

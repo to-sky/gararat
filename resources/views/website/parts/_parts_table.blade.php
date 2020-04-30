@@ -1,6 +1,6 @@
-<div class="parts border border-light-sm shadow-sm">
+<div class="parts shadow-sm">
     @foreach($parts as $part)
-        <div class="row p-3">
+        <div class="row parts__item">
             <div class="col-sm-6 col-md-2">
                 <p>
                     <a href="{{ route('parts.show', $part) }}">
@@ -12,22 +12,16 @@
             <div class="col-sm-6 col-md-10">
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
-                        <p class="text-center">{{ $part->producer_id }}</p>
+                        <a href="{{ route('parts.show', $part) }}" class="btn btn-link">{{ $part->trans('name') }}</a>
+
+                        <p class="parts__item-producer">{{ $part->producer_id }}</p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <p>{!! $part->displayPrice() !!} </p>
                     </div>
 
                     <div class="col-sm-12 col-md-2">
-                        <p class="text-center">
-                            <a href="{{ route('parts.show', $part) }}">{{ $part->trans('name') }}</a>
-                        </p>
-                    </div>
-
-                    <div class="col-sm-12 col-md-2">
-                        <p class="text-center">
-                            {!! $part->displayPrice() !!}
-                        </p>
-                    </div>
-
-                    <div class="col-sm-12 col-md-2 mb-3 text-center">
                         @component('website.includes._product_qty_input', ['product' => $part]) @endcomponent
                     </div>
 

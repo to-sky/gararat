@@ -1,16 +1,50 @@
 @foreach($equipment as $item)
-    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 product__wrapper">
-        <div class="text-center shadow-sm product__inner">
-            <a href="{{ route('equipment.show', $item) }}" style="margin: 0 auto;">
-                <img src="{{ asset($item->getFirstMediaUrl('main_image', 'medium')) }}"
-                     class="image" alt="{{ $item->name }}">
-            </a>
-        </div>
+    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+        <div class="equipment-card shadow-sm">
 
-        <div class="text-center product__name">
-            <a href="{{ route('equipment.show', $item) }}">
-                {{ $item->trans('name') }}
-            </a>
+            <div class="row">
+                <div class="col-6">
+                    <a href="{{ route('equipment.show', $item) }}">
+                        <div class="equipment-card__image"
+                             style="background-image: url('{{ asset($item->getFirstMediaUrl('main_image', 'medium')) }}')">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6">
+                    <div class="equipment-card__description">
+                        <a href="{{ route('equipment.show', $item) }}" class="equipment-card__title">
+                            {{ $item->trans('name') }}
+                        </a>
+
+                        @if($item->main_specifications)
+                            <div class="equipment-card__specifications">
+                                @foreach($item->main_specifications['data'] as $main_specification)
+                                    <p class="equipment-card__specifications__item">{{ translateArrayItem($main_specification, 'key') }}  {{ translateArrayItem($main_specification, 'value') }}</p>
+                                @endforeach
+                            </div>
+                        @endif
+
+                        <p class="product-price py-2">{!! $item->displayPrice() !!}</p>
+
+                        <p class="in-stock text-md">
+                            @if($item->in_stock)
+                                <i class="fas fa-check"></i>
+                                <span>{{ __('In stock') }}</span>
+                            @else
+                                <span>{{ __('Available for order') }}</span>
+                            @endif
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endforeach
+
+@push('scripts')
+    <script>
+        $('.equipment-card').matchHeight({
+            byRow: false
+        });
+    </script>
+@endpush

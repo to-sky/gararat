@@ -1,0 +1,109 @@
+.carousel-control-next-icon {
+    width: 30px;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%23fff' width='8' height='8' viewBox='0 0 8 8'><path d='M2.75 0l-1.5 1.5L3.75 4l-2.5 2.5L2.75 8l4-4-4-4z'></path></svg>");
+}
+
+.carousel-control-prev-icon {
+    width: 30px;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%23fff' width='8' height='8' viewBox='0 0 8 8'><path d='M5.25 0l-4 4 4 4 1.5-1.5L4.25 4l2.5-2.5L5.25 0z'></path></svg>");
+}
+
+.carousel-caption {
+    bottom: 10%;
+}
+
+.home-slider {
+    h1, p {
+        color: $white;
+    }
+
+    .carousel-item {
+        width: 100%;
+        height: 200px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        &.blackout:after {
+            content: "";
+            position: absolute;
+            background: rgba(0, 0, 0, .4);
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .carousel-title {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+
+    .carousel-sub-title {
+        font-size: .9rem;
+        margin-bottom: 15px;
+    }
+
+    .carousel-read-more {
+        margin-bottom: 10px;
+
+        a {
+            padding: 3px 10px;
+            font-size: 1rem;
+        }
+    }
+
+    @include for-tablet-portrait {
+        .carousel-item {
+            height: 300px;
+        }
+
+        .carousel-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .carousel-sub-title {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .carousel-read-more {
+            margin-bottom: 15px;
+
+            a {
+                padding: 4px 13px;
+            }
+        }
+    }
+
+    @include for-desktop {
+        .carousel-item {
+            height: 400px;
+        }
+
+        .carousel-title {
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+
+        .carousel-sub-title {
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+        }
+
+        .carousel-read-more {
+            margin-bottom: 20px;
+
+            a {
+                padding: 5px 15px;
+                font-size: 14px;
+            }
+        }
+    }
+
+    @include for-big-desktop {
+        .carousel-item {
+            height: 500px;
+        }
+    }
+}

@@ -24,7 +24,7 @@ class PageController extends Controller
         return view('website.pages.home', [
             'home' => Page::getHomePage(),
             'slides' => Slide::all(),
-            'news' => News::take(4)->get()
+            'news' => News::latest()->take(4)->get()
         ]);
     }
 
@@ -47,8 +47,51 @@ class PageController extends Controller
      */
     public function contacts()
     {
+        $offices = [
+            [
+                'name' => 'Cairo branch',
+                'name_ar' => 'فرع القاهرة',
+                'address' => '318 elshoufat- eltamoaa el Khames, Cairo, Egypt',
+                'address_ar' => 'القاهرة - التجمع الخامس - الشويفات فيلا 318',
+                'phones' => [
+                    '01090912188' => 'director',
+                    '01011805779' => 'commercial department',
+                    '01016200599' => 'commercial department',
+                    '01067153638' => 'commercial department'
+                ],
+                'email' => 'info@belmachinery.com',
+                'lat' => '30.015417',
+                'lng' => '31.411944'
+            ],
+            [
+                'name' => 'Alexandria branch',
+                'name_ar' => 'فرع الإسكندرية',
+                'address' => 'Kabbari - in front of the Kabbari Traffic Unit - Alexandreia , Egypt',
+                'address_ar' => 'محافظة الاسكندرية -  القبارى – أمام وحدة مرور القبارى',
+                'phones' => [
+                    '01063060781' => ''
+                ],
+                'email' => 'stock@belmachinery.com',
+                'lat' => '31.169722',
+                'lng' => '29.890972'
+            ],
+            [
+                'name' => 'Luxor branch',
+                'name_ar' => 'فرع الاقصر',
+                'address' => 'EL Karnak in front of the police department of Water - Luxor City -Luxor Governorate - Egypt',
+                'address_ar' => 'الكرنك أمام شرطة المسطحات المائية - – مدينة الاقصر - محافظة الاقصر',
+                'phones' => [
+                    '01099853330' => ''
+                ],
+                'email' => 'luxor@belmachinery.com',
+                'lat' => '25.716111',
+                'lng' => '32.650028'
+            ]
+        ];
+
         return view('website.pages.contacts', [
-            'page' => Page::getPageByAlias('contacts')
+            'page' => Page::getPageByAlias('contacts'),
+            'offices' => $offices
         ]);
     }
 

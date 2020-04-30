@@ -85,11 +85,11 @@
                             <img src="{{ asset($orderProduct->product->getFirstMediaUrl('main_image', 'thumb')) }}" width="50">
                         </td>
                         <td>{{ $orderProduct->product->name }}</td>
-                        <td>{!! displayPrice($orderProduct->price, $orderProduct->product) !!}</td>
+                        <td>{!! $orderProduct->displayPrice() !!}</td>
                         <td>{{ $orderProduct->qty }}</td>
-                        <td>{!! displayPrice($orderProduct->total, $orderProduct->product) !!}</td>
+                        <td>{!! $orderProduct->displayTotalPrice() !!}</td>
                         <td>
-                            <div class="pull-right">
+                            <div class="float-right">
                                 <div class="btn-group btn-group-sm shadow-sm" role="group">
                                     @include('admin.includes._show-btn' , [
                                         'href' => route('admin.'.$orderProduct->product->getTable().'.edit', $orderProduct->product)
@@ -110,7 +110,7 @@
         </table>
     </div>
 
-    <p class="text-uppercase fsz-md pt-15 text-right text-black-50">Total: <strong>{{ getFormattedPrice($order->total) }}</strong></p>
+    <p class="text-uppercase fsz-md pt-15 text-right text-black-50">Total: <strong>{!! $order->displayTotalPrice() !!}</strong></p>
 
     @include('admin.includes.blocks.delete-item-modal', ['item' => 'product'])
 @endsection

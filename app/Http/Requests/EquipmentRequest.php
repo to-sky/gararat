@@ -32,6 +32,10 @@ class EquipmentRequest extends FormRequest
             $this->merge(['specifications' => null]);
         }
 
+        if (collect($this->main_specifications)->flatten()->filter()->isEmpty()) {
+            $this->merge(['main_specifications' => null]);
+        }
+
         $this->merge([
             'slug' => Str::slug($this->name),
         ]);

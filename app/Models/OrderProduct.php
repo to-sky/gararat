@@ -12,6 +12,11 @@ class OrderProduct extends Model
         'product_type', 'product_id', 'order_id', 'qty', 'price', 'total'
     ];
 
+    protected $casts = [
+        'price' => 'float',
+        'total' => 'float'
+    ];
+
     protected static function boot()
     {
         parent::boot();
@@ -40,5 +45,25 @@ class OrderProduct extends Model
     public function order()
     {
         return $this->belongsTo(Order::class);
+    }
+
+    /**
+     * Display price with html structure
+     *
+     * @return string
+     */
+    public function displayPrice()
+    {
+        return displayPrice($this->price);
+    }
+
+    /**
+     * Display price with html structure
+     *
+     * @return string
+     */
+    public function displayTotalPrice()
+    {
+        return displayPrice($this->total);
     }
 }

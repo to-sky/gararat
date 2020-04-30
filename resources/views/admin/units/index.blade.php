@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="col-md-2">
-                        <button class="btn btn-sm text-primary pull-right"
+                        <button class="btn btn-sm text-primary float-right"
                                 type="button"
                                 data-toggle="collapse" data-target="#equipment{{ $equipment->id }}"
                                 aria-expanded="true" aria-controls="equipment{{ $equipment->id }}">
@@ -55,7 +55,7 @@
                                 <span class="badge badge-light badge-pill border ml-2 text-muted">{{ $unit->parts->count() }}</span>
                             </a>
 
-                            <div class="pull-right">
+                            <div class="float-right">
                                     @include('admin.includes._delete-btn' , [
                                         'href' => route('admin.units.destroy', $unit),
                                         'classes' => '',

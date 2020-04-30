@@ -18,7 +18,7 @@
                         <tr>
                             <td>Homepage</td>
                             <td>
-                                <div class="pull-right">
+                                <div class="float-right">
                                     <div class="btn-group btn-group-sm shadow-sm" role="group">
                                         @include('admin.includes._edit-btn' , [
                                             'href' => route('admin.pages.home')
@@ -30,7 +30,7 @@
                         <tr>
                             <td>Services</td>
                             <td>
-                                <div class="pull-right">
+                                <div class="float-right">
                                     <div class="btn-group btn-group-sm shadow-sm" role="group">
                                         @include('admin.includes._edit-btn' , [
                                             'href' => route('admin.pages.services')
@@ -42,34 +42,10 @@
                         <tr>
                             <td>Contacts</td>
                             <td>
-                                <div class="pull-right">
+                                <div class="float-right">
                                     <div class="btn-group btn-group-sm shadow-sm" role="group">
                                         @include('admin.includes._edit-btn' , [
                                             'href' => route('admin.pages.contacts')
-                                        ])
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Parts</td>
-                            <td>
-                                <div class="pull-right">
-                                    <div class="btn-group btn-group-sm shadow-sm" role="group">
-                                        @include('admin.includes._edit-btn' , [
-                                            'href' => route('admin.pages.catalog', 'parts')
-                                        ])
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Equipment</td>
-                            <td>
-                                <div class="pull-right">
-                                    <div class="btn-group btn-group-sm shadow-sm" role="group">
-                                        @include('admin.includes._edit-btn' , [
-                                            'href' => route('admin.pages.catalog', 'equipment')
                                         ])
                                     </div>
                                 </div>

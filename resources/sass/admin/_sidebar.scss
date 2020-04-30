@@ -7,19 +7,19 @@
     &:not(.dropdown) {
         &>.nav-link {
             &.active {
-                color: $fourth_color;
-                border-top: 1px solid $fourth_color_ultra_light;
-                border-bottom: 1px solid $fourth_color_ultra_light;
-                background: $fourth_color_light;
+                color: $primary_color;
+                border-top: 1px solid $primary_color_ultra_light;
+                border-bottom: 1px solid $primary_color_ultra_light;
+                background: $primary_color_light;
             }
         }
 
         &:hover {
             .nav-link {
-                color: $fourth_color;
-                border-top: 1px solid $fourth_color_ultra_light;
-                border-bottom: 1px solid $fourth_color_ultra_light;
-                background: $fourth_color_light;
+                color: $primary_color;
+                border-top: 1px solid $primary_color_ultra_light;
+                border-bottom: 1px solid $primary_color_ultra_light;
+                background: $primary_color_light;
             }
         }
     }
@@ -34,20 +34,20 @@
     &.open {
         .nav-link {
             &.active {
-                color: $fourth_color;
-                border-top: 1px solid $fourth_color_ultra_light;
-                border-bottom: 1px solid $fourth_color_ultra_light;
-                background: $fourth_color_light;
+                color: $primary_color;
+                border-top: 1px solid $primary_color_ultra_light;
+                border-bottom: 1px solid $primary_color_ultra_light;
+                background: $primary_color_light;
             }
         }
 
         .dropdown-menu {
             li:hover {
                 .nav-link {
-                    color: $fourth_color;
-                    border-top: 1px solid $fourth_color_ultra_light;
-                    border-bottom: 1px solid $fourth_color_ultra_light;
-                    background: $fourth_color_light;
+                    color: $primary_color;
+                    border-top: 1px solid $primary_color_ultra_light;
+                    border-bottom: 1px solid $primary_color_ultra_light;
+                    background: $primary_color_light;
                 }
             }
         }
