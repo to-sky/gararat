@@ -10,7 +10,7 @@
 
         <div class="row">
             {{-- Sidebar filters --}}
-            <div class="col-md-12 col-lg-4">
+            <div class="col-lg-3">
                 <div class="sidebar-filter shadow-sm border-light-sm mb-3">
                     <div class="sidebar-filter__item">
                         <h4 class="sidebar-filter__item__title">{{ __('Equipment groups') }}</h4>
@@ -64,7 +64,7 @@
                 </div>
             </div>
 
-            <div class="col-md-12 col-lg-8">
+            <div class="col-lg-9">
                 {{-- Sort fields --}}
                 <div class="parts-sorting shadow-sm">
                     <div class="d-flex flex-row">

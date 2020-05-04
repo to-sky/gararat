@@ -22,15 +22,15 @@
 
 // Responsive
 @mixin for-phone {
-  @media (max-width: 599px) { @content; }
+  @media (min-width: 576px) { @content; }
 }
 
 @mixin for-tablet-portrait {
-  @media (min-width: 600px) { @content; }
+  @media (min-width: 768px) { @content; }
 }
 
 @mixin for-tablet-landscape {
-  @media (min-width: 900px) { @content; }
+  @media (min-width: 992px) { @content; }
 }
 
 @mixin for-desktop {

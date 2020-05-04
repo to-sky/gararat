@@ -17,9 +17,22 @@ $(document).on('keydown', 'input[type="number"]', function (e) {
     return true;
 });
 
+$('#burgerIcon').click(function (el) {
+    let headerMain = $('.header-main');
+    let headerMenu = $('.header__menu');
+
+    if ($(this).is(":checked")) {
+        $(headerMenu).addClass('opened');
+        $(headerMain).css('padding-bottom', '220px');
+    } else {
+        $(headerMenu).removeClass('opened');
+        $(headerMain).css('padding-bottom', '1rem');
+    }
+});
+
 // Disabling form submissions if there are invalid fields
-(function() {
-    'use strict';
+// (function() {
+//     'use strict';
     window.addEventListener('load', function() {
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.getElementsByClassName('needs-validation');
@@ -34,4 +47,4 @@ $(document).on('keydown', 'input[type="number"]', function (e) {
             }, false);
         });
     }, false);
-})();
+// })();

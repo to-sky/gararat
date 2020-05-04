@@ -64,9 +64,9 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">EGP</div>
             </div>
-            <input type="number" min="0" step="1"
+            <input type="number" min="0" step="any"
                    class="form-control @error('price') is-invalid @enderror"
-                   name="price" id="price" placeholder="0"
+                   name="price" id="price" placeholder="0.00"
                    value="{{ isset($item) ? $item->price : old('price') }}" required>
 
             @error('price')
@@ -81,9 +81,9 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">EGP</div>
             </div>
-            <input type="number" min="0" step="1"
+            <input type="number" min="0" step="any"
                    class="form-control @error('special_price') is-invalid @enderror"
-                   name="special_price" id="specialPrice" placeholder="0"
+                   name="special_price" id="specialPrice" placeholder="0.00"
                    value="{{ isset($item) ? $item->special_price : old('special_price') }}">
 
             @error('special_price')

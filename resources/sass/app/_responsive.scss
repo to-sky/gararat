@@ -1,18 +1,4 @@
-.header__mobile-activator {
-    display: none;
-}
-
 @media screen and (max-width: 1000px) {
-    .header__mobile-activator {
-        display: block;
-        text-align: right;
-        padding-bottom: 20px;
-
-        a img {
-            height: 28px;
-        }
-    }
-
     .header__main .header__main-menu {
         display: none;
         margin-bottom: 10px;

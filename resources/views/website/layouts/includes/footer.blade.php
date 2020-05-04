@@ -4,8 +4,8 @@
             {{-- First column --}}
             <div class="col-12 col-lg-3 col-md-6">
                 <div class="footer-top__logo">
-                    <a href="http://gararat.test">
-                        <img src="http://gararat.test/images/logo-footer.png" alt="Gararat Logo" height="80">
+                    <a href="{{ route('home') }}">
+                        <img src="{{ asset('images/logo-footer.png') }}" alt="Gararat Logo" height="80">
                     </a>
                 </div>
 

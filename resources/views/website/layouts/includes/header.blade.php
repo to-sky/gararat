@@ -1,30 +1,37 @@
-<div class="header__top">
+<div class="header-top">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-7">
-                <div class="header__top-contacts ltr">
-                    <a href="tel:+201016200599">
-                        <i class="fas fa-phone"></i>
-                        <span>+20-101-620-05-99</span>
-                    </a>
-                    <a href="mailto:sales@gararat.com">
-                        <i class="far fa-envelope align-middle"></i>
-                        <span>sales@gararat.com</span>
-                    </a>
+            {{-- Phone and email --}}
+            <div class="align-self-center col-md-7 pt-2 pt-md-0">
+                <div class="d-flex justify-content-between justify-content-md-start">
+                    <div class="d-flex">
+                        <a href="tel:+201016200599" class="header-contact">
+                            <i class="fas fa-phone"></i>
+                            <span>+20-101-620-05-99</span>
+                        </a>
+                    </div>
+
+                    <div class="d-flex px-md-3">
+                        <a href="mailto:sales@gararat.com" class="header-contact">
+                            <i class="far fa-envelope align-middle"></i>
+                            <span>sales@gararat.com</span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-12 col-lg-5">
-                <div class="header__top-social-container d-flex justify-content-end">
-                    <div class="header__top-social">
-                        <a href="https://www.facebook.com/gararatcom" class="header__top-social-icon facebook-icon" target="_blank"></a>
-                        <a href="https://www.youtube.com/channel/UCoBI2FCQzx4tMEUbMpVphJw" class="header__top-social-icon youtube-icon" target="_blank"></a>
-                        <a href="https://api.whatsapp.com/send?phone=00201016200599" class="header__top-social-icon whatsapp-icon" target="_blank"></a>
+            {{-- Socials--}}
+            <div class="col-md-5 pt-2 pt-md-0">
+                <div class="d-flex justify-content-between justify-content-end justify-content-md-end">
+                    <div class="d-flex align-items-center">
+                        <a href="https://www.facebook.com/gararatcom" class="header-top__social-icon facebook-icon" target="_blank"></a>
+                        <a href="https://www.youtube.com/channel/UCoBI2FCQzx4tMEUbMpVphJw" class="header-top__social-icon youtube-icon" target="_blank"></a>
+                        <a href="https://api.whatsapp.com/send?phone=00201016200599" class="header-top__social-icon whatsapp-icon" target="_blank"></a>
                     </div>
 
-                    <span class="divider">|</span>
+                    <span class="divider d-md-block d-none">|</span>
 
-                    <div class="header__top-lang" id="changeLang">
+                    <div class="header-top-lang" id="changeLang">
                         <div class="lang__header">
                             <i class="fa fa-globe"></i>
                             <span class="px-2">{{ __('English') }}</span>
@@ -56,12 +63,12 @@
     </div>
 </div>
 
-<div class="header__main py-3">
+<div class="header-main">
     <div class="container">
-        <div class="row">
+        <div class="d-flex justify-content-between">
             {{-- Logo --}}
-            <div class="col-12 col-lg-2">
-                <div class="header__main-logo">
+            <div class="align-self-start">
+                <div class="header-main__logo">
                     <a href="{{ route('home') }}">
                         <img src="{{ asset('images/logo.png') }}" alt="Gararat Logo" height="55">
                     </a>
@@ -69,26 +76,49 @@
             </div>
 
             {{-- Menu --}}
-            <div class="col-12 col-lg-6 offset-1">
-                <div class="header__mobile-activator">
-                    <a href="#"><img src="{{ asset('images/menu.svg') }}" alt="Menu"></a>
-                </div>
-
-                <div class="header__main-menu">
-                    @include('website.layouts.includes._menu')
-                </div>
+            <div class="header__menu">
+                @include('website.layouts.includes._menu')
             </div>
 
-            {{-- Cart --}}
-            <div class="col-12 col-lg-3">
-                <div class="header__main-cart-container d-flex justify-content-end">
-                    <div class="header__main-search">
-                        <i class="fas fa-search"></i>
-                    </div>
+            <div class="d-flex">
+               {{-- Burger button --}}
+                <div class="align-self-center order-1 d-md-none">
+                    <label class="toggle">
+                        <input type="checkbox" id="burgerIcon">
+                        <div>
+                            <div>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <svg>
+                                <use xlink:href="#path">
+                            </svg>
+                            <svg>
+                                <use xlink:href="#path">
+                            </svg>
+                        </div>
+                    </label>
 
-                    <div class="header__main-cart">
-                        <a href="{{ route('cart') }}"><i class="fas fa-shopping-bag"></i></a>
-                        <span id="cartItems" class="header__main-cart-amount">{{ Cart::count() }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" id="path">
+                            <path d="M22,22 L2,22 C2,11 11,2 22,2 C33,2 42,11 42,22"></path>
+                        </symbol>
+                    </svg>
+                </div>
+
+                <div class="align-self-center px-5 px-md-3">
+                    <div class="d-flex">
+
+                        {{-- Search --}}
+                        <div class="header-main__search align-self-end">
+                            <i class="fas fa-search"></i>
+                        </div>
+
+                        {{-- Cart --}}
+                        <div class="header-main__cart">
+                            <a href="{{ route('cart') }}"><i class="fas fa-shopping-bag"></i></a>
+                            <span id="cartItems" class="header-main__cart-amount">{{ Cart::count() }}</span>
+                        </div>
                     </div>
                 </div>
             </div>

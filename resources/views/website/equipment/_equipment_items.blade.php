@@ -1,5 +1,5 @@
 @foreach($equipment as $item)
-    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+    <div class="col-md-6">
         <div class="equipment-card shadow-sm">
 
             <div class="row">

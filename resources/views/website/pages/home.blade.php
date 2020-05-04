@@ -9,7 +9,9 @@
 @section('content')
     <div class="homepage">
         {{-- Slider --}}
-        <div id="homeSlider" class="carousel slide home-slider" data-ride="carousel" data-interval="97000">
+
+        {{-- TODO: change slider interval --}}
+        <div id="homeSlider" class="carousel slide home-slider" data-ride="carousel" data-interval="107000">
             <div class="carousel-inner">
                 @foreach($slides as $slide)
                     <div class="carousel-item
@@ -17,7 +19,7 @@
                                 @if($slide->trans('title') || $slide->trans('sub_title')) blackout @endif"
                          style="background-image: url({{ asset($slide->getFirstMediaUrl('home_slide'))  }})">
 
-                        <div class="carousel-caption container text-{{ $slide->displayTextPosition(true) }}">
+                        <div class="carousel-caption text-{{ $slide->displayTextPosition(true) }}">
                             @if($slide->trans('title'))
                                 <h1 class="carousel-title text-uppercase">{{ $slide->trans('title') }}</h1>
                             @endif

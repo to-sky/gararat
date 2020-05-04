@@ -55,7 +55,7 @@
     </head>
 
     <body id="top" @if(! isLocaleEn()) class="rtl" @endif>
-        <header class="header position-relative">
+        <header class="header">
             @include('website.layouts.includes.header')
         </header>
 

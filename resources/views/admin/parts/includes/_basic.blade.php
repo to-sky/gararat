@@ -1,3 +1,5 @@
+@php($item = $item ?? null)
+
 <!-- Basic Fields -->
 <div class="form-group row">
     <div class="col-md-4">
@@ -6,10 +8,10 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">EGP</div>
             </div>
-            <input type="number" min="0" step="1"
+            <input type="number" min="0" step="any"
                    class="form-control @error('price') is-invalid @enderror"
-                   name="price" id="price" placeholder="0"
-                   value="{{ isset($item) ? $item->price : old('price') }}" required>
+                   name="price" id="price" placeholder="0.00"
+                   value="{{ old('price', optional($item)->price) }}" required>
 
             @error('price')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -23,10 +25,10 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">EGP</div>
             </div>
-            <input type="number" min="0" step="1"
+            <input type="number" min="0" step="any"
                    class="form-control @error('special_price') is-invalid @enderror"
-                   name="special_price" id="specialPrice" placeholder="0"
-                   value="{{ isset($item) ? $item->special_price : old('special_price') }}">
+                   name="special_price" id="specialPrice" placeholder="0.00"
+                   value="{{ old('special_price', optional($item)->special_price) }}">
 
             @error('special_price')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -39,7 +41,7 @@
         <input type="text"
                class="form-control @error('producer_id') is-invalid @enderror"
                name="producer_id" id="producerId"
-               value="{{ isset($item) ? $item->producer_id : old('producer_id') }}" required>
+               value="{{ old('producer_id', optional($item)->producer_id) }}" required>
 
         @error('producer_id')
             <div class="invalid-feedback">{{ $message }}</div>
@@ -52,7 +54,7 @@
             <input type="number" min="0" step="1"
                    class="form-control @error('qty') is-invalid @enderror"
                    name="qty" id="qty" placeholder="0"
-                   value="{{ isset($item) ? $item->qty : old('qty') ?? 0 }}">
+                   value="{{ old('qty', optional($item)->qty) ?? 0 }}">
 
             @error('qty')
                 <div class="invalid-feedback">{{ $message }}</div>
