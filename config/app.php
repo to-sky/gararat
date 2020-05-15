@@ -82,7 +82,7 @@ return [
     |
     */
 
-    'locale' => 'en', 'ar',
+    'locale' => 'ar', 'en',
 
     /**
      * All app locales
