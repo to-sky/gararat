@@ -1,63 +1,52 @@
 <div class="header-top">
     <div class="container">
-        <div class="row">
-            {{-- Phone and email --}}
-            <div class="align-self-center col-md-7 pt-2 pt-md-0">
-                <div class="d-flex justify-content-between justify-content-md-start">
-                    <div class="d-flex">
-                        <a href="tel:+201016200599" class="header-contact">
-                            <i class="fas fa-phone"></i>
-                            <span>+20-101-620-05-99</span>
-                        </a>
-                    </div>
+        <div class="d-flex flex-column flex-sm-row justify-content-between py-2">
+            {{-- Contacts --}}
+            <div class="d-flex justify-content-between align-items-center pb-2 pb-sm-0">
+                <a href="tel:+201016200599" class="header-contact">
+                    <i class="fas fa-phone"></i>
+                    <span class="ltr">+20-101-620-05-99</span>
+                </a>
 
-                    <div class="d-flex px-md-3">
-                        <a href="mailto:sales@gararat.com" class="header-contact">
-                            <i class="far fa-envelope align-middle"></i>
-                            <span>sales@gararat.com</span>
-                        </a>
-                    </div>
-                </div>
+                <a href="mailto:sales@gararat.com" class="header-contact px-sm-3">
+                    <i class="far fa-envelope align-middle"></i>
+                    <span>sales@gararat.com</span>
+                </a>
             </div>
 
             {{-- Socials--}}
-            <div class="col-md-5 pt-2 pt-md-0">
-                <div class="d-flex justify-content-between justify-content-end justify-content-md-end">
-                    <div class="d-flex align-items-center">
-                        <a href="https://www.facebook.com/gararatcom" class="header-top__social-icon facebook-icon" target="_blank"></a>
-                        <a href="https://www.youtube.com/channel/UCoBI2FCQzx4tMEUbMpVphJw" class="header-top__social-icon youtube-icon" target="_blank"></a>
-                        <a href="https://api.whatsapp.com/send?phone=00201016200599" class="header-top__social-icon whatsapp-icon" target="_blank"></a>
-                    </div>
-
-                    <span class="divider d-md-block d-none">|</span>
-
-                    <div class="header-top-lang" id="changeLang">
-                        <div class="lang__header">
-                            <i class="fa fa-globe"></i>
-                            <span class="px-2">{{ __('English') }}</span>
-                            <i class="fa fa-caret-down"></i>
-                        </div>
-
-                        <div class="lang__body shadow">
-                            <ul class="lang__body_switcher">
-                                <li class="lang__body_switcher-item">
-                                    <input type="radio" name="lang" id="en" value="en" class="d-none" />
-                                    <label for="en" class="lang__body_switcher-text">
-                                        <img src="{{ asset('images/icons/flag-en.svg') }}" alt="en">
-                                        <span>English</span>
-                                    </label>
-                                </li>
-                                <li class="lang__body_switcher-item">
-                                    <input type="radio" name="lang" id="ar" value="ar" />
-                                    <label for="ar" class="lang__body_switcher-text">
-                                        <img src="{{ asset('images/icons/flag-ar.svg') }}" alt="ar">
-                                        <span>عربى</span>
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex">
+                    <a href="https://www.facebook.com/gararatcom" class="header__social-icon facebook-icon" target="_blank"></a>
+                    <a href="https://www.youtube.com/channel/UCoBI2FCQzx4tMEUbMpVphJw" class="header__social-icon youtube-icon mx-2" target="_blank"></a>
+                    <a href="https://api.whatsapp.com/send?phone=00201016200599" class="header__social-icon whatsapp-icon" target="_blank"></a>
                 </div>
+
+                <span class="d-sm-flex d-none px-2">|</span>
+
+                <a href="#" class="header__lang-switcher" id="changeLang">
+                    <i class="fa fa-globe"></i>
+                    <span class="px-2">{{ __('EN') }}</span>
+                    <i class="fa fa-caret-down"></i>
+
+                    <ul class="header__lang__items" id="langBody">
+                        <li class="header__lang__item">
+                            <input type="radio" name="lang" id="en" value="en" @if(isLocaleEn()) checked @endif />
+                            <label for="en" class="header__lang__item-text">
+                                <img src="{{ asset('images/icons/flag-en.svg') }}" alt="en">
+                                <span>English</span>
+                            </label>
+                        </li>
+
+                        <li class="header__lang__item">
+                            <input type="radio" name="lang" id="ar" value="ar" @if(! isLocaleEn()) checked @endif/>
+                            <label for="ar" class="header__lang__item-text">
+                                <img src="{{ asset('images/icons/flag-ar.svg') }}" alt="ar">
+                                <span>عربى</span>
+                            </label>
+                        </li>
+                    </ul>
+                </a>
             </div>
         </div>
     </div>
@@ -110,7 +99,7 @@
                     <div class="d-flex">
 
                         {{-- Search --}}
-                        <div class="header-main__search align-self-end">
+                        <div class="header-main__search align-self-end px-3">
                             <i class="fas fa-search"></i>
                         </div>
 

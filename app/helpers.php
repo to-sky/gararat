@@ -87,11 +87,11 @@ if (! function_exists('displayPrice'))
             $price = getFormattedPrice($price);
 
             return sprintf(
-                '<span class="text-muted">%1$s</span> %2$s <small><s>%3$s</s></small>',
+                '<span class="price"><span class="currency">%1$s</span><span class="special-price"> %2$s <small class="old-price"><s>%3$s</s></small></span>',
                 $currency, $specialPrice, $price
             );
         }
 
-        return sprintf('<span class="text-muted">%1$s</span> %2$s', $currency, $currentPrice);
+        return sprintf('<span class="price"><span class="currency">%1$s</span> %2$s</span>', $currency, $currentPrice);
     }
 }

@@ -12,28 +12,22 @@
 
         <h1 class="page-title">{{ __('Checkout') }}</h1>
 
-        <div class="row">
+        <form action="{{ route('checkout.store') }}" method="post" class="needs-validation mb-4" novalidate>
+            @csrf
 
-            <div class="col-md-12">
-                <form action="{{ route('checkout.store') }}" method="post" class="needs-validation mb-4" novalidate>
-                    @csrf
-
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="col-12 py-4 border border-light shadow-sm bg-white">
-                                @include('website.checkout._form-fields')
-                            </div>
-                        </div>
-
-                        <div class="col-4">
-                            <div class="col-12 border border-light shadow-sm bg-white">
-                                @include('website.checkout._cart-content')
-                            </div>
-                        </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-7 col-xl-8 mb-4">
+                    <div class="col-12 py-4 border border-light shadow-sm bg-white">
+                        @include('website.checkout._form-fields')
                     </div>
-                </form>
-            </div>
+                </div>
 
-        </div>
+                <div class="col-md-6  col-lg-5 col-xl-4">
+                    <div class="col-12 border border-light shadow-sm bg-white">
+                        @include('website.checkout._cart-content')
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 @endsection

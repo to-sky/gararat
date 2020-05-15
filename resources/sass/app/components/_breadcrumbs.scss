@@ -42,3 +42,9 @@
         }
     }
 }
+
+.rtl .breadcrumb {
+    li:before {
+        content: "\f053" !important;
+    }
+}

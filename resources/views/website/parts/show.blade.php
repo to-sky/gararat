@@ -7,7 +7,7 @@
         {{ Breadcrumbs::render('parts.show', $part) }}
 
         <h1 class="page-title">{{ $part->trans('name') }}
-            <span class="text-muted text-md align-middle">({{ $part->producer_id }})</span>
+            <span class="text-muted text-md align-middle ltr">({{ $part->producer_id }})</span>
 
             <span class="float-{{ isLocaleEn() ? 'right' : 'left' }}">
                 @auth

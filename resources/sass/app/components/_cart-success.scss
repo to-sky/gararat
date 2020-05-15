@@ -2,22 +2,27 @@
     position: fixed;
     bottom: 0;
     left: 0;
+    display: none;
     width: 100%;
-    height: 46px;
+    height: 45px;
     background: $success_color;
     color: $white;
     font-weight: 400;
-    font-size: 1.8rem;
-    line-height: 1;
+    font-size: .9rem;
+    line-height: 45px;
+    text-align: center;
     text-transform: uppercase;
-    display: none;
     z-index: 10;
+}
 
-    span {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 11;
+@include for-tablet-portrait {
+    .cart-success {
+        font-size: 1.3rem;
+    }
+}
+
+@include for-desktop {
+    .cart-success {
+        font-size: 1.6rem;
     }
 }

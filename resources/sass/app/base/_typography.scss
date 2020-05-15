@@ -6,8 +6,14 @@ h1, h2 {
 }
 
 h1 {
-    text-transform: uppercase;
+    font-size: 2.5rem;
     font-family: MoolBoran, Roboto;
+    text-transform: uppercase;
+}
+
+h2 {
+    line-height: 1.1;
+    font-size: 1.5rem;
 }
 
 .page-title {
@@ -44,4 +50,18 @@ p {
 strong,
 b {
     font-weight: 500;
+}
+
+@include for-tablet-portrait {
+    h1, h2 {
+        line-height: 1.2;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
 }

@@ -1,6 +1,7 @@
 .product-counter {
     display: flex;
     justify-content: center;
+    align-items: center;
 
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
@@ -9,7 +10,7 @@
     }
 
     input[type=number] {
-        max-width: 40px;
+        max-width: 26px;
         max-height: 26px;
         line-height: 15px;
         border: none;
@@ -46,5 +47,11 @@
         i {
             color: $fourth_color_grey_light;
         }
+    }
+}
+
+@include for-phone {
+    .product-counter input[type=number] {
+        max-width: 40px;
     }
 }

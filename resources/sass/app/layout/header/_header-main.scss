@@ -1,0 +1,112 @@
+header {
+    background: $white;
+    position: relative;
+    box-shadow: 3px 3px 10px rgba(0,0,0,.1);
+}
+
+.header-main {
+    padding: 1rem 0;
+    position: relative;
+    overflow: hidden;
+    transition: .6s all;
+}
+
+// Menu
+.header__menu {
+    width: 100%;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        a {
+            margin-bottom: 12px;
+            color: $muted_color;
+            font-weight: 500;
+            font-size: 0;
+            text-transform: uppercase;
+
+            &.active {
+                color: $secondary_color;
+            }
+        }
+    }
+}
+
+// Opened on mobile
+.header-menu-opened {
+    padding-bottom: 200px !important;
+
+    .header__menu nav a {
+        font-size: .9rem;
+    }
+}
+
+.header-main__cart a,
+.header-main__search {
+    color: $muted_color;
+    font-size: 1.2rem;
+    transition: $default_transition;
+
+    &:hover {
+        color: $secondary_color;
+        cursor: pointer;
+    }
+}
+
+.header-main__cart {
+    position: relative;
+}
+
+.header-main__cart-amount {
+    position: absolute;
+    top: -8px;
+    padding: 3px;
+    border-radius: 4px;
+    font-size: 9px;
+    background: $secondary_color;
+    color: $white;
+    font-weight: 900;
+}
+
+@include for-tablet-portrait {
+    .header__menu {
+        position: unset;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        z-index: auto;
+
+        nav {
+            flex-direction: row;
+
+            a {
+                display: flex;
+                margin: 0 .5rem;
+                padding: 10px 0;
+                align-self: start;
+                font-size: .9rem;
+                border-bottom: 3px solid transparent;
+
+                &.active {
+                    color: $secondary_color;
+                }
+
+                &.active, &:hover {
+                    border-color: $secondary_color;
+                }
+            }
+        }
+    }
+}
+
+@include for-desktop {
+    .header__menu nav a {
+        font-size: 1rem;
+    }
+}

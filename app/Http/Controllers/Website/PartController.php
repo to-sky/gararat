@@ -17,7 +17,7 @@ class PartController extends Controller
      */
     public function index(PartsFilter $filter)
     {
-        $parts = Part::filter($filter)->paginate();
+        $parts = Part::filter($filter)->paginate(20)->onEachSide(1);
 
         if (request()->ajax()) {
             return view('website.parts._parts_table', compact('parts'))->render();

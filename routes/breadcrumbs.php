@@ -28,7 +28,7 @@ Breadcrumbs::for('parts', function ($trail) {
 // Home > Parts > Item
 Breadcrumbs::for('parts.show', function ($trail, $part) {
     $trail->parent('parts');
-    $trail->push($part->trans('name')." ($part->producer_id)", route('parts.index', $part));
+    $trail->push($part->trans('name'), route('parts.index', $part), ['producer_id' => $part->producer_id]);
 });
 
 

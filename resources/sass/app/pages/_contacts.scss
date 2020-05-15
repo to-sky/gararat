@@ -3,54 +3,46 @@
     min-height: 400px;
 }
 
-.offices {
-    margin-bottom: 50px;
+.contact-us__form-map {
+    margin: 0 0 50px;
+    box-shadow: $shadow_sm;
+    background: $white;
 }
 
-.office {
-    padding: 25px;
-    background: white;
-    box-shadow: $shadow-sm;
-    transition: $default_transition;
+.contact-us__form {
+    background: $white;
+}
 
-    a, i {
-        color: $muted_color;
-        transition: $default_transition;
+.contact-us__form__recaptcha,
+.contact-us__form__submit {
+    text-align: center;
+}
+
+.g-recaptcha {
+    display: inline-block;
+    width: 260px;
+    direction: ltr !important;
+    transform: scale(0.86);
+    transform-origin: 0 0;
+}
+
+@media (min-width: 360px) {
+    .g-recaptcha {
+        width: 300px;
+        transform: scale(1);
+    }
+}
+
+@include for-phone() {
+    .contact-us__form__recaptcha,
+    .contact-us__form__submit {
+        text-align: unset;
     }
 
-    a:hover {
-        color: $secondary_color_light;
+    .contact-us__form__submit-btn {
+        width: 100%;
+        height: 100%;
+        max-height: 76px;
+        font-size: 1.2rem;
     }
-
-    &:hover {
-        box-shadow: $shadow ;
-        border-color: $border_color;
-
-        i {
-            color: $secondary_color_light;
-        }
-    }
-
-}
-
-.office__item {
-    padding-bottom: 20px;
-}
-
-.office__title {
-    margin-bottom: 25px;
-    text-transform: uppercase;
-}
-
-.office__label {
-    font-size: .9rem;
-}
-
-.office__icon {
-    padding-right: 10px;
-}
-
-.rtl .office__icon {
-    padding-right: 0;
-    padding-left: 10px;
 }

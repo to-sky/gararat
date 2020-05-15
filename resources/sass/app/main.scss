@@ -28,7 +28,9 @@
 @import
   'layout/footer',
   'layout/forms',
-  'layout/header',
+  'layout/header/header-top',
+  'layout/header/header-main',
+  'layout/header/header-burger-button',
   'layout/sidebar-filter';
 
 // 5. Components
@@ -37,8 +39,8 @@
   'components/buttons',
   'components/carousel',
   'components/cart-success',
+  'components/contact-card',
   'components/equipment-card',
-  'components/_header-menu.scss',
   'components/news-card',
   'components/parts-sorting',
   'components/parts-table',
@@ -51,9 +53,7 @@
 // 6. Page-specific styles
 @import
   'pages/cart',
+  'pages/checkout',
   'pages/contacts',
   'pages/home',
   'pages/single-news';
-
-// TODO: Responsive
-@import "responsive";

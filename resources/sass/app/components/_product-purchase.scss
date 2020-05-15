@@ -8,13 +8,13 @@
 }
 
 .product__purchase-top {
-  margin-bottom: 15px;
+  margin-bottom: $card_bottom_gap;
 }
 
 .product-price {
   color: $secondary_color_muted;
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1rem;
 
   small {
     color: $muted_color;
@@ -36,8 +36,14 @@
 }
 
 .product__short-description {
-  padding-top: 15px;
+  padding-top: $default_gap;
   font-size: 14px;
   line-height: 18px;
   color: $muted_color;
+}
+
+@include for-tablet-landscape {
+  .product-price {
+    font-size: 1.1rem;
+  }
 }

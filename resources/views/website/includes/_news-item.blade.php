@@ -1,25 +1,22 @@
-<div class="col-12 col-md-6 col-lg-3">
-    <div class="shadow-sm section__news-item">
-        <div class="news-item__image">
-            <a href="{{ route('news.show', $item) }}">
-                <img src="{{ asset($item->getFirstMediaUrl('news_images', 'medium')) }}"
-                     alt="{{ $item->trans('name') }}" class="image">
+<div class="col-sm-6 col-lg-4 col-xl-3">
+    <div class="news-item">
+        <div class="news__image-wrapper">
+            <a href="{{ route('news.show', $item) }}"
+               style="background-image: url('{{ asset($item->getFirstMediaUrl("news_images")) }}');"
+               class="news__image"></a>
 
-                <div class="news-item__date">
-                    <h4>{{ $item->created_at->format('d') }}</h4>
-                    <h6>{{ $item->created_at->format('M') }}</h6>
-                </div>
-            </a>
+            <div class="news__date">
+                <h4 class="news__day">{{ $item->created_at->format('d') }}</h4>
+                <h6 class="news__month">{{ $item->created_at->format('M') }}</h6>
+            </div>
         </div>
 
-        <div class="news-item__body">
-            <h3>
-                <a href="{{ route('news.show', $item) }}">
-                    {{ $item->trans('title') }}
-                </a>
+        <div class="news__body" data-mh="news-body">
+            <h3 class="news__title">
+                <a href="{{ route('news.show', $item) }}" class="news__title-link">{{ $item->trans('title') }}</a>
             </h3>
 
-            <p>{{ $item->trans('short_description') }}</p>
+            <p class="news__short-description">{{ $item->trans('short_description') }}</p>
         </div>
     </div>
 </div>

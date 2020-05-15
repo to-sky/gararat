@@ -14,28 +14,40 @@ body {
 }
 
 body {
-    background: $white;
+    background: $white_muted;
 }
 
-img.image {
+main {
+    min-height: 600px;
+    padding-bottom: $card_bottom_gap;
+}
+
+.image {
     max-width: 100%;
     height: auto;
 }
 
-main.main {
-    min-height: 800px;
-    background: $white_muted;
-}
-
 .rtl {
-    h2:after, h1.page-title:after {
+    .page-title:after {
         right: 0 !important;
     }
 }
 
-.rtl-separator {
-    &:after {
-        left: auto !important;
-        right: 0;
-    }
+.price {
+    direction: ltr !important;
+    display: inline-block;
+    color: $text-muted;
+}
+
+.currency {
+    direction: ltr !important;
+    display: inline-block;
+}
+
+.special-price {
+    color: $secondary_color;
+}
+
+.old-price {
+    color: $muted_color;
 }

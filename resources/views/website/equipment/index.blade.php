@@ -9,7 +9,7 @@
         <h1 class="page-title">{{ __('Equipment') }}</h1>
 
         <div class="row">
-            <div class="col-lg-3 mb-4">
+            <div class="col-lg-3">
                 <div class="sidebar-filter shadow-sm border-light-sm">
                     <div class="sidebar-filter__item">
                         <h4 class="sidebar-filter__item__title">{{ __('Manufacturers') }}</h4>
@@ -41,6 +41,10 @@
                     @include('website.equipment._equipment_items', ['equipment' => $equipment])
                 </div>
             </div>
+        </div>
+
+        <div class="pagination__wrapper">
+            {{ $equipment->appends(request()->all())->links() }}
         </div>
     </div>
 @endsection

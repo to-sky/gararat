@@ -2,71 +2,64 @@
 
 @section('title', __('Contacts'))
 
-@push('scripts')
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-@endpush
-
 @section('content')
-    <div class="container pb-4">
+    <div class="container">
 
         {{ Breadcrumbs::render('contacts') }}
 
         <h1 class="page-title">{{ __('Contact Us') }}</h1>
 
-        <div class="bg-white shadow-sm contacts m-0  mb-5 row">
+        <div class="row contact-us__form-map">
             <div class="col-12 col-lg-6 p-0">
                 <div id="map"></div>
             </div>
 
             <div class="col-12 col-lg-6">
-                <div class="contacts__form p-4">
+                <div class="pt-3 px-lg-3">
                     <form action="{{ route('contact-us') }}" method="post"
-                          class="bg-white contact-us" id="contactFormPageForm">
+                          class="contact-us__form" id="contactFormPageForm">
                         @csrf
 
-                        <div class="form-row form-group">
-                            <div class="col-12">
-                                <label for="name">{{ __('Name') }}*</label>
-                                <input type="text" name="name" id="name" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="name">{{ __('Name') }}*</label>
+                            <input type="text" name="name" id="name" required>
                         </div>
 
-                        <div class="form-row form-group">
-                            <div class="col-12 col-lg-6">
+                        <div class="form-row">
+                            <div class="col-12 col-lg-6 form-group">
                                 <label for="email">{{ __('Email') }}*</label>
                                 <input type="email" name="email" id="email" required>
                             </div>
 
-                            <div class="col-12 col-lg-6">
+                            <div class="col-12 col-lg-6 form-group">
                                 <label for="phone">{{ __('Phone') }}*</label>
                                 <input type="text" name="phone" id="phone" required>
                             </div>
                         </div>
 
-                        <div class="form-row form-group">
-                            <div class="col-12">
-                                <label for="message">{{ __('Message') }}*</label>
-                                <textarea name="message" id="message" required></textarea>
-                            </div>
+                        <div class="form-group">
+                            <label for="message">{{ __('Message') }}*</label>
+                            <textarea name="message" id="message" required></textarea>
                         </div>
 
-                        <div class="form-row form-group">
-                            <div class="col-md-8">
+                        <div class="form-row">
+                            <div class="col-sm-9 form-group contact-us__form__recaptcha">
                                 @if(env('GOOGLE_RECAPTCHA_KEY'))
                                     <div class="g-recaptcha"
-                                         data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
+                                         data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}"
+                                    >
                                     </div>
 
                                     @if ($errors->has('g-recaptcha-response'))
                                         <span class="pt-3">
-                                            <strong>{{ __('Are you a robot?') }}</strong>
+                                            <strong class="text-danger">{{ __('Are you a robot?') }}</strong>
                                         </span>
                                     @endif
                                 @endif
                             </div>
 
-                            <div class="col-4">
-                                <button class="btn btn-outline-danger btn-lg" type="submit">{{ __('Send') }}</button>
+                            <div class="col-sm-3 form-group contact-us__form__submit">
+                                <button class="btn btn-outline-danger contact-us__form__submit-btn" type="submit">{{ __('Send') }}</button>
                             </div>
                         </div>
                     </form>
@@ -74,28 +67,26 @@
             </div>
         </div>
 
-        {{-- TODO: change hardcode --}}
-        <div class="row offices">
+        <div class="row justify-content-md-around">
             @foreach($offices as $office)
-                <div class="col-md-4">
-                    <div class="office">
-                        <h6 class="office__title">{{ translateArrayItem($office, 'name') }}</h6>
+                <div class="col-md-6 col-lg-4">
+                    <div class="contact" data-mh="contact">
+                        <h6 class="contact__title">{{ translateArrayItem($office, 'name') }}</h6>
 
-                        {{-- TODO: remove inline style and fix footer icons --}}
-                        <div class="office__item">
-                            <i class="fas fa-map-marker-alt footer-address-icon" style="@if(! $loop->last || ! isLocaleEn()) height: 25px; @endif"></i>
-                            <span class="office__label">{{ translateArrayItem($office, 'address') }}</span>
+                        <div class="contact__item">
+                            <i class="fas fa-map-marker-alt contact__icon"></i>
+                            <a href="#" class="contact__label">{{ translateArrayItem($office, 'address') }}</a>
                         </div>
 
-                        <div class="office__item">
-                            <i class="fas fa-envelope office__icon align-text-bottom"></i>
-                            <a href="mailto:{{ $office['email'] }}" class="office__label">{{ $office['email'] }}</a>
+                        <div class="contact__item">
+                            <i class="fas fa-envelope contact__icon"></i>
+                            <a href="mailto:{{ $office['email'] }}" class="contact__label">{{ $office['email'] }}</a>
                         </div>
 
                         @foreach($office['phones'] as $phone => $label)
-                            <div class="office__item">
-                                <i class="fas fa-phone office__icon align-baseline"></i>
-                                <a href="tel:+{{ $phone }}" class="office__label">{{ $phone }} @if($label) ({{ $label }}) @endif</a>
+                            <div class="contact__item">
+                                <i class="fas fa-phone contact__icon"></i>
+                                <a href="tel:+{{ $phone }}" class="contact__label">{{ $phone }} @if($label) ({{ $label }}) @endif</a>
                             </div>
                         @endforeach
                     </div>
@@ -106,10 +97,10 @@
 @endsection
 
 @push('scripts')
-    <script>
-        // Match height for address card
-        $('.office').matchHeight();
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API_KEY') }}&callback=initMap" async defer></script>
 
+    <script>
         function initMap() {
             // Create a new StyledMapType object, passing it an array of styles,
             // and the name to be displayed on the map type control.
@@ -251,6 +242,4 @@
             }
         }
     </script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API_KEY') }}&callback=initMap" async defer></script>
 @endpush

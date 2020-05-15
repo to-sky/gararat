@@ -1,13 +1,12 @@
 .pagination {
     display: flex;
     justify-content: flex-end;
-    margin: 20px 0 40px;
 
     li {
 
         a,
         span {
-            padding: 5px 10px;
+            padding: 5px 8px;
             border: 1px solid $border_color;
             border-right: 0;
             line-height: 1.4;
@@ -57,6 +56,18 @@
                 &:hover {
                     border-color: $secondary_color;
                 }
+            }
+        }
+    }
+}
+
+@include for-phone {
+    .pagination {
+        li {
+
+            a,
+            span {
+                padding: 5px 10px;
             }
         }
     }

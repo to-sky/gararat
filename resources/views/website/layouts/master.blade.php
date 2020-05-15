@@ -54,16 +54,16 @@
         </script>
     </head>
 
-    <body id="top" @if(! isLocaleEn()) class="rtl" @endif>
-        <header class="header">
+    <body id="app" @if(! isLocaleEn()) class="rtl" @endif>
+        <header>
             @include('website.layouts.includes.header')
         </header>
 
-        <main class="main">
+        <main>
             @yield('content')
         </main>
 
-        <footer class="footer">
+        <footer>
             @include('website.layouts.includes.footer')
         </footer>
 

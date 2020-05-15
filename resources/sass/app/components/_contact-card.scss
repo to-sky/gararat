@@ -1,0 +1,47 @@
+.contact {
+  margin-bottom: $card_bottom_gap;
+  padding: 25px;
+  background: white;
+  box-shadow: $shadow_sm;
+  transition: $default_transition;
+
+  &:hover {
+    border-color: $border_color;
+    box-shadow: $shadow;
+
+    .contact__icon {
+      color: $secondary_color_light;
+    }
+  }
+}
+
+.contact__title {
+  margin-bottom: $card_bottom_gap;
+  text-transform: uppercase;
+  color: $primary_color_light;
+}
+
+.contact__item {
+  display: flex;
+  padding-bottom: $default_gap;
+}
+
+.contact__icon,
+.contact__label {
+  color: $muted_color;
+  font-size: 0.9rem;
+  transition: $default_transition;
+}
+
+.contact__icon {
+  display: flex;
+}
+
+.contact__label {
+  display: flex;
+  padding: 0 10px;
+
+  &:hover {
+    color: $secondary_color_light;
+  }
+}

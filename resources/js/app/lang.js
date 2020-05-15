@@ -1,11 +1,13 @@
 (function($) {
     // Show languages on click
-    let langBody = $('.lang__body');
-    $('#changeLang').click(function() {
+    let langBody = $('#langBody');
+    $('#changeLang').click(function(e) {
+        e.preventDefault();
+
         langBody.toggle();
     });
 
-    $('.lang__body_switcher-item').click(function() {
+    $('.header__lang__item').click(function() {
         let radio = $(this).find('input[type="radio"]');
         $(radio).prop('checked', true);
 

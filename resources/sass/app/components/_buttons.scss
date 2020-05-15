@@ -5,7 +5,6 @@
     font-weight: 400;
     line-height: 1.42857143;
     text-align: center;
-    white-space: nowrap;
     vertical-align: middle;
     -ms-touch-action: manipulation;
     touch-action: manipulation;
@@ -47,6 +46,7 @@ button:disabled {
 
 .btn-link {
     padding: 0;
+    text-align: left;
 }
 
 .btn-sm-icon {

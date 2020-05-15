@@ -1,45 +1,37 @@
-<div class="parts shadow-sm">
-    @foreach($parts as $part)
-        <div class="row parts__item">
-            <div class="col-sm-6 col-md-2">
-                <p>
-                    <a href="{{ route('parts.show', $part) }}">
-                        <img src="{{ $part->getFirstMediaUrl('main_image', 'thumb') }}" class="img-responsive img-thumbnail">
-                    </a>
-                </p>
-            </div>
-
-            <div class="col-sm-6 col-md-10">
-                <div class="row">
-                    <div class="col-sm-12 col-md-4">
-                        <a href="{{ route('parts.show', $part) }}" class="btn btn-link">{{ $part->trans('name') }}</a>
-
-                        <p class="parts__item-producer">{{ $part->producer_id }}</p>
+<div class="parts">
+    <div class="row">
+        @foreach($parts as $part)
+            <div class="col-6 col-md-6 col-sm-4 d-flex flex-column flex-md-row justify-content-between parts__item">
+                <div class="parts__item__image-content">
+                    <div class="parts__item__image-container mb-2">
+                        <a href="{{ route('parts.show', $part) }}" class="parts__item__image-link">
+                            <img src="{{ $part->getFirstMediaUrl('main_image', 'medium') }}" class="parts__item__image">
+                        </a>
                     </div>
 
-                    <div class="col-md-4">
-                        <p>{!! $part->displayPrice() !!} </p>
-                    </div>
-
-                    <div class="col-sm-12 col-md-2">
-                        @component('website.includes._product_qty_input', ['product' => $part]) @endcomponent
-                    </div>
-
-                    <div class="col-sm-12 col-md-2">
-                        <p class="text-center">
-                            @include('website.includes._btn_add_to_cart', ['product' => $part, 'icon' => true, 'class' => 'w-0'])
-
-                            @auth
-                                <a href="{{ route('admin.parts.edit', $part) }}" class="btn btn-sm-icon btn-outline-muted" target="_blank">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                            @endauth
+                    <div class="px-md-3">
+                        <p>
+                            <a href="{{ route('parts.show', $part) }}" class="btn btn-link parts__item__name">{{ $part->trans('name') }}</a>
                         </p>
+
+                        <p class="parts__item__producer-id ltr">{{ $part->producer_id }}</p>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="parts__item__price">{!! $part->displayPrice() !!}</p>
+
+                    <div class="d-flex flex-md-column justify-content-between">
+                        <div class="d-flex my-md-4 justify-content-center">
+                            @component('website.includes._product_qty_input', ['product' => $part]) @endcomponent
+                        </div>
+
+                        @include('website.includes._btn_add_to_cart', ['product' => $part, 'icon' => true, 'class' => 'w-0'])
                     </div>
                 </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
+    </div>
 </div>
 
 <div class="pagination__wrapper">

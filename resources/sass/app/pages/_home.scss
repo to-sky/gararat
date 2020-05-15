@@ -1,36 +1,31 @@
 .homepage {
     section {
-        padding: 60px 0;
+        padding: #{$card_bottom_gap * 2} 0;
     }
-}
-
-.home-title {
-    text-align: center;
-    font-size: 3rem;
 }
 
 .home-icons {
     margin-top: -50px;
+    padding: 0 !important;
     position: relative;
     z-index: 10;
-    padding: 0 !important;
     background: transparent;
 }
 
 .home-icons__item {
-    margin: 15px;
-    width: 230px;
+    margin: $default_gap;
+    width: 220px;
     align-self: center;
     text-align: center;
     background: $white;
 }
 
 .home-icons__link {
-    padding: 15px;
-    font-size: 1.5rem;
+    padding: $default_gap;
     display: block;
+    font-size: 1.5rem;
     color: $muted_color;
-    box-shadow: $shadow-sm;
+    box-shadow: $shadow_sm;
 
     &:hover {
         color: $secondary_color_muted;
@@ -43,7 +38,7 @@
 }
 
 .home-icons__icon {
-    margin-bottom: 10px;
+    margin-bottom: $default_gap;
     height: 146px;
     display: block;
     background-repeat: no-repeat;
@@ -52,6 +47,23 @@
     transition: $default_transition;
 }
 
-.icon_size_s {
+.icon-size_s {
     background-size: 58%;
+}
+
+@include for-tablet-portrait {
+    .home-icons__item {
+        width: 200px;
+    }
+}
+
+@include for-tablet-landscape {
+    .home-icons__item {
+        width: 240px;
+    }
+}
+
+// News
+.homepage .news {
+    padding-bottom: 0;
 }

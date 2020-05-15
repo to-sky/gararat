@@ -49,7 +49,7 @@
         {{-- Main content --}}
         <section class="home-icons">
             <div class="container">
-                <div class="d-flex flex-column flex-md-row justify-content-center">
+                <div class="d-flex flex-wrap justify-content-center">
                     <div class="home-icons__item">
                         <a href="{{ route('equipment.index') }}" class="home-icons__link">
                             <i class="home-icons__icon equipment-icon"></i>
@@ -59,14 +59,14 @@
 
                     <div class="home-icons__item">
                         <a href="{{ route('parts.index') }}" class="home-icons__link">
-                            <i class="home-icons__icon parts-icon icon_size_s"></i>
+                            <i class="home-icons__icon parts-icon icon-size_s"></i>
                             {{ __('Parts') }}
                         </a>
                     </div>
 
                     <div class="home-icons__item">
                         <a href="{{ route('services') }}" class="home-icons__link">
-                            <i class="home-icons__icon services-icon icon_size_s"></i>
+                            <i class="home-icons__icon services-icon icon-size_s"></i>
                             {{ __('Services') }}
                         </a>
                     </div>
@@ -76,7 +76,7 @@
 
         <section>
             <div class="container">
-                <h1 class="home-title">{{ isLocaleEn() ? $home->block_1 : $home->block_1_ar }}</h1>
+                <h1 class="text-center">{{ isLocaleEn() ? $home->block_1 : $home->block_1_ar }}</h1>
             </div>
         </section>
 
@@ -88,15 +88,17 @@
             </div>
         </section>
 
-        <section>
+        <section class="news">
             <div class="container">
-                <h2 class="page-title">{{ __('Our News') }}</h2>
-                <div class="section__news">
-                    <div class="row">
-                        @foreach($news as $item)
-                            @include('website.includes._news-item')
-                        @endforeach
-                    </div>
+                <div class="d-flex justify-content-between">
+                    <h2 class="page-title d-flex justify-content-between">{{ __('Our News') }}</h2>
+                    <a href="{{ route('news.index') }}" class="btn btn-outline-danger align-self-baseline">{{ __('Other news') }}</a>
+                </div>
+
+                <div class="row">
+                    @foreach($news as $item)
+                        @include('website.includes._news-item')
+                    @endforeach
                 </div>
             </div>
         </section>

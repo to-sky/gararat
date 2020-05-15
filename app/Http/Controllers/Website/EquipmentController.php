@@ -17,38 +17,7 @@ class EquipmentController extends Controller
      */
     public function index(EquipmentFilter $filter)
     {
-        $equipment = Equipment::filter($filter)->get();
-
-        // TODO: remove hardcode
-        $equipment = $equipment->map(function ($item) {
-            if ($item->id == 505 || $item->id == 503) {
-                $item->short_description = [
-                    0 => 'Capacity, h.p./kW 81,6/60',
-                    1 => 'Axle arrangement 4x2',
-                ];
-
-                $item->short_description_ar = [
-                    0 => 'ت إلى سلة التسوق.',
-                    1 => 'ت إلى سلة التسوق.',
-                ];
-
-                return $item;
-            }
-
-            $item->short_description = [
-                0 => 'Capacity, h.p./kW 81,6/60',
-                1 => 'Axle arrangement 4x2',
-                2 => 'Lorem ipsum dolor set ament'
-            ];
-
-            $item->short_description_ar = [
-                0 => 'ت إلى سلة التسوق.',
-                1 => 'ت إلى سلة التسوق.',
-                2 => 'ت إلى سلة التسوق.'
-            ];
-
-            return $item;
-        });
+        $equipment = Equipment::filter($filter)->paginate(8);
 
         if (request()->ajax()) {
             return view('website.equipment._equipment_items', compact('equipment'))->render();

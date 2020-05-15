@@ -17,17 +17,9 @@ $(document).on('keydown', 'input[type="number"]', function (e) {
     return true;
 });
 
-$('#burgerIcon').click(function (el) {
-    let headerMain = $('.header-main');
-    let headerMenu = $('.header__menu');
-
-    if ($(this).is(":checked")) {
-        $(headerMenu).addClass('opened');
-        $(headerMain).css('padding-bottom', '220px');
-    } else {
-        $(headerMenu).removeClass('opened');
-        $(headerMain).css('padding-bottom', '1rem');
-    }
+// Header burger button
+$('#burgerIcon').click(function () {
+    $('.header-main').toggleClass('header-menu-opened');
 });
 
 // Disabling form submissions if there are invalid fields
