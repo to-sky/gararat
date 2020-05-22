@@ -2,20 +2,26 @@
 <div class="form-row">
     <div class="col-md-6 form-group">
         <label for="firstName">{{ __('First name') }}*</label>
-        <input type="text" name="first_name" id="firstName" class="form-control" required>
+        <input type="text" name="first_name" id="firstName"
+               class="form-control @error('first_name') is-invalid @enderror"
+               value="{{ old('first_name') }}"
+               required>
 
-        <span class="invalid-feedback">
-            {{ __('This field is required.') }}
-        </span>
+        @error('first_name')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
 
     <div class="col-md-6 form-group">
         <label for="lastName">{{ __('Last name') }}*</label>
-        <input type="text" name="last_name" id="lastName" class="form-control" required>
+        <input type="text" name="last_name" id="lastName"
+               class="form-control @error('last_name') is-invalid @enderror"
+               value="{{ old('last_name') }}"
+               required>
 
-        <div class="invalid-feedback">
-            {{ __('This field is required.') }}
-        </div>
+        @error('last_name')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
 </div>
 
@@ -23,20 +29,26 @@
 <div class="form-row">
     <div class="col-md-6 form-group">
         <label for="email">{{ __('Email') }}*</label>
-        <input type="email" name="email" id="email" class="form-control" required>
+        <input type="email" name="email" id="email"
+               class="form-control @error('email') is-invalid @enderror"
+               value="{{ old('email') }}"
+               required>
 
-        <div class="invalid-feedback">
-            {{ __('This field is required.') }}
-        </div>
+        @error('email')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
 
     <div class="col-md-6 form-group">
         <label for="phone">{{ __('Phone') }}*</label>
-        <input type="text" name="phone" id="phone" class="form-control" required>
+        <input type="text" name="phone" id="phone"
+               class="form-control @error('phone') is-invalid @enderror"
+               value="{{ old('phone') }}"
+               required>
 
-        <div class="invalid-feedback">
-            {{ __('This field is required.') }}
-        </div>
+        @error('phone')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
 </div>
 
@@ -44,16 +56,18 @@
 <div class="form-row">
     <div class="col-md-6 form-group">
         <label for="country">{{ __('Country') }}*</label>
-        <select name="country_id" class="form-control" id="country" required>
+        <select name="country_id" id="country"
+                class="form-control @error('country_id') is-invalid @enderror"
+                required>
             @foreach($countries as $country)
-                <option @if($country->name == 'Egypt') selected @endif
+                <option @if(old('country_id') == $country->id || $country->name == 'Egypt') selected @endif
                 value="{{ $country->id }}">{{ $country->name }}</option>
             @endforeach
         </select>
 
-        <div class="invalid-feedback">
-            {{ __('This field is required.') }}
-        </div>
+        @error('country_id')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
 
     <div class="col-md-6 form-group">
@@ -90,13 +104,3 @@
         {{ __('Subscribe to our news') }}
     </label>
 </div>
-
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif

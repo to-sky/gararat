@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Website;
 
+use App\Http\Requests\ContactUsRequest;
 use App\Mail\ContactUsForm;
 use App\Rules\GoogleRecaptcha;
 use Illuminate\Http\Request;
@@ -122,15 +123,11 @@ class PageController extends Controller
     /**
      * Send ContactUs form with Google ReCaptcha validation
      *
-     * @param Request $request
+     * @param ContactUsRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function contactUs(Request $request)
+    public function contactUs(ContactUsRequest $request)
     {
-        $request->validate([
-            'g-recaptcha-response' => ['required', new GoogleRecaptcha()]
-        ]);
-
         Mail::to(config('mail.to.sales'))->send(new ContactUsForm($request));
 
         return redirect()->back();

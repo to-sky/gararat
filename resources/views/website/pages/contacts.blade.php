@@ -17,44 +17,65 @@
             <div class="col-12 col-lg-6">
                 <div class="pt-3 px-lg-3">
                     <form action="{{ route('contact-us') }}" method="post"
-                          class="contact-us__form" id="contactFormPageForm">
+                          class="needs-validation contact-us__form" id="contactFormPageForm" novalidate>
                         @csrf
 
                         <div class="form-group">
                             <label for="name">{{ __('Name') }}*</label>
-                            <input type="text" name="name" id="name" required>
+                            <input type="text" name="name" id="name"
+                                   class="form-control @error('name') is-invalid @enderror"
+                                   value="{{ old('name') }}" required>
+
+                            @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-row">
                             <div class="col-12 col-lg-6 form-group">
                                 <label for="email">{{ __('Email') }}*</label>
-                                <input type="email" name="email" id="email" required>
+                                <input type="email" name="email" id="email"
+                                       class="form-control @error('email') is-invalid @enderror"
+                                       value="{{ old('email') }}" required>
+
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-12 col-lg-6 form-group">
                                 <label for="phone">{{ __('Phone') }}*</label>
-                                <input type="text" name="phone" id="phone" required>
+                                <input type="text" name="phone" id="phone"
+                                       class="form-control @error('phone') is-invalid @enderror"
+                                       value="{{ old('phone') }}" required>
+
+                                @error('phone')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="message">{{ __('Message') }}*</label>
-                            <textarea name="message" id="message" required></textarea>
+                            <textarea name="message" id="message"
+                                      class="form-control @error('message') is-invalid @enderror"
+                                        required>{{ old('message') }}</textarea>
+
+                            @error('message')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-row">
                             <div class="col-sm-9 form-group contact-us__form__recaptcha">
                                 @if(env('GOOGLE_RECAPTCHA_KEY'))
-                                    <div class="g-recaptcha"
-                                         data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}"
-                                    >
+                                    <div class="g-recaptcha @error('g-recaptcha-response') is-invalid @enderror"
+                                         data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
                                     </div>
 
-                                    @if ($errors->has('g-recaptcha-response'))
-                                        <span class="pt-3">
-                                            <strong class="text-danger">{{ __('Are you a robot?') }}</strong>
-                                        </span>
-                                    @endif
+                                    @error('g-recaptcha-response')
+                                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
                                 @endif
                             </div>
 

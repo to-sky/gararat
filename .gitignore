@@ -1,5 +1,7 @@
 /node_modules
 /public/admin/*
+/public/admin/admin.js
+/public/admin/admin.css
 /public/css
 /public/fonts
 /public/images
@@ -7,6 +9,7 @@
 /public/storage
 /public/vendor
 /storage/*.key
+storage/medialibrary/
 /public/mix-manifest.json
 /vendor
 .env
@@ -17,6 +20,5 @@ npm-debug.log
 yarn-error.log
 .idea
 .DS_Store
-storage/medialibrary/
-/public/admin/admin.js
-/public/admin/admin.css
+
+

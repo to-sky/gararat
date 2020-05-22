@@ -51,21 +51,15 @@
         </div>
     </div>
 
-    <div class="col-12 d-flex justify-content-center">
+    <div class="col-12 d-flex flex-column align-items-center">
         @if(env('GOOGLE_RECAPTCHA_KEY'))
-            <div class="g-recaptcha pt-4"
+            <div class="g-recaptcha pt-4 @error('g-recaptcha-response') is-invalid @enderror"
                  data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
             </div>
 
             @error('g-recaptcha-response')
-                <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback d-block text-center pt-2">{{ $message }}</div>
             @enderror
-
-            @if ($errors->has('g-recaptcha-response'))
-                <span class="float-right pt-3 text-danger">
-                    <strong>{{ __('Are you a robot?') }}</strong>
-                </span>
-            @endif
         @endif
     </div>
 
