@@ -1,11 +1,13 @@
 /node_modules
-/public/admin
+/public/admin/*
 /public/css
 /public/fonts
 /public/images
 /public/js
 /public/storage
+/public/vendor
 /storage/*.key
+/public/mix-manifest.json
 /vendor
 .env
 .phpunit.result.cache
@@ -14,3 +16,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .idea
+.DS_Store
+storage/medialibrary/
+/public/admin/admin.js
+/public/admin/admin.css

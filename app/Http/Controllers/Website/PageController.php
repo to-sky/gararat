@@ -22,7 +22,7 @@ class PageController extends Controller
     public function home()
     {
         return view('website.pages.home', [
-            'home' => Page::getHomePage(),
+            'page' => Page::whereSlug(Page::HOME_PAGE_SLUG)->first(),
             'slides' => Slide::all(),
             'news' => News::latest()->take(4)->get()
         ]);
@@ -36,7 +36,7 @@ class PageController extends Controller
     public function services()
     {
         return view('website.pages.services', [
-            'page' => Page::getPageByAlias('services')
+            'page' => Page::whereSlug(Page::SERVICES_PAGE_SLUG)->first()
         ]);
     }
 
@@ -90,7 +90,6 @@ class PageController extends Controller
         ];
 
         return view('website.pages.contacts', [
-            'page' => Page::getPageByAlias('contacts'),
             'offices' => $offices
         ]);
     }

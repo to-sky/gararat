@@ -35,8 +35,8 @@ class Unit extends Model implements HasMedia
     public function registerMediaCollections()
     {
         $this->addMediaCollection('figure')
-            ->useFallbackUrl('images/blank.png')
-            ->useFallbackPath(public_path('images/blank.png'))
+            ->useFallbackUrl(MediaService::BLANK_IMAGE_PATH)
+            ->useFallbackPath(public_path(MediaService::BLANK_IMAGE_PATH))
             ->singleFile();
     }
 

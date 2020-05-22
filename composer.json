@@ -21,7 +21,8 @@
         "maatwebsite/excel": "^3.1",
         "olimortimer/laravelshoppingcart": "^4.0",
         "spatie/image": "^1.7",
-        "spatie/laravel-medialibrary": "^7.0.0"
+        "spatie/laravel-medialibrary": "^7.0.0",
+        "unisharp/laravel-filemanager": "^2.1"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",

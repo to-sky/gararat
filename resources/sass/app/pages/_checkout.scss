@@ -1,6 +1,7 @@
 .checkout__cart-content {
   padding-top: 10px;
-  max-height: 290px;
+  min-height: 248px;
+  max-height: 248px;
   overflow: auto;
   border-bottom: 1px solid $border_color;
 }

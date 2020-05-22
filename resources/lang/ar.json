@@ -44,7 +44,6 @@
   "Your email address is not verified.": "بريدك الإلكتروني غير موثّق.",
   "Whoops!": "عذراً!",
   "GARARAT – the first e-hypermarket for agricultural tractors, equipment and spare parts!": "جرارات هو اول سوق إليكترونى للجرارات الزراعية و المعدات وقطع الغيار",
-  "Agricultural tractors, equipment, genuine spare parts and service": "جرارات زراعية , معدات , قطع غيار اصلية و خدمة مؤهلة",
   "Thank you for your order our specialists will reply you shortly! Please feel free to contact us for any enquiry.": "نشكرك على طلبك. سيرد عليك المتخصصون لدينا قريبًا! لا تتردد في الاتصال بنا للحصول على أي استفسار.",
   "Order №:id created successfully!": "الطلب :id إنشاء المعرف بنجاح!",
   "Thanks": "شكر",
@@ -52,6 +51,7 @@
   "Search results for: :query": "تم إنشاء الطلب بنجاح :query",
   "English": "عربى",
   "Home": "الرئيسية",
+  "Homepage": "الصفحة الرئيسية",
   "Equipment": "معدات",
   "Manufacturers": "الشركات المصنعة",
   "Equipment groups": "مجموعات المعدات",
@@ -123,8 +123,5 @@
   "Next": "التالى",
   "EN": "AR",
   "Other news": "أخبار أخرى",
-  "Subscribe to our news": "اشترك في أخبارنا",
-
-
-  "GARARAT is a reliable equipment, genuine spare parts and qualified service for all branches of agriculture. We provide a full range of services: from consultations when choosing equipment to warranty and post-warranty maintenance.": "GARARAT هي معدات موثوقة وقطع غيار أصلية وخدمة مؤهلة لجميع فروع الزراعة. نحن نقدم مجموعة كاملة من الخدمات: من الاستشارات عند اختيار المعدات إلى الضمان والصيانة بعد الضمان."
+  "Subscribe to our news": "اشترك في أخبارنا"
 }

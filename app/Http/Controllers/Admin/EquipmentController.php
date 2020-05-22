@@ -75,6 +75,20 @@ class EquipmentController extends Controller
 
         return redirect()->route('admin.equipment.index');
     }
+    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Equipment $equipment
+     * @return \Illuminate\Http\Response
+     * @throws \Exception
+     */
+    public function destroy(Equipment $equipment)
+    {
+        $equipment->delete();
+
+        return redirect()->route('admin.equipment.index');
+    }
 
     /**
      * Update site position after Drag'n'Drop on the table
@@ -91,17 +105,21 @@ class EquipmentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Clone equipment
      *
-     * @param  \App\Models\Equipment $equipment
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
+     * @param Equipment $equipment
+     * @return bool
      */
-    public function destroy(Equipment $equipment)
+    public function cloneEquipment(Equipment $equipment)
     {
-        $equipment->delete();
+        $cloneEquipment = $equipment->replicate();
+        $cloneEquipment->name = $equipment->name . '_2';
+        $cloneEquipment->name_ar = $equipment->name_ar . '_2';
+        $cloneEquipment->slug = $equipment->slug . '_2';
+        $cloneEquipment->site_position = Equipment::getLastSitePosition() + 1;
+        $cloneEquipment->save();
 
-        return redirect()->route('admin.equipment.index');
+        return true;
     }
 
     /**

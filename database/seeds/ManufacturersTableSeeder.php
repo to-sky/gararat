@@ -12,6 +12,6 @@ class ManufacturersTableSeeder extends Seeder
      */
     public function run()
     {
-        Manufacturer::create(['name' => 'MTZ']);
+        Manufacturer::create(['name' => 'MTW']);
     }
 }

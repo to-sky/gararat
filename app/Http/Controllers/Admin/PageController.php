@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\PageRequest;
 use App\Models\{Equipment, Order, Page, Part, User};
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,59 +16,34 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.index');
-    }
-
-    /**
-     * Edit homepage
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function home()
-    {
-        return view('admin.pages.home', [
-            'pageData' => Page::getHomePage()
+        return view('admin.pages.index', [
+            'pages' => Page::orderBy('name')->get()
         ]);
     }
 
     /**
-     * Edit services page
+     * Show form for edit page
      *
+     * @param Page $page
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function services()
+    public function edit(Page $page)
     {
-        $pagesModel = new Page;
-        $getPage = $pagesModel->getPageByAlias('services');
-
-        if($getPage === null) {
-            $pagesModel->createDefaultPage('services', 'Services', 'Services');
-        }
-
-        $data['pageData'] = $pagesModel->getPageByAlias('services');
-        $data['title'] = 'Services';
-
-        return view('admin.pages.contacts', $data);
+        return view('admin.pages.edit', compact('page'));
     }
 
     /**
-     * Edit contacts page
+     * Update page
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param PageRequest $request
+     * @param Page $page
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function contacts()
+    public function update(PageRequest $request, Page $page)
     {
-        $pagesModel = new Page;
-        $getPage = $pagesModel->getPageByAlias('contacts');
+        $page->update($request->all());
 
-        if($getPage === null) {
-            $pagesModel->createDefaultPage('contacts', 'Contacts', 'Contacts');
-        }
-
-        $data['pageData'] = $pagesModel->getPageByAlias('contacts');
-        $data['title'] = 'Contacts';
-
-        return view('admin.pages.contacts', $data);
+        return redirect()->route('admin.pages.index');
     }
 
     /**

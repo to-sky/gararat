@@ -58,4 +58,14 @@ class Equipment extends Product
             'catalog_id'
         )->distinct();
     }
+
+    /**
+     * Get last site position attribute
+     *
+     * @return int
+     */
+    public static function getLastSitePosition()
+    {
+        return Equipment::max('site_position');
+    }
 }

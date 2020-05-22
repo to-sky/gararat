@@ -1,4 +1,3 @@
-$white: #fff;
-$primary_color: #2196f3;
-$primary_color_light: #f7fcff;
-$primary_color_ultra_light: #dae7ef;
+.not-pointer-events {
+  pointer-events: none !important;
+}

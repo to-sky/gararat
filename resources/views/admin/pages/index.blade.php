@@ -15,42 +15,24 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>Homepage</td>
-                            <td>
-                                <div class="float-right">
-                                    <div class="btn-group btn-group-sm shadow-sm" role="group">
-                                        @include('admin.includes._edit-btn' , [
-                                            'href' => route('admin.pages.home')
-                                        ])
+                        @foreach($pages as $page)
+                            <tr>
+                                <td>{{ $page->name }}</td>
+                                <td>
+                                    <div class="float-right">
+                                        <div class="btn-group btn-group-sm shadow-sm" role="group">
+                                            @include('admin.includes._edit-btn' , [
+                                                'href' => route('admin.pages.edit', $page)
+                                            ])
+
+                                            @include('admin.includes._show-btn' , [
+                                               'href' => route($page->slug)
+                                            ])
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Services</td>
-                            <td>
-                                <div class="float-right">
-                                    <div class="btn-group btn-group-sm shadow-sm" role="group">
-                                        @include('admin.includes._edit-btn' , [
-                                            'href' => route('admin.pages.services')
-                                        ])
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Contacts</td>
-                            <td>
-                                <div class="float-right">
-                                    <div class="btn-group btn-group-sm shadow-sm" role="group">
-                                        @include('admin.includes._edit-btn' , [
-                                            'href' => route('admin.pages.contacts')
-                                        ])
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

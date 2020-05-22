@@ -56,13 +56,13 @@ abstract class Product extends Model implements HasMedia, Buyable
     public function registerMediaCollections()
     {
         $this->addMediaCollection('main_image')
-            ->useFallbackUrl('/images/blank.png')
-            ->useFallbackPath(public_path('/images/blank.png'))
+            ->useFallbackUrl(MediaService::BLANK_IMAGE_PATH)
+            ->useFallbackPath(public_path(MediaService::BLANK_IMAGE_PATH))
             ->singleFile();
 
         $this->addMediaCollection('additional_images')
-            ->useFallbackUrl('/images/blank.png')
-            ->useFallbackPath(public_path('/images/blank.png'));
+            ->useFallbackUrl(MediaService::BLANK_IMAGE_PATH)
+            ->useFallbackPath(public_path(MediaService::BLANK_IMAGE_PATH));
     }
 
     /**
@@ -83,7 +83,7 @@ abstract class Product extends Model implements HasMedia, Buyable
             ->height(300);
 
         $this->addMediaConversion('large')
-            ->watermark(public_path('/images/watermark.png'))
+            ->watermark(public_path(MediaService::WATERMARK_PATH))
             ->watermarkPosition(Manipulations::POSITION_CENTER)
             ->watermarkHeight(50, Manipulations::UNIT_PERCENT)
             ->watermarkWidth(50, Manipulations::UNIT_PERCENT);

@@ -4,6 +4,9 @@ namespace App\Services;
 
 class MediaService
 {
+    const BLANK_IMAGE_PATH = '/images/blank.png';
+    const WATERMARK_PATH = '/images/watermark.png';
+
     /**
      * Store and update media
      *

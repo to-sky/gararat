@@ -1,6 +1,6 @@
 @extends('website.layouts.master')
 
-@section('title', __('Agricultural tractors, equipment, genuine spare parts and service'))
+@section('title', optional($page)->trans('title'))
 
 @section('description')
     {{ __('GARARAT – the first e-hypermarket for agricultural tractors, equipment and spare parts!') }}
@@ -9,9 +9,7 @@
 @section('content')
     <div class="homepage">
         {{-- Slider --}}
-
-        {{-- TODO: change slider interval --}}
-        <div id="homeSlider" class="carousel slide home-slider" data-ride="carousel" data-interval="107000">
+        <div id="homeSlider" class="carousel slide home-slider" data-ride="carousel" data-interval="7000">
             <div class="carousel-inner">
                 @foreach($slides as $slide)
                     <div class="carousel-item
@@ -29,7 +27,9 @@
                             @endif
 
                             @if ($slide->link)
-                                <p class="carousel-read-more"><a href="{{ $slide->link }}" class="btn btn-danger border-0">{{ __('Read more') }}</a></p>
+                                <p class="carousel-read-more">
+                                    <a href="{{ $slide->link }}" class="btn btn-danger border-0">{{ __('Read more') }}</a>
+                                </p>
                             @endif
                         </div>
                     </div>
@@ -74,19 +74,21 @@
             </div>
         </section>
 
+        @if(optional($page)->trans('title'))
         <section>
             <div class="container">
-                <h1 class="text-center">{{ isLocaleEn() ? $home->block_1 : $home->block_1_ar }}</h1>
+                <h1 class="text-center">{{ $page->trans('title') }}</h1>
             </div>
         </section>
+        @endif
 
-        {{-- TODO: remove hardcode --}}
+        @if(optional($page)->trans('body'))
         <section class="bg-white">
             <div class="container">
-                <h2 class="page-title">{{ __('GARARAT – the first e-hypermarket for agricultural tractors, equipment and spare parts!') }}</h2>
-                <p>{{ __('GARARAT is a reliable equipment, genuine spare parts and qualified service for all branches of agriculture. We provide a full range of services: from consultations when choosing equipment to warranty and post-warranty maintenance.') }}</p>
+                {!! $page->trans('body') !!}
             </div>
         </section>
+        @endif
 
         <section class="news">
             <div class="container">

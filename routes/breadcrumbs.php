@@ -44,18 +44,16 @@ Breadcrumbs::for('news.show', function ($trail, $news) {
     $trail->push($news->trans('title'), route('news.index', $news));
 });
 
-
 // Home > Services
 Breadcrumbs::for('services', function ($trail) {
     $trail->parent('home');
-    $trail->push(__('Services'), route('admin.pages.services'));
+    $trail->push(__('Services'), route('services'));
 });
-
 
 // Home > Contacts
 Breadcrumbs::for('contacts', function ($trail) {
     $trail->parent('home');
-    $trail->push(__('Contacts'), route('admin.pages.contacts'));
+    $trail->push(__('Contacts'), route('contacts'));
 });
 
 // Home > Cart

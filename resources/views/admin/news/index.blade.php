@@ -25,7 +25,7 @@
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>
-                                <img src="{{ asset($item->getFirstMediaUrl('news_images', 'thumb')) }}" height="50">
+                                <img src="{{ asset($item->getFirstMediaUrl('thumbnail', 'thumb')) }}" height="50">
                             </td>
                             <td>{{ $item->title }}</td>
                             <td>{{ $item->created_at->toDateString() }}</td>

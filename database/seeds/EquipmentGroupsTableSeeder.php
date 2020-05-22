@@ -14,8 +14,9 @@ class EquipmentGroupsTableSeeder extends Seeder
     public function run()
     {
         collect([
-            ['name' => 'Belarus-90/92'],
-            ['name' => 'Belarus-80/82']
+            ['name' => 'BELARUS-800/820/90S/92S/92SL'],
+            ['name' => 'BELARUS-90/92'],
+            ['name' => 'BELARUS-321']
         ])->each(function($item) {
             EquipmentGroup::create($item);
         });

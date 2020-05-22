@@ -18,6 +18,7 @@ import './utils';
 import './admin/select2';
 import './admin/datetimepicker';
 import './admin/summernote';
+import './admin/tinymce';
 import './admin/confirm';
 import './admin/fontawesome';
 

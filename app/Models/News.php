@@ -23,11 +23,11 @@ class News extends Model implements HasMedia
         parent::boot();
 
         self::saving(function($news) {
-            MediaService::store($news, ['news_images']);
+            MediaService::store($news, 'thumbnail');
         });
 
         self::deleting(function ($news) {
-            MediaService::destroy($news, ['news_images']);
+            MediaService::destroy($news, ['thumbnail']);
         });
     }
 
@@ -38,9 +38,10 @@ class News extends Model implements HasMedia
      */
     public function registerMediaCollections()
     {
-        $this->addMediaCollection('news_images')
-            ->useFallbackUrl('/images/blank.png')
-            ->useFallbackPath(public_path('/images/blank.png'));
+        $this->addMediaCollection('thumbnail')
+            ->useFallbackUrl(MediaService::BLANK_IMAGE_PATH)
+            ->useFallbackPath(public_path(MediaService::BLANK_IMAGE_PATH))
+            ->singleFile();
     }
 
     /**

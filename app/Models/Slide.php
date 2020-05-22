@@ -49,8 +49,8 @@ class Slide extends Model implements HasMedia
     public function registerMediaCollections()
     {
         $this->addMediaCollection('home_slide')
-            ->useFallbackUrl('/images/blank.png')
-            ->useFallbackPath(public_path('/images/blank.png'))
+            ->useFallbackUrl(MediaService::BLANK_IMAGE_PATH)
+            ->useFallbackPath(public_path(MediaService::BLANK_IMAGE_PATH))
             ->singleFile();
     }
 

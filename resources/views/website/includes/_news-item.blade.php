@@ -2,7 +2,7 @@
     <div class="news-item">
         <div class="news__image-wrapper">
             <a href="{{ route('news.show', $item) }}"
-               style="background-image: url('{{ asset($item->getFirstMediaUrl("news_images")) }}');"
+               style="background-image: url('{{ asset($item->getFirstMediaUrl("thumbnail")) }}');"
                class="news__image"></a>
 
             <div class="news__date">
