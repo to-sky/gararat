@@ -3,7 +3,7 @@
 @section('title', "Edit part: $part->name")
 
 @section('content')
-    <form action="{{ route('admin.parts.update', $part) }}" method="post" autocomplete="off" enctype="multipart/form-data">
+    <form action="{{ $part->path('update') }}" method="post" autocomplete="off" enctype="multipart/form-data">
         @method('PUT')
         @csrf
 

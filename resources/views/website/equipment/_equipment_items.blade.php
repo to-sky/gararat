@@ -4,7 +4,7 @@
 
             <div class="row">
                 <div class="col-6">
-                    <a href="{{ route('equipment.show', $item) }}">
+                    <a href="{{ $item->path() }}">
                         <div class="equipment-card__image"
                              style="background-image: url('{{ asset($item->getFirstMediaUrl('main_image', 'medium')) }}')">
                         </div>
@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-6">
                     <div class="equipment-card__description">
-                        <a href="{{ route('equipment.show', $item) }}" class="equipment-card__title">
+                        <a href="{{ $item->path() }}" class="equipment-card__title">
                             {{ $item->trans('name') }}
                         </a>
 

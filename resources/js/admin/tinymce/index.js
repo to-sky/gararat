@@ -1,8 +1,5 @@
 import 'tinymce';
 import 'tinymce/themes/silver';
-import 'tinymce/skins/content/default/content.min.css'
-import 'tinymce/skins/ui/oxide/content.min.css'
-import 'tinymce/skins/ui/oxide/skin.min.css'
 import 'tinymce/plugins/advlist';
 import 'tinymce/plugins/autolink';
 import 'tinymce/plugins/lists';
@@ -48,11 +45,13 @@ export default (function () {
             "insertdatetime media nonbreaking save table directionality",
             "emoticons template paste textpattern"
         ],
-        image_advtab: true,
         contextmenu: "paste | link image imagetools inserttable | cell row column deletetable | colorpicker",
         toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
-        relative_urls: false,
         height : "550",
+        relative_urls: false,
+        image_advtab: true,
+        paste_data_images: true,
+        paste_as_text: true,
         file_picker_callback: function (callback, value, meta) {
             let x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
             let y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;

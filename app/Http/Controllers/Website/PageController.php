@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Requests\ContactUsRequest;
+use App\Http\Requests\SearchRequest;
 use App\Mail\ContactUsForm;
-use App\Rules\GoogleRecaptcha;
-use Illuminate\Http\Request;
+use App\Services\ProductService;
 use App\Http\Controllers\Controller;
 use Session;
 use Mail;
@@ -96,15 +96,16 @@ class PageController extends Controller
     }
 
     /**
-     * @param Request $request
+     * Search products
+     *
+     * @param SearchRequest $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function search(Request $request)
+    public function search(SearchRequest $request)
     {
-        // TODO: fix search
-        $products = [];
-
-        return view('website.pages.search', compact('products'));
+        return view('website.pages.search', [
+            'products' => ProductService::searchProduct($request->q)->paginate()
+        ]);
     }
 
     /**
@@ -121,7 +122,7 @@ class PageController extends Controller
     }
 
     /**
-     * Send ContactUs form with Google ReCaptcha validation
+     * Send ContactUs form
      *
      * @param ContactUsRequest $request
      * @return \Illuminate\Http\RedirectResponse

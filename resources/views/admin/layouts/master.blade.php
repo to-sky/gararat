@@ -47,10 +47,11 @@
                         @yield('content')
                     </div>
                 </main>
-                <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600"><span>Copyright © {{ \Carbon\Carbon::now()->format('Y') }} Developed by <a href="https://www.protus.by" target="_blank" title="Protus" rel="noopener noreferrer">Protus</a>. All rights reserved.</span></footer>
+                <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
+                    <span>Copyright &copy; {{ \Carbon\Carbon::now()->format('Y') }} Developed by <a href="mailto:dima.tolsky@gmail.com" target="_blank" title="Tolsky" rel="noopener noreferrer">Tolsky</a>. All rights reserved.</span>
+                </footer>
             </div>
         </div>
-        <div id="c-preloader" style="position: absolute;top: 0;left: 0;background: RGBA(0, 0, 0, 0.5);z-index: 9999999999999999999999;width: 100%;height: 100%;display: none;"></div>
 
         <!-- Scripts -->
         <script src="{{ asset('admin/admin.js') }}"></script>

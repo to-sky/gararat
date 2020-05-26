@@ -1,4 +1,4 @@
-<table id="partsDataTable" class="w-100 table-sm table-hover">
+<table id="partsDataTable" class="w-100 table-sm table-hover table-bordered">
     <thead class="border">
         <tr>
             <th class="pl-4">#</th>

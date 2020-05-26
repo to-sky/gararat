@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PageRequest;
+use App\Http\Requests\SearchRequest;
 use App\Models\{Equipment, Order, Page, Part, User};
-use Illuminate\Http\Request;
+use App\Services\ProductService;
 use App\Http\Controllers\Controller;
 
 class PageController extends Controller
@@ -64,13 +65,13 @@ class PageController extends Controller
     /**
      * Admin search page
      *
-     * @param Request $request
+     * @param SearchRequest $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function adminSearch(Request $request)
+    public function search(SearchRequest $request)
     {
         return view('admin.dashboard.search', [
-            'parts' => Part::where('name', 'like', '%'.$request->q.'%')->paginate()
+            'products' => ProductService::searchProduct($request->q)->paginate()
         ]);
     }
 }

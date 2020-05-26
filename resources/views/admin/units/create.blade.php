@@ -67,7 +67,7 @@
             </div>
             <div class="card-body pt-0 px-0">
                 <div class="parts-content">
-                    <table id="partsContent" class="table table-sm table-hover">
+                    <table id="partsContent" class="table table-sm table-hover table-bordered">
                         <thead class="text-secondary">
                             <tr>
                                 <th class="pl-4">#</th>

@@ -56,6 +56,12 @@ Breadcrumbs::for('contacts', function ($trail) {
     $trail->push(__('Contacts'), route('contacts'));
 });
 
+// Home > Search
+Breadcrumbs::for('search', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('Search'), route('search'));
+});
+
 // Home > Cart
 Breadcrumbs::for('cart', function ($trail) {
     $trail->parent('home');
@@ -66,4 +72,10 @@ Breadcrumbs::for('cart', function ($trail) {
 Breadcrumbs::for('checkout', function ($trail) {
     $trail->parent('cart');
     $trail->push(__('Checkout'), route('checkout'));
+});
+
+// Home > 404
+Breadcrumbs::for('404', function ($trail) {
+    $trail->parent('home');
+    $trail->push('404');
 });

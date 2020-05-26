@@ -1,11 +1,15 @@
-@extends('errors::illustrated-layout')
+@extends('website.layouts.master')
 
-@section('code', '404')
 @section('title', __('Page Not Found'))
 
-@section('image')
-    <div style="background-image: url({{ asset('/svg/404.svg') }});" class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center">
+@section('content')
+    <div class="container">
+        {{ Breadcrumbs::render('404') }}
+
+        <h2 class="text-center text-muted mt-4 mb-5">{{ __('Sorry, the page you are looking for could not be found.') }}</h2>
+
+        <div class="text-center">
+            <a href="{{ route('home') }}" class="btn btn-outline-secondary">{{ __('Go to Home') }}</a>
+        </div>
     </div>
 @endsection
-
-@section('message', __('Sorry, the page you are looking for could not be found.'))

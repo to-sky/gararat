@@ -39,15 +39,15 @@
                                     <div class="float-right">
                                         <div class="btn-group btn-group-sm shadow-sm" role="group">
                                             @include('admin.includes._show-btn' , [
-                                               'href' => route('parts.show', $part)
+                                               'href' => $part->path()
                                             ])
 
                                             @include('admin.includes._edit-btn' , [
-                                                'href' => route('admin.parts.edit', $part)
+                                                'href' => $part->path('edit')
                                             ])
 
                                             @include('admin.includes._delete-btn' , [
-                                                'href' => route('admin.parts.destroy', $part),
+                                                'href' => $part->path('destroy'),
                                                 'modalText' => 'part "' . $part->name . '"'
                                             ])
                                         </div>

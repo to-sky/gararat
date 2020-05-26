@@ -10,7 +10,7 @@
             {{ $equipment->trans('name') }}
             <span class="float-{{ isLocaleEn() ? 'right' : 'left' }}">
                 @auth
-                    <a href="{{ route('admin.equipment.edit', $equipment) }}" class="btn btn-sm-icon btn-outline-muted" target="_blank">
+                    <a href="{{ $equipment->path('edit') }}" class="btn btn-sm-icon btn-outline-muted" target="_blank">
                         <i class="fas fa-edit"></i>
                     </a>
                 @endauth

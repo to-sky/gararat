@@ -11,6 +11,11 @@ try {
     window.matchHeight = require('jquery-match-height');
 } catch (e) {}
 
+
+// Vendors
+import 'jquery-confirm';
+
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

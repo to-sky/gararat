@@ -1,6 +1,6 @@
 <div class="parts">
     <div class="row">
-        @foreach($parts as $part)
+        @forelse($parts as $part)
             <div class="col-6 col-md-6 col-sm-4 d-flex flex-column flex-md-row justify-content-between parts__item">
                 <div class="parts__item__image-content">
                     <div class="parts__item__image-container mb-2">
@@ -11,7 +11,7 @@
 
                     <div class="px-md-3">
                         <p>
-                            <a href="{{ route('parts.show', $part) }}" class="btn btn-link parts__item__name">{{ $part->trans('name') }}</a>
+                            <a href="{{ $part->path() }}" class="btn btn-link parts__item__name">{{ $part->trans('name') }}</a>
                         </p>
 
                         <p class="parts__item__producer-id ltr">{{ $part->producer_id }}</p>
@@ -30,7 +30,9 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+            @empty
+                @include('website.includes._search-empty-result')
+        @endforelse
     </div>
 </div>
 

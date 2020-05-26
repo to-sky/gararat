@@ -123,5 +123,12 @@
   "Next": "التالى",
   "EN": "AR",
   "Other news": "أخبار أخرى",
-  "Subscribe to our news": "اشترك في أخبارنا"
+  "Subscribe to our news": "اشترك في أخبارنا",
+  "Search": "بحث",
+  "Close": "قريب",
+  "Enter product name or producer id": "أدخل اسم المنتج أو معرف المنتج",
+  "Search field must be filled.": "يجب ملء حقل البحث.",
+  "There are no results that match your search.": "لا توجد نتائج تطابق بحثك",
+  "Page Not Found": "الصفحة غير موجودة",
+  "Sorry, the page you are looking for could not be found.": "عذرًا ، تعذر العثور على الصفحة التي تبحث عنها."
 }

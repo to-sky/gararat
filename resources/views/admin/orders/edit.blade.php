@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="card mb-3 rounded-0 border border-top-0">
-        <table class="table table-stripped m-0 fsz-sm">
+        <table class="table table-bordered m-0 fsz-sm">
             <tbody >
                 <tr>
                     <td>Name</td>
@@ -92,7 +92,7 @@
                             <div class="float-right">
                                 <div class="btn-group btn-group-sm shadow-sm" role="group">
                                     @include('admin.includes._show-btn' , [
-                                        'href' => route('admin.'.$orderProduct->product->getTable().'.edit', $orderProduct->product)
+                                        'href' => $orderProduct->product->path('edit')
                                     ])
 
                                     @if($order->status !== \App\Models\Order::STATUS_COMPLETED)

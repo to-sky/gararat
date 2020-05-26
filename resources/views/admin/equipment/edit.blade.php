@@ -3,7 +3,7 @@
 @section('title', "Edit equipment: $equipment->name")
 
 @section('content')
-    <form action="{{ route('admin.equipment.update', $equipment) }}" method="post" autocomplete="off" enctype="multipart/form-data">
+    <form action="{{ $equipment->path('update') }}" method="post" autocomplete="off" enctype="multipart/form-data">
         @method('PUT')
         @csrf
 

@@ -71,8 +71,63 @@
             <span>{{ __('Successfully added to cart') }}</span>
         </div>
 
+        <div class="search-popup"></div>
+
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
         @stack('scripts')
+
+        <script>
+            // Search popup
+            $('.header-main__search-icon').click(function() {
+                $.confirm({
+                    title: '{{ __("Search") }}',
+                    theme: 'supervan',
+                    content: '' +
+                    '<form action="{{ route('search') }}" class="search-form needs-validation" novalidate>' +
+                        '<div class="form-group">' +
+                            '<input type="text" placeholder="{{ __('Enter product name or producer id') }}" name="q" class="search-form__input-name form-control" value="{{ request('q') }}" required />' +
+                            '<div class="invalid-feedback">' +
+                                '{{ __('Search field must be filled.') }}' +
+                            '</div>' +
+                        '</div>' +
+                    '</form>',
+                    escapeKey: 'close',
+                    rtl: '{{ ! isLocaleEn() }}',
+                    container: '.search-popup',
+                    closeIcon: true,
+                    draggable: false,
+                    columnClass: 'col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3 ',
+                    backgroundDismiss: false,
+                    backgroundDismissAnimation: 'random',
+                    buttons: {
+                        search: {
+                            text: '{{ __("Search") }}',
+                            btnClass: 'search-form__btn-search',
+                            action: function() {
+                                let searchForm = $('.search-form');
+                                searchForm.addClass('was-validated');
+
+                                if (! $('.search-form__input-name').val()) {
+                                    return false;
+                                }
+
+                                searchForm.submit();
+                            }
+                        },
+                        close: {
+                            text: '{{ __('Close') }}',
+                            btnClass: 'search-form__btn-close',
+                            action: function () {
+                                // action need to work esc key for close popup
+                            }
+                        }
+                    },
+                    onOpen: function() {
+                        $('search-form__input-name').focus();
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

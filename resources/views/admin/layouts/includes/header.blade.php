@@ -12,7 +12,9 @@
             </a>
         </li>
         <li class="search-input">
-            <form action="{{ route('admin.search') }}" method="get"><input class="form-control" type="text" name="q" placeholder="Search nodes..."></form>
+            <form action="{{ route('admin.search') }}" method="get">
+                <input class="form-control" type="text" name="q" placeholder="Search products..." value="{{ request('q') }}" required>
+            </form>
         </li>
     </ul>
 

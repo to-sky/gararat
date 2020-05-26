@@ -100,7 +100,7 @@
 
                         {{-- Search --}}
                         <div class="header-main__search align-self-end px-3">
-                            <i class="fas fa-search"></i>
+                            <i class="fas fa-search header-main__search-icon"></i>
                         </div>
 
                         {{-- Cart --}}

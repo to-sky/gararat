@@ -1,4 +1,4 @@
-$icons: equipment, parts, services, facebook, youtube, whatsapp;
+$icons: equipment, parts, services, facebook, youtube, whatsapp, search;
 
 @each $icon in $icons {
   .#{$icon}-icon {

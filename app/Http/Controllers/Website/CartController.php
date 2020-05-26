@@ -7,30 +7,10 @@ use App\Http\Requests\StoreCartRequest;
 use App\Http\Requests\UpdateCartRequest;
 use App\Models\Part;
 use App\Models\Product;
-use App\Services\CartService;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Support\Facades\Cookie;
 
 class CartController extends Controller
 {
-    /**
-     * CartController constructor.
-     *
-     * Restore cart content from database
-     */
-    public function __construct()
-    {
-        Cart::restore(Cookie::get('userToken'));
-    }
-
-    /**
-     * Store cart to the database
-     */
-    public function __destruct()
-    {
-        CartService::storeCart();
-    }
-
     /**
      * Show cart page
      *

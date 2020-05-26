@@ -6,6 +6,7 @@ require('jquery-ui/ui/widgets/sortable');
 require('./admin/custom/media');
 
 // Vendors
+import '@fortawesome/fontawesome-free';
 import './admin/datatable';
 import './admin/masonry';
 import './admin/popover';
@@ -17,10 +18,7 @@ import './utils';
 
 import './admin/select2';
 import './admin/datetimepicker';
-import './admin/summernote';
 import './admin/tinymce';
-import './admin/confirm';
-import './admin/fontawesome';
 
 // Unused
 // import './charts';

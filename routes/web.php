@@ -46,7 +46,7 @@ Route::group([
     'as' => 'admin.'
 ], function () {
     Route::get('/', 'PageController@dashboard')->name('dashboard');
-    Route::get('search', 'PageController@adminSearch')->name('search');
+    Route::get('search', 'PageController@search')->name('search');
     Route::get('pages', 'PageController@index')->name('pages.index');
     Route::get('pages/{page}', 'PageController@edit')->name('pages.edit');
     Route::put('pages/{page}', 'PageController@update')->name('pages.update');

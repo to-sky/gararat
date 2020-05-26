@@ -39,7 +39,7 @@
     </li>
 
     {{-- Equipment with equipment groups--}}
-    <li class="nav-item dropdown {{ request()->routeIs('admin.equipment.*') || request()->routeIs('admin.equipment-group.*') ? 'open' : '' }}">
+    <li class="nav-item dropdown {{ request()->routeIs('admin.equipment.*') || request()->routeIs('admin.equipment-groups.*') ? 'open' : '' }}">
         <a href="javascript:void(0);" class="dropdown-toggle">
             <span class="icon-holder"><i class="c-blue-500 fas fa-tractor"></i></span>
             <span class="title">Equipment</span>
@@ -119,7 +119,8 @@
 
     {{-- Importer --}}
     <li class="nav-item">
-        <a href="{{ route('admin.importer.index') }}" class="nav-link">
+        <a href="{{ route('admin.importer.index') }}"
+           class="nav-link {{ request()->routeIs('admin.importer.index') ? 'active' : '' }}">
             <span class="icon-holder">
                 <i class="c-blue-500 fas fa-file-upload"></i>
             </span>

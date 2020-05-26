@@ -3,21 +3,21 @@
         <div class="px-3 bg-white shadow-sm">
             <div class="cart__content">
                 @foreach (Cart::content() as $rowId => $item)
-                    @php($model = $item->model)
+                    @php($product = $item->model)
 
                     <div class="row cart__product">
                         <div class="col-4 col-md-3 col-xl-2">
-                            <img src="{{ $model->getFirstMediaUrl('main_image', 'thumb') }}" class="img-thumbnail">
+                            <img src="{{ $product->getFirstMediaUrl('main_image', 'thumb') }}" class="img-thumbnail">
                         </div>
 
                         <div class="col-8 col-md-9 col-xl-10">
-                            <a href="{{ route(Str::plural($model->getTable()).'.show', $model) }}" class="cart__product-link">
+                            <a href="{{ $product->path() }}" class="cart__product-link">
                                 {{ $item->name }}
                             </a>
 
-                            <p class="cart__product-producer-id ltr">{{ $model->producer_id }}</p>
+                            <p class="cart__product-producer-id ltr">{{ $product->producer_id }}</p>
 
-                            <p class="cart__product-price">{!! $model->displayPrice() !!}</p>
+                            <p class="cart__product-price">{!! $product->displayPrice() !!}</p>
 
                             <div class="d-flex flex-fill justify-content-between pt-3 pt-md-0">
                                 <button class="btn cart__product__remove-btn"
@@ -28,18 +28,18 @@
 
                                 <div class="product-counter">
                                     <button type="button" class="sub-qty"
-                                            data-id="{{ $model->id }}"
+                                            data-id="{{ $product->id }}"
                                             data-action="update-cart"
                                             data-row-id="{{ $rowId }}"
                                             @if($item->qty == 1) disabled @endif>
                                         <i class="fas fa-minus"></i>
                                     </button>
 
-                                    <input type="number" name="qty" id="qty_{{ $model->id }}" value="{{ $item->qty }}" min="1"
+                                    <input type="number" name="qty" data-row-qty="{{ $rowId }}_{{ $product->id }}" value="{{ $item->qty }}" min="1"
                                            readonly>
 
                                     <button type="button" class="add-qty"
-                                            data-id="{{ $model->id }}"
+                                            data-id="{{ $product->id }}"
                                             data-action="update-cart"
                                             data-row-id="{{ $rowId }}">
                                         <i class="fas fa-plus"></i>

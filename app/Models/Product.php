@@ -7,6 +7,7 @@ use App\Services\MediaService;
 use App\Traits\{Excludable, Filterable, Translatable};
 use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\{HasMedia, HasMediaTrait};
 use Spatie\MediaLibrary\Models\Media;
@@ -46,6 +47,43 @@ abstract class Product extends Model implements HasMedia, Buyable
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    /**
+     * Show path to product
+     *
+     * @param string $action
+     * @return string
+     */
+    public function path($action = 'show')
+    {
+        $product = Str::plural($this->getTable());
+
+        switch ($action) {
+            case 'edit':
+                $path = 'admin.' . $product . '.edit';
+                break;
+            case 'update':
+                $path = 'admin.' . $product . '.update';
+                break;
+            case 'destroy':
+                $path = 'admin.' . $product . '.destroy';
+                break;
+            default:
+                $path = $product . '.show';
+        }
+
+        return route($path, $this);
+    }
+
+    /**
+     * Show product type name
+     *
+     * @return string
+     */
+    public function getProductType()
+    {
+        return strtolower(class_basename($this));
     }
 
     /**

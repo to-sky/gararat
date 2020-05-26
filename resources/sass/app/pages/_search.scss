@@ -1,0 +1,47 @@
+.search__item {
+  padding: 15px 0;
+  background: $white;
+  border-bottom: 1px solid $border_color;
+  box-shadow: $shadow_sm;
+}
+
+.search__item__image {
+    margin-bottom: $default_gap;
+    width: 100%;
+}
+.search__item__price {
+  font-weight: 500;
+}
+
+.search__item__link,
+.search__item__producer-id,
+.search__item__price {
+  margin-bottom: 5px;
+  display: block;
+  line-height: .9rem;
+  font-size: .8rem;
+}
+
+@include for-phone {
+  .search__item__image {
+    margin-bottom: 0;
+  }
+}
+
+@include for-tablet-portrait {
+  .search__item__link,
+  .search__item__producer-id,
+  .search__item__price {
+    margin-bottom: 10px;
+    font-size: .9rem;
+    line-height: 1;
+  }
+}
+
+@include for-desktop {
+  .search__item__link,
+  .search__item__producer-id,
+  .search__item__price {
+    margin-bottom: 12px;
+  }
+}

@@ -15,7 +15,8 @@
   "../../../node_modules/bootstrap/scss/grid",
   "../../../node_modules/bootstrap/scss/images",
   "../../../node_modules/bootstrap/scss/utilities",
-  "../../../node_modules/bootstrap-v4-rtl/scss/bootstrap-rtl";
+  "../../../node_modules/bootstrap-v4-rtl/scss/bootstrap-rtl",
+  "../../../node_modules/jquery-confirm/dist/jquery-confirm.min";
 
 // 3. Base stuff
 @import
@@ -48,7 +49,9 @@
   'components/product-counter',
   'components/product-carousel',
   'components/product-description',
-  'components/product-purchase';
+  'components/product-purchase',
+  'components/search-empty-result',
+  'components/serach-popup';
 
 // 6. Page-specific styles
 @import
@@ -56,4 +59,5 @@
   'pages/checkout',
   'pages/contacts',
   'pages/home',
+  'pages/_search.scss',
   'pages/single-news';

@@ -58,8 +58,8 @@ $(document).on('click', '[data-action="add-to-cart"]', function (e) {
 // Update product qty
 $(document).on('click', '[data-action="update-cart"]', function (e) {
     let id = $(this).data('id');
-    let qty = $('#qty_' + id).val();
     let rowId = $(this).data('row-id');
+    let qty = $('[data-row-qty=' + rowId + '_'  + id + ']').val();
 
     if (qty < 1) return false;
 

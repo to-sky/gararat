@@ -37,11 +37,11 @@
                                     <div class="float-right">
                                         <div class="btn-group btn-group-sm shadow-sm" role="group">
                                             @include('admin.includes._show-btn' , [
-                                                'href' => route('equipment.show', $item)
+                                                'href' => $item->path()
                                             ])
 
                                             @include('admin.includes._edit-btn' , [
-                                                'href' => route('admin.equipment.edit', $item)
+                                                'href' => $item->path('edit')
                                             ])
 
                                             <a href="{{ route('admin.equipment.clone', $item) }}"
@@ -50,7 +50,7 @@
                                             </a>
 
                                             @include('admin.includes._delete-btn' , [
-                                                'href' => route('admin.equipment.destroy', $item),
+                                                'href' => $item->path('destroy'),
                                                 'modalText' => 'equipment "' . $item->name . '"'
                                             ])
                                         </div>

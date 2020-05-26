@@ -1,12 +1,11 @@
 @extends('admin.layouts.master')
 
-@section('title') Search results for: {{ request()->q }} @endsection
-
-@include('admin.includes.blocks.delete-item-modal', ['item' => 'product'])
+@section('title') Search results for: {{ request('q') }} @endsection
 
 @section('content')
     <div class="row">
         <div class="col-12">
+            @if($products->isNotEmpty())
             <div class="bgc-white bd">
                 <table class="table table-borderless table-hover table-striped">
                     <thead class="shadow-sm">
@@ -14,37 +13,37 @@
                         <th>#</th>
                         <th>Image</th>
                         <th>Name</th>
-                        <th>Price</th>
                         <th>Producer ID</th>
+                        <th>Price</th>
                         <th>Qty</th>
                         <th class="text-right">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($parts as $part)
+                    @foreach($products as $product)
                         <tr style="line-height: 41px;">
-                            <td>{{ $part->id }}</td>
+                            <td>{{ $product->id }}</td>
                             <td>
-                                <img src="{{ asset($part->getFirstMediaUrl('main_image', 'thumb')) }}" width="50">
+                                <img src="{{ $product->getFirstMediaUrl('main_image', 'thumb') }}" width="50">
                             </td>
-                            <td width="45%">{{ $part->name }}</td>
-                            <td>{!! $part->displayPrice() !!}</td>
-                            <td>{{ $part->producer_id }}</td>
-                            <td>{{ $part->qty }}</td>
+                            <td width="45%">{{ $product->name }}</td>
+                            <td>{{ $product->producer_id}}</td>
+                            <td>{!! $product->displayPrice() !!}</td>
+                            <td>{{ $product->qty }}</td>
                             <td>
                                 <div class="float-right">
                                     <div class="btn-group btn-group-sm shadow-sm" role="group">
                                         @include('admin.includes._show-btn' , [
-                                           'href' => route('parts.show', $part)
+                                           'href' => $product->path()
                                        ])
 
                                         @include('admin.includes._edit-btn' , [
-                                            'href' => route('admin.part.edit', $part)
+                                            'href' => $product->path('edit')
                                         ])
 
                                         @include('admin.includes._delete-btn' , [
-                                            'href' => route('admin.part.destroy', $part),
-                                            'modalText' => 'part "' . $part->name . '"'
+                                            'href' => $product->path('destroy'),
+                                            'modalText' => Str::singular($product->getTable()) . ' "' . $product->name . '"'
                                         ])
                                     </div>
                                 </div>
@@ -54,10 +53,16 @@
                     </tbody>
                 </table>
             </div>
+            @else
+                <p>Products not found.</p>
+            @endif
 
             <div class="mt-3 float-right">
-                {{ $parts->links() }}
+                {{ $products->appends(request()->query())->links() }}
             </div>
         </div>
     </div>
+
+    @include('admin.includes.blocks.delete-item-modal', ['item' => 'product'])
 @endsection
+
