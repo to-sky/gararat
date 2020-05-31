@@ -28,6 +28,10 @@ Route::group(['middleware' => ['check.cart'], 'namespace' => 'Website'], functio
 
     Route::get('/checkout', 'CheckoutController@index')->name('checkout');
     Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
+
+    Route::post('/subscribe', 'SubscribeController@store')->name('subscribe');
+    Route::get('/unsubscribe/{subscriber}', 'SubscribeController@edit')->name('unsubscribe.edit');
+    Route::delete('/unsubscribe/{subscriber}', 'SubscribeController@destroy')->name('unsibscribe.destroy');
 });
 
 /**

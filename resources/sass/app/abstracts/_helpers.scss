@@ -42,3 +42,7 @@
 .bg-muted {
   background: $white_muted;
 }
+
+.mb-card {
+  margin-bottom: $card_bottom_gap !important;
+}

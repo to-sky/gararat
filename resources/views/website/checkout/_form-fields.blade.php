@@ -98,7 +98,7 @@
 </div>
 
 <div class="custom-control custom-checkbox">
-    <input type="checkbox" class="custom-control-input" name="subscribe_news" id="subscribeNews" checked>
+    <input type="checkbox" class="custom-control-input" name="subscribe" id="subscribeNews" checked>
 
     <label class="custom-control-label" for="subscribeNews">
         {{ __('Subscribe to our news') }}

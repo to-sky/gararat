@@ -26,7 +26,7 @@ class ContactUsRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email:rfc,dns',
             'phone' => 'required',
             'message' => 'required',
             'g-recaptcha-response' => [

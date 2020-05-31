@@ -77,7 +77,7 @@
         @if(optional($page)->trans('title'))
         <section>
             <div class="container">
-                <h1 class="text-center">{{ $page->trans('title') }}</h1>
+                <h1 class="text-center homepage-title">{{ $page->trans('title') }}</h1>
             </div>
         </section>
         @endif
@@ -93,14 +93,45 @@
         <section class="news">
             <div class="container">
                 <div class="d-flex justify-content-between">
-                    <h2 class="page-title d-flex justify-content-between">{{ __('Our News') }}</h2>
+                    <h2 class="page-title d-flex justify-content-between">{{ __('News') }}</h2>
                     <a href="{{ route('news.index') }}" class="btn btn-outline-danger align-self-baseline">{{ __('Other news') }}</a>
                 </div>
 
                 <div class="row">
                     @foreach($news as $item)
-                        @include('website.includes._news-item')
+                        <div class="col-sm-6 col-lg-4">
+                            @include('website.includes._news-item')
+                        </div>
                     @endforeach
+                </div>
+            </div>
+        </section>
+
+        <section class="subscribe-section">
+            <div class="container">
+                <div class="bg-white p-5 shadow-sm">
+                    <h3 class="mb-card text-center text-muted">{{ __('Subscribe to our news') }}</h3>
+                    <div class="row">
+                        <form action="{{ route('subscribe') }}" method="post" class="col-md-6 offset-md-3">
+                            @csrf
+
+                            <div class="form-row align-items-center">
+                                <div class="input-group">
+                                    <input type="email"
+                                           class="form-control @error('email') is-invalid @enderror"
+                                           name="email" placeholder="example@mail.com" required
+                                           value="{{ old('email') }}">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-danger" type="submit">{{ __('Subscribe') }}</button>
+                                    </div>
+                                </div>
+
+                                @error('email')
+                                    <p class="d-block invalid-feedback mt-3">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>

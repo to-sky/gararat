@@ -2,10 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Part;
 use Faker\Generator as Faker;
 
-$factory->define(Part::class, function (Faker $faker) {
+$factory->define(App\Models\Part::class, function (Faker $faker) {
     return [
         'name' => $faker->company,
         'producer_id' => $faker->swiftBicNumber,

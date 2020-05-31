@@ -20,7 +20,8 @@ class CheckoutRequest extends FormRequest
         $this->merge([
             'status' => Order::STATUS_QUEUED,
             'user_id' => auth()->id() ?? User::whereEmail($this->email)->first()->id ?? null,
-            'total' => (float) Cart::total(2, '.', '')
+            'total' => (float) Cart::total(2, '.', ''),
+            'subscribe' => $this->subscribe ? true : false
         ]);
     }
 

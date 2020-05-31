@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\NewsCreated;
 use App\Events\OrderCreated;
+use App\Listeners\NewsletterSend;
 use App\Listeners\OrderCreatedSendMailNotification;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         OrderCreated::class => [
             OrderCreatedSendMailNotification::class
+        ],
+        NewsCreated::class => [
+            NewsletterSend::class
         ]
     ];
 

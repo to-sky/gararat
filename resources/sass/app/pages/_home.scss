@@ -1,6 +1,14 @@
 .homepage {
     section {
-        padding: #{$card_bottom_gap * 2} 0;
+        padding: 80px 0;
+
+        &:last-child {
+            margin-bottom: -$card_bottom_gap;
+        }
+    }
+
+    .subscribe-section {
+        padding-top: 0;
     }
 }
 
@@ -55,15 +63,20 @@
     .home-icons__item {
         width: 200px;
     }
+
+    .homepage-title {
+        font-size: 3rem;
+    }
 }
 
 @include for-tablet-landscape {
     .home-icons__item {
         width: 240px;
     }
-}
 
-// News
-.homepage .news {
-    padding-bottom: 0;
+    .homepage  .news-item {
+        margin-bottom: 0;
+    }
+
+
 }

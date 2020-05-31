@@ -39,3 +39,17 @@ $('#burgerIcon').click(function () {
         });
     }, false);
 })();
+
+// Hide alert popup
+$(function() {
+    let alert = $('.alert[data-auto-close]');
+
+    alert.each(function() {
+        let that = $(this);
+        let delay = that.data('auto-close');
+
+        setTimeout(function () {
+            that.animate({top: "-100px"}, 1500)
+        }, delay);
+    });
+});

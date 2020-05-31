@@ -27,8 +27,6 @@ class Order extends Model
         parent::boot();
 
         self::created(function ($order) {
-            $order->appendProducts();
-
             event(new OrderCreated($order));
         });
     }

@@ -63,6 +63,8 @@ class OrderController extends Controller
     }
 
     /**
+     * Delete order
+     *
      * @param Order $order
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception

@@ -25,7 +25,7 @@ class PageController extends Controller
         return view('website.pages.home', [
             'page' => Page::whereSlug(Page::HOME_PAGE_SLUG)->first(),
             'slides' => Slide::all(),
-            'news' => News::latest()->take(4)->get()
+            'news' => News::latest()->take(3)->get()
         ]);
     }
 
@@ -130,6 +130,8 @@ class PageController extends Controller
     public function contactUs(ContactUsRequest $request)
     {
         Mail::to(config('mail.to.sales'))->send(new ContactUsForm($request));
+
+        session()->flash('success', __('Your message has been sent.'));
 
         return redirect()->back();
     }

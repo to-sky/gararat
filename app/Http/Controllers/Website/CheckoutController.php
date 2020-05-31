@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckoutRequest;
 use App\Models\Country;
+use App\Models\Subscriber;
 use App\Models\Order;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -32,6 +33,15 @@ class CheckoutController extends Controller
     public function store(CheckoutRequest $request)
     {
         $order = Order::create($request->all());
+
+        $order->appendProducts();
+
+        if ($request->subscribe) {
+            Subscriber::create([
+                'email' => $request->email,
+                'locale' => session('locale')
+            ]);
+        }
 
         return view('website.checkout.success', compact('order'));
     }

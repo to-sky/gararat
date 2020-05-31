@@ -8,7 +8,7 @@ if (! function_exists('isLocaleEn'))
 {
     function isLocaleEn()
     {
-        return app()->getLocale() == 'en';
+        return app()->getLocale() == 'en' ? true : false;
     }
 }
 

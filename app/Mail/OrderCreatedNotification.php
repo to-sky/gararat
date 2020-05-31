@@ -34,11 +34,11 @@ class OrderCreatedNotification extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.orders.created')
+        return $this->markdown('emails.order-created')
+                    ->subject(__('Order created'))
                     ->attach(
-                        Excel::download(
-                            new OrderExport($this->order), 'order.xlsx'
-                        )->getFile(), ['as' => 'order.xlsx']
+                        Excel::download(new OrderExport($this->order), 'order.xlsx')
+                            ->getFile(), ['as' => 'order.xlsx']
                     );
     }
 }

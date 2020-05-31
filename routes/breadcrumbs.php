@@ -79,3 +79,9 @@ Breadcrumbs::for('404', function ($trail) {
     $trail->parent('home');
     $trail->push('404');
 });
+
+// Home > Unsibscribe
+Breadcrumbs::for('unsubscribe', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('Unsubscribe'));
+});

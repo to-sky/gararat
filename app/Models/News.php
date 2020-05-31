@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Events\NewsCreated;
 use App\Services\MediaService;
 use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
@@ -24,6 +24,10 @@ class News extends Model implements HasMedia
 
         self::saving(function($news) {
             MediaService::store($news, 'thumbnail');
+        });
+
+        self::created(function($news) {
+            event(new NewsCreated($news));
         });
 
         self::deleting(function ($news) {
@@ -69,5 +73,15 @@ class News extends Model implements HasMedia
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    /**
+     * Link to news
+     *
+     * @return string
+     */
+    public function link()
+    {
+        return route('news.show', $this);
     }
 }
