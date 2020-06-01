@@ -22,7 +22,7 @@
                                        placeholder="Arabic" value="{{ $news->title_ar ?? old('title_ar') }}" required>
 
                                 @error('title')
-                                    <div class="col invalid-feedback">{{ $message }}</div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
 
                                 @error('title_ar')

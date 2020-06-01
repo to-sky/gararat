@@ -3,7 +3,7 @@
     <li class="nav-item">
         <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
             <span class="icon-holder">
-                <i class="c-blue-500 ti-home"></i>
+                <i class="c-blue-500 fas fa-home"></i>
             </span>
             <span class="title">Dashboard</span>
         </a>
@@ -14,7 +14,7 @@
         <a href="{{ route('admin.orders.index') }}"
            class="nav-link {{ request()->routeIs('admin.orders.*')? 'active' : '' }}">
             <span class="icon-holder">
-                <i class="c-blue-500 ti-bar-chart"></i>
+                <i class="c-blue-500 fas fa-chart-bar"></i>
             </span>
             <span class="title">Orders</span>
         </a>
@@ -90,7 +90,7 @@
     <li class="nav-item">
         <a href="{{ route('admin.pages.index') }}"
            class="nav-link {{ request()->routeIs('admin.pages.*')  ? 'active' : '' }}">
-            <span class="icon-holder"><i class="c-blue-500 ti-files"></i></span>
+            <span class="icon-holder"><i class="c-blue-500 far fa-copy"></i></span>
             <span class="title">Pages</span>
         </a>
     </li>
@@ -100,7 +100,7 @@
         <a href="{{ route('admin.news.index') }}"
            class="nav-link {{ request()->routeIs('admin.news.*') ? 'active' : '' }}">
             <span class="icon-holder">
-                <i class="c-blue-500 ti-write"></i>
+                <i class="c-blue-500 far fa-newspaper"></i>
             </span>
             <span class="title">News</span>
         </a>
@@ -111,7 +111,7 @@
         <a href="{{ route('admin.slides.index') }}"
            class="nav-link {{ request()->routeIs('admin.slides.*') ? 'active' : '' }}">
             <span class="icon-holder">
-                <i class="c-blue-500 ti-layout-slider"></i>
+                <i class="c-blue-500 far fa-images"></i>
             </span>
             <span class="title">Slides</span>
         </a>
@@ -125,6 +125,28 @@
                 <i class="c-blue-500 fas fa-file-upload"></i>
             </span>
             <span class="title">Importer</span>
+        </a>
+    </li>
+
+    {{-- Offices --}}
+    <li class="nav-item">
+        <a href="{{ route('admin.offices.index') }}"
+           class="nav-link {{ request()->routeIs('admin.offices.*') ? 'active' : '' }}">
+            <span class="icon-holder">
+                <i class="c-blue-500 fas fa-map-marker-alt"></i>
+            </span>
+            <span class="title">Offices</span>
+        </a>
+    </li>
+
+    {{-- Settings --}}
+    <li class="nav-item">
+        <a href="{{ route('admin.settings') }}"
+           class="nav-link {{ request()->routeIs('admin.settings') ? 'active' : '' }}">
+            <span class="icon-holder">
+                <i class="c-blue-500 fas fa-wrench"></i>
+            </span>
+            <span class="title">Settings</span>
         </a>
     </li>
 </ul>

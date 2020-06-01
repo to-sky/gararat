@@ -21,7 +21,7 @@
                                        placeholder="Arabic" value="{{ old('title_ar') }}" required>
                             </div>
                             @error('title')
-                                <div class="col invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
 
                             @error('title_ar')

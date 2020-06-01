@@ -20,9 +20,7 @@ class CheckCartMiddleware
     public function handle($request, Closure $next)
     {
         if ($userToken = $request->cookie('userToken')) {
-            if (Cart::content()->isNotEmpty()) {
-                Cart::restore($userToken);
-            }
+            Cart::restore($userToken);
         } else {
             Cookie::queue('userToken', Str::uuid()->toString(), config('cart.lifetime'));
         }

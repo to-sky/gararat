@@ -15,23 +15,30 @@
                 <h5 class="footer-top__title">{{ __('Follow Us') }}</h5>
 
                 <div class="footer-top__social">
-                    <div class="footer-top__social-item">
-                        <a href="https://www.facebook.com/gararatcom" class="footer-top__social-icon facebook-icon" target="_blank">
-                            <span class="footer-top__social-label">Facebook</span>
-                        </a>
-                    </div>
 
-                    <div class="footer-top__social-item">
-                        <a href="https://www.youtube.com/channel/UCoBI2FCQzx4tMEUbMpVphJw" class="footer-top__social-icon youtube-icon" target="_blank">
-                            <span class="footer-top__social-label">YouTube</span>
-                        </a>
-                    </div>
+                    @if(setting('facebook'))
+                        <div class="footer-top__social-item">
+                            <a href="{{ setting('facebook') }}" class="footer-top__social-icon facebook-icon" target="_blank">
+                                <span class="footer-top__social-label">Facebook</span>
+                            </a>
+                        </div>
+                    @endif
 
-                    <div class="footer-top__social-item">
-                        <a href="https://api.whatsapp.com/send?phone=00201016200599" class="footer-top__social-icon whatsapp-icon" target="_blank">
-                            <span class="footer-top__social-label">WhatsApp</span>
-                        </a>
-                    </div>
+                    @if(setting('youtube'))
+                        <div class="footer-top__social-item">
+                            <a href="{{ setting('youtube') }}" class="footer-top__social-icon youtube-icon" target="_blank">
+                                <span class="footer-top__social-label">YouTube</span>
+                            </a>
+                        </div>
+                    @endif
+
+                    @if(setting('whatsapp'))
+                        <div class="footer-top__social-item">
+                            <a href="https://api.whatsapp.com/send?phone={{ setting('whatsapp') }}" class="footer-top__social-icon whatsapp-icon" target="_blank">
+                                <span class="footer-top__social-label">WhatsApp</span>
+                            </a>
+                        </div>
+                    @endif
                 </div>
             </div>
 
@@ -63,7 +70,7 @@
 
                 <div class="footer-top__contact-item">
                     <i class="fas fa-envelope footer-top__contact-icon"></i>
-                    <a href="mailto:sales@gararat.com" class="footer-top__contact-label">
+                    <a href="mailto:sales@gararat.com" class="footer-top__contact-label align-self-baseline">
                        sales@gararat.com
                     </a>
                 </div>

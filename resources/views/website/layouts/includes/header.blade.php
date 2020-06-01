@@ -17,9 +17,17 @@
             {{-- Socials--}}
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex">
-                    <a href="https://www.facebook.com/gararatcom" class="header__social-icon facebook-icon" target="_blank"></a>
-                    <a href="https://www.youtube.com/channel/UCoBI2FCQzx4tMEUbMpVphJw" class="header__social-icon youtube-icon mx-2" target="_blank"></a>
-                    <a href="https://api.whatsapp.com/send?phone=00201016200599" class="header__social-icon whatsapp-icon" target="_blank"></a>
+                    @if(setting('facebook'))
+                        <a href="{{ setting('facebook') }}" class="header__social-icon facebook-icon" target="_blank"></a>
+                    @endif
+
+                    @if(setting('youtube'))
+                        <a href="{{ setting('youtube') }}" class="header__social-icon youtube-icon mx-2" target="_blank"></a>
+                    @endif
+
+                    @if(setting('whatsapp'))
+                        <a href="https://api.whatsapp.com/send?phone={{ setting('whatsapp') }}" class="header__social-icon whatsapp-icon" target="_blank"></a>
+                    @endif
                 </div>
 
                 <span class="d-sm-flex d-none px-2">|</span>

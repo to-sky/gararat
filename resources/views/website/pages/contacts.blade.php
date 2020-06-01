@@ -92,22 +92,25 @@
             @foreach($offices as $office)
                 <div class="col-md-6 col-lg-4">
                     <div class="contact" data-mh="contact">
-                        <h6 class="contact__title">{{ translateArrayItem($office, 'name') }}</h6>
+                        <h6 class="contact__title">{{ $office->trans('name') }}</h6>
 
-                        <div class="contact__item">
+                        <div class="contact__item align-items-baseline">
                             <i class="fas fa-map-marker-alt contact__icon"></i>
-                            <a href="#" class="contact__label">{{ translateArrayItem($office, 'address') }}</a>
+                            <span class="contact__label">{{ $office->trans('address') }}</span>
                         </div>
 
-                        <div class="contact__item">
+                        <div class="contact__item align-items-center">
                             <i class="fas fa-envelope contact__icon"></i>
-                            <a href="mailto:{{ $office['email'] }}" class="contact__label">{{ $office['email'] }}</a>
+                            <a href="mailto:{{ $office->email }}" class="contact__label">{{ $office->email }}</a>
                         </div>
-
-                        @foreach($office['phones'] as $phone => $label)
-                            <div class="contact__item">
+                        @foreach($office->phones as $phoneData)
+                            <div class="contact__item align-items-center">
                                 <i class="fas fa-phone contact__icon"></i>
-                                <a href="tel:+{{ $phone }}" class="contact__label">{{ $phone }} @if($label) ({{ $label }}) @endif</a>
+                                <a href="tel:+{{ $phoneData['phone'] ?? '' }}" class="contact__label">{{ $phoneData['phone'] ?? '' }}
+                                    @if(isset($phoneData['phone_label']) || isset($phoneData['phone_label']))
+                                        ({{ translateArrayItem($phoneData, 'phone_label') }})
+                                    @endif
+                                </a>
                             </div>
                         @endforeach
                     </div>
@@ -184,72 +187,41 @@
                 ],
                 {name: 'Styled Map'});
 
-            // TODO: remove hardcode
-            var locations = [
-                ['Cairo branch', 30.015417, 31.411944, 1],
-                ['Alexandria branch', 31.169722, 29.890972, 2],
-                ['Luxor branch', 25.716111, 32.650028, 3]
-            ];
-
-            // Create a map object, and include the MapTypeId to add
-            // to the map type control.
-            // var cairoBranch = {lat: 30.015417, lng: 31.411944};
+            var locations = Array();
+            $.each(@json($offices), function (i, office) {
+                var name = office["name{{ isLocaleEn() ? '' : '_ar' }}"];
+                locations.push([
+                    name, office['lat'], office['lng'], i+1
+                ]);
+            });
 
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: new google.maps.LatLng(28.551272, 31.832508),
                 zoom: 6,
                 disableDefaultUI: true,
-                // zoomControl: true,
             });
-
-            // TODO: change hardcode
-            // var contentString = '<div id="content">'+
-            //     '<div id="siteNotice">'+
-            //     '</div>'+
-            //     '<h4 id="firstHeading" class="firstHeading">Head office</h4>'+
-            //     '<div id="bodyContent">'+
-            //     '<p>Villa 318, Al Showaifat region, Al Tagamoa AL Khames, 90th st., New Cairo-Egypt</p>'+
-            //     '<p>+20-101-620-05-99</p>'+
-            //     '<p>sales@gararat.com</p>'+
-            //     '</div>'+
-            //     '</div>';
-            //
-            var infowindow = new google.maps.InfoWindow({
-                // content: contentString,
-                // maxWidth: 200
-            });
-            //
-            // var marker = new google.maps.Marker({
-            //     position: myLatLng,
-            //     map: map,
-            //     title: 'Gararat'
-            // });
-            // marker.addListener('click', function() {
-            //     infowindow.open(map, marker);
-            // });
 
             //Associate the styled map with the MapTypeId and set it to display.
             map.mapTypes.set('styled_map', styledMapType);
             map.setMapTypeId('styled_map');
 
-            // Zoom animation
-            // map.addListener('center_changed', function() {
-            //     // 3 seconds after the center of the map has changed, pan back to the
-            //     // marker.
-            //     window.setTimeout(function() {
-            //         map.panTo(marker.getPosition());
-            //     }, 3000);
-            // });
-
-
             var marker, i;
-
+            var infowindow = new google.maps.InfoWindow();
             for (i = 0; i < locations.length; i++) {
                 marker = new google.maps.Marker({
                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                     map: map
                 });
 
+                // Marker onmouseover event
+                google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+                    return function() {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+
+                // Marker click event
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
                         // Zoom on click marker

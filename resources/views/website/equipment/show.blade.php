@@ -38,14 +38,14 @@
                             <tbody>
                             @foreach($specifications as $specification)
                                 <tr>
-                                    <th>{{ $specification[translate('title')] }}</th>
-                                    <th>{{ $specification[translate('description')] }}</th>
+                                    <th>{{ $specification[translate('title')] ?? '' }}</th>
+                                    <th>{{ $specification[translate('description')] ?? '' }}</th>
                                 </tr>
 
                                 @foreach($specification['data'] as $key => $data)
                                     <tr>
-                                        <td>{{ $data[translate('key')] }}</td>
-                                        <td>{{ $data[translate('value')] }}</td>
+                                        <td>{{ $data[translate('key')] ?? '' }}</td>
+                                        <td>{{ $data[translate('value')] ?? '' }}</td>
                                     </tr>
                                 @endforeach
                             @endforeach

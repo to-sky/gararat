@@ -1,5 +1,6 @@
 import 'tinymce';
 import 'tinymce/themes/silver';
+import 'tinymce/icons/default'
 import 'tinymce/plugins/advlist';
 import 'tinymce/plugins/autolink';
 import 'tinymce/plugins/lists';
@@ -40,13 +41,13 @@ export default (function () {
         skin_url: "/admin/vendor/tinymce/skins/ui/oxide",
         selector: "textarea.tinymce",
         plugins: [
-            "advlist autolink lists link image imagetools charmap print preview hr anchor pagebreak",
+            "advlist autolink image imagetools charmap print preview hr anchor pagebreak",
             "searchreplace wordcount visualblocks visualchars code fullscreen",
             "insertdatetime media nonbreaking save table directionality",
             "emoticons template paste textpattern"
         ],
-        contextmenu: "paste | link image imagetools inserttable | cell row column deletetable | colorpicker",
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+        // contextmenu: "paste | link image imagetools inserttable | cell row column deletetable | colorpicker",
+        toolbar: "preview code | ieinsertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image media",
         height : "550",
         relative_urls: false,
         image_advtab: true,
@@ -72,4 +73,13 @@ export default (function () {
     };
 
     tinymce.init(editor_config);
+
+    // tinymce.init({
+    //     selector: "textarea",
+    //     plugins: [ "paste code" ],
+    //     entity_encoding : 'raw',
+    //     force_br_newlines : true,
+    //     force_p_newlines : false,
+    //     forced_root_block : false
+    // });
 }());

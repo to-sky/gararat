@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use App\Models\Subscriber;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SubscribeController extends Controller
 {
@@ -16,13 +17,18 @@ class SubscribeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email:rfc,dns|unique:subscribers'
         ]);
 
-        Subscriber::create(
-            $request->all() + ['locale' => session('locale')]
-        );
+        if ($validator->fails()) {
+            return redirect('/#subscribe')->withErrors($validator)->withInput();
+        }
+
+        Subscriber::create([
+            'email' => $request->email,
+            'locale' => session('locale')
+        ]);
 
         session()->flash('success', __('Thanks for subscribing.'));
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Services\RequestService;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -21,23 +22,17 @@ class EquipmentRequest extends FormRequest
     /**
      * Prepare the data for validation.
      *
-     * Check if specifications data not empty
+     * Check if specifications and main_specifications data not empty
      * Store NULL to database if data is empty
      *
      * @return void
      */
     protected function prepareForValidation()
     {
-        if (collect($this->specifications)->flatten()->filter()->isEmpty()) {
-            $this->merge(['specifications' => null]);
-        }
-
-        if (collect($this->main_specifications)->flatten()->filter()->isEmpty()) {
-            $this->merge(['main_specifications' => null]);
-        }
-
         $this->merge([
             'slug' => Str::slug($this->name),
+            'specifications' => RequestService::filterArrayWithNested($this->specifications),
+            'main_specifications' => RequestService::filterArray($this->main_specifications['data']),
         ]);
     }
 

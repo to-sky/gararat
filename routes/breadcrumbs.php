@@ -85,3 +85,9 @@ Breadcrumbs::for('unsubscribe', function ($trail) {
     $trail->parent('home');
     $trail->push(__('Unsubscribe'));
 });
+
+// Home > Order created
+Breadcrumbs::for('order-created', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('Order created'));
+});

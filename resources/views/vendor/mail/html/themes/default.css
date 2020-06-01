@@ -289,6 +289,16 @@ img {
     direction:rtl;
 }
 
+.rtl p,
+.rtl ul,
+.rtl ol,
+.rtl blockquote,
+.rtl h1,
+.rtl h2,
+.rtl h3 {
+    text-align: right;
+}
+
 .inline-ltr {
     direction: ltr !important;
     display: inline-block;

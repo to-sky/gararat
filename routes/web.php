@@ -86,6 +86,11 @@ Route::group([
     Route::delete('orders/{orderProduct}/delete-product', 'OrderController@deleteProduct')->name('orders.deleteProduct');
     Route::delete('orders/{order}', 'OrderController@destroy')->name('orders.destroy');
 
+    Route::resource('offices', 'OfficeController', ['except' => ['show']]);
+
+    Route::get('settings', 'SettingController@index')->name('settings');
+    Route::post('settings', 'SettingController@store')->name('settings.store');
+
     Route::group(['prefix' => 'filemanager'], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();
     });

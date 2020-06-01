@@ -10,7 +10,7 @@
 
         <div class="row">
             @foreach($news as $item)
-                <div class="col-sm-6 col-lg-4 col-xl-3">
+                <div class="col-sm-6 col-lg-4">
                     @include('website.includes._news-item')
                 </div>
             @endforeach

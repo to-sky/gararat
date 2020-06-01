@@ -36,8 +36,8 @@
 }
 
 .footer-top__social-icon {
-    height: 35px;
-    width: 35px;
+    height: 30px;
+    width: 30px;
     display: inline-block;
     background-repeat: no-repeat;
     background-position: center;
@@ -45,9 +45,9 @@
 }
 
 .footer-top__social-label {
-    padding: 0 50px;
+    padding: 0 45px;
     display: none;
-    line-height: 35px;
+    line-height: 30px;
     transition: $default_transition;
 }
 
@@ -147,7 +147,7 @@
     }
 
     .footer-top__social-item {
-        margin: 0 0 15px;
+        margin: 0 0 20px;
     }
 
     .footer-top__social-label {

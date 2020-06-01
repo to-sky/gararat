@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Mail;
 class NewsletterSend implements ShouldQueue
 {
     /**
+     * The number of times the job may be attempted.
+     *
+     * @var int
+     */
+    public $tries = 25;
+
+    /**
      * The time (seconds) before the job should be processed.
      *
      * @var int

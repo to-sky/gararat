@@ -40,9 +40,9 @@
                                             <span class="input-group-text">Title</span>
                                         </div>
                                         <input type="text" name="title" class="form-control"
-                                               placeholder="English" value="{{ $specification['title'] }}">
+                                               placeholder="English" value="{{ $specification['title'] ?? '' }}">
                                         <input type="text" name="title_ar" class="form-control"
-                                               placeholder="Arabic" value="{{ $specification['title_ar'] }}">
+                                               placeholder="Arabic" value="{{ $specification['title_ar'] ?? '' }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -51,9 +51,9 @@
                                             <span class="input-group-text">Description</span>
                                         </div>
                                         <input type="text" name="description" class="form-control"
-                                               placeholder="English" value="{{ $specification['description'] }}">
+                                               placeholder="English" value="{{ $specification['description'] ?? '' }}">
                                         <input type="text" name="description_ar" class="form-control"
-                                               placeholder="Arabic" value="{{ $specification['description_ar'] }}">
+                                               placeholder="Arabic" value="{{ $specification['description_ar'] ?? '' }}">
                                     </div>
                                 </div>
                             </div>
@@ -73,9 +73,9 @@
                                                         <span class="input-group-text">Key</span>
                                                     </div>
                                                     <input type="text" name="key[]" class="form-control"
-                                                           placeholder="English" value="{{ $data['key'] }}">
+                                                           placeholder="English" value="{{ $data['key'] ?? '' }}">
                                                     <input type="text" name="key_ar[]" class="form-control"
-                                                           placeholder="Arabic" value="{{ $data['key_ar'] }}">
+                                                           placeholder="Arabic" value="{{ $data['key_ar'] ?? '' }}">
                                                 </div>
                                             </div>
 
@@ -88,9 +88,9 @@
                                                                 <span class="input-group-text">Value</span>
                                                             </div>
                                                             <input type="text" name="value[]" class="form-control"
-                                                                   placeholder="English" value="{{ $data['value'] }}">
+                                                                   placeholder="English" value="{{ $data['value'] ?? '' }}">
                                                             <input type="text" name="value_ar[]" class="form-control"
-                                                                   placeholder="Arabic" value="{{ $data['value_ar'] }}">
+                                                                   placeholder="Arabic" value="{{ $data['value_ar'] ?? '' }}">
                                                         </div>
                                                     </div>
 

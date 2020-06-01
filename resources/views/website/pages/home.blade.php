@@ -107,10 +107,10 @@
             </div>
         </section>
 
-        <section class="subscribe-section">
+        <section class="subscribe-section" id="subscribe">
             <div class="container">
                 <div class="bg-white p-5 shadow-sm">
-                    <h3 class="mb-card text-center text-muted">{{ __('Subscribe to our news') }}</h3>
+                    <h3 class="mb-card text-center text-muted font-weight-light">{{ __('Subscribe to our news') }}</h3>
                     <div class="row">
                         <form action="{{ route('subscribe') }}" method="post" class="col-md-6 offset-md-3">
                             @csrf

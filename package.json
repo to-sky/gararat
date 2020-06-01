@@ -27,7 +27,7 @@
         "easy-pie-chart": "^2.1.7",
         "file-loader": "^1.1.11",
         "fullcalendar": "^3.10.1",
-        "jquery": "^3.4.1",
+        "jquery": "^3.5.1",
         "jquery-sparkline": "^2.4.0",
         "jvectormap": "^2.0.4",
         "laravel-mix": "^5.0.1",
@@ -58,6 +58,6 @@
         "select2": "^4.0.11",
         "select2-theme-bootstrap4": "0.2.0-beta.6",
         "slider-pro": "^1.5.0",
-        "tinymce": "^5.2.2"
+        "tinymce": "^5.3.1"
     }
 }

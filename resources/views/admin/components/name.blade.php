@@ -11,7 +11,7 @@
                        placeholder="Arabic" value="{{ isset($item) ? $item->name_ar : old('name_ar') }}" required>
 
                 @error('name')
-                    <div class="col invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
 
                 @error('name_ar')
