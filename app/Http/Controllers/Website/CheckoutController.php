@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Website;
 
+use App\Events\OrderCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckoutRequest;
 use App\Models\Country;
@@ -35,6 +36,8 @@ class CheckoutController extends Controller
         $order = Order::create($request->all());
 
         $order->appendProducts();
+
+        event(new OrderCreated($order));
 
         if ($request->subscribe) {
             Subscriber::create([

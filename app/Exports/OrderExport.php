@@ -8,10 +8,12 @@ use Maatwebsite\Excel\Concerns\{FromCollection, WithHeadings};
 class OrderExport implements FromCollection, WithHeadings
 {
     public $order;
+    public $products;
 
     public function __construct(Order $order)
     {
         $this->order = $order;
+        $this->products = $order->orderProducts;
     }
 
     public function headings(): array
@@ -23,7 +25,7 @@ class OrderExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-         return $this->order->orderProducts->map(function ($item) {
+         return $this->products->map(function ($item) {
              return [
                  $item->product->trans('name'), $item->qty
              ];

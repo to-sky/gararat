@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Events\OrderCreated;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,15 +20,6 @@ class Order extends Model
     protected $casts = [
         'total' => 'float'
     ];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        self::created(function ($order) {
-            event(new OrderCreated($order));
-        });
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -114,16 +104,6 @@ class Order extends Model
     public function displayStatus()
     {
         return $this->getStatuses()[$this->status] ?? 'Status is not defined';
-    }
-
-    /**
-     * Display created in format 'Y-m-d'
-     *
-     * @return mixed
-     */
-    public function getCreatedAttribute()
-    {
-        return $this->created_at->format('Y-m-d');
     }
 
     /**

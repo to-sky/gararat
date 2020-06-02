@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <td>Created</td>
-                    <td>{{ $order->created }}</td>
+                    <td>{{ $order->created_at }}</td>
                 </tr>
                 <tr>
                     <td>

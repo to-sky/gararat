@@ -28,7 +28,7 @@
                                 <img src="{{ asset($item->getFirstMediaUrl('thumbnail', 'thumb')) }}" height="50">
                             </td>
                             <td>{{ $item->title }}</td>
-                            <td>{{ $item->created_at->toDateString() }}</td>
+                            <td>{{ $item->created_at->format('Y-m-d') }}</td>
                             <td>
                                 <div class="float-right">
                                     <div class="btn-group btn-group-sm shadow-sm" role="group">

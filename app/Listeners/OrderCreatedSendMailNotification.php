@@ -18,6 +18,7 @@ class OrderCreatedSendMailNotification
      */
     public function handle(OrderCreated $event)
     {
-        Mail::to([$event->order->email, config('mail.to.sales')])->send(new OrderCreatedNotification($event->order));
+        Mail::to([$event->order->email, config('mail.to.sales')])
+            ->send(new OrderCreatedNotification($event->order));
     }
 }

@@ -13,8 +13,8 @@
                         <th>Customer</th>
                         <th>Total Price</th>
                         <th>Status</th>
-                        <th>Created</th>
-                        <th class="text-right">Actions</th>
+                        <th width="15%">Created</th>
+                        <th class="text-right" width="10%">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -24,7 +24,7 @@
                                 <td>{{ $order->full_name }}</td>
                                 <td>{!! $order->displayTotalPrice() !!}</td>
                                 <td>{{ $order->displayStatus() }}</td>
-                                <td>{{ $order->created }}</td>
+                                <td>{{ $order->created_at }}</td>
                                 <td>
                                     <div class="float-right">
                                         <div class="btn-group btn-group-sm shadow-sm" role="group">
