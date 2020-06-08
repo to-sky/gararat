@@ -17,7 +17,7 @@ class PartsFilter extends Filter
     {
         return $this->builder->whereHas('unitParts.unit', function ($query) use ($value) {
             $query->whereHas('unitParts.unit.catalog', function ($q) use ($value) {
-                $q->whereIn('parent_id', $value['catalogs']);
+                $q->whereIn('id', $value['catalogs']);
             });
 
             $query->whereHas('unitParts.unit.equipment.equipmentGroup', function ($q) use ($value) {
@@ -35,7 +35,7 @@ class PartsFilter extends Filter
     public function catalogs(array $value = []) : Builder
     {
         return $this->builder->whereHas('unitParts.unit.catalog', function ($query) use ($value) {
-            $query->whereIn('parent_id', $value);
+            $query->whereIn('id', $value);
         });
     }
 

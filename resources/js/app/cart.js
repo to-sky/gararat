@@ -1,18 +1,17 @@
-let preloader = $('.cart-preloader');
 let preloaderIcon = $('<i>', {class: 'fas fa-cog fa-spin text-danger'});
 
-// Show cart preloader
-function showCartPreloader() {
-    let preloader =  $('<div>', {class: 'cart-preloader'}).append(preloaderIcon);
+// Show preloader
+function showPreloader() {
+    let preloader = $('<div>', {class: 'preloader'}).append(preloaderIcon);
 
     $('#cartContainer').prepend(preloader);
 
     preloader.fadeIn();
 }
 
-// Hide cart preloader
-function hideCartPreloader() {
-    $('.cart-preloader').fadeOut('normal', function () {
+// Hide preloader
+function hidePreloader() {
+    $('.preloader').fadeOut('normal', function () {
         $(this).remove();
     });
 }
@@ -59,11 +58,11 @@ $(document).on('click', '[data-action="add-to-cart"]', function (e) {
 $(document).on('click', '[data-action="update-cart"]', function (e) {
     let id = $(this).data('id');
     let rowId = $(this).data('row-id');
-    let qty = $('[data-row-qty=' + rowId + '_'  + id + ']').val();
+    let qty = $('[data-row-qty=' + rowId + '_' + id + ']').val();
 
     if (qty < 1) return false;
 
-    showCartPreloader();
+    showPreloader();
 
     axios.patch('/cart/update', {
         rowId: rowId,
@@ -76,7 +75,7 @@ $(document).on('click', '[data-action="update-cart"]', function (e) {
         console.log('Error', error.message);
     })
     .then(function () {
-        hideCartPreloader();
+        hidePreloader();
     });
 });
 
@@ -85,7 +84,7 @@ $(document).on('click', '[data-action="remove-from-cart"]', function (e) {
     let rowId = $(this).data('row-id');
     let tableRow = $(this).closest('tr');
 
-    showCartPreloader();
+    showPreloader();
 
     axios.delete('/cart/remove', {
         data: {
@@ -101,6 +100,6 @@ $(document).on('click', '[data-action="remove-from-cart"]', function (e) {
         console.log('Error', error.message);
     })
     .then(function () {
-        hideCartPreloader();
+        hidePreloader();
     });
 });

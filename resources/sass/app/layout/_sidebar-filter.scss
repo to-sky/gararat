@@ -14,14 +14,31 @@
 
 .sidebar-filter__item__filters {
     padding: 15px 15px 5px;
+
+    &:last-child {
+        padding-bottom: 0;
+    }
 }
 
 .sidebar-filter__item__filter {
     padding-bottom: 10px;
+    
+    label:hover {
+        cursor: pointer;
+    }
 }
 
-.sidebar-filter__item__filter:last-child {
-    padding-bottom: 0;
+.sidebar-filter__item__filter__collapsed {
+    margin-top: 10px;
+
+    .sidebar-filter__item__filter {
+        padding-bottom: 0;
+    }
+}
+
+.rtl .sidebar-filter__item__filter {
+    margin-left: 0;
+    padding-left: 0;
 }
 
 

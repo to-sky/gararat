@@ -46,3 +46,9 @@
 .mb-card {
   margin-bottom: $card_bottom_gap !important;
 }
+
+.hover-cp {
+  &:hover {
+    cursor: pointer !important;
+  }
+}
