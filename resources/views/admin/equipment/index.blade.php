@@ -44,10 +44,13 @@
                                                 'href' => $item->path('edit')
                                             ])
 
-                                            <a href="{{ route('admin.equipment.clone', $item) }}"
-                                               class="btn btn-outline-info btn-sm bg-white" title="Clone" data-action="clone">
-                                                <i class="ti-files text-info not-pointer-events"></i>
-                                            </a>
+                                            <form action="{{ route('admin.equipment.clone', $item) }}" method="post" class="d-flex">
+                                                @csrf
+
+                                                <button class="btn btn-outline-info btn-sm bg-white rounded-0 border-left" title="Clone" data-action="clone">
+                                                    <i class="ti-files text-info not-pointer-events"></i>
+                                                </button>
+                                            </form>
 
                                             @include('admin.includes._delete-btn' , [
                                                 'href' => $item->path('destroy'),
@@ -84,13 +87,6 @@
                     }
                 });
             }
-        });
-
-        // Clone equipment
-        $('[data-action="clone"]').click(function (e) {
-            e.preventDefault();
-
-            $.post(e.target.href, location.reload());
         });
     </script>
 @endpush

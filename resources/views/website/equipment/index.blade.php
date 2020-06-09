@@ -37,20 +37,21 @@
             </div>
 
             <div class="col-lg-9">
-                <div class="row" id="equipmentContainer">
+                <div id="equipmentContainer">
                     @include('website.equipment._equipment_items', ['equipment' => $equipment])
                 </div>
             </div>
-        </div>
-
-        <div class="pagination__wrapper">
-            {{ $equipment->appends(request()->all())->links() }}
         </div>
     </div>
 @endsection
 
 @push('scripts')
     <script>
+        // Set same height for equipment card
+        $('.equipment-card').matchHeight({
+            byRow: false
+        });
+
         let url = new Url;
 
         // Filter by manufacturers
@@ -72,15 +73,44 @@
             getEquipment(url);
         });
 
+        // Change page
+        $('body').on('click', '.pagination a', function(e) {
+            e.preventDefault();
+
+            let pagination = new Url($(this).attr('href'));
+
+            url.query.page = pagination.query.page;
+
+            getEquipment(url);
+        });
+
+        // Show preloader
+        function showPreloader() {
+            let preloaderIcon = $('<i>', {class: 'fas fa-cog fa-spin text-danger'});
+            let preloader =  $('<div>', {class: 'preloader'}).append(preloaderIcon);
+
+            $('#equipmentContainer').prepend(preloader);
+
+            preloader.fadeIn();
+        }
+
         // Ajax get equipment and set updated url
         function getEquipment(url) {
             $.ajax({
-                url : url,
+                url: url,
                 cache: false,
-            }).done(function (data) {
-                $('#equipmentContainer').html(data);
+                beforeSend: function () {
+                    showPreloader();
+                },
+                success: function (data) {
+                    $('#equipmentContainer').html(data);
 
-                history.replaceState(url.query, null, url);
+                    $('.equipment-card').matchHeight({
+                        byRow: false
+                    });
+
+                    history.replaceState(url.query, null, url);
+                }
             });
         }
     </script>

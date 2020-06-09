@@ -2,10 +2,6 @@
 
 namespace App\Providers;
 
-use App\Events\NewsCreated;
-use App\Events\OrderCreated;
-use App\Listeners\NewsletterSend;
-use App\Listeners\OrderCreatedSendMailNotification;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,11 +18,14 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        OrderCreated::class => [
-            OrderCreatedSendMailNotification::class
+        'App\Events\OrderCreated' => [
+            'App\Listeners\OrderCreatedSendMailNotification'
         ],
-        NewsCreated::class => [
-            NewsletterSend::class
+        'App\Events\NewsCreated' => [
+            'App\Listeners\NewsletterSend'
+        ],
+        'App\Events\Subscribe' => [
+            'App\Listeners\SendToSubscriberConfirmationEmail'
         ]
     ];
 

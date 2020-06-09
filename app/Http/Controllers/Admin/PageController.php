@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PageRequest;
 use App\Http\Requests\SearchRequest;
-use App\Models\{Equipment, Order, Page, Part, User};
+use App\Models\{Equipment, Order, Page, Part, Subscriber};
 use App\Services\ProductService;
 use App\Http\Controllers\Controller;
 
@@ -58,7 +58,7 @@ class PageController extends Controller
             'parts' => Part::all(),
             'equipment' => Equipment::all(),
             'orders' => Order::all(),
-            'users' => User::all()
+            'subscribers' => Subscriber::active()->get()
         ]);
     }
 

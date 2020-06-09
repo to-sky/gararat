@@ -16,7 +16,7 @@ class PartController extends Controller
     public function index()
     {
         return view('admin.parts.index', [
-            'parts' => Part::latest()->orderBy('id', 'desc')->paginate()
+            'parts' => Part::orderByDesc('id')->paginate()
         ]);
     }
 

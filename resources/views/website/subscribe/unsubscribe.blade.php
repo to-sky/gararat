@@ -14,8 +14,8 @@
                 @method('delete')
                 @csrf
 
-                <button type="submit" class="btn btn-danger">{{ __('Unsubscribe') }}</button>
-                <a href="{{ route('home') }}" class="btn btn-muted text-uppercase">{{ __('No') }}</a>
+                <button type="submit" class="btn btn-outline-danger">{{ __('Unsubscribe') }}</button>
+                <a href="{{ route('home') }}" class="btn btn-outline-muted text-uppercase">{{ __('No') }}</a>
             </form>
         </div>
     </div>

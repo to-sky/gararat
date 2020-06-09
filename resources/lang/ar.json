@@ -111,7 +111,6 @@
   "Read more": "اقرأ المزيد",
   "Your cart is empty.": "عربة التسوق فارغة.",
   "Please add products to cart.": "يرجى إضافة المنتجات إلى سلة التسوق.",
-  "Go to Home": "انتقل إلى المنزل",
   "Successfully added to cart": "تمت الإضافة إلى سلة التسوق بنجاح",
   "This field is required.": "هذه الخانة مطلوبه.",
   "Items": "العناصر",
@@ -141,6 +140,12 @@
   "Message from contact us form": "نموذج رسالة اتصل بنا",
   "Order created": "أجل خلق",
   "Your message has been sent.": "تم ارسال رسالتك.",
-  "Thanks for subscribing.": "شكرا على الإشتراك.",
-  "Filters": "مرشحات"
+  "Filters": "مرشحات",
+  "You've just been sent an email to confirm your email address.": "لقد تلقيت للتو رسالة بريد إلكتروني لتأكيد عنوان بريدك الإلكتروني.",
+  "Please click on the button in this email to confirm your subscription.": "يرجى النقر على الزر في هذا البريد الإلكتروني لتأكيد اشتراكك.",
+  "Confirm your subscription to the Gararat news email list": "أكد اشتراكك في قائمة البريد الإلكتروني لأخبار Gararat",
+  "Confirm subscription": "تأكيد الاشتراك",
+  "Thanks for subscribing to the Gararat news email list.": "شكرا للاشتراك في قائمة البريد الإلكتروني أخبار Gararat.",
+  "To complete your subscription, you need to confirm you got this email. To do so, please click the button below:": "لإكمال اشتراكك ، تحتاج إلى تأكيد حصولك على هذا البريد الإلكتروني. للقيام بذلك ، يرجى النقر على الزر أدناه:",
+  "Your subscription has been confirmed and you've been added to the newsletter.": "تم تأكيد اشتراكك وتمت إضافتك إلى النشرة الإخبارية."
 }

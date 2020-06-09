@@ -11,7 +11,7 @@
 
             <p class="mb-4">{{ __('Thank you for your order our specialists will reply you shortly! Please feel free to contact us for any enquiry.') }}</p>
 
-            <a href="{{ route('home') }}" class="btn btn-outline-secondary">{{ __('Go to Home') }}</a>
+            <a href="{{ route('home') }}" class="btn btn-outline-danger">{{ __('Go Home') }}</a>
         </div>
     </div>
 @endsection

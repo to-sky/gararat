@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Website;
 
+use App\Events\Subscribe;
 use App\Http\Controllers\Controller;
 use App\Models\Subscriber;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class SubscribeController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Store a subscriber.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -25,14 +26,27 @@ class SubscribeController extends Controller
             return redirect('/#subscribe')->withErrors($validator)->withInput();
         }
 
-        Subscriber::create([
+        $subscriber = Subscriber::create([
             'email' => $request->email,
             'locale' => session('locale')
         ]);
 
-        session()->flash('success', __('Thanks for subscribing.'));
+        event(new Subscribe($subscriber));
 
-        return redirect()->back();
+        return view('website.subscribe.subscribe-confirm');
+    }
+
+    /**
+     * Show "Thank you" page after subscription is activated
+     *
+     * @param Subscriber $subscriber
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function confirmSuccess(Subscriber $subscriber)
+    {
+        $subscriber->activate();
+
+        return view('website.subscribe.subscribe-success');
     }
 
     /**
@@ -43,11 +57,11 @@ class SubscribeController extends Controller
      */
     public function edit(Subscriber $subscriber)
     {
-        return view('website.pages.unsubscribe', compact('subscriber'));
+        return view('website.subscribe.unsubscribe', compact('subscriber'));
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove subscriber
      *
      * @param  Subscriber $subscriber
      * @return \Illuminate\Http\Response
@@ -57,6 +71,6 @@ class SubscribeController extends Controller
     {
         $subscriber->delete();
 
-        return view('website.pages.unsubscribe-success');
+        return view('website.subscribe.unsubscribe-success');
     }
 }

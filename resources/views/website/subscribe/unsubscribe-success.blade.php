@@ -10,6 +10,10 @@
             <h5 class="mb-3 text-muted">{{ __('Thank you') }}</h5>
 
             <p>{{ __('You have been successfully removed from this subscriber list and won\'t receive any further emails from us.') }}</p>
+
+            <p>
+                <a href="{{ route('home') }}" class="btn btn-outline-danger">{{ __('Go Home') }}</a>
+            </p>
         </div>
     </div>
 @endsection

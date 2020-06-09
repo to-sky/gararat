@@ -14,9 +14,10 @@ class CreateSubscribersTable extends Migration
     public function up()
     {
         Schema::create('subscribers', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('email')->unique();
             $table->string('locale')->default('ar');
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }

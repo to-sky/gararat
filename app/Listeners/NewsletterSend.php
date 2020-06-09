@@ -33,7 +33,7 @@ class NewsletterSend implements ShouldQueue
      */
     public function handle(NewsCreated $event)
     {
-        Subscriber::all()->each(function ($subscriber) use ($event) {
+        Subscriber::active()->get()->each(function ($subscriber) use ($event) {
             Mail::to($subscriber)
                 ->locale($subscriber->locale)
                 ->queue(new NewsletterNotification($event->news, $subscriber));

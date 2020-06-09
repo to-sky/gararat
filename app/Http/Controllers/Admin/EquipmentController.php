@@ -31,7 +31,7 @@ class EquipmentController extends Controller
     {
         $this->generateParams();
 
-        $sitePosition = Equipment::all()->count() + 1;
+        $sitePosition = Equipment::getLastSitePosition() + 1;
 
         return view('admin.equipment.create', compact('sitePosition'));
     }
@@ -119,7 +119,7 @@ class EquipmentController extends Controller
         $cloneEquipment->site_position = Equipment::getLastSitePosition() + 1;
         $cloneEquipment->save();
 
-        return true;
+        return redirect()->route('admin.equipment.index');
     }
 
     /**

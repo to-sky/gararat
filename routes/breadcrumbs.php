@@ -81,6 +81,13 @@ Breadcrumbs::for('404', function ($trail) {
 });
 
 // Home > Unsibscribe
+Breadcrumbs::for('subscribe', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('Subscribe'));
+});
+
+
+// Home > Unsibscribe
 Breadcrumbs::for('unsubscribe', function ($trail) {
     $trail->parent('home');
     $trail->push(__('Unsubscribe'));
