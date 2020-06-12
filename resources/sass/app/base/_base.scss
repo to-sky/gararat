@@ -27,12 +27,6 @@ main {
     height: auto;
 }
 
-.rtl {
-    .page-title:after {
-        right: 0 !important;
-    }
-}
-
 .price {
     direction: ltr !important;
     display: inline-block;

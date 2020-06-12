@@ -1,6 +1,5 @@
 @php($item = $item ?? null)
 
-<!-- Basic Fields -->
 <div class="form-group row">
     <div class="col-md-4">
         <label for="price">Price*</label>
@@ -73,4 +72,3 @@
 </div>
 
 @include('admin.includes._product_images', ['item' => $item ?? null])
-<!-- End Basic Fields -->

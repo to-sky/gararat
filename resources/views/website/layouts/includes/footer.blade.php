@@ -4,10 +4,13 @@
             {{-- First column --}}
             <div class="col-sm-6 col-lg-3 footer-top__column">
                 <a href="{{ route('home') }}">
-                    <img src="{{ asset('images/logo-footer.png') }}" class="footer-top__logo" alt="Gararat Logo">
+                    <img src="{{ SettingService::getLogoUrl('footer') }}" class="footer-top__logo" alt="Gararat Logo">
                 </a>
 
-                <p class="footer-top__slogan">{{ __('GARARAT – the first e-hypermarket for agricultural tractors, equipment and spare parts!') }}</p>
+                <p class="footer-top__slogan">
+                    @php($footerSlogan = isLocaleEn() ? 'footer_slogan' : 'footer_slogan_ar')
+                    @setting($footerSlogan, __('GARARAT – the first e-hypermarket for agricultural tractors, equipment and spare parts!'))
+                </p>
             </div>
 
             {{-- Second column --}}
@@ -57,21 +60,22 @@
                 <div class="footer-top__contact-item">
                     <i class="fas fa-map-marker-alt footer-top__contact-icon"></i>
                     <span class="footer-top__contact-label footer-top__contact-label_not-hovered">
-                        Villa 318, Al Showaifat region, Al Tagamoa  AL Khames, 90th st., New Cairo-Egypt
+                        @php($footerAddress = isLocaleEn() ? 'footer_address' : 'footer_address_ar')
+                        @setting($footerAddress, __('Villa 318, Al Showaifat region, Al Tagamoa  AL Khames, 90th st., New Cairo-Egypt'))
                     </span>
                 </div>
 
                 <div class="footer-top__contact-item">
                     <i class="fas fa-phone footer-top__contact-icon"></i>
-                    <a href="tel:+201016200599" class="footer-top__contact-label ltr">
-                        +20-101-620-05-99
+                    <a href="tel:{{ SettingService::getFormattedPhone() }}" class="footer-top__contact-label ltr">
+                        @setting('phone', '+20-101-620-05-99')
                     </a>
                 </div>
 
                 <div class="footer-top__contact-item">
                     <i class="fas fa-envelope footer-top__contact-icon"></i>
-                    <a href="mailto:sales@gararat.com" class="footer-top__contact-label align-self-baseline">
-                       sales@gararat.com
+                    <a href="mailto:{{ setting('email', 'sales@gararat.com') }}" class="footer-top__contact-label align-self-baseline">
+                        @setting('email', 'sales@gararat.com')
                     </a>
                 </div>
             </div>

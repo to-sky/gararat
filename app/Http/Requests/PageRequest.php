@@ -50,7 +50,7 @@ class PageRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'  => 'Hidden "Name" field is required.',
+            'name.required'  => 'Name field is required.',
             'slug.required' => 'Slug field will creating when "Name" field is filled.',
         ];
     }

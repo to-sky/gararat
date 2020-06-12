@@ -1,42 +1,5 @@
 <?php
 /**
- * Website
- */
-Route::group(['middleware' => ['check.cart'], 'namespace' => 'Website'], function () {
-    Route::get('/', 'PageController@home')->name('home');
-    Route::get('/services', 'PageController@services')->name('services');
-    Route::get('/contacts', 'PageController@contacts')->name('contacts');
-    Route::post('/contact-us', 'PageController@contactUs')->name('contact-us');
-
-    Route::get('/search', 'PageController@search')->name('search');
-    Route::get('/language/{locale}', 'PageController@languageChange')->name('language');
-
-    Route::get('/equipment', 'EquipmentController@index')->name('equipment.index');
-    Route::get('/equipment/{equipment:slug}', 'EquipmentController@show')->name('equipment.show');
-
-    Route::get('/parts', 'PartController@index')->name('parts.index');
-    Route::get('/parts/filter', 'PartController@filter')->name('parts.filter');
-    Route::get('/parts/{part:slug}', 'PartController@show')->name('parts.show');
-
-    Route::get('/news', 'NewsController@index')->name('news.index');
-    Route::get('/news/{news:slug}', 'NewsController@show')->name('news.show');
-
-    Route::get('/cart', 'CartController@index')->name('cart');
-    Route::post('/cart/store', 'CartController@store')->name('cart.store');
-    Route::patch('/cart/update', 'CartController@update')->name('cart.update');
-    Route::delete('/cart/remove', 'CartController@remove')->name('cart.remove');
-
-    Route::get('/checkout', 'CheckoutController@index')->name('checkout');
-    Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
-
-    Route::post('/subscribe', 'SubscribeController@store')->name('subscribe');
-    Route::get('/subscribe/confirm/{subscriber}', 'SubscribeController@confirmSuccess')->name('subscribe.confirm-success');
-
-    Route::get('/unsubscribe/{subscriber}', 'SubscribeController@edit')->name('unsubscribe.edit');
-    Route::delete('/unsubscribe/{subscriber}', 'SubscribeController@destroy')->name('unsibscribe.destroy');
-});
-
-/**
  * Admin
  */
 Route::namespace('Auth')->group(function () {
@@ -51,11 +14,10 @@ Route::group([
     'prefix' => 'admin',
     'as' => 'admin.'
 ], function () {
-    Route::get('/', 'PageController@dashboard')->name('dashboard');
-    Route::get('search', 'PageController@search')->name('search');
-    Route::get('pages', 'PageController@index')->name('pages.index');
-    Route::get('pages/{page}', 'PageController@edit')->name('pages.edit');
-    Route::put('pages/{page}', 'PageController@update')->name('pages.update');
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::get('search', 'DashboardController@search')->name('search');
+
+    Route::resource('pages', 'PageController', ['except' => ['show']]);
 
     Route::get('profile/{user:name}', 'UserController@profile')->name('profile.edit');
     Route::put('profile/{user}', 'UserController@update')->name('profile.update');
@@ -96,4 +58,50 @@ Route::group([
     Route::group(['prefix' => 'filemanager'], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();
     });
+});
+
+/**
+ * Website
+ */
+Route::group(['middleware' => ['check.cart'], 'namespace' => 'Website'], function () {
+    Route::get('/', 'PageController@home')->name('home');
+    Route::get('/contacts', 'PageController@contacts')->name('contacts');
+    Route::post('/contact-us', 'PageController@contactUs')->name('contact-us');
+
+    Route::get('/search', 'PageController@search')->name('search');
+    Route::get('/language/{locale}', 'PageController@languageChange')->name('language');
+
+    Route::get('/equipment', 'EquipmentController@index')->name('equipment.index');
+    Route::get('/equipment/{equipment:slug}', 'EquipmentController@show')->name('equipment.show');
+
+    Route::get('/parts', 'PartController@index')->name('parts.index');
+    Route::get('/parts/filter', 'PartController@filter')->name('parts.filter');
+    Route::get('/parts/{part:slug}', 'PartController@show')->name('parts.show');
+
+    Route::get('/news', 'NewsController@index')->name('news.index');
+    Route::get('/news/{news:slug}', 'NewsController@show')->name('news.show');
+
+    Route::get('/cart', 'CartController@index')->name('cart');
+    Route::post('/cart/store', 'CartController@store')->name('cart.store');
+    Route::patch('/cart/update', 'CartController@update')->name('cart.update');
+    Route::delete('/cart/remove', 'CartController@remove')->name('cart.remove');
+
+    Route::get('/checkout', 'CheckoutController@index')->name('checkout');
+    Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
+
+    Route::post('/subscribe', 'SubscribeController@store')->name('subscribe');
+    Route::get('/subscribe/confirm/{subscriber}', 'SubscribeController@confirmSuccess')->name('subscribe.confirm-success');
+
+    Route::get('/unsubscribe/{subscriber}', 'SubscribeController@edit')->name('unsubscribe.edit');
+    Route::delete('/unsubscribe/{subscriber}', 'SubscribeController@destroy')->name('unsibscribe.destroy');
+});
+
+
+// Catch all page controller
+// IMPORTANT: this route must be placed after all routes
+Route::group(['middleware' => ['check.cart'], 'namespace' => 'Website'], function () {
+    Route::get('{slug}', [
+        'as' => 'dynamicPage',
+        'uses' => 'PageController@dynamicPage'
+    ])->where('slug', '([A-Za-z0-9\-\/]+)');
 });

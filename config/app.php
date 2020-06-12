@@ -236,6 +236,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'CartService' => \App\Services\CartService::class,
+        'SettingService' => \App\Services\SettingService::class,
     ],
 
 ];

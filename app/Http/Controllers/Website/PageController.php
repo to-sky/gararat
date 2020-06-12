@@ -23,21 +23,22 @@ class PageController extends Controller
     public function home()
     {
         return view('website.pages.home', [
-            'page' => Page::whereSlug(Page::HOME_PAGE_SLUG)->first(),
+            'page' => Page::getHomepage(),
             'slides' => Slide::all(),
             'news' => News::latest()->take(3)->get()
         ]);
     }
 
     /**
-     * Show "Services" page
+     * Get dynamic page
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param string $slug
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
      */
-    public function services()
+    public function dynamicPage($slug)
     {
-        return view('website.pages.services', [
-            'page' => Page::whereSlug(Page::SERVICES_PAGE_SLUG)->first()
+        return view('website.pages.dynamic-page', [
+            'page' => Page::whereSlug($slug)->firstOrFail()
         ]);
     }
 
@@ -54,7 +55,7 @@ class PageController extends Controller
     }
 
     /**
-     * Search products
+     * Search page result
      *
      * @param SearchRequest $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

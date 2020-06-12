@@ -64,12 +64,14 @@
                         </a>
                     </div>
 
-                    <div class="home-icons__item">
-                        <a href="{{ route('services') }}" class="home-icons__link">
-                            <i class="home-icons__icon services-icon icon-size_s"></i>
-                            {{ __('Services') }}
-                        </a>
-                    </div>
+                    @if($page->isPageExists('services'))
+                        <div class="home-icons__item">
+                            <a href="{{ url('services') }}" class="home-icons__link">
+                                <i class="home-icons__icon services-icon icon-size_s"></i>
+                                {{ __('Services') }}
+                            </a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </section>

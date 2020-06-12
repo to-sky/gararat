@@ -12,23 +12,10 @@ class PagesTableSeeder extends Seeder
      */
     public function run()
     {
-        $pages = [
-            [
-                'slug' => 'home',
-                'name' => 'Home',
-                'name_ar' => 'الصفحة الرئيسية'
-            ],
-            [
-                'slug' => 'services',
-                'name' => 'Services',
-                'name_ar' => 'خدمات',
-                'title' => 'Services',
-                'title_ar' => 'خدمات'
-            ]
-        ];
-
-        collect($pages)->each(function ($page) {
-            Page::create($page);
-        });
+        Page::create([
+            'slug' => 'home',
+            'name' => 'Home',
+            'name_ar' => 'الصفحة الرئيسية'
+        ]);
     }
 }

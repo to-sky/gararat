@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PageRequest;
-use App\Http\Requests\SearchRequest;
-use App\Models\{Equipment, Order, Page, Part, Subscriber};
-use App\Services\ProductService;
+use App\Models\Page;
 use App\Http\Controllers\Controller;
 
 class PageController extends Controller
@@ -18,8 +16,31 @@ class PageController extends Controller
     public function index()
     {
         return view('admin.pages.index', [
-            'pages' => Page::orderBy('name')->get()
+            'pages' => Page::orderBy('name')->paginate()
         ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('admin.pages.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param PageRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(PageRequest $request)
+    {
+        Page::create($request->all());
+
+        return redirect()->route('admin.pages.index');
     }
 
     /**
@@ -48,30 +69,16 @@ class PageController extends Controller
     }
 
     /**
-     * Admin dashboard main page
+     * Remove the specified resource from storage.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Page $page
+     * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function dashboard()
+    public function destroy(Page $page)
     {
-        return view('admin.dashboard.index', [
-            'parts' => Part::all(),
-            'equipment' => Equipment::all(),
-            'orders' => Order::all(),
-            'subscribers' => Subscriber::active()->get()
-        ]);
-    }
+        $page->delete();
 
-    /**
-     * Admin search page
-     *
-     * @param SearchRequest $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function search(SearchRequest $request)
-    {
-        return view('admin.dashboard.search', [
-            'products' => ProductService::searchProduct($request->q)->paginate()
-        ]);
+        return redirect()->back();
     }
 }

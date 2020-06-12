@@ -39,7 +39,7 @@
 
                         <div class="form-group">
                             <div class="body__nav-container">
-                                <ul class="nav nav-tabs" id="bodyTab" role="tablist">
+                                <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active" id="bodyTab" data-toggle="tab" href="#body" role="tab" aria-controls="body" aria-selected="true">Body</a>
                                     </li>

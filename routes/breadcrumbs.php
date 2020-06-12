@@ -44,12 +44,6 @@ Breadcrumbs::for('news.show', function ($trail, $news) {
     $trail->push($news->trans('title'), route('news.index', $news));
 });
 
-// Home > Services
-Breadcrumbs::for('services', function ($trail) {
-    $trail->parent('home');
-    $trail->push(__('Services'), route('services'));
-});
-
 // Home > Contacts
 Breadcrumbs::for('contacts', function ($trail) {
     $trail->parent('home');
@@ -85,7 +79,6 @@ Breadcrumbs::for('subscribe', function ($trail) {
     $trail->parent('home');
     $trail->push(__('Subscribe'));
 });
-
 
 // Home > Unsibscribe
 Breadcrumbs::for('unsubscribe', function ($trail) {

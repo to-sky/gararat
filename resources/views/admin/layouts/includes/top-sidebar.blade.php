@@ -5,7 +5,7 @@
                 <div class="peers ai-c fxw-nw">
                     <div class="peer">
                         <div class="logo">
-                            <img src="{{ asset('images/logo.png') }}" alt="logo" style="width: auto; height: 49px; padding-top: 13px;">
+                            <img src="{{ SettingService::getLogoUrl('header') }}" alt="logo" style="width: auto; height: 49px; padding-top: 13px;">
                         </div>
                     </div>
                     <div class="peer peer-greed">

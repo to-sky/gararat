@@ -7,6 +7,13 @@ body {
                 color: $white;
             }
         }
+
+      a.btn-link {
+          &:focus {
+            color: $primary_color;
+            box-shadow: none;
+          }
+      }
     }
 }
 

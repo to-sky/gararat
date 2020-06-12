@@ -3,14 +3,14 @@
         <div class="d-flex flex-column flex-sm-row justify-content-between py-2">
             {{-- Contacts --}}
             <div class="d-flex justify-content-between align-items-center pb-2 pb-sm-0">
-                <a href="tel:+201016200599" class="header-contact">
+                <a href="tel:{{ SettingService::getFormattedPhone() }}" class="header-contact">
                     <i class="fas fa-phone"></i>
-                    <span class="ltr">+20-101-620-05-99</span>
+                    <span class="ltr">@setting('phone', '+20-101-620-05-99')</span>
                 </a>
 
-                <a href="mailto:sales@gararat.com" class="header-contact px-sm-3">
+                <a href="mailto:{{ setting('email', 'sales@gararat.com') }}" class="header-contact px-sm-3">
                     <i class="far fa-envelope align-middle"></i>
-                    <span>sales@gararat.com</span>
+                    <span>@setting('email', 'sales@gararat.com')</span>
                 </a>
             </div>
 
@@ -67,7 +67,7 @@
             <div class="align-self-start">
                 <div class="header-main__logo">
                     <a href="{{ route('home') }}">
-                        <img src="{{ asset('images/logo.png') }}" alt="Gararat Logo" height="55">
+                        <img src="{{ SettingService::getLogoUrl('header') }}" alt="Gararat Logo" height="55">
                     </a>
                 </div>
             </div>

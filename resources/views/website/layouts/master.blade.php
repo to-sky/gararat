@@ -22,7 +22,7 @@
         <meta property="og:site_name" content="{{ config('app.name', 'Gararat') }}">
         <meta property="og:title" content="@yield('title') | {{ config('app.name', 'Gararat') }}">
         <meta property="og:description" content="@yield('description')">
-        <meta property="og:image" content="{{ asset('images/logo.png') }}">
+        <meta property="og:image" content="{{ asset('images/header_logo.png') }}">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="1200">
