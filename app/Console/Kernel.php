@@ -24,8 +24,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('cart:clean')
-                  ->yearly();
+        $schedule->command('cart:clean')->yearly();
+
+        $schedule->command('backup:clean')->weeklyOn(1, '1:00');
+        $schedule->command('backup:run')->daily()->at('02:00');
     }
 
     /**

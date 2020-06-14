@@ -27,11 +27,13 @@ class SettingService
      * Get menu from settings
      *
      * @param bool $assoc
-     * @return array
+     * @return array|null
      */
     public static function getMenu($assoc = true)
     {
-        return array_values(json_decode(Setting::get('menu'), $assoc));
+        $menu = json_decode(Setting::get('menu'), $assoc);
+
+        return $menu ? array_values($menu) : null;
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SearchRequest;
 use App\Models\{Equipment, Order, Part, Subscriber};
+use App\Services\BackupService;
 use App\Services\ProductService;
 
 class DashboardController extends Controller
@@ -20,8 +21,19 @@ class DashboardController extends Controller
             'parts' => Part::all(),
             'equipment' => Equipment::all(),
             'orders' => Order::all(),
-            'subscribers' => Subscriber::active()->get()
+            'subscribers' => Subscriber::active()->get(),
+            'backupFiles' => BackupService::getBackupFiles()
         ]);
+    }
+
+    /**
+     * Download backup file
+     *
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function downloadBackup()
+    {
+        return response()->download(request('pathToFile'));
     }
 
     /**

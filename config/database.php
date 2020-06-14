@@ -54,6 +54,11 @@ return [
             'prefix_indexes' => true,
             'strict' => false,
             'engine' => null,
+            'dump' => [
+                'exclude_tables' => [
+                    'telescope_entries', 'telescope_entries_tags', 'telescope_monitoring'
+                ],
+            ]
         ],
 
         'pgsql' => [

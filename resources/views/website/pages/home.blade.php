@@ -64,7 +64,7 @@
                         </a>
                     </div>
 
-                    @if($page->isPageExists('services'))
+                    @if(optional($page)->isPageExists('services'))
                         <div class="home-icons__item">
                             <a href="{{ url('services') }}" class="home-icons__link">
                                 <i class="home-icons__icon services-icon icon-size_s"></i>

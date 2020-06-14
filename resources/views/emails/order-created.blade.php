@@ -1,5 +1,5 @@
 @component('mail::message')
-# {{ __('Order №:id created successfully!', ['id' => $order->id]) }}
+# {{ __('Order № :id created successfully!', ['id' => $order->id]) }}
 
 <p>{{ $order->full_name }}</p>
 

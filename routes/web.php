@@ -16,6 +16,7 @@ Route::group([
 ], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
     Route::get('search', 'DashboardController@search')->name('search');
+    Route::get('download-backup', 'DashboardController@downloadBackup')->name('download.backup');
 
     Route::resource('pages', 'PageController', ['except' => ['show']]);
 

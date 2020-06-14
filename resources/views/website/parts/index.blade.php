@@ -43,6 +43,7 @@
                         </div>
                     </div>
 
+                    @if($catalogs->isNotEmpty())
                     <div class="sidebar-filter__item">
                         <h4 class="sidebar-filter__item__title">{{ __('Catalog') }}</h4>
 
@@ -102,6 +103,7 @@
                             @endforeach
                         </div>
                     </div>
+                    @endif
 
                     <div class="border-top p-3">
                         <button id="filtering" class="btn btn-block btn-outline-danger">{{ __('Filter') }}</button>
