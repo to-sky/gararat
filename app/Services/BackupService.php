@@ -15,6 +15,10 @@ class BackupService
     {
         $backupFolder = storage_path('app/') . config('backup.backup.name');
 
+        if(! File::exists($backupFolder)) {
+            mkdir($backupFolder, 0755, true);
+        }
+
         $backupFiles = File::allFiles($backupFolder);
 
         return array_reverse($backupFiles);
