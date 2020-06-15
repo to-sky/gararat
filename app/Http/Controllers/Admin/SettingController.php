@@ -36,27 +36,19 @@ class SettingController extends Controller
             Setting::set($name, $value);
         }
 
+        Setting::save();
+
         // Store header logo
         if (request()->hasFile('header_logo')) {
-            $path = $request->file('header_logo')->storeAs(
-                'images', 'header_logo.'.$request->file('header_logo')->extension(), 'public'
-            );
-
-            Setting::set('header_logo', $path);
+            SettingService::storeLogo($request->file('header_logo'), 'header_logo');
         }
 
         // Store footer logo
         if (request()->hasFile('footer_logo')) {
-            $path = $request->file('footer_logo')->storeAs(
-                'images', 'footer_logo.' . $request->file('footer_logo')->extension(), 'public'
-            );
-
-            Setting::set('footer_logo', $path);
+            SettingService::storeLogo($request->file('footer_logo'), 'footer_logo');
         }
 
         SettingService::reindexMenuItems($request->menu);
-
-        Setting::save();
 
         return redirect()->route('admin.settings');
     }

@@ -3,11 +3,29 @@
 namespace App\Services;
 
 use App\Models\Page;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Setting;
 
 class SettingService
 {
+    /**
+     * Store logo
+     *
+     * @param UploadedFile $file
+     * @param string $fileName
+     * @param string $folderName
+     */
+    public static function storeLogo(UploadedFile $file, $fileName, $folderName = 'logos')
+    {
+        $path = $file->storeAs(
+            $folderName, $fileName . $file->extension(), 'public'
+        );
+
+        Setting::set($fileName, $path);
+
+        Setting::save();
+    }
     /**
      * Get header or footer logo url
      *
