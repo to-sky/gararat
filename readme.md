@@ -1,4 +1,4 @@
-# ![Gararat](public/assets/logos/logo.png)
+# ![Gararat](resources/images/header_logo.png)
 
 [![GitHub license](https://img.shields.io/github/license/gothinkster/laravel-realworld-example-app.svg)](https://raw.githubusercontent.com/gothinkster/laravel-realworld-example-app/master/LICENSE)
 
@@ -90,9 +90,14 @@ Need to install frontend dependencies from `package.json` file
 
     npm install
     
-Running Mix
+Running Mix for website
     
     npm run dev
+    
+
+Running Mix for admin part:
+    
+    npm run admin-dev
     
         
 # [Adminator HTML5 Admin Template](https://github.com/puikinsh/Adminator-admin-dashboard)
