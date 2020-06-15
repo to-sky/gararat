@@ -8,6 +8,9 @@
         @csrf
 
         @component('admin.components.name', ['item' => $page, 'hidden' => $page->isHome()])
+            @if($page->isHome())
+                <input type="hidden" name="name" value="{{ $page->name }}">
+            @endif
             <div class="form-group">
                 <label for="title">Title</label>
                 <div class="input-group">
@@ -40,6 +43,16 @@
                     </div>
                 </div>
             </div>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         @endcomponent
 
         <div class="row mt-3">
