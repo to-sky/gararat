@@ -1,0 +1,7 @@
+$icons: equipment, parts, services, facebook, youtube, whatsapp, search;
+
+@each $icon in $icons {
+  .#{$icon}-icon {
+    background-image: url('../images/icons/#{$icon}.svg');
+  }
+}

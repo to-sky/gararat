@@ -1,0 +1,40 @@
+.product__description {
+    table {
+        font-size: 12px;
+        line-height: 22px;
+        background: $white;
+
+        th {
+            padding-top: 25px;
+            padding-bottom: 10px;
+            border-top: none;
+            color: $primary_color;
+            font-weight: 400;
+
+            &:first-child {
+                font-weight: 500;
+                font-size: 14px;
+                color: $secondary_color;
+            }
+        }
+
+        td {
+            padding: 6px 10px;
+            border-top: none;
+
+            &:first-child {
+                color: $muted_color;
+            }
+        }
+
+        tr {
+            border-bottom-color: $border_color;
+            border-bottom-style: dotted;
+            border-bottom-width: 1px;
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+}

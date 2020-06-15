@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@extends('website.layouts.master')
+
+@section('title') {{ __('Verify Your Email Address') }} @stop
 
 @section('content')
 <div class="container" id="auth">

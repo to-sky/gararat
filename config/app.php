@@ -13,7 +13,9 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Gararat'),
+
+    'site_name' => env('APP_SITE_NAME', 'Gararat.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +82,12 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ar', 'en',
+
+    /**
+     * All app locales
+     */
+    'locales' => ['en', 'ar'],
 
     /*
     |--------------------------------------------------------------------------
@@ -165,6 +172,8 @@ return [
         /*
          * Package Service Providers...
          */
+        Intervention\Image\ImageServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -173,8 +182,9 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\TelescopeServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
+        App\Providers\GoogleDriveServiceProvider::class,
     ],
 
     /*
@@ -223,7 +233,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Str' => Illuminate\Support\Str::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+        'CartService' => \App\Services\CartService::class,
+        'SettingService' => \App\Services\SettingService::class,
     ],
 
 ];

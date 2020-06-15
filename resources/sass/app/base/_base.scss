@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Roboto;
+    font-weight: 400;
+    line-height: 1;
+    font-size: 1rem;
+}
+
+body {
+    background: $white_muted;
+}
+
+main {
+    min-height: 600px;
+    padding-bottom: $card_bottom_gap;
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+}
+
+.price {
+    direction: ltr !important;
+    display: inline-block;
+    color: $text-muted;
+}
+
+.currency {
+    direction: ltr !important;
+    display: inline-block;
+}
+
+.special-price {
+    color: $secondary_color;
+}
+
+.old-price {
+    color: $muted_color;
+}

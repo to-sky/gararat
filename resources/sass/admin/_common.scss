@@ -1,0 +1,49 @@
+body {
+    margin: 0 !important;
+
+    table {
+        a {
+            &:focus {
+                color: $white;
+            }
+        }
+
+      a.btn-link {
+          &:focus {
+            color: $primary_color;
+            box-shadow: none;
+          }
+      }
+    }
+}
+
+// For WYSIWYG
+.body__nav-container {
+  .nav-tabs {
+    border-color: transparent;
+
+    .nav-item {
+      margin-bottom: -2px;
+
+      &:not(.dropdown):hover .nav-link {
+        color: #fff;
+        background: #999;
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+        border-color: #999;
+      }
+
+      &:not(.dropdown) > .nav-link.active {
+        color: #222f3e;
+        border-bottom: none;
+        border-color: #cccccc;
+        background: transparent;
+      }
+    }
+
+    .nav-link {
+      border-radius: 0;
+      color: #222f3e;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+.ltr {
+  display: inline-block;
+  direction: ltr !important;
+}
+
+.border-light-sm {
+  border: $border_light !important;
+}
+
+.text-end {
+  text-align: end !important;
+}
+
+.text-sm {
+  font-size: .8rem !important;
+}
+
+.text-md {
+  font-size: 1rem !important;
+}
+
+.text-lg {
+  font-size: 1.25rem !important;
+}
+
+.text-primary {
+  color: $primary_color !important;
+}
+
+.text-danger {
+  color: $secondary_color !important;
+}
+
+.text-muted {
+  color: $muted_color !important;
+}
+
+.text-primary-light {
+  color: $primary_color_light !important;
+}
+
+.bg-muted {
+  background: $white_muted;
+}
+
+.mb-card {
+  margin-bottom: $card_bottom_gap !important;
+}
+
+.hover-cp {
+  &:hover {
+    cursor: pointer !important;
+  }
+}

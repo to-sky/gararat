@@ -1,0 +1,47 @@
+.sidebar-filter {
+    margin-bottom: $card_bottom_gap;
+    background: $white;
+}
+
+.sidebar-filter__item__title {
+    margin-bottom: 0;
+    padding: $default_gap;
+    border-bottom: 1px solid $border_color;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: $muted_color;
+}
+
+.sidebar-filter__item__filters {
+    padding: 15px 15px 5px;
+
+    &:last-child {
+        padding-bottom: 0;
+    }
+}
+
+.sidebar-filter__item__filter {
+    padding-bottom: 10px;
+    
+    label:hover {
+        cursor: pointer;
+    }
+}
+
+.sidebar-filter__item__filter__collapsed {
+    margin-top: 10px;
+
+    .sidebar-filter__item__filter {
+        padding-bottom: 0;
+    }
+}
+
+.rtl .sidebar-filter__item__filter {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+
+
+
+

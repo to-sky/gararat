@@ -1,0 +1,59 @@
+.search-popup {
+  .search-form__input-name {
+    height: 40px;
+    padding: 5px;
+    font-size: 1rem;
+
+    ~ .invalid-feedback{
+      margin-top: 15px;
+    }
+  }
+
+  .jconfirm {
+    .jconfirm-box div.jconfirm-closeIcon {
+      border-radius: 50%;
+      border: 1px solid white;
+      padding: 5px;
+      height: 26px;
+      width: 26px;
+    }
+
+    &.jconfirm-supervan {
+      .jconfirm-bg {
+        background: rgba(25, 13, 13, 0.97);
+      }
+
+      .jconfirm-box {
+        div.jconfirm-content-pane {
+          margin-bottom: 10px;
+        }
+
+        .jconfirm-buttons button {
+          &.search-form__btn-search {
+            background: #fc0203;
+            transition: $default_transition;
+
+            &:hover {
+              background: white;
+              color: #fc0203;
+            }
+          }
+
+          &.search-form__btn-close {
+            background: #666;
+            transition: $default_transition;
+
+            &:hover {
+              background: white;
+              color: #666;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
