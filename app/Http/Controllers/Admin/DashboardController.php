@@ -22,7 +22,7 @@ class DashboardController extends Controller
             'equipment' => Equipment::all(),
             'orders' => Order::all(),
             'subscribers' => Subscriber::active()->get(),
-            'backupFiles' => BackupService::getBackupFiles()
+            'backupFiles' => BackupService::getFiles()
         ]);
     }
 

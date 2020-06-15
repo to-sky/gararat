@@ -61,7 +61,7 @@ class CartService
      */
     public static function getProductModels()
     {
-        return Cart::content()->map->model;
+        return Cart::content()->map->model->filter();
     }
 
     /**

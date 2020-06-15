@@ -6,27 +6,27 @@
     {{-- Cart content --}}
     <div class="col-md-12 checkout__cart-content">
         @foreach(Cart::content() as $item)
-            @php($product = $item->model)
+            @if($product = $item->model)
+                <div class="row mb-3">
+                    <div class="col-4 col-sm-3 col-md-3 col-lg-4">
+                        <img src="{{ $product->getFirstMediaUrl('main_image', 'thumb') }}" class="img-thumbnail p-0">
+                    </div>
 
-            <div class="row mb-3">
-                <div class="col-4 col-sm-3 col-md-3 col-lg-4">
-                    <img src="{{ $product->getFirstMediaUrl('main_image', 'thumb') }}" class="img-thumbnail p-0">
+                    <div class="col-6 col-sm-7 col-md-7 col-lg-6">
+                        <a href="{{ $product->path() }}" class="cart__product-link">
+                            {{ $item->name }}
+                        </a>
+
+                        <p class="cart__product-producer-id ltr">{{ $product->producer_id }}</p>
+
+                        <p class="cart__product-price">{!! CartService::displayItemTotal($item->rowId) !!}</p>
+                    </div>
+
+                    <div class="col-2">
+                        <span class="border p-1 rounded float-right">{{ $item->qty }}</span>
+                    </div>
                 </div>
-
-                <div class="col-6 col-sm-7 col-md-7 col-lg-6">
-                    <a href="{{ $product->path() }}" class="cart__product-link">
-                        {{ $item->name }}
-                    </a>
-
-                    <p class="cart__product-producer-id ltr">{{ $product->producer_id }}</p>
-
-                    <p class="cart__product-price">{!! CartService::displayItemTotal($item->rowId) !!}</p>
-                </div>
-
-                <div class="col-2">
-                    <span class="border p-1 rounded float-right">{{ $item->qty }}</span>
-                </div>
-            </div>
+            @endif
         @endforeach
     </div>
 

@@ -19,7 +19,9 @@ class LanguageMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $locale = $request->is('admin/*') ? 'en' : Session::get('locale', Config::get('app.locale'));
+        $locale = $request->is('admin*')
+            ? 'en'
+            : Session::get('locale', Config::get('app.locale'));
 
         App::setLocale($locale);
 

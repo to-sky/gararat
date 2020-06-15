@@ -3,9 +3,8 @@
         <div class="px-3 bg-white shadow-sm">
             <div class="cart__content">
                 @foreach (Cart::content() as $rowId => $item)
-                    @php($product = $item->model)
-
-                    <div class="row cart__product">
+                    @if($product = $item->model)
+                        <div class="row cart__product">
                         <div class="col-4 col-md-3 col-xl-2">
                             <img src="{{ $product->getFirstMediaUrl('main_image', 'thumb') }}" class="img-thumbnail">
                         </div>
@@ -48,6 +47,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 @endforeach
             </div>
         </div>
