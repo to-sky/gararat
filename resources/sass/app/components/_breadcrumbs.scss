@@ -1,0 +1,50 @@
+.breadcrumb {
+    background: transparent;
+    padding: 1rem 1rem 1rem 0;
+
+    li {
+        padding-left: 8px;
+        font-size: .85rem;
+
+        &:before {
+            content: "\f054" !important;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: .7rem;
+            display: inline-block;
+            padding-right: 8px;
+            color: $muted_color;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        &:first-child {
+            padding-left: 0;
+
+            &:before {
+                display: none;
+            }
+        }
+
+        a {
+            color: $primary_color;
+
+            &:hover {
+                color: $secondary_color;
+            }
+        }
+
+        span {
+            color: $muted_color;
+        }
+    }
+}
+
+.rtl .breadcrumb {
+    li:before {
+        content: "\f053" !important;
+    }
+}

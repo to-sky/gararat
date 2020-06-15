@@ -37,7 +37,7 @@ class ContactUsForm extends Mailable
      */
     public function build()
     {
-        return $this->subject('Message From Gararat Contact Form')
-                    ->markdown('emails.contact-us-form');
+        return $this->markdown('emails.contact-us-form')
+                    ->subject(__('Message from contact us form'));
     }
 }

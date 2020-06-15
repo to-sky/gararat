@@ -1,0 +1,96 @@
+.header-top {
+  width: 100%;
+  border-bottom: 1px solid $border-color;
+
+  a:hover {
+    color: $primary_color_light;
+  }
+}
+
+.header-contact,
+.header__lang-switcher {
+  font-size: 13px;
+  color: $muted_color;
+}
+
+.header__social-icon {
+  height: 1.2rem;
+  width: 1.2rem;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+// Language switcher
+.header__lang-switcher {
+  position: relative;
+  transition: $default_transition;
+
+  &:hover {
+    cursor: pointer;
+    color: $primary_color_light;
+  }
+}
+
+.header__lang__items {
+  margin-bottom: 0;
+  display: none;
+  position: absolute;
+  top: 1.5rem;
+  right: 0;
+  z-index: 10;
+  padding: 0 !important;
+  width: 100px;
+  border: 1px solid $border_color;
+  list-style: none;
+  background: $white;
+}
+
+.header__lang__item {
+  padding: 5px;
+
+  &:first-child {
+    border-bottom: 1px solid $border-color;
+  }
+
+  &:hover {
+    background: $muted_color_ultra_light;
+    cursor: pointer;
+
+    > input,
+    > label {
+      cursor: pointer;
+    }
+  }
+
+  input {
+    display: none;
+  }
+}
+
+.header__lang__item-text {
+  margin-bottom: 0;
+  padding: 0 5px;
+
+  img {
+    margin-top: -2px;
+    width: 16px;
+  }
+
+  span {
+    padding-left: 5px;
+  }
+}
+
+.rtl .header__lang__items {
+  left: 0;
+  right: auto;
+}
+
+@include for-tablet-portrait {
+  .header-contact,
+  .header__lang-switcher {
+    font-size: 14px;
+  }
+}

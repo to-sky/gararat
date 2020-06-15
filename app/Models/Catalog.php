@@ -2,377 +2,111 @@
 
 namespace App\Models;
 
+use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
 use DB;
 
-use \App\Models\Nodes;
-
 class Catalog extends Model
 {
-    //======================================================================
-    // CREATE
-    //======================================================================
+    use Translatable;
+
+    protected $fillable = ['name', 'name_ar', 'parent_id'];
+
     /**
-     * @param $data
-     * @param $file
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function saveNewCatalogItem($data, $file)
+    public function parent()
     {
-        $nodesModel = new Nodes;
-
-        $getParentCatalog = $this->getCatalogByCatNumber($data['catalogParent']);
-
-        $saveCatalog =  DB::table('catalog')->insertGetId([
-            'cat_number' => $data['catalogNumber'],
-            'parent_cat' => $data['catalogParent'],
-            'cat_name_en' => $data['catalogNameEn'],
-            'cat_title_en' => $data['catalogSeoTitleEn'],
-            'cat_description_en' => $data['catalogSeoDescriptionEn'],
-            'cat_name_ar' => $data['catalogNameAr'],
-            'cat_title_ar' => $data['catalogSeoTitleAr'],
-            'cat_description_ar' => $data['catalogSeoDescriptionAr'],
-            'created_at' => Carbon::now(),
-            'cat_view' => $data['catalogViewType'],
-            'cat_type' => $getParentCatalog->cat_type
-        ]);
-
-        if($file !== null) {
-            DB::table('catalog')->where('cid', $saveCatalog)->update([
-                'cat_image' => $nodesModel->proceedNodeImage($file, 512, 'catalog')
-            ]);
-        }
-
-        return $saveCatalog;
-    }
-    //======================================================================
-    // READ
-    //======================================================================
-    /**
-     * @param $catId
-     * @return mixed
-     */
-    public function findCatalogItemByCatId($catId)
-    {
-        return DB::table('catalog')->where('cat_number', $catId)->count();
+        return $this->hasOne(static::class, 'id', 'parent_id');
     }
 
     /**
-     * @param $catId
-     * @param $cid
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function findCatalogItemByCatIdAndCid($catId, $cid)
+    public function childs()
     {
-        return DB::table('catalog')
-            ->where('cat_number', $catId)
-            ->where('cid', '!=', $cid)
-            ->count();
+        return $this->hasMany(static::class, 'parent_id', 'id');
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function getAllCatalogItems()
+    public function units()
     {
-        return DB::table('catalog')->get();
+        return $this->hasMany(Unit::class);
     }
 
     /**
-     * @return mixed
+     * Check if this category is child category
+     *
+     * @return bool
      */
-    public function getAllCatalogItemsByType($type)
+    public function isParent()
     {
-        return DB::table('catalog')->where('cat_type', $type)->get();
+        return is_null($this->parent_id) ? true : false;
     }
 
     /**
-     * @return mixed
+     * Check if this category is child category
+     *
+     * @return bool
      */
-    public function getAllCatalogItemsByTypeWithoutRoot($type)
+    public function isChild()
     {
-        return DB::table('catalog')
-            ->where('cat_type', $type)
-            ->where('parent_cat', '!=', 0)
-            ->get();
+        return ! $this->isParent();
     }
 
     /**
-     * @param $cid
-     * @return mixed
+     * Check if catalog has childs catalogs
+     *
+     * @return bool
      */
-    public function getCatalogItemParentId($cid)
+    public function hasChilds()
     {
-        return DB::table('catalog')->where('cid', $cid)->select('parent_cat')->first();
+        return $this->childs->count() ? true : false;
     }
 
     /**
-     * @param $cid
-     * @return mixed
+     * Get only child catalogs
+     *
+     * @param $query
      */
-    public function getCatalogItemById($cid)
+    public function scopeChildCatalogs($query)
     {
-        return DB::table('catalog')->where('cid', $cid)->first();
+        $query->whereNotNull('parent_id');
     }
 
     /**
-     * @param $catNumber
-     * @return mixed
+     * Get only parent catalogs
+     *
+     * @param $query
      */
-    public function getCatalogByCatNumber($catNumber)
+    public function scopeParentCatalogs($query)
     {
-        return DB::table('catalog')->where('cat_number', $catNumber)->first();
+        $query->whereNull('parent_id');
     }
 
     /**
-     * @param $cid
-     * @return mixed
+     * Sorting catalogs by "parent than all childs"
+     *
+     * @return array|\Illuminate\Support\Collection
      */
-    public function getCatalogByCid($cid)
+    public static function sortByParentChilds()
     {
-        return DB::table('catalog')->where('cid', $cid)->first();
-    }
+        $sortedCatalogs = collect();
+        $parentCatalogs = self::parentCatalogs(
+            self::query()
+        )->with('childs')->get();
 
-    /**
-     * @param $catNumber
-     * @return mixed
-     */
-    public function getCatalogChilds($catNumber)
-    {
-        return DB::table('catalog')->where('parent_cat', $catNumber)->get();
-    }
+        foreach ($parentCatalogs as $parentCatalog) {
+            $sortedCatalogs[] = $parentCatalog;
 
-    /**
-     * @param $catParent
-     * @return mixed
-     */
-    public function getCatalogParent($catParent)
-    {
-        return DB::table('catalog')->where('cat_number', $catParent)->first();
-    }
-
-    /**
-     * @param $catNumber
-     * @return mixed
-     */
-    public function getCatalogListByCatalogNumber($catNumber)
-    {
-        return DB::table('catalog')->where('cat_number', $catNumber)->get();
-    }
-
-    /**
-     * @param $category
-     * @return array
-     */
-    public function getAllChildsCategories($category)
-    {
-        switch ($category) {
-            case 0:
-                $needed = 1;
-                break;
-            case 1:
-                $needed = 2;
-                break;
-            default:
-                break;
-        }
-        $allCategories = $this->getAllCatalogItems();
-        $categories = json_decode(json_encode($allCategories), true);
-        $array = [];
-        if($needed != 1 && $needed != 2) {
-            $parent = $needed;
-        } else {
-            $parent = 0;
-        }
-        $get = $this->buildChildsCategories($categories, $parent, $needed);
-        $explodedCatalog = explode(',', $get);
-        foreach ($explodedCatalog as $catalog) {
-            if($catalog !== '') {
-                if(!in_array($catalog, $array)) {
-                    $array[] = $catalog;
-                }
+            foreach ($parentCatalog->childs as $child) {
+                $sortedCatalogs[] = $child;
             }
         }
-        return $array;
-    }
 
-    /**
-     * @param $category
-     * @return array
-     */
-    public function getAllChildsCategoriesFrontEnd($category)
-    {
-        switch ($category) {
-            case 1:
-                $needed = 1;
-                break;
-            case 2:
-                $needed = 2;
-                break;
-            default:
-                $needed = $category;
-                break;
-        }
-        $allCategories = $this->getAllCatalogItems();
-        $categories = json_decode(json_encode($allCategories), true);
-        $array = [];
-        if($needed != 1 && $needed != 2) {
-            $parent = $needed;
-        } else {
-            $parent = 0;
-        }
-        $get = $this->buildChildsCategories($categories, $parent, $needed);
-        $explodedCatalog = explode(',', $get);
-        foreach ($explodedCatalog as $catalog) {
-            if($catalog !== '') {
-                if(!in_array($catalog, $array)) {
-                    $array[] = $catalog;
-                }
-            }
-        }
-        return $array;
-    }
-
-    /**
-     * @param $catalog
-     * @param $parent
-     * @param $neededCategory
-     * @return string
-     */
-    public function buildChildsCategories($catalog, $parent, $neededCategory)
-    {
-        $array = '';
-        foreach($catalog as $key => $value) {
-            if($value['parent_cat'] == $parent) {
-                if($neededCategory !== NULL) {
-                    if($neededCategory != 1 && $neededCategory != 2) {
-                        if($neededCategory == $value['parent_cat']) {
-                            $array .= $value['cid'] . ',';
-                            $array .= $this->buildChildsCategories($catalog, $value['cat_number'], NULL);
-                        }
-                    } else {
-                        if($neededCategory == $value['cat_number']) {
-                            $array .= $value['cid'] . ',';
-                            $array .= $this->buildChildsCategories($catalog, $value['cat_number'], NULL);
-                        }
-                    }
-                } else {
-                    $array .= $value['cid'] . ',';
-                    $array .= $this->buildChildsCategories($catalog, $value['cat_number'], NULL);
-                }
-            } else {
-                if($value['cat_number'] == $neededCategory) {
-                    $array .= $value['cid'] . ',';
-                }
-            }
-        }
-        return $array;
-    }
-
-    /**
-     * @param $id
-     * @return array
-     */
-    public function getSelectedCatalogItem($id)
-    {
-        $request = DB::table('nodes_to_catalog')
-            ->where('node', $id)
-            ->join('catalog', 'nodes_to_catalog.catalog', '=', 'catalog.cid')
-            ->select('catalog.cat_number')
-            ->get();
-        $catalog = [];
-        foreach ($request as $key => $value) {
-            if(!in_array($value->cat_number, $catalog)) {
-                $catalog[] = $value->cat_number;
-            }
-        }
-        return $catalog;
-    }
-
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public function getCatalogByNodeId($id)
-    {
-        return DB::table('nodes_to_catalog')
-            ->where('node', $id)
-            ->join('catalog', 'nodes_to_catalog.catalog', '=', 'catalog.cid')
-            ->first();
-    }
-
-    /**
-     * @param $parent
-     * @return int
-     */
-    public function countParentsToRoot($parent)
-    {
-        $i = 0;
-        while($parent > 0) {
-            $catalog = $this->getCatalogByCatNumber($parent);
-            $parent = $catalog->parent_cat;
-            $i++;
-        }
-        return $i;
-    }
-    //======================================================================
-    // UPDATE
-    //======================================================================
-    /**
-     * @param $oldParent
-     * @param $newParent
-     * @return mixed
-     */
-    public function changeParentCategory($oldParent, $newParent)
-    {
-        return DB::table('catalog')->where('parent_cat', $oldParent)->update([
-            'parent_cat' => $newParent
-        ]);
-    }
-
-    /**
-     * @param $data
-     * @param $file
-     * @return mixed
-     */
-    public function updateCatalogItem($data, $file)
-    {
-        $updateCatalog =  DB::table('catalog')->where('cid', $data['cid'])->update([
-            'cat_number' => $data['catalogNumber'],
-            'parent_cat' => $data['catalogParent'],
-            'cat_name_en' => $data['catalogNameEn'],
-            'cat_title_en' => $data['catalogSeoTitleEn'],
-            'cat_description_en' => $data['catalogSeoDescriptionEn'],
-            'cat_name_ar' => $data['catalogNameAr'],
-            'cat_title_ar' => $data['catalogSeoTitleAr'],
-            'cat_description_ar' => $data['catalogSeoDescriptionAr'],
-            'updated_at' => Carbon::now(),
-            'cat_view' => $data['catalogViewType']
-        ]);
-
-        if($file !== null) {
-            $nodesModel = new Nodes;
-            DB::table('catalog')->where('cid', $data['cid'])->update([
-                'cat_image' => $nodesModel->proceedNodeImage($file, 512, 'catalog')
-            ]);
-        }
-        return $updateCatalog;
-    }
-    //======================================================================
-    // DELETE
-    //======================================================================
-    /**
-     * @param $cid
-     * @return mixed
-     */
-    public function deleteCategoryItem($cid)
-    {
-        $getCatalog = $this->getCatalogByCid($cid);
-        DB::table('catalog')->where('parent_cat', $getCatalog->cat_number)->update([
-            'parent_cat' => $getCatalog->parent_cat
-        ]);
-        DB::table('nodes_to_catalog')->where('catalog', $cid)->delete();
-        return DB::table('catalog')->where('cid', $cid)->delete();
+        return $sortedCatalogs;
     }
 }

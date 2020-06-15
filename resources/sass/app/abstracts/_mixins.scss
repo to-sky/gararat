@@ -1,0 +1,42 @@
+// Set color, background and border-color for button
+@mixin set-btn-color($bg, $color: #fff, $border-color: $bg) {
+  color: $color;
+  background-color: $bg;
+  border-color: $border-color;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $bg;
+    background-color: $color;
+    border-color: $border-color;
+    cursor: pointer;
+  }
+
+  &:active,
+  &:not(:disabled):active {
+    color: $bg !important;
+    background-color: $color !important;
+    border-color: $border-color !important;
+  }
+}
+
+// Responsive
+@mixin for-phone {
+  @media (min-width: 576px) { @content; }
+}
+
+@mixin for-tablet-portrait {
+  @media (min-width: 768px) { @content; }
+}
+
+@mixin for-tablet-landscape {
+  @media (min-width: 992px) { @content; }
+}
+
+@mixin for-desktop {
+  @media (min-width: 1200px) { @content; }
+}
+
+@mixin for-big-desktop {
+  @media (min-width: 1800px) { @content; }
+}

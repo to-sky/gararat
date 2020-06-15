@@ -2,34 +2,32 @@
 
 namespace App\Exports;
 
-use App\Models\Nodes;
-use App\Models\Orders;
-use App\Models\OrdersToNodes;
+use App\Models\Order;
 use Maatwebsite\Excel\Concerns\{FromCollection, WithHeadings};
 
 class OrderExport implements FromCollection, WithHeadings
 {
     public $order;
+    public $products;
 
-    public function __construct(Orders $order)
+    public function __construct(Order $order)
     {
         $this->order = $order;
+        $this->products = $order->orderProducts;
     }
 
     public function headings(): array
     {
         return [
-            'Product',
-            'Quantity',
+            __('Product'), __('Quantity')
         ];
     }
 
     public function collection()
     {
-         return OrdersToNodes::whereOrder($this->order->id)->get()->map(function ($item) {
+         return $this->products->map(function ($item) {
              return [
-                 'Item' => Nodes::find($item->node)->n_name_en,
-                 'Quantity' => $item->order_qty
+                 $item->product->trans('name'), $item->qty
              ];
          });
     }

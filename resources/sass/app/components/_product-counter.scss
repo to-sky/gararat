@@ -1,0 +1,57 @@
+.product-counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        max-width: 26px;
+        max-height: 26px;
+        line-height: 15px;
+        border: none;
+        text-align: center;
+        color: $muted_color;
+        font-size: .9rem;
+        -moz-appearance: textfield;
+        background: transparent;
+    }
+
+    button {
+        height: 20px;
+        width: 20px;
+        border: 1px solid $muted_color_light;
+        line-height: 1;
+        border-radius: 50%;
+        font-size: 7px;
+        transition: .3s ease all;
+        background: transparent;
+
+        &:focus{
+            outline: none;
+        }
+
+        &:not([disabled]):hover {
+            background: $secondary_color;
+            border-color: $secondary_color;
+
+            i {
+                color: $white;
+            }
+        }
+
+        i {
+            color: $fourth_color_grey_light;
+        }
+    }
+}
+
+@include for-phone {
+    .product-counter input[type=number] {
+        max-width: 40px;
+    }
+}

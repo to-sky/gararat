@@ -1,0 +1,49 @@
+.product__purchase {
+  padding: 20px;
+  background: $white;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.product__purchase-top {
+  margin-bottom: $card_bottom_gap;
+}
+
+.product-price {
+  color: $secondary_color_muted;
+  font-weight: 500;
+  font-size: 1rem;
+
+  small {
+    color: $muted_color;
+  }
+}
+
+.in-stock {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: $muted_color;
+
+  i {
+    color: $success_color;
+
+    & ~ span {
+      padding: 0 6px;
+    }
+  }
+}
+
+.product__short-description {
+  padding-top: $default_gap;
+  font-size: 14px;
+  line-height: 18px;
+  color: $muted_color;
+}
+
+@include for-tablet-landscape {
+  .product-price {
+    font-size: 1.1rem;
+  }
+}

@@ -19,7 +19,7 @@ class AdminAccess
         if(Auth::user()->user_role == 159 && Auth::user()->user_status == 1) {
             return $next($request);
         } else {
-            return redirect()->route('homePage');
+            return redirect()->route('home');
         }
     }
 }

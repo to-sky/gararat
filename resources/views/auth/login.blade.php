@@ -1,11 +1,14 @@
-@extends('layouts.app')
+@extends('website.layouts.master')
+
+@section('title') {{ __('Login') }} @stop
 
 @section('content')
 <div class="container" id="auth">
+    <h1 class="page-title pt-3">{{ __('Login') }}</h1>
+
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <h1 class="page-title">{{ __('Login') }}</h1>
+        <div class="border border-light-sm col-md-5 col-md-6 py-4 px-0 shadow-sm bg-white">
+            <div class="card border-0">
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -15,7 +18,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} border rounded-0" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -29,7 +32,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} border rounded-0" name="password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
@@ -41,7 +44,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-danger">
                                     {{ __('Login') }}
                                 </button>
 

@@ -1,0 +1,59 @@
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border-radius: 4px;
+    padding: 5px 16px;
+    box-shadow: none !important;
+}
+
+button:disabled {
+    color: $muted_color !important;
+    cursor: not-allowed;
+
+    &:hover {
+        color: $muted_color !important;
+        background: none !important;
+    }
+}
+
+.btn-danger {
+    @include set-btn-color($secondary_color);
+}
+
+.btn-outline-danger {
+    @include set-btn-color($white, $secondary_color, $secondary_color);
+}
+
+.btn-muted {
+    @include set-btn-color($muted_color);
+}
+.btn-outline-muted {
+    @include set-btn-color($white, $muted_color, $muted_color);
+}
+
+.btn-link {
+    padding: 0;
+    text-align: left;
+}
+
+.btn-sm-icon {
+    font-size: 11px;
+    padding: 5px 8px;
+}
+
+.btn-lg {
+    width: 100%;
+    height: 100%;
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}

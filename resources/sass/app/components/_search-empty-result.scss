@@ -1,0 +1,20 @@
+.empty-result {
+  padding: $card_bottom_gap;
+  width: 100%;
+  text-align: center;
+  background: white;
+  box-shadow: $shadow_sm;
+}
+
+.search-result__image {
+  height: 120px;
+  width: 120px;
+  margin: 15px auto 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.empty-result__text {
+  color: $muted_color;
+}
