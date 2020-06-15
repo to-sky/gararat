@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
                 Artisan::call('backup:clean');
             });
 
-        $schedule->command('backup:run --disable-notifications')->daily()->at('02:00');
+        $schedule->command('backup:run')->daily()->at('02:00');
     }
 
     /**
