@@ -48,7 +48,7 @@
                     {{-- Render child catalogs --}}
                     <ul class="list-group">
                         @foreach ($units as $unit)
-                        <li class="list-group-item">
+                        <li class="list-group-item border-0">
                             <a href="{{ route('admin.units.edit', $unit) }}" class="bnt btn-link">
                                 - {{ $unit->catalog->name }}
 

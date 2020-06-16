@@ -19,19 +19,19 @@
 
     @if($facebook)
     <a href="{{ $facebook }}" target="_blank">
-        <img src="{{ asset('images/icons/facebook.svg') }}" alt="Facebook" class="social-logo">
+        <img src="{{ asset('images/icons/facebook.png') }}" alt="Facebook" class="social-logo">
     </a>
     @endif
 
     @if($youtube)
     <a href="{{ $youtube }}" target="_blank">
-        <img src="{{ asset('images/icons/youtube.svg') }}" alt="Youtube" class="social-logo">
+        <img src="{{ asset('images/icons/youtube.png') }}" alt="Youtube" class="social-logo">
     </a>
     @endif
 
     @if($whatsapp)
     <a href="https://api.whatsapp.com/send?phone={{ $whatsapp }}" target="_blank">
-        <img src="{{ asset('images/icons/whatsapp.svg') }}" alt="WhatsApp" class="social-logo">
+        <img src="{{ asset('images/icons/whatsapp.png') }}" alt="WhatsApp" class="social-logo">
     </a>
     @endif
 
