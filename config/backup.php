@@ -8,7 +8,7 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => env('GOOGLE_DRIVE_FOLDER_ID'),
+        'name' => env('APP_NAME', 'Gararat'),
 
         'source' => [
 
@@ -97,7 +97,7 @@ return [
              * The disk names on which the backups will be stored.
              */
             'disks' => [
-                'local', 'google'
+                'local'
             ],
         ],
 
@@ -162,8 +162,8 @@ return [
      */
     'monitor_backups' => [
         [
-            'name' => env('GOOGLE_DRIVE_FOLDER_ID'),
-            'disks' => ['local', 'google'],
+            'name' => env('APP_NAME', 'Gararat'),
+            'disks' => ['local'],
             'health_checks' => [
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class => 1,
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes::class => 5000,

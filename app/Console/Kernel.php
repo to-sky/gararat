@@ -27,13 +27,17 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('cart:clean')->monthly();
 
-        $schedule->command('google-drive:clean')
+        $schedule->command('backup:clean')
             ->weeklyOn(1, '1:00')
             ->after(function () {
-                Artisan::call('backup:clean');
+                Artisan::call('google-drive:clean');
             });
 
-        $schedule->command('backup:run')->daily()->at('02:00');
+        $schedule->command('backup:run')
+            ->daily()->at('02:00')
+            ->after(function () {
+                Artisan::call('google-drive:upload-backup');
+            });
     }
 
     /**
