@@ -1,7 +1,17 @@
-$icons: equipment, parts, services, facebook, youtube, whatsapp, search;
+// SVG icons
+$svgIcons: equipment, parts, services, search;
 
-@each $icon in $icons {
-  .#{$icon}-icon {
-    background-image: url('../images/icons/#{$icon}.svg');
+@each $svgIcon in $svgIcons {
+  .#{$svgIcon}-icon {
+    background-image: url('../images/icons/#{$svgIcon}.svg');
+  }
+}
+
+// PNG icons
+$pngIcons: facebook, youtube, whatsapp;
+
+@each $pngIcon in $pngIcons {
+  .#{$pngIcon}-icon {
+    background-image: url('../images/icons/#{$pngIcon}.png');
   }
 }
