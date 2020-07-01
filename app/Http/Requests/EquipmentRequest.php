@@ -32,7 +32,6 @@ class EquipmentRequest extends FormRequest
         $this->merge([
             'slug' => Str::slug($this->name),
             'specifications' => RequestService::filterArrayWithNested($this->specifications),
-            'main_specifications' => RequestService::filterArray($this->main_specifications['data']),
         ]);
     }
 
