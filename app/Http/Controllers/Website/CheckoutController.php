@@ -42,7 +42,7 @@ class CheckoutController extends Controller
         if ($request->subscribe) {
             Subscriber::create([
                 'email' => $request->email,
-                'locale' => session('locale'),
+                'locale' => session('locale', 'ar'),
                 'is_active' => true
             ]);
         }

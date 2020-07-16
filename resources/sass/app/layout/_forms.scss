@@ -55,8 +55,9 @@ select {
 }
 
 .custom-control-label {
-    font-size: 13px;
+    width: 90%;
     line-height: 16px;
+    font-size: 13px;
     color: $muted_color;
 }
 

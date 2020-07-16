@@ -28,7 +28,7 @@ class SubscribeController extends Controller
 
         $subscriber = Subscriber::create([
             'email' => $request->email,
-            'locale' => session('locale')
+            'locale' => session('locale', 'ar')
         ]);
 
         event(new Subscribe($subscriber));

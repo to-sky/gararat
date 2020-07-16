@@ -23,7 +23,7 @@ class PartController extends Controller
             return view('website.parts._parts_table', compact('parts'))->render();
         }
 
-        $catalogs = Catalog::parentCatalogs()->orderBy('name')->get();
+        $catalogs = Catalog::whereHas('units')->get()->map->parent->unique();
         $equipmentGroups = EquipmentGroup::all();
 
         return view('website.parts.index', compact('parts', 'catalogs', 'equipmentGroups'));
