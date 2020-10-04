@@ -1,3 +1,12 @@
-.single-news__body {
-    padding-bottom: $card_bottom_gap;
+.single-news__body img {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+@include for-desktop {
+    .single-news__body img{
+        padding-bottom: $card_bottom_gap;
+        text-align: inherit;
+    }
 }

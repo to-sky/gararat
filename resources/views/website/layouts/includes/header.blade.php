@@ -2,7 +2,7 @@
     <div class="container">
         <div class="d-flex flex-column flex-sm-row justify-content-between py-2">
             {{-- Contacts --}}
-            <div class="d-flex justify-content-between align-items-center pb-2 pb-sm-0">
+            <div class="d-flex justify-content-between align-items-center pb-3 pb-sm-0">
                 <a href="tel:{{ SettingService::getFormattedPhone() }}" class="header-contact">
                     <i class="fas fa-phone"></i>
                     <span class="ltr">@setting('phone', '+20-101-620-05-99')</span>
@@ -17,12 +17,24 @@
             {{-- Socials--}}
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex">
+                    @if(setting('instagram'))
+                        <a href="{{ setting('instagram') }}" class="header__social-icon instagram-icon" target="_blank"></a>
+                    @endif
+
+                    @if(setting('linkedin'))
+                        <a href="{{ setting('linkedin') }}" class="header__social-icon linkedin-icon" target="_blank"></a>
+                    @endif
+
+                    @if(setting('twitter'))
+                        <a href="{{ setting('twitter') }}" class="header__social-icon twitter-icon" target="_blank"></a>
+                    @endif
+
                     @if(setting('facebook'))
                         <a href="{{ setting('facebook') }}" class="header__social-icon facebook-icon" target="_blank"></a>
                     @endif
 
                     @if(setting('youtube'))
-                        <a href="{{ setting('youtube') }}" class="header__social-icon youtube-icon mx-2" target="_blank"></a>
+                        <a href="{{ setting('youtube') }}" class="header__social-icon youtube-icon" target="_blank"></a>
                     @endif
 
                     @if(setting('whatsapp'))

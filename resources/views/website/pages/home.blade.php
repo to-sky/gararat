@@ -9,41 +9,43 @@
 @section('content')
     <div class="homepage">
         {{-- Slider --}}
-        <div id="homeSlider" class="carousel slide home-slider" data-ride="carousel" data-interval="7000">
-            <div class="carousel-inner">
-                @foreach($slides as $slide)
-                    <div class="carousel-item
+        <div class="container">
+            <div id="homeSlider" class="carousel slide home-slider" data-ride="carousel" data-interval="4000">
+                <div class="carousel-inner">
+                    @foreach($slides as $slide)
+                        <div class="carousel-item
                                 @if($loop->first) active @endif
-                                @if($slide->trans('title') || $slide->trans('sub_title')) blackout @endif"
-                         style="background-image: url({{ asset($slide->getFirstMediaUrl('home_slide'))  }})">
+                        @if($slide->trans('title') || $slide->trans('sub_title')) blackout @endif"
+                             style="background-image: url({{ asset($slide->getFirstMediaUrl('home_slide'))  }})">
 
-                        <div class="carousel-caption text-{{ $slide->displayTextPosition(true) }}">
-                            @if($slide->trans('title'))
-                                <h1 class="carousel-title text-uppercase">{{ $slide->trans('title') }}</h1>
-                            @endif
+                            <div class="carousel-caption text-{{ $slide->displayTextPosition(true) }}">
+                                @if($slide->trans('title'))
+                                    <h1 class="carousel-title text-uppercase">{{ $slide->trans('title') }}</h1>
+                                @endif
 
-                            @if($slide->trans('sub_title'))
-                                <p class="carousel-sub-title">{{ $slide->trans('sub_title') }}</p>
-                            @endif
+                                @if($slide->trans('sub_title'))
+                                    <p class="carousel-sub-title">{{ $slide->trans('sub_title') }}</p>
+                                @endif
 
-                            @if ($slide->link)
-                                <p class="carousel-read-more">
-                                    <a href="{{ $slide->link }}" class="btn btn-danger border-0">{{ __('Read more') }}</a>
-                                </p>
-                            @endif
+                                @if ($slide->link)
+                                    <p class="carousel-read-more">
+                                        <a href="{{ $slide->link }}" class="btn btn-danger border-0">{{ __('Read more') }}</a>
+                                    </p>
+                                @endif
+                            </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
+                    @endforeach
+                </div>
 
-            <a class="carousel-control-prev" href="#homeSlider" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">{{ __('Previous') }}</span>
-            </a>
-            <a class="carousel-control-next" href="#homeSlider" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">{{ __('Next') }}</span>
-            </a>
+                <a class="carousel-control-prev" href="#homeSlider" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">{{ __('Previous') }}</span>
+                </a>
+                <a class="carousel-control-next" href="#homeSlider" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">{{ __('Next') }}</span>
+                </a>
+            </div>
         </div>
 
         {{-- Main content --}}
@@ -85,11 +87,11 @@
         @endif
 
         @if(optional($page)->trans('body'))
-        <section class="bg-white">
-            <div class="container">
+        <div class="container">
+            <div class="p-5 bg-white">
                 {!! $page->trans('body') !!}
             </div>
-        </section>
+        </div>
         @endif
 
         <section class="news">

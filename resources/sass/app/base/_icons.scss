@@ -8,7 +8,8 @@ $svgIcons: equipment, parts, services, search;
 }
 
 // PNG icons
-$pngIcons: facebook, youtube, whatsapp;
+$pngIcons: facebook, youtube, whatsapp, instagram, linkedin, twitter,
+           facebook-mono, youtube-mono, whatsapp-mono, instagram-mono, linkedin-mono, twitter-mono;
 
 @each $pngIcon in $pngIcons {
   .#{$pngIcon}-icon {

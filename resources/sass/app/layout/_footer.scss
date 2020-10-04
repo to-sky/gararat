@@ -32,12 +32,12 @@
 }
 
 .footer-top__social-item {
-    margin: 0 30px;
+    margin: 0 10px;
 }
 
 .footer-top__social-icon {
-    height: 30px;
-    width: 30px;
+    height: $social_icon_size;
+    width: $social_icon_size;
     display: inline-block;
     background-repeat: no-repeat;
     background-position: center;
@@ -45,9 +45,10 @@
 }
 
 .footer-top__social-label {
-    padding: 0 45px;
+    padding: 0 30px;
     display: none;
-    line-height: 30px;
+    line-height: $social_icon_size;
+    font-size: 14px;
     transition: $default_transition;
 }
 
@@ -147,7 +148,7 @@
     }
 
     .footer-top__social-item {
-        margin: 0 0 20px;
+        margin: 0 0 10px;
     }
 
     .footer-top__social-label {

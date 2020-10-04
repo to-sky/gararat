@@ -98,7 +98,7 @@ Route::group(['middleware' => ['check.cart'], 'namespace' => 'Website'], functio
 });
 
 
-// Catch all page controller
+// Route for dynamic pages (catch all page controller)
 // IMPORTANT: this route must be placed after all routes
 Route::group(['middleware' => ['check.cart'], 'namespace' => 'Website'], function () {
     Route::get('{slug}', [

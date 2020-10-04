@@ -94,6 +94,29 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="instagram">Istagram</label>
+                                <input type="text" class="form-control"
+                                       name="instagram" id="instagram"
+                                       placeholder="https://www.instagram.com/your-page" value="{{ setting('instagram', old('instagram')) }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="twitter">Twitter</label>
+                                <input type="text" class="form-control"
+                                       name="twitter" id="twitter"
+                                       placeholder="https://www.twitter.com/your-page" value="{{ setting('twitter', old('twitter')) }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="linkedin">LinkedIn</label>
+                                <input type="text" class="form-control"
+                                       name="linkedin" id="linkedin"
+                                       placeholder="https://www.linkedin.com/your-page" value="{{ setting('linkedin', old('linkedin')) }}">
+                            </div>
+
+
+
+                            <div class="form-group">
                                 <label for="footerSlogan">Footer slogan</label>
                                 <div class="input-group">
                                     <input type="text" name="footer_slogan"

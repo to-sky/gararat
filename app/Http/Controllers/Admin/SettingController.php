@@ -28,8 +28,9 @@ class SettingController extends Controller
     public function store(Request $request)
     {
         $settings = $request->only([
-            'email', 'phone', 'facebook', 'youtube', 'whatsapp', 'footer_slogan',
-            'footer_slogan_ar', 'footer_address', 'footer_address_ar'
+            'email', 'phone', 'instagram', 'linkedin', 'twitter', 'facebook',
+            'youtube', 'whatsapp', 'footer_slogan', 'footer_slogan_ar',
+            'footer_address', 'footer_address_ar'
         ]);
 
         foreach ($settings as $name => $value) {

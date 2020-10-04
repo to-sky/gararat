@@ -14,12 +14,26 @@
 }
 
 .header__social-icon {
-  height: 1.2rem;
-  width: 1.2rem;
+  margin-right: 10px;
+  height: $social_icon_size;
+  width: $social_icon_size;
   display: inline-block;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+
+  &:last-child {
+    margin: 0;
+  }
+}
+
+.rtl .header__social-icon {
+  margin-right: 0;
+  margin-left: 10px;
+
+  &:last-child {
+    margin-left: 0;
+  }
 }
 
 // Language switcher
@@ -37,7 +51,7 @@
   margin-bottom: 0;
   display: none;
   position: absolute;
-  top: 1.5rem;
+  top: 25px;
   right: 0;
   z-index: 10;
   padding: 0 !important;
