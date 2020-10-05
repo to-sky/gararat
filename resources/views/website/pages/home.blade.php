@@ -14,8 +14,8 @@
                 <div class="carousel-inner">
                     @foreach($slides as $slide)
                         <div class="carousel-item
-                                @if($loop->first) active @endif
-                        @if($slide->trans('title') || $slide->trans('sub_title')) blackout @endif"
+                            @if($loop->first) active @endif
+                            @if($slide->trans('title') || $slide->trans('sub_title')) blackout @endif"
                              style="background-image: url({{ asset($slide->getFirstMediaUrl('home_slide'))  }})">
 
                             <div class="carousel-caption text-{{ $slide->displayTextPosition(true) }}">

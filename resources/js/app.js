@@ -9,7 +9,6 @@ try {
 require('./app/main');
 require('./app/qty-handler');
 require('./app/cart');
-require('./app/lang');
 require('./app/figure');
 
 // Vendors for site

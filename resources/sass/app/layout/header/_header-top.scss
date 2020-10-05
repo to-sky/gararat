@@ -37,74 +37,56 @@
 }
 
 // Language switcher
-.header__lang-switcher {
-  position: relative;
-  transition: $default_transition;
-
-  &:hover {
-    cursor: pointer;
-    color: $primary_color_light;
-  }
+.language-switcher input{
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-.header__lang__items {
-  margin-bottom: 0;
-  display: none;
-  position: absolute;
-  top: 25px;
-  right: 0;
-  z-index: 10;
-  padding: 0 !important;
-  width: 100px;
-  border: 1px solid $border_color;
-  list-style: none;
-  background: $white;
+.flag-ar {
+  background-image: url('/images/icons/flag-ar.svg');
 }
 
-.header__lang__item {
-  padding: 5px;
-
-  &:first-child {
-    border-bottom: 1px solid $border-color;
-  }
-
-  &:hover {
-    background: $muted_color_ultra_light;
-    cursor: pointer;
-
-    > input,
-    > label {
-      cursor: pointer;
-    }
-  }
-
-  input {
-    display: none;
-  }
+.flag-en {
+  background-image: url('/images/icons/flag-en.svg');
 }
 
-.header__lang__item-text {
-  margin-bottom: 0;
-  padding: 0 5px;
-
-  img {
-    margin-top: -2px;
-    width: 16px;
-  }
-
-  span {
-    padding-left: 5px;
-  }
+.language-switcher input:active + .language_label {
+  opacity: .9;
 }
 
-.rtl .header__lang__items {
-  left: 0;
-  right: auto;
+.language-switcher input:checked + .language_label {
+  -webkit-filter: none;
+  -moz-filter: none;
+  filter: none;
+}
+
+.language_label {
+  margin: 3px 0 0;
+  padding: 0;
+  width: 25px;
+  height: 16px;
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  -webkit-transition: all 100ms ease-in;
+  -moz-transition: all 100ms ease-in;
+  transition: all 100ms ease-in;
+  -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+  -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+  filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.language_label:hover {
+  -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+  -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+  filter: brightness(1.2) grayscale(.5) opacity(.9);
 }
 
 @include for-tablet-portrait {
-  .header-contact,
-  .header__lang-switcher {
+  .header-contact {
     font-size: 14px;
   }
 }

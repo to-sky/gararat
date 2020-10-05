@@ -53,3 +53,8 @@ $(function() {
         }, delay);
     });
 });
+
+// Change language
+$('input[name="language"]').click(function () {
+    window.location.href = "/language/" + $(this).val();
+});

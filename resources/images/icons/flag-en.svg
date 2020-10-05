@@ -1,7 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0,0 25,15">
-	<rect width="25" height="15" fill="#00247d"/>
-	<path d="M 0,0 L 25,15 M 25,0 L 0,15" stroke="#fff" stroke-width="3"/>
-	<path d="M 12.5,0 V 15 M 0,7.5 H 25" stroke="#fff" stroke-width="5"/>
-	<path d="M 12.5,0 V 15 M 0,7.5 H 25" stroke="#cf142b" stroke-width="3"/>
+<svg width="900" height="600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <symbol id="svg_5" viewBox="0,0 25,15" height="600" width="1000">
+   <rect fill="#00247d" height="15" width="25"/>
+   <path stroke-width="3" stroke="#fff" d="m0,0l25,15m0,-15l-25,15"/>
+   <path stroke-width="5" stroke="#fff" d="m12.5,0l0,15m-12.5,-7.5l25,0"/>
+   <path stroke-width="3" stroke="#cf142b" d="m12.5,0l0,15m-12.5,-7.5l25,0"/>
+  </symbol>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="602" width="902" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect x="2.5" y="2.5" id="svg_1" fill="#00247d" height="15" width="25"/>
+  <path id="svg_2" stroke-width="3" stroke="#fff" d="m2.5,2.5l25,15m0,-15l-25,15"/>
+  <path id="svg_3" stroke-width="5" stroke="#fff" d="m15,2.5l0,15m-12.5,-7.5l25,0"/>
+  <path id="svg_4" stroke-width="3" stroke="#cf142b" d="m15,2.5l0,15m-12.5,-7.5l25,0"/>
+  <use stroke="null" transform="matrix(0.8999730348587036,0,0,1,0,0) " x="-0.39687" y="0.64283" xlink:href="#svg_5" id="svg_6"/>
+ </g>
 </svg>

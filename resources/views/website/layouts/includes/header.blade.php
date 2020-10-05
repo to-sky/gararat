@@ -44,29 +44,13 @@
 
                 <span class="d-sm-flex d-none px-2">|</span>
 
-                <a href="#" class="header__lang-switcher" id="changeLang">
-                    <i class="fa fa-globe"></i>
-                    <span class="px-2">{{ __('EN') }}</span>
-                    <i class="fa fa-caret-down"></i>
+                <div class="language-switcher">
+                    <input id="langAr" type="radio" name="language" value="ar" @if(! isLocaleEn()) checked @endif />
+                    <label class="language_label flag-ar" for="langAr"></label>
 
-                    <ul class="header__lang__items" id="langBody">
-                        <li class="header__lang__item">
-                            <input type="radio" name="lang" id="en" value="en" @if(isLocaleEn()) checked @endif />
-                            <label for="en" class="header__lang__item-text">
-                                <img src="{{ asset('images/icons/flag-en.svg') }}" alt="en">
-                                <span>English</span>
-                            </label>
-                        </li>
-
-                        <li class="header__lang__item">
-                            <input type="radio" name="lang" id="ar" value="ar" @if(! isLocaleEn()) checked @endif/>
-                            <label for="ar" class="header__lang__item-text">
-                                <img src="{{ asset('images/icons/flag-ar.svg') }}" alt="ar">
-                                <span>عربى</span>
-                            </label>
-                        </li>
-                    </ul>
-                </a>
+                    <input id="langEn" type="radio" name="language" value="en" @if(isLocaleEn()) checked @endif />
+                    <label class="language_label flag-en" for="langEn"></label>
+                </div>
             </div>
         </div>
     </div>
@@ -79,7 +63,7 @@
             <div class="align-self-start">
                 <div class="header-main__logo">
                     <a href="{{ route('home') }}">
-                        <img src="{{ SettingService::getLogoUrl('header') }}" alt="Gararat Logo" height="55">
+                        <img src="{{ SettingService::getLogoUrl('header') }}" alt="Gararat Logo" class="header-main__logo-image">
                     </a>
                 </div>
             </div>

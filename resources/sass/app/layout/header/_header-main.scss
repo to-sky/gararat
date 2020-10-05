@@ -11,6 +11,10 @@ header {
     transition: .6s all;
 }
 
+.header-main__logo-image {
+    height: 55px;
+}
+
 // Menu
 .header__menu {
     width: 100%;
@@ -38,6 +42,10 @@ header {
     }
 }
 
+.rtl .header__menu nav a {
+    font-weight: 900;
+}
+
 // Opened on mobile
 .header-menu-opened {
     padding-bottom: 200px !important;
@@ -45,6 +53,10 @@ header {
     .header__menu nav a {
         font-size: .9rem;
     }
+}
+
+.rtl .header-menu-opened .header__menu nav a {
+    font-size: 1rem;
 }
 
 .header-main__cart a,
@@ -87,7 +99,7 @@ header {
 
             a {
                 display: flex;
-                margin: 0 .5rem;
+                margin: 0 .7rem;
                 padding: 10px 0;
                 align-self: start;
                 font-size: .8rem;
@@ -103,10 +115,23 @@ header {
             }
         }
     }
+
+    .rtl .header__menu nav a {
+        font-size: 1rem;
+    }
 }
 
 @include for-desktop {
+    .header-main__logo-image {
+        height: 100px;
+    }
+
     .header__menu nav a {
+        margin: 0 1rem;
         font-size: 1rem;
+    }
+
+    .rtl .header__menu nav a {
+        font-size: 1.4rem;
     }
 }
