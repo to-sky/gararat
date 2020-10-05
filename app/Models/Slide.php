@@ -33,11 +33,15 @@ class Slide extends Model implements HasMedia
         });
 
         self::saving(function($part) {
-            MediaService::store($part, 'home_slide');
+            MediaService::store($part, [
+                'home_slide', 'home_slide_mobile'
+            ]);
         });
 
         self::deleting(function ($part) {
-            MediaService::destroy($part, ['home_slide']);
+            MediaService::destroy($part, [
+                'home_slide', 'home_slide_mobile'
+            ]);
         });
     }
 
@@ -49,6 +53,11 @@ class Slide extends Model implements HasMedia
     public function registerMediaCollections()
     {
         $this->addMediaCollection('home_slide')
+            ->useFallbackUrl(MediaService::BLANK_IMAGE_PATH)
+            ->useFallbackPath(public_path(MediaService::BLANK_IMAGE_PATH))
+            ->singleFile();
+
+        $this->addMediaCollection('home_slide_mobile')
             ->useFallbackUrl(MediaService::BLANK_IMAGE_PATH)
             ->useFallbackPath(public_path(MediaService::BLANK_IMAGE_PATH))
             ->singleFile();

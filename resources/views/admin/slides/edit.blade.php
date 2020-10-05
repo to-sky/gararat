@@ -56,11 +56,11 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <p class="mb-1">Slide</p>
                         @include('admin.includes._input-file', [
                             'name' => 'home_slide',
-                            'label' => 'Size: 1920x500px',
+                            'label' => 'Size: 1200x400px',
                             'formats' => '.jpg,.png,.tiff'
                         ])
 
@@ -69,6 +69,24 @@
                         @if (isset($slide) && $mainImage = $slide->getFirstMedia('home_slide'))
                             @include('admin.includes._form-image', [
                                 'mediaItem' => $mainImage,
+                                'class' => 'w-25'
+                            ])
+                        @endif
+                    </div>
+
+                    <div class="col-md-6">
+                        <p class="mb-1">Slide mobile</p>
+                        @include('admin.includes._input-file', [
+                            'name' => 'home_slide_mobile',
+                            'label' => 'Size: 400x400px',
+                            'formats' => '.jpg,.png,.tiff'
+                        ])
+
+                        @include('admin.includes._image_following_formats')
+
+                        @if (isset($slide) && $mainImageMobile = $slide->getFirstMedia('home_slide_mobile'))
+                            @include('admin.includes._form-image', [
+                                'mediaItem' => $mainImageMobile,
                                 'class' => 'w-25'
                             ])
                         @endif
