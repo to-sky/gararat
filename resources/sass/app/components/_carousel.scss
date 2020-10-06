@@ -50,11 +50,6 @@
 
     .carousel-read-more {
         margin-bottom: 10px;
-
-        a {
-            padding: 3px 10px;
-            font-size: 1rem;
-        }
     }
 
     @include for-phone {
@@ -69,10 +64,6 @@
 
         .carousel-read-more {
             margin-bottom: $default_gap;
-
-            a {
-                padding: 4px 13px;
-            }
         }
     }
 
@@ -84,11 +75,6 @@
 
         .carousel-read-more {
             margin-bottom: 20px;
-
-            a {
-                padding: 5px 15px;
-                font-size: 14px;
-            }
         }
     }
 

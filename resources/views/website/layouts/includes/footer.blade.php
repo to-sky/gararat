@@ -18,18 +18,11 @@
                 <h5 class="footer-top__title">{{ __('Follow Us') }}</h5>
 
                 <div class="footer-top__social">
-
-                    @if(setting('twitter'))
-                        <div class="footer-top__social-item">
-                            <a href="{{ setting('twitter') }}" class="footer-top__social-icon twitter-mono-icon" target="_blank">
-                                <span class="footer-top__social-label">Twitter</span>
-                            </a>
-                        </div>
-                    @endif
-
                     @if(setting('facebook'))
                         <div class="footer-top__social-item">
-                            <a href="{{ setting('facebook') }}" class="footer-top__social-icon facebook-mono-icon" target="_blank">
+                            <a href="{{ setting('facebook') }}" class="footer-top__social-icon facebook-mono-icon" 
+                               target="_blank" data-social="facebook"
+                            >
                                 <span class="footer-top__social-label">Facebook</span>
                             </a>
                         </div>
@@ -37,7 +30,9 @@
 
                     @if(setting('youtube'))
                         <div class="footer-top__social-item">
-                            <a href="{{ setting('youtube') }}" class="footer-top__social-icon youtube-mono-icon" target="_blank">
+                            <a href="{{ setting('youtube') }}" class="footer-top__social-icon youtube-mono-icon" 
+                               target="_blank" data-social="youtube"
+                            >
                                 <span class="footer-top__social-label">YouTube</span>
                             </a>
                         </div>
@@ -45,24 +40,40 @@
 
                     @if(setting('whatsapp'))
                         <div class="footer-top__social-item">
-                            <a href="https://api.whatsapp.com/send?phone={{ setting('whatsapp') }}" class="footer-top__social-icon whatsapp-mono-icon" target="_blank">
+                            <a href="https://api.whatsapp.com/send?phone={{ setting('whatsapp') }}" 
+                               class="footer-top__social-icon whatsapp-mono-icon" target="_blank" data-social="whatsapp"
+                            >
                                 <span class="footer-top__social-label">WhatsApp</span>
-                            </a>
-                        </div>
-                    @endif
-
-                    @if(setting('linkedin'))
-                        <div class="footer-top__social-item">
-                            <a href="{{ setting('linkedin') }}" class="footer-top__social-icon linkedin-mono-icon" target="_blank">
-                                <span class="footer-top__social-label">LinkedIn</span>
                             </a>
                         </div>
                     @endif
 
                     @if(setting('instagram'))
                         <div class="footer-top__social-item">
-                            <a href="{{ setting('instagram') }}" class="footer-top__social-icon instagram-mono-icon" target="_blank">
+                            <a href="{{ setting('instagram') }}" class="footer-top__social-icon instagram-mono-icon" 
+                               target="_blank" data-social="instagram"
+                            >
                                 <span class="footer-top__social-label">Instagram</span>
+                            </a>
+                        </div>
+                    @endif
+
+                    @if(setting('twitter'))
+                        <div class="footer-top__social-item">
+                            <a href="{{ setting('twitter') }}" class="footer-top__social-icon twitter-mono-icon" 
+                               target="_blank" data-social="twitter"
+                            >
+                                <span class="footer-top__social-label">Twitter</span>
+                            </a>
+                        </div>
+                    @endif
+
+                    @if(setting('linkedin'))
+                        <div class="footer-top__social-item">
+                            <a href="{{ setting('linkedin') }}" class="footer-top__social-icon linkedin-mono-icon"
+                               target="_blank" data-social="linkedin"
+                            >
+                                <span class="footer-top__social-label">LinkedIn</span>
                             </a>
                         </div>
                     @endif

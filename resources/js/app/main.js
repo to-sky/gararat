@@ -58,3 +58,21 @@ $(function() {
 $('input[name="language"]').click(function () {
     window.location.href = "/language/" + $(this).val();
 });
+
+// Change footer social icon on hover
+$('.footer-top__social-label').hover(
+    function () {
+        let social = $(this).parent('.footer-top__social-icon');
+        let socialName = $(social).data('social');
+
+        $(social).removeClass(socialName + '-mono-icon');
+        $(social).addClass(socialName + '-icon');
+    },
+    function () {
+        let social = $(this).parent('.footer-top__social-icon');
+        let socialName = $(social).data('social');
+
+        $(social).removeClass(socialName + '-icon');
+        $(social).addClass(socialName + '-mono-icon');
+    }
+);

@@ -57,3 +57,17 @@ button:disabled {
     font-size: 1.1rem;
     text-transform: uppercase;
 }
+
+.btn-responsive {
+    padding: 10px;
+    font-size: 1.2rem;
+    display: block;
+}
+
+@include for-tablet-portrait {
+    .btn-responsive {
+        padding: 5px 15px;
+        font-size: 1rem;
+        display: inline-block;
+    }
+}

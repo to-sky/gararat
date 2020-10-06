@@ -33,7 +33,7 @@
 
                                 @if ($slide->link)
                                     <p class="carousel-read-more">
-                                        <a href="{{ $slide->link }}" class="btn btn-danger border-0">{{ __('Read more') }}</a>
+                                        <a href="{{ $slide->link }}" class="btn btn-responsive btn-danger border-0">{{ __('Read more') }}</a>
                                     </p>
                                 @endif
                             </div>
@@ -55,40 +55,40 @@
         {{-- Main content --}}
         <section class="home-icons">
             <div class="container">
-                <div class="d-flex flex-wrap justify-content-center">
-                    <div class="home-icons__item">
-                        <a href="{{ route('equipment.index') }}" class="home-icons__link">
-                            <i class="home-icons__icon equipment-icon"></i>
-                            {{ __('Equipment') }}
-                        </a>
-                    </div>
-
-                    <div class="home-icons__item">
-                        <a href="{{ route('parts.index') }}" class="home-icons__link">
-                            <i class="home-icons__icon parts-icon icon-size_s"></i>
-                            {{ __('Parts') }}
-                        </a>
-                    </div>
-
-                    @if(optional($page)->isPageExists('services'))
+                <div class="col-xl-10 offset-xl-1">
+                    <div class="d-flex flex-wrap justify-content-center">
                         <div class="home-icons__item">
-                            <a href="{{ url('services') }}" class="home-icons__link">
-                                <i class="home-icons__icon services-icon icon-size_s"></i>
-                                {{ __('Services') }}
+                            <a href="{{ route('equipment.index') }}" class="home-icons__link">
+                                <i class="home-icons__icon equipment-icon"></i>
+                                <span class="home-icons__label">{{ __('Equipment') }}</span>
                             </a>
                         </div>
-                    @endif
+
+                        <div class="home-icons__item">
+                            <a href="{{ route('parts.index') }}" class="home-icons__link">
+                                <i class="home-icons__icon parts-icon"></i>
+                                <span class="home-icons__label">{{ __('Parts') }}</span>
+                            </a>
+                        </div>
+
+                        <div class="home-icons__item">
+                            <a href="{{ url('services') }}" class="home-icons__link">
+                                <i class="home-icons__icon services-icon"></i>
+                                <span class="home-icons__label">{{ __('Services') }}</span>
+                            </a>
+                        </div>
+
+                        <div class="home-icons__item">
+                            {{-- TODO: add finance link --}}
+                            <a href="#" class="home-icons__link">
+                                <i class="home-icons__icon finance-icon"></i>
+                                <span class="home-icons__label">{{ __('Financing') }}</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-
-        @if(optional($page)->trans('title'))
-        <section>
-            <div class="container">
-                <h1 class="text-center homepage-title">{{ $page->trans('title') }}</h1>
-            </div>
-        </section>
-        @endif
 
         @if(optional($page)->trans('body'))
         <div class="container">

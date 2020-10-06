@@ -13,50 +13,46 @@
 }
 
 .home-icons {
-    margin-top: -50px;
-    padding: 0 !important;
+    padding: 0 0 30px !important;
     position: relative;
     z-index: 10;
     background: transparent;
 }
 
 .home-icons__item {
-    margin: $default_gap;
-    width: 220px;
+    margin-top: $card_bottom_gap;
+    width: 180px;
     align-self: center;
     text-align: center;
-    background: $white;
 }
 
 .home-icons__link {
-    padding: $default_gap;
     display: block;
     font-size: 1.5rem;
     color: $muted_color;
-    box-shadow: $shadow_sm;
 
     &:hover {
         color: $secondary_color_muted;
-        box-shadow: $shadow;
 
-        i {
+        .home-icons__icon {
             transform: scale(1.15);
         }
     }
 }
 
 .home-icons__icon {
-    margin-bottom: $default_gap;
-    height: 146px;
-    display: block;
+    margin-bottom: 10px;
+    width: 150px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
     background-repeat: no-repeat;
-    background-size: 70%;
     background-position: center;
     transition: $default_transition;
 }
 
-.icon-size_s {
-    background-size: 58%;
+.home-icons__label {
+    display: block;
 }
 
 @include for-tablet-portrait {
@@ -70,8 +66,23 @@
 }
 
 @include for-tablet-landscape {
-    .home-icons__item {
-        width: 240px;
+    .home-icons__link::before {
+        content: "";
+        position: relative;
+        top: -10px;
+        right: 20px;
+        display: inline-block;
+        width: 1px;
+        height: 70px;
+        background: $muted_color_light;
+    }
+
+    .rtl  .home-icons__link::before {
+        right: -20px;
+    }
+
+    .home-icons__item:first-child .home-icons__link::before {
+        display: none;
     }
 
     .homepage  .news-item {

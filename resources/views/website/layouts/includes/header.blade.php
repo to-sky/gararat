@@ -17,18 +17,6 @@
             {{-- Socials--}}
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex">
-                    @if(setting('instagram'))
-                        <a href="{{ setting('instagram') }}" class="header__social-icon instagram-icon" target="_blank"></a>
-                    @endif
-
-                    @if(setting('linkedin'))
-                        <a href="{{ setting('linkedin') }}" class="header__social-icon linkedin-icon" target="_blank"></a>
-                    @endif
-
-                    @if(setting('twitter'))
-                        <a href="{{ setting('twitter') }}" class="header__social-icon twitter-icon" target="_blank"></a>
-                    @endif
-
                     @if(setting('facebook'))
                         <a href="{{ setting('facebook') }}" class="header__social-icon facebook-icon" target="_blank"></a>
                     @endif
@@ -39,6 +27,18 @@
 
                     @if(setting('whatsapp'))
                         <a href="https://api.whatsapp.com/send?phone={{ setting('whatsapp') }}" class="header__social-icon whatsapp-icon" target="_blank"></a>
+                    @endif
+
+                    @if(setting('instagram'))
+                        <a href="{{ setting('instagram') }}" class="header__social-icon instagram-icon" target="_blank"></a>
+                    @endif
+
+                    @if(setting('twitter'))
+                        <a href="{{ setting('twitter') }}" class="header__social-icon twitter-icon" target="_blank"></a>
+                    @endif
+
+                    @if(setting('linkedin'))
+                        <a href="{{ setting('linkedin') }}" class="header__social-icon linkedin-icon" target="_blank"></a>
                     @endif
                 </div>
 

@@ -1,5 +1,5 @@
 // SVG icons
-$svgIcons: equipment, parts, services, search;
+$svgIcons: search;
 
 @each $svgIcon in $svgIcons {
   .#{$svgIcon}-icon {
@@ -8,7 +8,8 @@ $svgIcons: equipment, parts, services, search;
 }
 
 // PNG icons
-$pngIcons: facebook, youtube, whatsapp, instagram, linkedin, twitter,
+$pngIcons: equipment, parts, services, finance,
+           facebook, youtube, whatsapp, instagram, linkedin, twitter,
            facebook-mono, youtube-mono, whatsapp-mono, instagram-mono, linkedin-mono, twitter-mono;
 
 @each $pngIcon in $pngIcons {
