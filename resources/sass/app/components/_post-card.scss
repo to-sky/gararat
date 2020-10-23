@@ -1,4 +1,4 @@
-.news-item {
+.post {
     margin-bottom: $card_bottom_gap;
     background: $white;
     box-shadow: $shadow_sm;
@@ -9,7 +9,7 @@
     }
 }
 
-.news__date {
+.post__date {
     padding: 5px;
     position: absolute;
     top: 0;
@@ -19,25 +19,25 @@
     text-align: center;
 }
 
-.news__day {
+.post__day {
     margin-bottom: 5px;
     font-size: 1.6rem;
     font-weight: 300;
 }
 
-.news__month {
+.post__month {
     margin-bottom: 0;
     font-size: 1.4rem;
     font-weight: 300;
 }
 
-.news__image-wrapper {
+.post__image-wrapper {
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid $border_color;
 }
 
-.news__image {
+.post__image {
     display: block;
     height: 200px;
     background-repeat: no-repeat;
@@ -50,16 +50,16 @@
     }
 }
 
-.news__body {
+.post__body {
     padding: $default_gap;
 }
 
-.news__title {
+.post__title {
     margin-bottom: $default_gap;
     line-height: .9;
 }
 
-.news__title-link {
+.post__title-link {
     font-weight: 500;
     font-size: 1.3rem;
     color: $primary_color_light;
@@ -69,20 +69,20 @@
     }
 }
 
-.news__short-description {
+.post__short-description {
     font-size: .8rem;
 }
 
 @include for-tablet-portrait {
-    .news__image {
+    .post__image {
         height: 180px;
     }
 
-    .news__title {
+    .post__title {
         line-height: 1;
     }
 
-    .news__short-description {
+    .post__short-description {
         font-size: .9rem;
     }
 }

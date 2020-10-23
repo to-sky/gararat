@@ -18,6 +18,24 @@
                 </div>
 
                 <div class="mb-3 sidebar-filter shadow-sm border-light-sm d-lg-block" id="sidebarContainer" style="display: none;">
+                    @if ($qtyWithPromotion)
+                        <div class="sidebar-filter__item">
+                            <div class="sidebar-filter__item__filters">
+                                <div class="custom-control custom-checkbox sidebar-filter__item__filter">
+                                    <input type="checkbox"
+                                           class="custom-control-input"
+                                           name="promotion"
+                                           @if (request('promotion')) checked @endif
+                                           id="promotionFilter">
+
+                                    <label class="custom-control-label" for="promotionFilter">
+                                        {{ __('Promotion') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="sidebar-filter__item">
                         <h4 class="sidebar-filter__item__title">{{ __('Equipment groups') }}</h4>
 
@@ -105,7 +123,7 @@
                     </div>
                     @endif
 
-                    <div class="border-top p-3">
+                    <div class="p-3">
                         <button id="filtering" class="btn btn-block btn-outline-danger">{{ __('Filter') }}</button>
                     </div>
                 </div>
@@ -176,6 +194,19 @@
         let unionData = {};
         let catalogIds = [];
         let equipmentGroupIds = [];
+        let promotionCheckbox = $('input[name="promotion"]');
+        let promotionStatus = promotionCheckbox.prop('checked');
+
+        // Filter by promotion
+        promotionCheckbox.change(function() {
+            promotionStatus = promotionCheckbox.prop('checked');
+
+            if (promotionStatus) {
+                url.query['promotion'] = 1;
+            } else {
+                delete url.query['promotion'];
+            }
+        });
 
         // Filter by equipment groups
         $('input[name="equipmentGroups"]').change(function() {

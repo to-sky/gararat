@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\News;
+use App\Models\Post;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -11,19 +11,19 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class NewsCreated
+class PostCreated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $news;
+    public $post;
 
     /**
      * Create a new event instance.
      *
-     * @param News $news
+     * @param Post $post
      */
-    public function __construct(News $news)
+    public function __construct(Post $post)
     {
-        $this->news = $news;
+        $this->post = $post;
     }
 }

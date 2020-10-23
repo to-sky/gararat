@@ -1,9 +1,9 @@
 @extends('admin.layouts.master')
 
-@section('title', 'News')
+@section('title', 'Posts')
 
 @section('button')
-    @include('admin.includes._add-btn', ['href' => route('admin.news.create'), 'item' => 'news'])
+    @include('admin.includes._add-btn', ['href' => route('admin.posts.create'), 'item' => 'post'])
 @endsection
 
 @section('content')
@@ -16,33 +16,37 @@
                         <th>#</th>
                         <th>Image</th>
                         <th>Name</th>
+                        <th>Type</th>
+                        <th>Status</th>
                         <th>Created</th>
                         <th class="text-right">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($news as $item)
+                    @foreach($posts as $post)
                         <tr>
-                            <td>{{ $item->id }}</td>
+                            <td>{{ $post->id }}</td>
                             <td>
-                                <img src="{{ asset($item->getFirstMediaUrl('thumbnail', 'thumb')) }}" height="50">
+                                <img src="{{ asset($post->getFirstMediaUrl('thumbnail', 'thumb')) }}" height="50">
                             </td>
-                            <td>{{ $item->title }}</td>
-                            <td>{{ $item->created_at->format('Y-m-d') }}</td>
+                            <td>{{ $post->title }}</td>
+                            <td>{{ $post->displayType() }}</td>
+                            <td>{{ $post->displayStatus() }}</td>
+                            <td>{{ $post->created_at->format('Y-m-d') }}</td>
                             <td>
                                 <div class="float-right">
                                     <div class="btn-group btn-group-sm shadow-sm" role="group">
                                         @include('admin.includes._show-btn' , [
-                                           'href' => route('news.show', $item)
+                                           'href' => route('posts.show', $post)
                                        ])
 
                                         @include('admin.includes._edit-btn' , [
-                                            'href' => route('admin.news.edit', $item)
+                                            'href' => route('admin.posts.edit', $post)
                                         ])
 
                                         @include('admin.includes._delete-btn' , [
-                                            'href' => route('admin.news.destroy', ['news' => $item]),
-                                            'modalText' => 'news "' . $item->title . '"'
+                                            'href' => route('admin.posts.destroy', $post),
+                                            'modalText' => 'post "' . $post->title . '"'
                                         ])
                                     </div>
                                 </div>
@@ -54,10 +58,10 @@
             </div>
 
             <div class="mt-2 float-right">
-                {{ $news->links() }}
+                {{ $posts->links() }}
             </div>
         </div>
     </div>
 
-    @include('admin.includes.blocks.delete-item-modal', ['item' => 'news'])
+    @include('admin.includes.blocks.delete-item-modal', ['item' => 'post'])
 @endsection

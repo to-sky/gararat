@@ -33,7 +33,7 @@ Route::group([
     Route::resource('catalogs', 'CatalogController', ['except' => ['show']]);
     Route::resource('parts', 'PartController', ['except' => ['show']]);
     Route::resource('slides', 'SlideController', ['except' => ['show']]);
-    Route::resource('news', 'NewsController', ['except' => ['show']]);
+    Route::resource('posts', 'PostController', ['except' => ['show']]);
 
     Route::put('unit/get-parts', 'UnitController@getParts')->name('units.get-parts');
     Route::get('unit/collapse-units-state', 'UnitController@collapseUnitsState')->name('units.collapse-units-state');
@@ -79,8 +79,8 @@ Route::group(['middleware' => ['check.cart'], 'namespace' => 'Website'], functio
     Route::get('/parts/filter', 'PartController@filter')->name('parts.filter');
     Route::get('/parts/{part:slug}', 'PartController@show')->name('parts.show');
 
-    Route::get('/news', 'NewsController@index')->name('news.index');
-    Route::get('/news/{news:slug}', 'NewsController@show')->name('news.show');
+    Route::get('/blog', 'PostController@index')->name('posts.index');
+    Route::get('/blog/{post:slug}', 'PostController@show')->name('posts.show');
 
     Route::get('/cart', 'CartController@index')->name('cart');
     Route::post('/cart/store', 'CartController@store')->name('cart.store');

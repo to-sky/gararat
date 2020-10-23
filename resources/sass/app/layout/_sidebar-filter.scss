@@ -3,25 +3,24 @@
     background: $white;
 }
 
+.sidebar-filter__item {
+    border-bottom: 1px solid $border_color;
+}
+
 .sidebar-filter__item__title {
     margin-bottom: 0;
-    padding: $default_gap;
-    border-bottom: 1px solid $border_color;
-    font-size: 1.2rem;
+    padding: $default_gap $default_gap 0;
+    font-size: 1rem;
     font-weight: 400;
     color: $muted_color;
 }
 
 .sidebar-filter__item__filters {
-    padding: 15px 15px 5px;
-
-    &:last-child {
-        padding-bottom: 0;
-    }
+    padding: 15px;
 }
 
 .sidebar-filter__item__filter {
-    padding-bottom: 10px;
+    padding: 4px 0 4px 24px;
     
     label:hover {
         cursor: pointer;

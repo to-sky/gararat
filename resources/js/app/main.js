@@ -76,3 +76,12 @@ $('.footer-top__social-label').hover(
         $(social).addClass(socialName + '-mono-icon');
     }
 );
+
+// Change iframe src for youtube in modal for autoplay
+let videoUrl;
+$('div[id^="modalPostVideo"]').on('shown.bs.modal', function (e) {
+    videoUrl = $('iframe', this).attr("src");
+    $('iframe', this).attr("src", videoUrl + '?&autoplay=1&mute=0');
+}).on('hide.bs.modal', function(e) {
+    $('iframe', this).attr("src", videoUrl);
+});

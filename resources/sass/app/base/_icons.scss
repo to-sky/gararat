@@ -1,5 +1,5 @@
 // SVG icons
-$svgIcons: search;
+$svgIcons: search, youtube-play;
 
 @each $svgIcon in $svgIcons {
   .#{$svgIcon}-icon {
@@ -16,4 +16,17 @@ $pngIcons: equipment, parts, services, finance,
   .#{$pngIcon}-icon {
     background-image: url('../images/icons/#{$pngIcon}.png');
   }
+}
+
+// Styles for Icons
+.player-icon {
+    background-size: 80px;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 0.4s ease all;
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(0,0,0,0.5);
+    }
 }

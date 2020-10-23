@@ -1,0 +1,33 @@
+.custom-tabs {
+
+    .nav .nav-item:first-child .nav-link {
+        margin: 0 10px 0 0;
+    }
+
+    .nav-link {
+        margin: 0 10px;
+        padding-left: 0;
+        padding-right: 0;
+        color: $muted_color;
+        font-size: 1.2rem;
+        border-bottom: 3px solid transparent;
+
+        &.active {
+            color: $secondary_color;
+
+            &:hover {
+                border-color: transparent;
+            }
+        }
+
+        &:hover {
+            border-color: $secondary_color;
+        }
+    }
+}
+
+.rtl .custom-tabs {
+    .nav .nav-item:first-child .nav-link {
+        margin: 0 0 0 10px;
+    }
+}

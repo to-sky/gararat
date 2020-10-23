@@ -1,9 +1,9 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Add news')
+@section('title', 'Add post')
 
 @section('content')
-    <form action="{{ route('admin.news.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('admin.posts.store') }}" method="post" enctype="multipart/form-data">
         @csrf
 
         <div class="row">
@@ -71,8 +71,25 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 form-group">
-                                <label for="newsDate">Created</label>
-                                <input type="text" class="form-control datetimepicker-element-time" name="created_at" id="newsDate" required value="{{ \Carbon\Carbon::now()->format('Y-m-d h:m') }}">
+                                <label for="createdDate">Created</label>
+                                <input type="text" class="form-control datetimepicker-element-time" name="created_at" id="createdDate" required value="{{ \Carbon\Carbon::now()->format('Y-m-d h:m') }}">
+                            </div>
+
+                            <div class="col-12 form-group">
+                                <label for="postStatus">Status</label>
+                                <select name="is_published" id="postStatus" class="form-control">
+                                    <option value="1">Published</option>
+                                    <option value="0">Druft</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12 form-group">
+                                <label for="postType">Post type</label>
+                                <select name="type" id="postType" class="form-control">
+                                    @foreach (App\Models\Post::getTypes() as $key => $postTypeName)
+                                        <option value="{{ $key }}">{{ $postTypeName }}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <div class="col-12 form-group">
@@ -87,7 +104,7 @@
                         </div>
                     </div>
                 </div>
-                @include('admin.includes.blocks.save-or-back-btns', ['href' => route('admin.news.index') ])
+                @include('admin.includes.blocks.save-or-back-btns', ['href' => route('admin.posts.index') ])
             </div>
         </div>
     </form>

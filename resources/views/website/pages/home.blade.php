@@ -79,8 +79,7 @@
                         </div>
 
                         <div class="home-icons__item">
-                            {{-- TODO: add finance link --}}
-                            <a href="#" class="home-icons__link">
+                            <a href="{{ url('financing') }}" class="home-icons__link">
                                 <i class="home-icons__icon finance-icon"></i>
                                 <span class="home-icons__label">{{ __('Financing') }}</span>
                             </a>
@@ -98,19 +97,54 @@
         </div>
         @endif
 
-        <section class="news">
+        <section class="pb-0">
             <div class="container">
                 <div class="d-flex justify-content-between">
-                    <h2 class="page-title d-flex justify-content-between">{{ __('News') }}</h2>
-                    <a href="{{ route('news.index') }}" class="btn btn-outline-danger align-self-baseline">{{ __('Other news') }}</a>
+                    <h2 class="page-title ">{{ __('Blog') }}</h2>
                 </div>
 
-                <div class="row">
-                    @foreach($news as $item)
-                        <div class="col-sm-6 col-lg-4">
-                            @include('website.includes._news-item')
+                <div class="custom-tabs">
+                    <div class="d-flex justify-content-between">
+                        <ul class="nav" role="tablist">
+                            @foreach($postTypes as $key => $postType)
+                                @php
+                                    $postTypeName = \App\Models\Post::getTypes()[$key];
+                                @endphp
+
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link @if($loop->first) active @endif" id="{{ $postTypeName }}-tab"
+                                       data-toggle="tab" href="#{{ $postTypeName }}" role="tab" aria-controls="{{ $postTypeName }}"
+                                       aria-selected="false">{{ trans($postTypeName) }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                        <a href="{{ route('posts.index') }}" class="btn btn-outline-danger align-self-baseline">{{ __('All posts') }}</a>
+                    </div>
+
+                    <div class="mt-3">
+                        <div class="tab-content">
+                            @foreach($postTypes as $key => $postType)
+                                @php
+                                    $postTypeName = \App\Models\Post::getTypes()[$key];
+                                @endphp
+
+                                <div class="tab-pane fade show @if($loop->first) active @endif" id="{{ $postTypeName }}"
+                                     role="tabpanel" aria-labelledby="{{ $postTypeName }}-tab">
+                                    <div class="row">
+                                        @foreach($postType as $post)
+                                            <div class="col-sm-6 col-lg-4">
+                                                @if ($post->type === \App\Models\Post::TYPE_VIDEO)
+                                                    @include('website.includes._post-video')
+                                                @else
+                                                    @include('website.includes._post-item')
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                    @endforeach
+                    </div>
                 </div>
             </div>
         </section>

@@ -32,16 +32,16 @@ Breadcrumbs::for('parts.show', function ($trail, $part) {
 });
 
 
-// Home > News
-Breadcrumbs::for('news', function ($trail) {
+// Home > Blog
+Breadcrumbs::for('blog', function ($trail) {
     $trail->parent('home');
-    $trail->push(__('News'), route('news.index'));
+    $trail->push(__('Blog'), route('posts.index'));
 });
 
-// Home > News > Item
-Breadcrumbs::for('news.show', function ($trail, $news) {
-    $trail->parent('news');
-    $trail->push($news->trans('title'), route('news.index', $news));
+// Home > Blog > Post
+Breadcrumbs::for('post', function ($trail, $post) {
+    $trail->parent('blog');
+    $trail->push($post->trans('title'), route('posts.index', $post));
 });
 
 // Home > Contacts

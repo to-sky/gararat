@@ -12,6 +12,24 @@
             <div class="col-lg-3">
                 <div class="sidebar-filter shadow-sm border-light-sm">
                     <div class="sidebar-filter__item">
+                        @if ($qtyWithPromotion)
+                            <div class="sidebar-filter__item">
+                                <div class="sidebar-filter__item__filters">
+                                    <div class="custom-control custom-checkbox sidebar-filter__item__filter">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               name="promotion"
+                                               @if (request('promotion')) checked @endif
+                                               id="promotionFilter">
+
+                                        <label class="custom-control-label" for="promotionFilter">
+                                            {{ __('Promotion') }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
                         <h4 class="sidebar-filter__item__title">{{ __('Manufacturers') }}</h4>
 
                         <div class="sidebar-filter__item__filters">
@@ -22,7 +40,7 @@
                                            name="manufacturers"
                                            data-manufacturer-id="{{ $manufacturer->id }}"
                                            @if (request('manufacturers') && in_array($manufacturer->id, request('manufacturers')))
-                                               checked
+                                           checked
                                            @endif
                                            id="manufacturer_{{ $manufacturer->id }}">
 
@@ -33,6 +51,7 @@
                             @endforeach
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -70,7 +89,23 @@
                 delete url.query["manufacturers[]"];
             }
 
-            getEquipment(url);
+            getEquipment();
+        });
+
+        let promotionCheckbox = $('input[name="promotion"]');
+        let promotionStatus = promotionCheckbox.prop('checked');
+
+        // Filter by promotion
+        promotionCheckbox.change(function() {
+            promotionStatus = promotionCheckbox.prop('checked');
+
+            if (promotionStatus) {
+                url.query['promotion'] = 1;
+            } else {
+                delete url.query['promotion'];
+            }
+
+            getEquipment();
         });
 
         // Change page
@@ -81,7 +116,7 @@
 
             url.query.page = pagination.query.page;
 
-            getEquipment(url);
+            getEquipment();
         });
 
         // Show preloader
@@ -95,7 +130,7 @@
         }
 
         // Ajax get equipment and set updated url
-        function getEquipment(url) {
+        function getEquipment() {
             $.ajax({
                 url: url,
                 cache: false,

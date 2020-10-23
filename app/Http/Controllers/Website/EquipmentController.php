@@ -17,15 +17,17 @@ class EquipmentController extends Controller
      */
     public function index(EquipmentFilter $filter)
     {
-        $equipment = Equipment::filter($filter)->paginate(8);
+        $filteredEquipment = Equipment::filter($filter);
+        $equipment = $filteredEquipment->paginate(8);
 
         if (request()->ajax()) {
             return view('website.equipment._equipment_items', compact('equipment'))->render();
         }
 
         $manufacturers = Manufacturer::all();
+        $qtyWithPromotion = $filteredEquipment->whereIsSpecial(1)->count();
 
-        return view('website.equipment.index', compact('equipment', 'manufacturers'));
+        return view('website.equipment.index', compact('equipment', 'manufacturers', 'qtyWithPromotion'));
     }
 
     /**

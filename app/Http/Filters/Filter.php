@@ -50,4 +50,14 @@ abstract class Filter
 
         return $this->builder;
     }
+
+    /**
+     * Get promotion items
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    protected function promotion() : Builder
+    {
+        return $this->builder->whereIsSpecial(1);
+    }
 }

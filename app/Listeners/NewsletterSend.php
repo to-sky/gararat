@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\NewsCreated;
+use App\Events\PostCreated;
 use App\Mail\NewsletterNotification;
 use App\Models\Subscriber;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -28,15 +28,15 @@ class NewsletterSend implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  NewsCreated  $event
+     * @param  PostCreated  $event
      * @return void
      */
-    public function handle(NewsCreated $event)
+    public function handle(PostCreated $event)
     {
         Subscriber::active()->get()->each(function ($subscriber) use ($event) {
             Mail::to($subscriber)
                 ->locale($subscriber->locale)
-                ->queue(new NewsletterNotification($event->news, $subscriber));
+                ->queue(new NewsletterNotification($event->post, $subscriber));
         });
     }
 }

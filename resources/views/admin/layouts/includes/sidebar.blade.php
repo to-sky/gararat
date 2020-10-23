@@ -95,14 +95,14 @@
         </a>
     </li>
 
-    {{-- News --}}
+    {{-- Posts --}}
     <li class="nav-item">
-        <a href="{{ route('admin.news.index') }}"
-           class="nav-link {{ request()->routeIs('admin.news.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.posts.index') }}"
+           class="nav-link {{ request()->routeIs('posts') ? 'active' : '' }}">
             <span class="icon-holder">
                 <i class="c-blue-500 far fa-newspaper"></i>
             </span>
-            <span class="title">News</span>
+            <span class="title">Posts</span>
         </a>
     </li>
 

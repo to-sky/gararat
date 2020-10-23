@@ -21,7 +21,7 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\OrderCreated' => [
             'App\Listeners\OrderCreatedSendMailNotification'
         ],
-        'App\Events\NewsCreated' => [
+        'App\Events\PostCreated' => [
             'App\Listeners\NewsletterSend'
         ],
         'App\Events\Subscribe' => [

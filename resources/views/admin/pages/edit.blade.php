@@ -35,10 +35,10 @@
                     </ul>
                     <div class="tab-content" id="bodyContent">
                         <div class="tab-pane fade show active" id="body" role="tabpanel" aria-labelledby="bodyTab">
-                            <textarea name="body" id="body" rows="8" class="tinymce">{{ $page->body ?? old('body') }}</textarea>
+                            <textarea name="body" id="body" rows="8" class="tinymce">{!! $page->body ?? old('body') !!}</textarea>
                         </div>
                         <div class="tab-pane fade" id="bodyAr" role="tabpanel" aria-labelledby="bodyArTab">
-                            <textarea name="body_ar" id="bodyAr" class="tinymce">{{ $page->body_ar ?? old('body_ar') }}</textarea>
+                            <textarea name="body_ar" id="bodyAr" class="tinymce">{!! $page->body_ar ?? old('body_ar') !!}</textarea>
                         </div>
                     </div>
                 </div>

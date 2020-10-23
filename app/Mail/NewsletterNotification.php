@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\News;
+use App\Models\Post;
 use App\Models\Subscriber;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,19 +13,19 @@ class NewsletterNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $news;
+    public $post;
 
     public $subscriber;
 
     /**
      * Create a new message instance.
      *
-     * @param News $news
+     * @param Post $post
      * @param Subscriber $subscriber
      */
-    public function __construct(News $news, Subscriber $subscriber)
+    public function __construct(Post $post, Subscriber $subscriber)
     {
-        $this->news = $news;
+        $this->post = $post;
         $this->subscriber = $subscriber;
     }
 
@@ -37,6 +37,6 @@ class NewsletterNotification extends Mailable
     public function build()
     {
         return $this->markdown('emails.newsletter')
-                    ->subject($this->news->trans('title'));
+                    ->subject($this->post->trans('title'));
     }
 }

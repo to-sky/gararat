@@ -6,10 +6,6 @@
             margin-bottom: -$card_bottom_gap;
         }
     }
-
-    .news {
-        padding-bottom: 0;
-    }
 }
 
 .home-icons {
@@ -83,9 +79,5 @@
 
     .home-icons__item:first-child .home-icons__link::before {
         display: none;
-    }
-
-    .homepage  .news-item {
-        margin-bottom: 0;
     }
 }

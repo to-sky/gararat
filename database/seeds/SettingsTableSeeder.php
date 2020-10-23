@@ -45,9 +45,9 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'is_dynamic' => false,
-                'name' => 'News',
-                'route' => 'news.index',
-                'route_group' => 'news.*'
+                'name' => 'Blog',
+                'route' => 'posts.index',
+                'route_group' => 'posts.*'
             ],
             [
                 'is_dynamic' => false,

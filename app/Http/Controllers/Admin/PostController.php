@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\NewsRequest;
-use App\Models\News;
+use App\Http\Requests\PostRequest;
+use App\Models\Post;
 
-class NewsController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('admin.news.index', [
-            'news' => News::paginate()
+        return view('admin.posts.index', [
+            'posts' => Post::latest()->paginate()
         ]);
     }
 
@@ -27,57 +27,57 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin.news.create');
+        return view('admin.posts.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param NewsRequest $request
+     * @param PostRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NewsRequest $request)
+    public function store(PostRequest $request)
     {
-        News::create($request->all());
+        Post::create($request->all());
 
-        return redirect()->route('admin.news.index');
+        return redirect()->route('admin.posts.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param News $news
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(News $news)
+    public function edit(Post $post)
     {
-        return view('admin.news.edit', compact('news'));
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param NewsRequest $request
-     * @param News $news
+     * @param PostRequest $request
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(NewsRequest $request, News $news)
+    public function update(PostRequest $request, Post $post)
     {
-        $news->update($request->all());
+        $post->update($request->all());
 
-        return redirect()->route('admin.news.index');
+        return redirect()->route('admin.posts.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param News $news
+     * @param Post $post
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(News $news)
+    public function destroy(Post $post)
     {
-        $news->delete();
+        $post->delete();
 
         return redirect()->back();
     }

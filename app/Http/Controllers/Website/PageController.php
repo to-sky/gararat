@@ -11,7 +11,7 @@ use Session;
 use Mail;
 use App;
 
-use App\Models\{Office, Slide, News, Page};
+use App\Models\{Office, Slide, Post, Page};
 
 class PageController extends Controller
 {
@@ -25,7 +25,9 @@ class PageController extends Controller
         return view('website.pages.home', [
             'page' => Page::getHomepage(),
             'slides' => Slide::all(),
-            'news' => News::latest()->take(3)->get()
+            'postTypes' => Post::getPublishedAndGrouped()->map(function ($item) {
+                return $item->sortByDesc('created_at')->take(3);
+            })->sortKeys(),
         ]);
     }
 

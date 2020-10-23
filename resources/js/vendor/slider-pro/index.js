@@ -15,14 +15,4 @@ export default (function () {
         loop: false,
         aspectRatio: 1.6
     });
-
-    // Slider for news single page
-    $('#newsSlider').sliderPro({
-        height: '400px',
-        width: '100%',
-        autoplayDelay: 5000,
-        responsive: true,
-        centerImage: true,
-        loop: false
-    });
 }())

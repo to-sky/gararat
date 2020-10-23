@@ -44,7 +44,7 @@
   'components/cart-success',
   'components/contact-card',
   'components/equipment-card',
-  'components/news-card',
+  'components/post-card',
   'components/parts-sorting',
   'components/parts-table',
   'components/pagination',
@@ -53,6 +53,7 @@
   'components/product-description',
   'components/product-purchase',
   'components/search-empty-result',
+  'components/tabs',
   'components/serach-popup';
 
 // 6. Page-specific styles
@@ -62,4 +63,4 @@
   'pages/contacts',
   'pages/home',
   'pages/_search.scss',
-  'pages/single-news';
+  'pages/single-post';
