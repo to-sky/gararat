@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Requests\ContactUsRequest;
 use App\Http\Requests\SearchRequest;
+use App\Mail\ApplyFundingForm;
 use App\Mail\ContactUsForm;
 use App\Services\ProductService;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Session;
 use Mail;
 use App;
@@ -91,6 +93,24 @@ class PageController extends Controller
     public function contactUs(ContactUsRequest $request)
     {
         Mail::to(config('mail.to.sales'))->send(new ContactUsForm($request));
+
+        session()->flash('success', __('Your message has been sent.'));
+
+        return redirect()->back();
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function applyFunding(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+        ]);
+
+        Mail::to(config('mail.to.sales'))->send(new ApplyFundingForm($request));
 
         session()->flash('success', __('Your message has been sent.'));
 

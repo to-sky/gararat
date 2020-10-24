@@ -14,38 +14,9 @@
         <div>
             {!! optional($page)->trans('body') !!}
 
+            {{-- Only for Financing page --}}
             @if (request()->is('financing'))
-                {{-- TODO: form send with subject "Instalment request" --}}
-                <div class="row">
-                    <div class="container">
-                        <div class="bg-white p-4 shadow-sm">
-                            <h3 class="mb-card text-center text-muted font-weight-light">{{ __('Apply for funding') }}</h3>
-
-
-                            <div class="row">
-                                <form action="{{ route('subscribe') }}" method="post" class="col-md-6 offset-md-3">
-                                    @csrf
-
-                                    <div class="form-row align-items-center">
-                                        <div class="input-group">
-                                            <input type="email"
-                                                   class="form-control @error('email') is-invalid @enderror"
-                                                   name="email" placeholder="example@mail.com" required
-                                                   value="{{ old('email') }}">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-danger" type="submit">{{ __('Subscribe') }}</button>
-                                            </div>
-                                        </div>
-
-                                        @error('email')
-                                        <p class="d-block invalid-feedback mt-3">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @include('website.includes._apply-funding-form')
             @endif
         </div>
     </div>
