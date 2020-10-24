@@ -46,3 +46,19 @@
         font-size: 1.2rem;
     }
 }
+
+.custom-modal-close {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    z-index: 1;
+
+    &:hover {
+        color: $secondary_color;
+    }
+}
+
+.rtl .custom-modal-close {
+    left: 5px;
+    right: auto;
+}

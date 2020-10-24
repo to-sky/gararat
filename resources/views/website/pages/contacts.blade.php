@@ -3,6 +3,24 @@
 @section('title', __('Contacts'))
 
 @section('content')
+    <div class="modal fade" id="modalOffice" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+
+            <div class="modal-content">
+                <button type="button" class="close custom-modal-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <div class="modal-body p-0">
+                    <div class="row">
+                        <div class="col-md-6 mx-3 mx-md-0" id="modalOfficeMap" style="height: 100%; min-height: 400px"></div>
+                        <div class="col-md-6 p-3 mx-3 mx-md-0" id="modalOfficeContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
 
         {{ Breadcrumbs::render('contacts') }}
@@ -91,7 +109,9 @@
         <div class="row justify-content-md-around">
             @foreach($offices as $office)
                 <div class="col-md-6 col-lg-4">
-                    <div class="contact" data-mh="contact">
+                    <div class="contact" data-mh="contact" data-toggle="modal"
+                         data-target="#modalOffice" data-office-id="{{ $office->id }}"
+                         data-lat="{{ $office->lat }}" data-lng="{{ $office->lng }}">
                         <h6 class="contact__title">{{ $office->trans('name') }}</h6>
 
                         <div class="contact__item align-items-baseline">
@@ -125,6 +145,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API_KEY') }}&callback=initMap" async defer></script>
 
     <script>
+        // Init map
         function initMap() {
             // Create a new StyledMapType object, passing it an array of styles,
             // and the name to be displayed on the map type control.
@@ -195,10 +216,11 @@
                 ]);
             });
 
+            // Main map
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: new google.maps.LatLng(28.551272, 31.832508),
                 zoom: 6,
-                disableDefaultUI: true,
+                disableDefaultUI: false,
             });
 
             //Associate the styled map with the MapTypeId and set it to display.
@@ -234,5 +256,65 @@
                 })(marker, i));
             }
         }
+
+        // Get link to Google maps
+        function navigate(lat, lng) {
+            // If it's an iPhone..
+            if ((navigator.platform.indexOf("iPhone") !== -1) || (navigator.platform.indexOf("iPod") !== -1)) {
+                function iOSversion() {
+                    if (/iP(hone|od|ad)/.test(navigator.platform)) {
+                        // supports iOS 2.0 and later
+                        var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+                        return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+                    }
+                }
+                var ver = iOSversion() || [0];
+
+                var protocol = 'http://';
+                if (ver[0] >= 6) {
+                    protocol = 'maps://';
+                }
+                return protocol + 'maps.apple.com/maps?daddr=' + lat + ',' + lng + '&amp;ll=';
+            }
+            else {
+                return 'http://maps.google.com?daddr=' + lat + ',' + lng + '&amp;ll=';
+            }
+        }
+
+        // Show data in modal
+        $('#modalOffice').on('show.bs.modal', function (e) {
+            let button = $(e.relatedTarget); // Button that triggered the modal
+            let officeContent = button.children().clone();
+            let lat = button.data('lat');
+            let lng = button.data('lng');
+
+            let map;
+            const mapOptions = {
+                zoom: 8,
+                center: { lat: lat, lng: lng },
+                disableDefaultUI: true
+            };
+            map = new google.maps.Map(document.getElementById("modalOfficeMap"), mapOptions);
+            const marker = new google.maps.Marker({
+                position: {  lat: lat, lng: lng },
+                map: map,
+            });
+            const infowindow = new google.maps.InfoWindow({
+                content: "<a href='" + navigate(lat, lng) + "' target='_blank'>{{ trans('Open in Google maps') }}</a>",
+            });
+            google.maps.event.addListener(marker, "click", () => {
+                infowindow.open(map, marker);
+            });
+
+            let modal = $(this);
+            modal.find('#modalOfficeContent').html(officeContent)
+        }).on('hidden.bs.modal', function (e) {
+            $(this).find('#modalOfficeContent').html('')
+        });
+
+        // Stop propagation when click on tel or email in office card
+        $('.contact a').click(function (e) {
+            e.stopPropagation();
+        });
     </script>
 @endpush
