@@ -45,7 +45,7 @@
                                    value="{{ old('name') }}" required>
 
                             @error('name')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -57,7 +57,7 @@
                                        value="{{ old('email') }}" required>
 
                                 @error('email')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -68,7 +68,7 @@
                                        value="{{ old('phone') }}" required>
 
                                 @error('phone')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -77,10 +77,10 @@
                             <label for="message">{{ __('Message') }}*</label>
                             <textarea name="message" id="message"
                                       class="form-control @error('message') is-invalid @enderror"
-                                        required>{{ old('message') }}</textarea>
+                                      required>{{ old('message') }}</textarea>
 
                             @error('message')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -92,7 +92,7 @@
                                     </div>
 
                                     @error('g-recaptcha-response')
-                                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
                                     @enderror
                                 @endif
                             </div>
@@ -285,8 +285,8 @@
         $('#modalOffice').on('show.bs.modal', function (e) {
             let button = $(e.relatedTarget); // Button that triggered the modal
             let officeContent = button.children().clone();
-            let lat = button.data('lat');
-            let lng = button.data('lng');
+            let lat = parseFloat(button.data('lat'));
+            let lng = parseFloat(button.data('lng'));
 
             let map;
             const mapOptions = {

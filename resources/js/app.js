@@ -1,5 +1,7 @@
 require('./bootstrap');
-require('bootstrap/js/src/index');
+
+// Bootstrap utils
+import 'bootstrap';
 
 try {
     window.Url = require('domurl');
