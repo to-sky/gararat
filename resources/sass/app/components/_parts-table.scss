@@ -37,6 +37,10 @@
   font-size: .8rem;
 }
 
+.rtl .parts__item__name{
+    font-size: 1rem;
+}
+
 .parts__item__price {
   margin: $default_gap 0;
   font-weight: 500;
@@ -63,5 +67,9 @@
   .parts__item__name,
   .parts__item__producer-id {
     font-size: .9rem;
+  }
+
+  .rtl .parts__item__name{
+      font-size: 1.2rem;
   }
 }

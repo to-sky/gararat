@@ -34,7 +34,7 @@ class PageController extends Controller
      * Store a newly created resource in storage.
      *
      * @param PageRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(PageRequest $request)
     {
@@ -72,7 +72,7 @@ class PageController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Page $page
-     * @return \Illuminate\Http\Response
+     * @return Response
      * @throws \Exception
      */
     public function destroy(Page $page)

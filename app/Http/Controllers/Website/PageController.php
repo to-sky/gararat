@@ -8,7 +8,10 @@ use App\Mail\ApplyFundingForm;
 use App\Mail\ContactUsForm;
 use App\Services\ProductService;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Session;
 use Mail;
 use App;
@@ -20,7 +23,7 @@ class PageController extends Controller
     /**
      * Show "Home" page
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function home()
     {
@@ -37,9 +40,9 @@ class PageController extends Controller
      * Get dynamic page
      *
      * @param string $slug
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
+     * @return Factory|View|string
      */
-    public function dynamicPage($slug)
+    public function dynamicPage(string $slug)
     {
         return view('website.pages.dynamic-page', [
             'page' => Page::whereSlug($slug)->firstOrFail()
@@ -49,7 +52,7 @@ class PageController extends Controller
     /**
      * Show "Contacts" page
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function contacts()
     {
@@ -62,7 +65,7 @@ class PageController extends Controller
      * Search page result
      *
      * @param SearchRequest $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function search(SearchRequest $request)
     {
@@ -75,7 +78,7 @@ class PageController extends Controller
      * Change locale
      *
      * @param $locale
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function languageChange($locale)
     {
@@ -88,7 +91,7 @@ class PageController extends Controller
      * Send ContactUs form
      *
      * @param ContactUsRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function contactUs(ContactUsRequest $request)
     {
@@ -101,7 +104,7 @@ class PageController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function applyFunding(Request $request)
     {

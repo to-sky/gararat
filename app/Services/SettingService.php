@@ -97,6 +97,10 @@ class SettingService
      */
     public static function updatePageIntoMenu($page)
     {
+        if ($page->isHome()) {
+            return null;
+        }
+
         $menu = self::getMenu();
 
         $key = array_search($page->getOriginal('name'), array_column($menu, 'name'));
