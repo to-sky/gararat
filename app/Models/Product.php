@@ -141,13 +141,13 @@ abstract class Product extends Model implements HasMedia, Buyable
 
     /**
      * Check if product in stock
-     * Product in_stock if current_price > 0
+     * Product in_stock if qty > 0
      *
      * @return bool
      */
     public function getInStockAttribute() : bool
     {
-        return (bool) $this->current_price;
+        return (bool) $this->qty > 0;
     }
 
     /**
