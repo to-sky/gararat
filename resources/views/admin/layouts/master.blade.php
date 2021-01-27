@@ -10,7 +10,7 @@
         <title>{{ config('app.name') }} - @yield('title', auth()->user()->name)</title>
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('admin/admin.css') }}">
+        <link rel="stylesheet" href="{{ asset('dashboard/admin.css') }}">
     </head>
 
     <body style="display: none">
@@ -54,7 +54,7 @@
         </div>
 
         <!-- Scripts -->
-        <script src="{{ asset('admin/admin.js') }}"></script>
+        <script src="{{ asset('dashboard/admin.js') }}"></script>
         @include('admin.layouts.includes.scripts')
 
         @stack('scripts')
