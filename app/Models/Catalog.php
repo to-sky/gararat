@@ -4,8 +4,9 @@ namespace App\Models;
 
 use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
-use \Carbon\Carbon;
-use DB;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Collection;
 
 class Catalog extends Model
 {
@@ -14,25 +15,25 @@ class Catalog extends Model
     protected $fillable = ['name', 'name_ar', 'parent_id'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
-    public function parent()
+    public function parent(): HasOne
     {
         return $this->hasOne(static::class, 'id', 'parent_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function childs()
+    public function childs(): HasMany
     {
         return $this->hasMany(static::class, 'parent_id', 'id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function units()
+    public function units(): HasMany
     {
         return $this->hasMany(Unit::class);
     }
@@ -42,9 +43,9 @@ class Catalog extends Model
      *
      * @return bool
      */
-    public function isParent()
+    public function isParent(): bool
     {
-        return is_null($this->parent_id) ? true : false;
+        return is_null($this->parent_id);
     }
 
     /**
@@ -52,7 +53,7 @@ class Catalog extends Model
      *
      * @return bool
      */
-    public function isChild()
+    public function isChild(): bool
     {
         return ! $this->isParent();
     }
@@ -62,7 +63,7 @@ class Catalog extends Model
      *
      * @return bool
      */
-    public function hasChilds()
+    public function hasChilds(): bool
     {
         return $this->childs->count() ? true : false;
     }
@@ -90,7 +91,7 @@ class Catalog extends Model
     /**
      * Sorting catalogs by "parent than all childs"
      *
-     * @return array|\Illuminate\Support\Collection
+     * @return array|Collection
      */
     public static function sortByParentChilds()
     {

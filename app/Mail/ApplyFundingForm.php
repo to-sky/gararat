@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Governorate;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ class ApplyFundingForm extends Mailable
 
     public $name;
     public $phone;
+    public $governorate;
 
     /**
      * Create a new message instance.
@@ -24,6 +26,7 @@ class ApplyFundingForm extends Mailable
     {
         $this->name = $request->name;
         $this->phone = $request->phone;
+        $this->governorate = Governorate::find($request->governorate);
     }
 
     /**

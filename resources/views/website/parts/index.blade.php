@@ -36,6 +36,11 @@
                         </div>
                     @endif
 
+                    @php
+                        $unionRequest = request('union');
+                        $requestUnionEquipmentGroups = $unionRequest ? $unionRequest['equipmentGroups'] : null;
+                    @endphp
+
                     <div class="sidebar-filter__item">
                         <h4 class="sidebar-filter__item__title">{{ __('Equipment groups') }}</h4>
 
@@ -46,10 +51,12 @@
                                            class="custom-control-input"
                                            name="equipmentGroups"
                                            data-equipment-group-id="{{ $equipmentGroup->id }}"
-                                           @if (request('equipmentGroups') && in_array($equipmentGroup->id, request('equipmentGroups'))
-                                                || request('union')['equipmentGroups'] && in_array($equipmentGroup->id, request('union')['equipmentGroups'])
-                                                )
-                                                checked
+                                           @if (request('equipmentGroups')
+                                                && in_array($equipmentGroup->id, request('equipmentGroups'))
+                                                || $requestUnionEquipmentGroups
+                                                && in_array($equipmentGroup->id, $requestUnionEquipmentGroups)
+                                           )
+                                           checked
                                            @endif
                                            id="equipmentGroup_{{ $equipmentGroup->id }}">
 
@@ -60,6 +67,10 @@
                             @endforeach
                         </div>
                     </div>
+
+                    @php
+                        $requestUnionCatalogs = $unionRequest ? $unionRequest['catalogs'] : null;
+                    @endphp
 
                     @if($catalogs->isNotEmpty())
                     <div class="sidebar-filter__item">
@@ -74,8 +85,8 @@
                                            data-catalog-id="{{ $catalog->id }}"
                                            @if (request('catalogs')
                                                 && array_intersect($catalog->childs->map->id->toArray(), request('catalogs'))
-                                                || request('union')['catalogs']
-                                                && array_intersect($catalog->childs->map->id->toArray(), request('union')['catalogs'])
+                                                || $requestUnionCatalogs
+                                                && array_intersect($catalog->childs->map->id->toArray(), $requestUnionCatalogs)
                                            )
                                            checked
                                            @endif
@@ -103,8 +114,8 @@
                                                        data-catalog-child-id="{{ $catalogChild->id }}"
                                                        @if (request('catalogs')
                                                             && in_array($catalogChild->id, request('catalogs'))
-                                                            || request('union')['catalogs']
-                                                            && in_array($catalogChild->id, request('union')['catalogs'])
+                                                            || $requestUnionCatalogs
+                                                            && in_array($catalogChild->id, $requestUnionCatalogs)
                                                        )
                                                        checked
                                                        @endif
@@ -306,7 +317,7 @@
             if ($('#mobileFilterContainer').css('display') === 'block') {
                 $('#sidebarContainer').slideUp(slideSpeed);
             }
-            
+
             getParts();
         });
 

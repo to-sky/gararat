@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use App\Http\Filters\PartsFilter;
 use App\Models\{Catalog, EquipmentGroup, Part};
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
+use Throwable;
 
 class PartController extends Controller
 {
@@ -12,8 +17,8 @@ class PartController extends Controller
      * Parts page.
      *
      * @param PartsFilter $filter
-     * @return \Illuminate\Http\Response
-     * @throws \Throwable
+     * @return array|Response|string
+     * @throws Throwable
      */
     public function index(PartsFilter $filter)
     {
@@ -36,7 +41,7 @@ class PartController extends Controller
      * Show single part.
      *
      * @param Part $part
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function show(Part $part)
     {
