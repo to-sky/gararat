@@ -24,24 +24,7 @@
             </div>
 
             <div class="form-group">
-                <div class="body__nav-container">
-                    <ul class="nav nav-tabs" id="bodyTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="bodyTab" data-toggle="tab" href="#body" role="tab" aria-controls="body" aria-selected="true">Body</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="bodyArTab" data-toggle="tab" href="#bodyAr" role="tab" aria-controls="bodyAr" aria-selected="false">Body arabic</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="bodyContent">
-                        <div class="tab-pane fade show active" id="body" role="tabpanel" aria-labelledby="bodyTab">
-                            <textarea name="body" id="body" rows="8" class="tinymce">{!! $page->body ?? old('body') !!}</textarea>
-                        </div>
-                        <div class="tab-pane fade" id="bodyAr" role="tabpanel" aria-labelledby="bodyArTab">
-                            <textarea name="body_ar" id="bodyAr" class="tinymce">{!! $page->body_ar ?? old('body_ar') !!}</textarea>
-                        </div>
-                    </div>
-                </div>
+                @include('admin.includes._body', ['item' => $page])
             </div>
 
             @if ($errors->any())

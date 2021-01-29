@@ -41,17 +41,13 @@ $('#burgerIcon').click(function () {
 })();
 
 // Hide alert popup
-$(function() {
-    let alert = $('.alert[data-auto-close]');
+$('.alert[data-auto-close]').each(function() {
+    let that = $(this);
+    let delay = that.data('auto-close');
 
-    alert.each(function() {
-        let that = $(this);
-        let delay = that.data('auto-close');
-
-        setTimeout(function () {
-            that.animate({top: "-100px"}, 1500)
-        }, delay);
-    });
+    setTimeout(function () {
+        that.animate({top: "-100px"}, 1500)
+    }, delay);
 });
 
 // Change language
@@ -84,4 +80,19 @@ $('div[id^="modalPostVideo"]').on('shown.bs.modal', function (e) {
     $('iframe', this).attr("src", videoUrl + '?&autoplay=1&mute=0');
 }).on('hide.bs.modal', function(e) {
     $('iframe', this).attr("src", videoUrl);
+});
+
+// Qty handler
+$('.sub-qty').click(function(e) {
+    let getCurrentQty = $(this).parent().find('input').val();
+    if(getCurrentQty > 1) {
+        getCurrentQty = parseInt(getCurrentQty) - 1;
+        $(this).parent().find('input').val(getCurrentQty);
+    }
+});
+
+$('.add-qty').click(function(e) {
+    let getCurrentQty = $(this).parent().find('input').val();
+    getCurrentQty = parseInt(getCurrentQty) + 1;
+    $(this).parent().find('input').val(getCurrentQty);
 });

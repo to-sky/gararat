@@ -9,23 +9,7 @@
         <div class="card mb-3 rounded-0 border">
             <div class="card-body">
                 <div class="form-group">
-                    <label for="title">Title</label>
-                    <div class="input-group">
-                        <input type="text" name="title"
-                               class="form-control"
-                               placeholder="English" value="{{ old('title') }}">
-
-                        <input type="text" name="title_ar" class="form-control"
-                               placeholder="Arabic" value="{{ old('title_ar') }}">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="shortDescription">Sub title</label>
-                    <div class="input-group">
-                        <textarea rows="5" name="sub_title" id="subTitle" class="form-control" placeholder="English">{{ old('sub_title') }}</textarea>
-                        <textarea rows="5" name="sub_title_ar" id="subTitleAr" class="form-control" placeholder="Arabic">{{ old('sub_title_ar') }}</textarea>
-                    </div>
+                    @include('admin.includes._body', ['tinymceClass' => 'tinymce-lite'])
                 </div>
 
                 <div class="form-group row">

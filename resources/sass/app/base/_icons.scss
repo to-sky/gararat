@@ -30,3 +30,13 @@ $pngIcons: equipment, parts, services, finance,
         background-color: rgba(0,0,0,0.5);
     }
 }
+
+
+// Slider-pro icons
+.sp-grab{
+    cursor:url(/images/openhand.cur),move
+}
+
+.sp-grabbing{
+    cursor:url(/images/closedhand.cur),move
+}

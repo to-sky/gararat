@@ -10,7 +10,10 @@
         <title>{{ config('app.name') }} - @yield('title', auth()->user()->name)</title>
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('dashboard/admin.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+
+        <!-- Scripts -->
+        <script src="https://cdn.tiny.cloud/1/dx8b0exnz6aupmx3uci3tmye1ul50zf7m36rot1eukca7c00/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     </head>
 
     <body style="display: none">
@@ -54,7 +57,7 @@
         </div>
 
         <!-- Scripts -->
-        <script src="{{ asset('dashboard/admin.js') }}"></script>
+        <script src="{{ asset('js/admin.js') }}"></script>
         @include('admin.layouts.includes.scripts')
 
         @stack('scripts')

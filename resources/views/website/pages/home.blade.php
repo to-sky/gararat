@@ -23,12 +23,8 @@
                              @enddesktop
                         >
                             <div class="carousel-caption text-{{ $slide->displayTextPosition(true) }}">
-                                @if($slide->trans('title'))
-                                    <h1 class="carousel-title text-uppercase">{{ $slide->trans('title') }}</h1>
-                                @endif
-
-                                @if($slide->trans('sub_title'))
-                                    <p class="carousel-sub-title">{{ $slide->trans('sub_title') }}</p>
+                                @if($slide->trans('body'))
+                                    <h1 class="carousel-title text-uppercase">{!! $slide->trans('body') !!}</h1>
                                 @endif
 
                                 @if ($slide->link)

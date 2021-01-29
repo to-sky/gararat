@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+// 1. Configuration and helpers
+@import
+  "abstracts/variables",
+  "abstracts/mixins";
+
+// 2. Vendors
+@import
+  "../../../node_modules/bootstrap/scss/functions",
+  "../../../node_modules/bootstrap/scss/variables",
+  "../../../node_modules/bootstrap/scss/mixins",
+  "../../../node_modules/bootstrap/scss/reboot",
+  "../../../node_modules/bootstrap/scss/grid",
+  "../../../node_modules/bootstrap/scss/images",
+  "../../../node_modules/bootstrap/scss/utilities",
+  "../../../node_modules/bootstrap-v4-rtl/scss/bootstrap-rtl",
+  "../../../node_modules/jquery-confirm/dist/jquery-confirm.min",
+  "../../../node_modules/slider-pro/dist/css/slider-pro.min.css";
+
+@import "abstracts/helpers";
+
+// 3. Base stuff
+@import
+  'base/base',
+  'base/icons',
+  'base/fonts',
+  'base/typography';
+
+// 4. Layout-related sections
+@import
+  'layout/footer',
+  'layout/forms',
+  'layout/header/header-top',
+  'layout/header/header-main',
+  'layout/header/header-burger-button',
+  'layout/sidebar-filter';
+
+// 5. Components
+@import
+  'components/alerts',
+  'components/breadcrumbs',
+  'components/buttons',
+  'components/carousel',
+  'components/cart-success',
+  'components/contact-card',
+  'components/equipment-card',
+  'components/post-card',
+  'components/parts-sorting',
+  'components/parts-table',
+  'components/pagination',
+  'components/product-counter',
+  'components/product-carousel',
+  'components/product-description',
+  'components/product-purchase',
+  'components/search-empty-result',
+  'components/tabs',
+  'components/serach-popup';
+
+// 6. Page-specific styles
+@import
+  'pages/cart',
+  'pages/checkout',
+  'pages/contacts',
+  'pages/home',
+  'pages/_search.scss',
+  'pages/single-post';

@@ -19,7 +19,7 @@ class Slide extends Model implements HasMedia
     const TEXT_RIGHT = 2;
 
     protected $fillable = [
-        'title', 'title_ar', 'sub_title', 'sub_title_ar', 'link', 'slide_number', 'text_position'
+        'body', 'body_ar', 'link', 'slide_number', 'text_position'
     ];
 
     public $timestamps = false;
