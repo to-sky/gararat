@@ -31,10 +31,10 @@ let fullConfig = {
 let lightConfig = {
     selector: "textarea.tinymce-lite",
     plugins: [
-        "link"
+        "preview", "code", "link"
     ],
     contextmenu: "link media | cell row column deletetable",
-    toolbar: "undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link",
+    toolbar: "preview code | undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link",
     height: "300"
 };
 

@@ -14,20 +14,9 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-md-6">
+                    <div class="col-md-9">
                         <label for="link">Link</label>
                         <input type="text" name="link" class="form-control" id="link" value="{{ $slide->link }}"  placeholder="Button link">
-                    </div>
-
-                    <div class="col-md-4">
-                        <label for="textPosition">Text position</label>
-                        <select class="custom-select" id="textPosition" name="text_position">
-                            @foreach($slide->getTextPositions() as $key => $positionText)
-                                <option value="{{ $key }}" @if($slide->text_position == $key) selected @endif>
-                                    {{ $positionText }}
-                                </option>
-                            @endforeach
-                        </select>
                     </div>
 
                     <div class="col-md-2">
@@ -35,6 +24,17 @@
                         <input type="number" name="slide_number" class="form-control" id="slideNumber" min="1" step="1"
                                value="{{ $slide->slide_number }}">
                     </div>
+
+                    <div class="col-md-1">
+                        <div class="custom-control custom-switch mt-4 pt-2">
+                            <input type="hidden" name="blackout" value="0">
+                            <input type="checkbox" name="blackout" class="custom-control-input" id="blackout" value="1"
+                                {{ $slide->blackout ? 'checked' : '' }}>
+                            <label class="custom-control-label" for="blackout">Blackout</label>
+                        </div>
+                    </div>
+
+
                 </div>
 
                 <div class="form-group row">

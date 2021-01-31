@@ -15,24 +15,25 @@
                     @foreach($slides as $slide)
                         <div class="carousel-item
                             @if($loop->first) active @endif
-                            @if($slide->trans('title') || $slide->trans('sub_title')) blackout @endif"
+                            @if($slide->blackout) blackout @endif"
                              @desktop
                                 style="background-image: url({{ asset($slide->getFirstMediaUrl('home_slide'))  }})"
                              @elsedesktop
                                 style="background-image: url({{ asset($slide->getFirstMediaUrl('home_slide_mobile'))  }})"
                              @enddesktop
                         >
-                            <div class="carousel-caption text-{{ $slide->displayTextPosition(true) }}">
-                                @if($slide->trans('body'))
-                                    <h1 class="carousel-title text-uppercase">{!! $slide->trans('body') !!}</h1>
-                                @endif
 
-                                @if ($slide->link)
-                                    <p class="carousel-read-more">
-                                        <a href="{{ $slide->link }}" class="btn btn-responsive btn-danger border-0">{{ __('Read more') }}</a>
-                                    </p>
-                                @endif
-                            </div>
+                            @if($slide->trans('body'))
+                                <div class="carousel-caption">
+                                   {!! $slide->trans('body') !!}
+                                </div>
+                            @endif
+
+                            @if ($slide->link)
+                                <p class="carousel-read-more">
+                                    <a href="{{ $slide->link }}" class="btn btn-responsive btn-danger border-0">{{ __('Read more') }}</a>
+                                </p>
+                            @endif
                         </div>
                     @endforeach
                 </div>

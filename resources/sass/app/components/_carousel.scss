@@ -9,7 +9,9 @@
 }
 
 .carousel-caption {
-    bottom: 10%;
+    top: 10%;
+    z-index: 1;
+    text-align: inherit;
 }
 
 .home-slider {
@@ -49,7 +51,14 @@
     }
 
     .carousel-read-more {
-        margin-bottom: 10px;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 20%;
+        z-index: 2;
+        width: 70%;
+        text-align: center;
     }
 
     @include for-phone {
@@ -61,20 +70,12 @@
             font-size: 1rem;
             margin-bottom: 20px;
         }
-
-        .carousel-read-more {
-            margin-bottom: $default_gap;
-        }
     }
 
     @include for-tablet-portrait {
         .carousel-sub-title {
             font-size: 1.2rem;
             margin-bottom: 50px;
-        }
-
-        .carousel-read-more {
-            margin-bottom: 20px;
         }
     }
 

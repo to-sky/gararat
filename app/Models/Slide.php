@@ -14,12 +14,8 @@ class Slide extends Model implements HasMedia
 {
     use HasMediaTrait, Translatable;
 
-    const TEXT_LEFT = 0;
-    const TEXT_CENTER = 1;
-    const TEXT_RIGHT = 2;
-
     protected $fillable = [
-        'body', 'body_ar', 'link', 'slide_number', 'text_position'
+        'body', 'body_ar', 'link', 'slide_number', 'blackout'
     ];
 
     public $timestamps = false;
@@ -81,32 +77,5 @@ class Slide extends Model implements HasMedia
 
         $this->addMediaConversion('large')
             ->height(500);
-    }
-
-    /**
-     * Return all positions
-     *
-     * @return array
-     */
-    public static function getTextPositions()
-    {
-        return [
-            self::TEXT_LEFT => 'Left',
-            self::TEXT_CENTER => 'Center',
-            self::TEXT_RIGHT => 'Right'
-        ];
-    }
-
-    /**
-     * Display text position
-     *
-     * @param bool $toLower
-     * @return string
-     */
-    public function displayTextPosition($toLower = false)
-    {
-        $textPosition = $this->getTextPositions()[$this->text_position];
-
-        return $toLower ? strtolower($textPosition) : $textPosition;
     }
 }
