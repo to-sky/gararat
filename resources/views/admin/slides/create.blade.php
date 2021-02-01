@@ -62,7 +62,9 @@
 
         <div class="row mt-3">
             <div class="col-md-12">
-                @include('admin.includes.blocks.save-or-back-btns', ['href' => route('admin.slides.index') ])
+                @include('admin.includes.blocks.save-or-back-btns', [
+                    'href' => URL::previous()
+                ])
             </div>
         </div>
     </form>

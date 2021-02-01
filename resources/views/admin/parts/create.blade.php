@@ -11,7 +11,7 @@
         @endcomponent
 
         @include('admin.includes.blocks.save-or-back-btns', [
-            'href' => route('admin.parts.index')
+            'href' => URL::previous()
         ])
     </form>
 @endsection

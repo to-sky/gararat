@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EquipmentGroupRequest;
 use App\Models\EquipmentGroup;
+use Exception;
+use Illuminate\Http\Response;
 
 class EquipmentGroupController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -23,7 +25,7 @@ class EquipmentGroupController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -34,7 +36,7 @@ class EquipmentGroupController extends Controller
      * Store a newly created resource in storage.
      *
      * @param EquipmentGroupRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(EquipmentGroupRequest $request)
     {
@@ -46,8 +48,8 @@ class EquipmentGroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\EquipmentGroup  $equipmentGroup
-     * @return \Illuminate\Http\Response
+     * @param EquipmentGroup $equipmentGroup
+     * @return Response
      */
     public function edit(EquipmentGroup $equipmentGroup)
     {
@@ -58,27 +60,27 @@ class EquipmentGroupController extends Controller
      * Update the specified resource in storage.
      *
      * @param EquipmentGroupRequest $request
-     * @param  \App\Models\EquipmentGroup $equipmentGroup
-     * @return \Illuminate\Http\Response
+     * @param EquipmentGroup $equipmentGroup
+     * @return Response
      */
     public function update(EquipmentGroupRequest $request, EquipmentGroup $equipmentGroup)
     {
         $equipmentGroup->update($request->all());
 
-        return redirect()->route('admin.equipment-groups.index');
+        return redirect()->to($request->previous_page);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\EquipmentGroup $equipmentGroup
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
+     * @param EquipmentGroup $equipmentGroup
+     * @return Response
+     * @throws Exception
      */
     public function destroy(EquipmentGroup $equipmentGroup)
     {
         $equipmentGroup->delete();
 
-        return redirect()->route('admin.equipment-groups.index');
+        return back();
     }
 }

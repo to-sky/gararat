@@ -3,16 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\OrderProduct;
+use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Illuminate\View\View;
 
 class OrderController extends Controller
 {
     /**
      * Show all items
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function index()
     {
@@ -25,7 +29,7 @@ class OrderController extends Controller
      * Edit item
      *
      * @param Order $order
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function edit(Order $order)
     {
@@ -37,7 +41,7 @@ class OrderController extends Controller
      *
      * @param Request $request
      * @param Order $order
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function changeStatus(Request $request, Order $order)
     {
@@ -45,34 +49,34 @@ class OrderController extends Controller
             'status' => $request->order_status
         ]);
 
-        return redirect()->back();
+        return back();
     }
 
     /**
      * Delete product from order
      *
      * @param OrderProduct $orderProduct
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function deleteProduct(OrderProduct $orderProduct)
     {
         $orderProduct->delete();
 
-        return redirect()->back();
+        return back();
     }
 
     /**
      * Delete order
      *
      * @param Order $order
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy(Order $order)
     {
         $order->delete();
 
-        return redirect()->back();
+        return back();
     }
 }

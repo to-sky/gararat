@@ -4,6 +4,7 @@
 
 @section('content')
     <form action="{{ $part->path('update') }}" method="post" autocomplete="off" enctype="multipart/form-data">
+        <input type="hidden" name="previous_page" value="{{ URL::previous() }}">
         @method('PUT')
         @csrf
 
@@ -12,7 +13,7 @@
         @endcomponent
 
         @include('admin.includes.blocks.save-or-back-btns', [
-            'href' => route('admin.parts.index')
+            'href' => URL::previous()
         ])
     </form>
 @endsection

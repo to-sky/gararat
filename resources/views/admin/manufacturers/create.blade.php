@@ -9,7 +9,7 @@
         @component('admin.components.name') @endcomponent
 
         @include('admin.includes.blocks.save-or-back-btns', [
-            'href' => route('admin.manufacturers.index') ]
-        )
+            'href' => URL::previous()
+        ])
     </form>
 @endsection

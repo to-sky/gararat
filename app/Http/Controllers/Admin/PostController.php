@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use Exception;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -23,7 +26,7 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -34,7 +37,7 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param PostRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(PostRequest $request)
     {
@@ -47,7 +50,7 @@ class PostController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Post $post
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(Post $post)
     {
@@ -59,26 +62,26 @@ class PostController extends Controller
      *
      * @param PostRequest $request
      * @param Post $post
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(PostRequest $request, Post $post)
     {
         $post->update($request->all());
 
-        return redirect()->route('admin.posts.index');
+        return redirect()->to($request->previous_page);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Post $post
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy(Post $post)
     {
         $post->delete();
 
-        return redirect()->back();
+        return back();
     }
 }

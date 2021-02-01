@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ManufacturerRequest;
 use App\Models\Manufacturer;
+use Exception;
+use Illuminate\Http\Response;
 
 class ManufacturerController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -23,7 +25,7 @@ class ManufacturerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -34,7 +36,7 @@ class ManufacturerController extends Controller
      * Store a newly created resource in storage.
      *
      * @param ManufacturerRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(ManufacturerRequest $request)
     {
@@ -46,8 +48,8 @@ class ManufacturerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Manufacturer  $manufacturer
-     * @return \Illuminate\Http\Response
+     * @param Manufacturer $manufacturer
+     * @return Response
      */
     public function edit(Manufacturer $manufacturer)
     {
@@ -58,27 +60,27 @@ class ManufacturerController extends Controller
      * Update the specified resource in storage.
      *
      * @param ManufacturerRequest $request
-     * @param  \App\Models\Manufacturer $manufacturer
-     * @return \Illuminate\Http\Response
+     * @param Manufacturer $manufacturer
+     * @return Response
      */
     public function update(ManufacturerRequest $request, Manufacturer $manufacturer)
     {
         $manufacturer->update($request->all());
 
-        return redirect()->route('admin.manufacturers.index');
+        return redirect()->to($request->previous_page);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Manufacturer $manufacturer
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
+     * @param Manufacturer $manufacturer
+     * @return Response
+     * @throws Exception
      */
     public function destroy(Manufacturer $manufacturer)
     {
         $manufacturer->delete();
 
-        return redirect()->route('admin.manufacturers.index');
+        return back();
     }
 }

@@ -12,7 +12,6 @@
                 <select name="parent_id" id="parentCatalog"
                         class="form-control select2-element-clear"
                         data-placeholder="Select parent catalog">
-                    {{--<option value="">Select parent catalog</option>--}}
                     <option></option>
                     @foreach($catalogs as $catalog)
                         <option value="{{ $catalog->id }}"
@@ -24,6 +23,8 @@
             </div>
         @endcomponent
 
-        @include('admin.includes.blocks.save-or-back-btns', ['href' => route('admin.catalogs.index') ])
+        @include('admin.includes.blocks.save-or-back-btns', [
+            'href' => URL::previous()
+        ])
     </form>
 @endsection

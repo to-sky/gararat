@@ -4,26 +4,31 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Slide;
+use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class SlideController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function index()
     {
         return view('admin.slides.index', [
-            'slides' => Slide::all()
+            'slides' => Slide::paginate()
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function create()
     {
@@ -34,7 +39,7 @@ class SlideController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -45,7 +50,7 @@ class SlideController extends Controller
 
     /**
      * @param Slide $slide
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function edit(Slide $slide)
     {
@@ -57,26 +62,26 @@ class SlideController extends Controller
      *
      * @param Request $request
      * @param Slide $slide
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function update(Request $request, Slide $slide)
     {
         $slide->update($request->all());
 
-        return redirect()->route('admin.slides.index');
+        return redirect()->to($request->previous_page);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Slide $slide
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy(Slide $slide)
     {
         $slide->delete();
 
-        return redirect()->back();
+        return back();
     }
 }

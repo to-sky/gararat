@@ -83,7 +83,9 @@
                         </div>
                     </div>
                 </div>
-                @include('admin.includes.blocks.save-or-back-btns', ['href' => route('admin.posts.index') ])
+                @include('admin.includes.blocks.save-or-back-btns', [
+                    'href' => URL::previous()
+                ])
             </div>
         </div>
     </form>

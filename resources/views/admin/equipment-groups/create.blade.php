@@ -10,7 +10,7 @@
         @endcomponent
 
         @include('admin.includes.blocks.save-or-back-btns', [
-            'href' => route('admin.equipment-groups.index') ]
-        )
+            'href' => URL::previous()
+        ])
     </form>
 @endsection

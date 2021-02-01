@@ -98,7 +98,9 @@
             </div>
         @endcomponent
 
-        @include('admin.includes.blocks.save-or-back-btns', ['href' => route('admin.offices.index') ])
+        @include('admin.includes.blocks.save-or-back-btns', ['
+            href' => URL::previous()
+        ])
     </form>
 @endsection
 

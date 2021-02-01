@@ -4,13 +4,14 @@
 
 @section('content')
     <form action="{{ route('admin.manufacturers.update', $manufacturer) }}" method="post" autocomplete="off">
+        <input type="hidden" name="previous_page" value="{{ URL::previous() }}">
         @method('PUT')
         @csrf
 
         @component('admin.components.name', ['item' => $manufacturer]) @endcomponent
 
         @include('admin.includes.blocks.save-or-back-btns', [
-            'href' => route('admin.manufacturers.index')
+            'href' => URL::previous()
         ])
     </form>
 @endsection

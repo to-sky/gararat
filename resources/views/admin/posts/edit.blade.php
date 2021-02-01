@@ -4,6 +4,7 @@
 
 @section('content')
     <form action="{{ route('admin.posts.update', $post) }}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="previous_page" value="{{ URL::previous() }}">
         @method('PUT')
         @csrf
 
@@ -99,7 +100,9 @@
                     </div>
                 </div>
 
-                @include('admin.includes.blocks.save-or-back-btns', ['href' => route('admin.posts.index') ])
+                @include('admin.includes.blocks.save-or-back-btns', [
+                    'href' => URL::previous()
+                ])
             </div>
         </div>
     </form>

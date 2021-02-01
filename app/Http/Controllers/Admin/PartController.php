@@ -5,13 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PartRequest;
 use App\Models\{Catalog, Equipment, Part};
+use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class PartController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -23,7 +27,7 @@ class PartController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -36,7 +40,7 @@ class PartController extends Controller
      * Get repeater item view
      * number - this is position of item
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function getRepeaterItem()
     {
@@ -52,7 +56,7 @@ class PartController extends Controller
      * Store a newly created resource in storage.
      *
      * @param PartRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(PartRequest $request)
     {
@@ -64,8 +68,8 @@ class PartController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Part  $part
-     * @return \Illuminate\Http\Response
+     * @param Part $part
+     * @return Response
      */
     public function edit(Part $part)
     {
@@ -78,28 +82,28 @@ class PartController extends Controller
      * Update the specified resource in storage.
      *
      * @param PartRequest $request
-     * @param  \App\Models\Part $part
-     * @return \Illuminate\Http\Response
+     * @param Part $part
+     * @return Response
      */
     public function update(PartRequest $request, Part $part)
     {
         $part->update($request->all());
 
-        return redirect()->route('admin.parts.index');
+        return redirect()->to($request->previous_page);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Part $part
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
+     * @param Part $part
+     * @return Response
+     * @throws Exception
      */
     public function destroy(Part $part)
     {
         $part->delete();
 
-        return redirect()->route('admin.parts.index');
+        return back();
     }
 
     /**

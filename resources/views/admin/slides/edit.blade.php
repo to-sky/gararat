@@ -4,6 +4,7 @@
 
 @section('content')
     <form action="{{ route('admin.slides.update', $slide) }}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="previous_page" value="{{ URL::previous() }}">
         @method('PUT')
         @csrf
 
@@ -79,7 +80,9 @@
 
         <div class="row mt-3">
             <div class="col-md-12">
-                @include('admin.includes.blocks.save-or-back-btns', ['href' => route('admin.slides.index') ])
+                @include('admin.includes.blocks.save-or-back-btns', [
+                    'href' => URL::previous()
+                ])
             </div>
         </div>
     </form>

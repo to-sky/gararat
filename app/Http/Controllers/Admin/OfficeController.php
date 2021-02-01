@@ -5,13 +5,19 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OfficeRequest;
 use App\Models\Office;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class OfficeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function index()
     {
@@ -23,7 +29,7 @@ class OfficeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function create()
     {
@@ -34,7 +40,7 @@ class OfficeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param OfficeRequest $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(OfficeRequest $request)
     {
@@ -46,8 +52,8 @@ class OfficeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Office  $office
-     * @return \Illuminate\Http\Response
+     * @param Office $office
+     * @return Application|Factory|Response|View
      */
     public function edit(Office $office)
     {
@@ -58,8 +64,8 @@ class OfficeController extends Controller
      * Update the specified resource in storage.
      *
      * @param OfficeRequest $request
-     * @param  \App\Models\Office $office
-     * @return \Illuminate\Http\Response
+     * @param Office $office
+     * @return RedirectResponse
      */
     public function update(OfficeRequest $request, Office $office)
     {
@@ -71,14 +77,14 @@ class OfficeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Office $office
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
+     * @param Office $office
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy(Office $office)
     {
         $office->delete();
 
-        return redirect()->back();
+        return back();
     }
 }
