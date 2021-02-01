@@ -51,6 +51,7 @@ Route::group([
     Route::delete('orders/{orderProduct}/delete-product', 'OrderController@deleteProduct')->name('orders.deleteProduct');
     Route::delete('orders/{order}', 'OrderController@destroy')->name('orders.destroy');
 
+    Route::put('offices/update-site-position', 'OfficeController@updateSitePosition')->name('offices.update-site-position');
     Route::resource('offices', 'OfficeController', ['except' => ['show']]);
 
     Route::get('settings', 'SettingController@index')->name('settings');

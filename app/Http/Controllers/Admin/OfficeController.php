@@ -22,7 +22,7 @@ class OfficeController extends Controller
     public function index()
     {
         return view('admin.offices.index', [
-            'offices' => Office::paginate()
+            'offices' => Office::all()
         ]);
     }
 
@@ -33,7 +33,9 @@ class OfficeController extends Controller
      */
     public function create()
     {
-        return view('admin.offices.create');
+        $sitePosition = Office::getLastSitePosition() + 1;
+
+        return view('admin.offices.create', compact('sitePosition'));
     }
 
     /**
@@ -86,5 +88,19 @@ class OfficeController extends Controller
         $office->delete();
 
         return back();
+    }
+
+    /**
+     * Update site position after Drag'n'Drop on the table
+     */
+    public function updateSitePosition()
+    {
+        $officeIds =  request('officeIds');
+
+        Office::whereIn('id', $officeIds)->each(function ($item) use ($officeIds) {
+            $item->update([
+                'site_position' => array_search($item->id, $officeIds) + 1
+            ]);
+        });
     }
 }

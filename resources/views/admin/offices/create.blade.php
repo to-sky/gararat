@@ -4,6 +4,7 @@
 
 @section('content')
     <form action="{{ route('admin.offices.store') }}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="site_position" value="{{ $sitePosition }}">
         @csrf
 
         @component('admin.components.name')
@@ -98,8 +99,8 @@
             </div>
         @endcomponent
 
-        @include('admin.includes.blocks.save-or-back-btns', ['
-            href' => URL::previous()
+        @include('admin.includes.blocks.save-or-back-btns', [
+            'href' => URL::previous()
         ])
     </form>
 @endsection

@@ -20,9 +20,9 @@
                         <th class="text-right">Action</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="sortable">
                     @foreach($offices as $office)
-                        <tr>
+                        <tr data-id="{{ $office->id }}">
                             <td>{{ $office->id }}</td>
                             <td>{{ $office->name }}</td>
                             <td>{{ $office->address }}</td>
@@ -46,12 +46,30 @@
                     </tbody>
                 </table>
             </div>
-
-            <div class="mt-2 float-right">
-                {{ $offices->links() }}
-            </div>
         </div>
     </div>
 
     @include('admin.includes.blocks.delete-item-modal', ['item' => 'office'])
 @endsection
+
+
+@push('scripts')
+    <script>
+        // Add sortable plugin (Drag'n'Drop tr)
+        $( "#sortable" ).sortable({
+            update: function() {
+                let officeIds = $(this).find('tr').map(function(i, el) {
+                    return $(el).data('id');
+                });
+
+                $.ajax({
+                    type: 'PUT',
+                    url: '{{ route('admin.offices.update-site-position') }}',
+                    data: {
+                        officeIds: officeIds.toArray()
+                    }
+                });
+            }
+        });
+    </script>
+@endpush

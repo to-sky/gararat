@@ -14,7 +14,7 @@ class UpdateSlidesTableRemoveTextPositionAddBlackout extends Migration
     public function up()
     {
         Schema::table('slides', function (Blueprint $table) {
-            $table->dropColumn(['text_position']);
+            $table->dropColumn('text_position');
             $table->boolean('blackout')->default(1);
         });
     }
@@ -27,7 +27,7 @@ class UpdateSlidesTableRemoveTextPositionAddBlackout extends Migration
     public function down()
     {
         Schema::table('slides', function (Blueprint $table) {
-            $table->dropColumn(['blackout']);
+            $table->dropColumn('blackout');
             $table->integer('text_position')->default(0);
         });
     }
