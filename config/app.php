@@ -174,6 +174,7 @@ return [
          */
         Intervention\Image\ImageServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -238,6 +239,7 @@ return [
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'CartService' => \App\Services\CartService::class,
         'SettingService' => \App\Services\SettingService::class,
+        'Share' => Jorenvh\Share\ShareFacade::class,
     ],
 
 ];

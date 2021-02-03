@@ -25,18 +25,17 @@
   font-size: 1.3rem;
   font-weight: 400;
   color: $muted_color;
+}
 
-  i {
+.in-stock-icon {
     color: $success_color;
+}
 
-    & ~ span {
-      padding: 0 6px;
-    }
-  }
+.in-stock-status {
+    padding: 0 6px;
 }
 
 .product__short-description {
-  padding-top: $default_gap;
   font-size: 14px;
   line-height: 18px;
   color: $muted_color;

@@ -1,6 +1,9 @@
 @extends('website.layouts.master')
 
 @section('title', $part->trans('name'))
+@section('og-title', $part->trans('name'))
+@section('og-description', $part->producer_id)
+@section('og-image', asset($part->getFirstMediaUrl('main_image', 'large')))
 
 @section('content')
     <div class="container">
@@ -17,6 +20,7 @@
                 @endauth
             </span>
         </h1>
+
 
         <div class="row">
             <div class="col-md-6">

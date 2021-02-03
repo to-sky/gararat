@@ -30,7 +30,21 @@ $pngIcons: equipment, parts, services, finance,
         background-color: rgba(0,0,0,0.5);
     }
 }
+.facebook-icon-color {
+    color: #3d5b99;
 
+    &:hover {
+        color: darken(#3d5b99, 10);
+    }
+}
+
+.whatsapp-icon-color {
+    color: #4caf50;
+
+    &:hover {
+        color: darken(#4caf50, 10);
+    }
+}
 
 // Slider-pro icons
 .sp-grab{

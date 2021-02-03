@@ -1,6 +1,9 @@
 @extends('website.layouts.master')
 
 @section('title', $equipment->trans('name'))
+@section('og-title', $equipment->trans('name'))
+@section('og-description', $equipment->trans('description'))
+@section('og-image', asset($equipment->getFirstMediaUrl('main_image', 'large')))
 
 @section('content')
     <div class="container">

@@ -22,9 +22,6 @@
     <meta property="og:title" content="@yield('og-title') | {{ config('app.name', 'Gararat') }}">
     <meta property="og:description" content="@yield('og-description')">
     <meta property="og:image" content="@yield('og-image', asset('images/header_logo.png'))">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="1200">
 
     <!-- Site Verification -->
     <meta name="yandex-verification" content="" />
@@ -79,6 +76,7 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/share.js') }}"></script>
 @stack('scripts')
 
 <script>
