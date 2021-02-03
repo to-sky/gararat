@@ -11,7 +11,7 @@
 
         <h1 class="page-title">{{ optional($page)->trans('title') }}</h1>
 
-        <div>
+        <div class="page-content">
             {!! optional($page)->trans('body') !!}
 
             {{-- Only for Financing page --}}

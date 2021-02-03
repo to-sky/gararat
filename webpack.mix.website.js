@@ -9,4 +9,5 @@ mix.js('resources/js/app.js', 'public/js')
     .copyDirectory('resources/fonts/','public/fonts')
     .copyDirectory('resources/images','public/images')
     .copy('node_modules/slider-pro/dist/css/images/*.cur', 'public/images')
+    .browserSync('gararat.test')
     .sourceMaps();

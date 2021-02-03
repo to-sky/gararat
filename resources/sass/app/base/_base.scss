@@ -45,3 +45,20 @@ main {
 .old-price {
     color: $muted_color;
 }
+
+@media screen and (max-width: 992px) {
+    .single-post__body img,
+    .page-content img {
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+}
+
+@include for-tablet-landscape {
+    .single-post__body img,
+    .page-content img {
+        height: auto;
+        padding-bottom: $card_bottom_gap;
+    }
+}
