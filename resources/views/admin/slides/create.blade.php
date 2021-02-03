@@ -13,11 +13,19 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-md-9">
+                    <div class="col-md-6">
                         <label for="link">Link</label>
                         <input type="text" name="link" class="form-control" id="link" placeholder="Button link">
                     </div>
 
+                    <div class="col-md-3">
+                        <label for="btnPosition">Button position</label>
+                        <select class="custom-select" id="btnPosition" name="btn_position">
+                            <option value="{{ App\Models\Slide::BTN_LEFT }}">Left</option>
+                            <option value="{{ App\Models\Slide::BTN_CENTER }}" selected>Center</option>
+                            <option value="{{ App\Models\Slide::BTN_RIGHT }}">Right</option>
+                        </select>
+                    </div>
 
                     <div class="col-md-2">
                         <label for="slideNumber">Slide number</label>

@@ -15,9 +15,20 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-md-9">
+                    <div class="col-md-6">
                         <label for="link">Link</label>
                         <input type="text" name="link" class="form-control" id="link" value="{{ $slide->link }}"  placeholder="Button link">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="btnPosition">Button position</label>
+                        <select class="custom-select" id="btnPosition" name="btn_position">
+                            @foreach($slide->getBtnPositions() as $key => $btnPosition)
+                                <option value="{{ $key }}" @if($slide->btn_position == $key) selected @endif>
+                                    {{ $btnPosition }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="col-md-2">

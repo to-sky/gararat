@@ -27,12 +27,6 @@ class SettingsTableSeeder extends Seeder
         $menu = [
             [
                 'is_dynamic' => false,
-                'name' => 'Home',
-                'route' => 'home',
-                'route_group' => 'home'
-            ],
-            [
-                'is_dynamic' => false,
                 'name' => 'Equipment',
                 'route' => 'equipment.index',
                 'route_group' => 'equipment.*'

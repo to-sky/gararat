@@ -15,7 +15,6 @@
                         <tr>
                             <th>Number</th>
                             <th>Image</th>
-                            <th>Title</th>
                             <th>Link</th>
                             <th class="text-right">Actions</th>
                         </tr>
@@ -27,7 +26,6 @@
                                 <td>
                                     <img src="{{ asset($slide->getFirstMediaUrl('home_slide', 'thumb')) }}" height="26">
                                 </td>
-                                <td>{{ $slide->title }}</td>
                                 <td>
                                     @if ($slide->link)
                                         <a href="{{ url($slide->link) }}" class="text-primary" target="_blank">{{ url($slide->link) }}</a>
@@ -43,7 +41,7 @@
 
                                             @include('admin.includes._delete-btn' , [
                                                 'href' => route('admin.slides.destroy', $slide),
-                                                'modalText' => 'slide "' . $slide->title . '"'
+                                                'modalText' => 'slide "' . $slide->id . '"'
                                             ])
                                         </div>
                                     </div>

@@ -30,7 +30,7 @@
                             @endif
 
                             @if ($slide->link)
-                                <p class="carousel-read-more">
+                                <p class="carousel-read-more text-{{ $slide->displayBtnPosition(true) }}">
                                     <a href="{{ $slide->link }}" class="btn btn-responsive btn-danger border-0">{{ __('Read more') }}</a>
                                 </p>
                             @endif

@@ -6,6 +6,7 @@ use App\Services\MediaService;
 use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Image\Exceptions\InvalidManipulation;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
@@ -14,8 +15,12 @@ class Slide extends Model implements HasMedia
 {
     use HasMediaTrait, Translatable;
 
+    const BTN_LEFT = 0;
+    const BTN_CENTER = 1;
+    const BTN_RIGHT = 2;
+
     protected $fillable = [
-        'body', 'body_ar', 'link', 'slide_number', 'blackout'
+        'body', 'body_ar', 'link', 'slide_number', 'blackout', 'btn_position'
     ];
 
     public $timestamps = false;
@@ -63,7 +68,7 @@ class Slide extends Model implements HasMedia
      * Register sizes for media collections
      *
      * @param Media|null $media
-     * @throws \Spatie\Image\Exceptions\InvalidManipulation
+     * @throws InvalidManipulation
      */
     public function registerMediaConversions(Media $media = null)
     {
@@ -77,5 +82,32 @@ class Slide extends Model implements HasMedia
 
         $this->addMediaConversion('large')
             ->height(500);
+    }
+
+    /**
+     * Return all positions
+     *
+     * @return array
+     */
+    public static function getBtnPositions()
+    {
+        return [
+            self::BTN_LEFT => 'Left',
+            self::BTN_CENTER => 'Center',
+            self::BTN_RIGHT => 'Right'
+        ];
+    }
+
+    /**
+     * Display btn position
+     *
+     * @param bool $toLower
+     * @return string
+     */
+    public function displayBtnPosition($toLower = false)
+    {
+        $btnPosition = $this->getBtnPositions()[$this->btn_position];
+
+        return $toLower ? strtolower($btnPosition) : $btnPosition;
     }
 }
