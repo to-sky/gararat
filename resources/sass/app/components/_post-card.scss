@@ -50,6 +50,10 @@
     }
 }
 
+#Videos .post__body {
+    min-height: 90px;
+}
+
 .post__body {
     padding: $default_gap;
 }

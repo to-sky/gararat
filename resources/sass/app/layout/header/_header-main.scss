@@ -48,7 +48,7 @@ header {
 
 // Opened on mobile
 .header-menu-opened {
-    padding-bottom: 250px !important;
+    padding-bottom: 230px !important;
 
     .header__menu nav a {
         font-size: .9rem;
@@ -99,7 +99,7 @@ header {
 
             a {
                 display: flex;
-                margin: 0 .7rem;
+                margin: 0 .4rem;
                 padding: 10px 0;
                 align-self: start;
                 font-size: .8rem;
@@ -118,6 +118,12 @@ header {
 
     .rtl .header__menu nav a {
         font-size: 1rem;
+    }
+}
+
+@include for-tablet-landscape {
+    .header__menu nav a {
+        margin: 0 0.8rem;
     }
 }
 

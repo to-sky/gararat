@@ -10,7 +10,7 @@
     <div class="homepage">
         {{-- Slider --}}
         <div class="container">
-            <div id="homeSlider" class="carousel slide home-slider" data-ride="carousel" data-interval="4000">
+            <div id="homeSlider" class="row mx-sm-0 carousel slide home-slider" data-ride="carousel" data-interval="4000">
                 <div class="carousel-inner">
                     @foreach($slides as $slide)
                         <div class="carousel-item
