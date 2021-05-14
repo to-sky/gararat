@@ -98,7 +98,7 @@
     {{-- Posts --}}
     <li class="nav-item">
         <a href="{{ route('admin.posts.index') }}"
-           class="nav-link {{ request()->routeIs('posts') ? 'active' : '' }}">
+           class="nav-link {{ request()->routeIs('admin.posts.*') ? 'active' : '' }}">
             <span class="icon-holder">
                 <i class="c-blue-500 far fa-newspaper"></i>
             </span>

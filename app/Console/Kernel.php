@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Artisan;
+use Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -27,17 +28,14 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('cart:clean')->monthly();
 
-        $schedule->command('backup:clean')
-            ->weeklyOn(1, '1:00')
-            ->after(function () {
-                Artisan::call('google-drive:clean');
-            });
-
         $schedule->command('backup:run')
             ->daily()->at('02:00')
             ->after(function () {
                 Artisan::call('google-drive:upload-backup');
-            });
+        });
+
+        $schedule->command('backup:clean')->daily()->at('03:00');
+        $schedule->command('google-drive:clean')->weekly();
     }
 
     /**

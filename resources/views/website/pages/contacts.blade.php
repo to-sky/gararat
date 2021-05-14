@@ -51,10 +51,10 @@
 
                         <div class="form-row">
                             <div class="col-12 col-lg-6 form-group">
-                                <label for="email">{{ __('Email') }}*</label>
+                                <label for="email">{{ __('Email') }}</label>
                                 <input type="email" name="email" id="email"
                                        class="form-control @error('email') is-invalid @enderror"
-                                       value="{{ old('email') }}" required>
+                                       value="{{ old('email') }}">
 
                                 @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>

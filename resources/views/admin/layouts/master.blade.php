@@ -51,7 +51,7 @@
                     </div>
                 </main>
                 <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
-                    <span>Copyright &copy; {{ \Carbon\Carbon::now()->format('Y') }} Developed by <a href="mailto:dima.tolsky@gmail.com" title="Tolsky Dmitry" rel="noopener noreferrer">Tolsky</a>. All rights reserved.</span>
+                    <span>Copyright &copy; {{ \Carbon\Carbon::now()->format('Y') }} Developed by <a href="mailto:dima.tolsky@gmail.com" title="Tolsky Dmitry" rel="noopener noreferrer">Tolsky Dmitry</a>. All rights reserved.</span>
                 </footer>
             </div>
         </div>
