@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Title & Description -->
-    <title>@yield('title') | {{ config('app.name', 'Gararat') }}</title>
+    <title>@yield('title') | {{ config('app.name', 'Belmach') }}</title>
     <meta name="description" content="@yield('description')">
 
     <!-- Styles -->
@@ -18,8 +18,8 @@
 
     <!-- OG -->
     <meta property="og:url" content="{{ request()->url() }}">
-    <meta property="og:site_name" content="{{ config('app.name', 'Gararat') }}">
-    <meta property="og:title" content="@yield('og-title') | {{ config('app.name', 'Gararat') }}">
+    <meta property="og:site_name" content="{{ config('app.name', 'Belmach') }}">
+    <meta property="og:title" content="@yield('og-title') | {{ config('app.name', 'Belmach') }}">
     <meta property="og:description" content="@yield('og-description')">
     <meta property="og:image" content="@yield('og-image', asset('images/header_logo.png'))">
 
@@ -33,7 +33,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicons/favicon-32.png') }}">
 
     <link rel="manifest" href="/site.webmanifest">
-    <meta name="application-name" content="{{ config('app.name', 'Gararat') }}"/>
+    <meta name="application-name" content="{{ config('app.name', 'Belmach') }}"/>
     <meta name="msapplication-TileColor" content="#191a1c">
     <meta name="theme-color" content="#191a1c">
 
