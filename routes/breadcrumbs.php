@@ -6,17 +6,17 @@ Breadcrumbs::for('home', function ($trail) {
 });
 
 
-// Home > Equipment
-Breadcrumbs::for('equipment', function ($trail) {
-    $trail->parent('home');
-    $trail->push(__('Equipment'), route('equipment.index'));
-});
-
-// Home > Equipment > Item
-Breadcrumbs::for('equipment.show', function ($trail, $equipment) {
-    $trail->parent('equipment');
-    $trail->push($equipment->trans('name'), route('equipment.show', $equipment));
-});
+//// Home > Equipment
+//Breadcrumbs::for('catalog', function ($trail) {
+//    $trail->parent('home');
+//    $trail->push(__('Catalog'), route('catalogs.index'));
+//});
+//
+//// Home > Equipment > Item
+//Breadcrumbs::for('equipment.show', function ($trail, $equipment) {
+//    $trail->parent('equipment');
+//    $trail->push($equipment->trans('name'), route('equipment.show', $equipment));
+//});
 
 
 // Home > Parts

@@ -23,7 +23,7 @@ Route::group([
     Route::get('profile/{user:name}', 'UserController@profile')->name('profile.edit');
     Route::put('profile/{user}', 'UserController@update')->name('profile.update');
 
-    Route::resource('manufacturers', 'ManufacturerController', ['except' => ['show']]);
+    Route::resource('equipment-categories', 'EquipmentCategoryController', ['except' => ['show']]);
     Route::resource('equipment-groups', 'EquipmentGroupController', ['except' => ['show']]);
 
     Route::post('equipment/{equipment}/clone', 'EquipmentController@cloneEquipment')->name('equipment.clone');

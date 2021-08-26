@@ -29,17 +29,12 @@
         </a>
     </li>
 
-    {{-- Manufacturers --}}
-    <li class="nav-item">
-        <a href="{{ route('admin.manufacturers.index') }}"
-           class="nav-link {{ request()->routeIs('admin.manufacturers.*') ? 'active' : '' }}">
-            <span class="icon-holder"><i class="c-blue-500 fas fa-industry"></i></span>
-            <span class="title">Manufacturers</span>
-        </a>
-    </li>
-
     {{-- Equipment with equipment groups--}}
-    <li class="nav-item dropdown {{ request()->routeIs('admin.equipment.*') || request()->routeIs('admin.equipment-groups.*') ? 'open' : '' }}">
+    <li class="nav-item dropdown {{
+            request()->routeIs('admin.equipment.*') ||
+            request()->routeIs('admin.equipment-groups.*') ||
+            request()->routeIs('admin.equipment-categories.*') ? 'open' : '' }}
+        ">
         <a href="javascript:void(0);" class="dropdown-toggle">
             <span class="icon-holder"><i class="c-blue-500 fas fa-tractor"></i></span>
             <span class="title">Equipment</span>
@@ -52,6 +47,15 @@
                    class="nav-link {{ request()->routeIs('admin.equipment.*') ? 'active' : '' }}">
                     <span class="icon-holder"><i class="c-blue-500 fas fa-tractor"></i></span>
                     <span class="title ml-1">Equipment</span>
+                </a>
+            </li>
+
+            {{-- Equipment categoris --}}
+            <li class="nav-item">
+                <a href="{{ route('admin.equipment-categories.index') }}"
+                   class="nav-link {{ request()->routeIs('admin.equipment-categories.*') ? 'active' : '' }}">
+                    <span class="icon-holder"><i class="c-blue-500 fas fa-sitemap"></i></span>
+                    <span class="title ml-1">Categories</span>
                 </a>
             </li>
 

@@ -16,7 +16,7 @@ class Equipment extends Product
 
     protected $fillable = [
         'name', 'name_ar', 'slug', 'description', 'description_ar', 'price', 'special_price', 'qty', 'is_special',
-        'equipment_group_id', 'main_specifications', 'specifications', 'manufacturer_id', 'site_position'
+        'equipment_group_id', 'main_specifications', 'specifications', 'equipment_category_id', 'site_position'
     ];
 
     protected static function boot()
@@ -24,7 +24,7 @@ class Equipment extends Product
         parent::boot();
 
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('site_position', 'asc');
+            $builder->orderBy('site_position');
         });
     }
 
@@ -34,6 +34,14 @@ class Equipment extends Product
     public function equipmentGroup()
     {
         return $this->belongsTo(EquipmentGroup::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function equipmentCategory()
+    {
+        return $this->belongsTo(EquipmentCategory::class);
     }
 
     /**

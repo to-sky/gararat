@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use App\Http\Filters\EquipmentFilter;
-use App\Models\{Equipment, Manufacturer};
+use App\Models\{Equipment, EquipmentCategory};
 
 class EquipmentController extends Controller
 {

@@ -32,6 +32,6 @@ class ConfirmSubscription extends Mailable
     public function build()
     {
         return $this->markdown('emails.confirm-subscription')
-                    ->subject(__('Confirm your subscription to the Gararat news email list'));
+                    ->subject(__('Confirm your subscription to the Belmach news email list'));
     }
 }
