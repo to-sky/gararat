@@ -16,10 +16,12 @@ class UpdateEquipmentCategoriesTableAddFields extends Migration
         Schema::table('equipment_categories', function (Blueprint $table) {
             $table->string('description')->nullable();
             $table->string('description_ar')->nullable();
+            $table->string('slug')->unique()->nullable();
+
             $table->foreignId('parent_id')
                 ->nullable()
                 ->constrained('equipment_categories')
-                ->onDelete ('cascade');
+                ->onDelete('cascade');
         });
     }
 
@@ -31,6 +33,7 @@ class UpdateEquipmentCategoriesTableAddFields extends Migration
     public function down()
     {
         Schema::table('equipment_categories', function (Blueprint $table) {
+            $table->dropColumn('slug');
             $table->dropForeign(['parent_id']);
             $table->dropColumn(['description', 'description_ar', 'parent_id']);
         });

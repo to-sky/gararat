@@ -14,6 +14,9 @@ class UpdateEquipmentTableChangeManufacturerIdToEquipmentCategoryId extends Migr
     public function up()
     {
         Schema::table('equipment', function (Blueprint $table) {
+            $table->dropForeign(['manufacturer_id']);
+            $table->dropIndex('equipment_manufacturer_id_foreign');
+
             $table->renameColumn('manufacturer_id', 'equipment_category_id');
         });
     }
@@ -27,6 +30,10 @@ class UpdateEquipmentTableChangeManufacturerIdToEquipmentCategoryId extends Migr
     {
         Schema::table('equipment', function (Blueprint $table) {
             $table->renameColumn('equipment_category_id', 'manufacturer_id');
+
+            $table->foreign('manufacturer_id')
+                ->references('id')
+                ->on('manufacturers');
         });
     }
 }

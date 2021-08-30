@@ -89,41 +89,54 @@
             hide: function (deleteElement) {
                 let item = $(this).get(0)
                 let subcategoryName = $(item).attr('data-item-name');
-                let deleteUrl = $(this).find('button').data('delete-url');
+                let deleteBtn = $(this).find('button');
+                let deleteUrl = deleteBtn.data('delete-url');
+                let canBeDeleted = deleteBtn.data('can-be-deleted');
+
+                let title, content;
+                let buttons = {
+                    cancel: {
+                        btnClass: 'btn-outline-secondary',
+                        action: function() {
+                            this.close();
+                        }
+                    }
+                }
+
+                if (canBeDeleted) {
+                    title = '<p>Delete subcategory</p>';
+                    content = `Are you sure you want to delete "<b>${subcategoryName}</b>"?`
+                    buttons.confirm = {
+                        text: 'Delete',
+                        btnClass: 'btn-outline-danger',
+                        action: function() {
+                            $.post({
+                                url: deleteUrl,
+                                type: 'DELETE',
+                                success: function (){
+                                    $(this).slideUp(deleteElement);
+                                }
+                            });
+                        }
+                    }
+                } else {
+                    title = '<p>Sorry</p>';
+                    content = `You can't delete "<b>${subcategoryName}</b>"?`
+                }
 
                 if (! deleteUrl.length) {
                     return deleteElement();
                 }
 
                 $.confirm({
-                    title: '<p>Delete subcategory</p>',
-                    content: `Are you sure you want to delete "<b>${subcategoryName}</b>"?`,
+                    title: title,
+                    content: content,
                     type: 'red',
                     icon: 'far fa-frown',
                     closeIcon: true,
                     theme: 'modern',
                     animation: 'scale',
-                    buttons: {
-                        confirm: {
-                            text: 'Delete',
-                            btnClass: 'btn-outline-danger',
-                            action: function() {
-                                $.post({
-                                    url: deleteUrl,
-                                    type: 'DELETE',
-                                    success: function (){
-                                        $(this).slideUp(deleteElement);
-                                    }
-                                });
-                            }
-                        },
-                        cancel: {
-                            btnClass: 'btn-outline-secondary',
-                            action: function() {
-                                this.close();
-                            }
-                        }
-                    }
+                    buttons: buttons
                 });
             }
         });

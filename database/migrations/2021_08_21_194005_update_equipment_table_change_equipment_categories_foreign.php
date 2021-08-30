@@ -14,13 +14,9 @@ class UpdateEquipmentTableChangeEquipmentCategoriesForeign extends Migration
     public function up()
     {
         Schema::table('equipment', function (Blueprint $table) {
-            $table->dropForeign(['manufacturer_id']);
-            $table->unsignedBigInteger('equipment_category_id')->nullable()->change();
-
             $table->foreign('equipment_category_id')
                 ->references('id')
-                ->on('equipment_categories')
-                ->onDelete('set null');
+                ->on('equipment_categories');
         });
     }
 
@@ -33,10 +29,6 @@ class UpdateEquipmentTableChangeEquipmentCategoriesForeign extends Migration
     {
         Schema::table('equipment', function (Blueprint $table) {
             $table->dropForeign(['equipment_category_id']);
-
-            $table->foreign('equipment_category_id', 'equipment_manufacturer_id_foreign')
-                ->references('id')
-                ->on('equipment_categories');
         });
     }
 }

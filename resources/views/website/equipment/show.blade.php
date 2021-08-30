@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="container">
-        {{ Breadcrumbs::render('equipment.show', $equipment) }}
+        {{ Breadcrumbs::render('equipment', $equipment) }}
 
         <h1 class="page-title">
             {{ $equipment->trans('name') }}

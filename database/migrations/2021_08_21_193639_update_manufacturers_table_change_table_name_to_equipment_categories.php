@@ -13,8 +13,10 @@ class UpdateManufacturersTableChangeTableNameToEquipmentCategories extends Migra
      */
     public function up()
     {
-        Schema::table('manufacturers', function (Blueprint $table) {
-            Schema::rename('manufacturers', 'equipment_categories');
+        Schema::rename('manufacturers', 'equipment_categories');
+
+        Schema::table('equipment_categories', function (Blueprint $table) {
+            $table->renameIndex('manufacturers_name_unique', 'equipment_categories_name_unique');
         });
     }
 
@@ -25,8 +27,10 @@ class UpdateManufacturersTableChangeTableNameToEquipmentCategories extends Migra
      */
     public function down()
     {
+        Schema::rename('equipment_categories', 'manufacturers');
+
         Schema::table('manufacturers', function (Blueprint $table) {
-            Schema::rename('equipment_categories', 'manufacturers');
+            $table->renameIndex('equipment_categories_name_unique', 'manufacturers_name_unique');
         });
     }
 }

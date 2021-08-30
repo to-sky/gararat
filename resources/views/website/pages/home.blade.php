@@ -3,7 +3,7 @@
 @section('title', optional($page)->trans('title'))
 
 @section('description')
-    {{ __('GARARAT – the first e-hypermarket for agricultural tractors, equipment and spare parts!') }}
+    {{ __('Belmach – the first e-hypermarket for agricultural tractors, equipment and spare parts!') }}
 @endsection
 
 @section('content')
@@ -55,9 +55,9 @@
                 <div class="col-xl-10 offset-xl-1">
                     <div class="d-flex flex-wrap justify-content-center">
                         <div class="home-icons__item">
-                            <a href="{{ route('equipment.index') }}" class="home-icons__link">
+                            <a href="{{ route('catalog.index') }}" class="home-icons__link">
                                 <i class="home-icons__icon equipment-icon"></i>
-                                <span class="home-icons__label">{{ __('Equipment') }}</span>
+                                <span class="home-icons__label">{{ __('Catalog') }}</span>
                             </a>
                         </div>
 

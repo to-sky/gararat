@@ -44,10 +44,12 @@
                                             'href' => route('admin.equipment-categories.edit', $equipmentCategory)
                                         ])
 
-                                        @include('admin.includes._delete-btn' , [
-                                            'href' => route('admin.equipment-categories.destroy', $equipmentCategory),
-                                            'modalText' => 'equipment category "' . $equipmentCategory->name . '"'
-                                        ])
+                                        @empty($equipmentCategory->childEquipment->count())
+                                            @include('admin.includes._delete-btn' , [
+                                                'href' => route('admin.equipment-categories.destroy', $equipmentCategory),
+                                                'modalText' => 'equipment category "' . $equipmentCategory->name . '"'
+                                            ])
+                                        @endempty
                                     </div>
                                 </div>
                             </td>

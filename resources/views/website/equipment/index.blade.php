@@ -1,12 +1,12 @@
 @extends('website.layouts.master')
 
-@section('title', __('Equipment'))
+@section('title', $equipmentCategory->trans('name'))
 
 @section('content')
     <div class="container">
-        {{ Breadcrumbs::render('equipment') }}
+        {{ Breadcrumbs::render('category', $equipmentCategory) }}
 
-        <h1 class="page-title">{{ __('Equipment') }}</h1>
+        <h1 class="page-title">{{ $equipmentCategory->trans('name') }}</h1>
 
         <div class="row">
             <div class="col-lg-3">
@@ -30,22 +30,22 @@
                             </div>
                         @endif
 
-                        <h4 class="sidebar-filter__item__title">{{ __('Manufacturers') }}</h4>
+                        <h4 class="sidebar-filter__item__title">{{ __('Categories') }}</h4>
 
                         <div class="sidebar-filter__item__filters">
-                            @foreach($manufacturers as $manufacturer)
+                            @foreach($equipmentCategory->childs as $equipmentCategoryChild)
                                 <div class="custom-control custom-checkbox sidebar-filter__item__filter">
                                     <input type="checkbox"
                                            class="custom-control-input"
-                                           name="manufacturers"
-                                           data-manufacturer-id="{{ $manufacturer->id }}"
-                                           @if (request('manufacturers') && in_array($manufacturer->id, request('manufacturers')))
+                                           name="equipment_categories"
+                                           data-equipment-category-id="{{ $equipmentCategoryChild->id }}"
+                                           @if (request('equipment_categories') && in_array($equipmentCategoryChild->id, request('equipment_categories')))
                                            checked
                                            @endif
-                                           id="manufacturer_{{ $manufacturer->id }}">
+                                           id="equipment_category_{{ $equipmentCategoryChild->id }}">
 
-                                    <label class="custom-control-label" for="manufacturer_{{ $manufacturer->id }}">
-                                        {{ $manufacturer->trans('name') }}
+                                    <label class="custom-control-label" for="equipment_category_{{ $equipmentCategoryChild->id }}">
+                                        {{ $equipmentCategoryChild->trans('name') }}
                                     </label>
                                 </div>
                             @endforeach
@@ -74,22 +74,23 @@
         let url = new Url;
 
         // Filter by manufacturers
-        $('input[name="manufacturers"]').change(function() {
-            let manufacturers = [];
+        $('input[name="equipment_categories"]').change(function() {
+            let equipmentCategories = [];
 
-            $.each($('input[name="manufacturers"]:checked'), function (i, el) {
-                let id = parseInt($(el).data('manufacturer-id'));
+            $.each($('input[name="equipment_categories"]:checked'), function (i, el) {
+                let id = parseInt($(el).data('equipment-category-id'));
 
-                manufacturers.push(id);
+                equipmentCategories.push(id);
             });
 
-            if (manufacturers.length) {
-                url.query["manufacturers[]"] = manufacturers;
+            if (equipmentCategories.length) {
+                url.query["equipment_categories[]"] = equipmentCategories;
+
             } else {
-                delete url.query["manufacturers[]"];
+                delete url.query["equipment_categories[]"];
             }
 
-            getEquipment();
+            getEquipment(1);
         });
 
         let promotionCheckbox = $('input[name="promotion"]');
@@ -101,11 +102,12 @@
 
             if (promotionStatus) {
                 url.query['promotion'] = 1;
+                url.query.page = 1;
             } else {
                 delete url.query['promotion'];
             }
 
-            getEquipment();
+            getEquipment(1);
         });
 
         // Change page
@@ -130,7 +132,11 @@
         }
 
         // Ajax get equipment and set updated url
-        function getEquipment() {
+        function getEquipment(resetPage = false) {
+            if (resetPage) {
+                url.query.page = 1;
+            }
+
             $.ajax({
                 url: url,
                 cache: false,

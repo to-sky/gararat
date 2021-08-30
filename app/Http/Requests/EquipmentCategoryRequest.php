@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Services\RequestService;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class EquipmentCategoryRequest extends FormRequest
 {
@@ -28,6 +28,7 @@ class EquipmentCategoryRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
+            'slug' => Str::slug($this->name),
             'subcategories' => RequestService::filterArray($this->subcategories),
         ]);
     }
@@ -40,10 +41,9 @@ class EquipmentCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
-                'required', Rule::unique('equipment_categories')->ignore($this->equipment_category)
-            ],
+            'name' => 'required',
             'name_ar' => 'required',
+            'slug' => 'required'
         ];
     }
 

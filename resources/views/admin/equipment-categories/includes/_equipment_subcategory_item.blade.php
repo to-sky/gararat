@@ -18,6 +18,7 @@
 
             <button data-repeater-delete
                     data-delete-url="{{ isset($item) ? route('admin.equipment-categories.destroy', $item) : '' }}"
+                    data-can-be-deleted="{{ isset($item) && $item->equipment->isEmpty() }}"
                     type="button"
                     class="bg-white text-danger input-group-text rounded-right border-left-0"
                     style="border-radius: 0"

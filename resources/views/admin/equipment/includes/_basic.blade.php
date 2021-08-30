@@ -16,10 +16,10 @@
 <div class="form-group row">
     <div class="col-md-4">
         <div class="form-group">
-            <label for="catalog">Equipment category</label>
+            <label for="catalog">Equipment category*</label>
             <select name="equipment_category_id" id="equipment_category"
                     class="form-control select2-element"
-                    data-placeholder="Select category">
+                    data-placeholder="Select category" required>
                 <option></option>
 
                 @foreach($parentEquipmentCategories as $parentEquipmentCategory)
@@ -35,6 +35,10 @@
                     </optgroup>
                 @endforeach
             </select>
+
+            @error('equipment_category_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
     </div>
 

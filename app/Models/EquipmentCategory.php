@@ -7,6 +7,7 @@ use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
@@ -16,7 +17,7 @@ class EquipmentCategory extends Model implements HasMedia
     use HasMediaTrait, Translatable;
 
     protected $fillable = [
-        'name', 'name_ar', 'description', 'description_ar', 'parent_id'
+        'name', 'name_ar', 'description', 'description_ar', 'parent_id', 'slug'
     ];
 
     protected $guarded = [];
@@ -36,6 +37,16 @@ class EquipmentCategory extends Model implements HasMedia
                 MediaService::destroy($equipmentCategory, ['image']);
             }
         });
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     /**
@@ -77,6 +88,14 @@ class EquipmentCategory extends Model implements HasMedia
     }
 
     /**
+     * @return HasManyThrough
+     */
+    public function childEquipment()
+    {
+        return $this->hasManyThrough(Equipment::class, $this, 'parent_id', 'equipment_category_id', 'id', 'id');
+    }
+
+    /**
      * Create or update subcategories
      *
      * @param $subcategories
@@ -96,7 +115,8 @@ class EquipmentCategory extends Model implements HasMedia
             [
                 'name' => $subcategory['name'],
                 'name_ar' => $subcategory['name_ar'],
-                'parent_id' => $this->id
+                'parent_id' => $this->id,
+                'slug' => Str::slug($subcategory['name']),
             ]);
         }
 

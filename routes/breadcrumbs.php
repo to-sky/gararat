@@ -6,17 +6,28 @@ Breadcrumbs::for('home', function ($trail) {
 });
 
 
-//// Home > Equipment
-//Breadcrumbs::for('catalog', function ($trail) {
-//    $trail->parent('home');
-//    $trail->push(__('Catalog'), route('catalogs.index'));
-//});
-//
-//// Home > Equipment > Item
-//Breadcrumbs::for('equipment.show', function ($trail, $equipment) {
-//    $trail->parent('equipment');
-//    $trail->push($equipment->trans('name'), route('equipment.show', $equipment));
-//});
+// Home > Catalog
+Breadcrumbs::for('catalog', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('Catalog'), route('catalog.index'));
+});
+
+
+// Home > Catalog > Category
+Breadcrumbs::for('category', function ($trail, $equipmentCategory) {
+    $trail->parent('catalog');
+    $trail->push($equipmentCategory->trans('name'), route('catalog.category', $equipmentCategory));
+});
+
+
+// Home > Catalog > Category > Equipment
+Breadcrumbs::for('equipment', function ($trail, $equipment) {
+    $trail->parent('category', $equipment->equipmentCategory->parent);
+    $trail->push($equipment->trans('name'), route('equipment.show', [
+        'equipmentCategory' => $equipment->equipmentCategory,
+        'equipment' => $equipment
+    ]));
+});
 
 
 // Home > Parts
