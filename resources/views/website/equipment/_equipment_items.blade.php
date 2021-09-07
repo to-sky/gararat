@@ -19,8 +19,14 @@
 
                             @if($item->main_specifications)
                                 <div class="equipment-card__specifications">
-                                    @foreach($item->main_specifications['data'] as $main_specification)
-                                        <p class="equipment-card__specifications__item">{{ translateArrayItem($main_specification, 'key') }}  {{ translateArrayItem($main_specification, 'value') }}</p>
+                                    @php
+                                        $mainSpecifications = \App\Services\RequestService::filterArray($item->main_specifications['data'])
+                                    @endphp
+
+                                    @foreach($mainSpecifications as $mainSpecification)
+                                        <p class="equipment-card__specifications__item">
+                                            {{ translateArrayItem($mainSpecification, 'key') }}  {{ translateArrayItem($mainSpecification, 'value') }}
+                                        </p>
                                     @endforeach
                                 </div>
                             @endif
@@ -46,5 +52,7 @@
 </div>
 
 <div class="pagination__wrapper">
-    {{ $equipment->appends(request()->only(['manufacturers']))->links() }}
+    @if ($equipment->count())
+        {{ $equipment->appends(request()->only(['equipment_categories']))->links() }}
+    @endif
 </div>

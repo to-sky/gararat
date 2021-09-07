@@ -30,7 +30,7 @@
     width: $collapsed-size;
 
     .sidebar-inner {
-      .sidebar-logo {
+      .sidebar-logo-container {
         border-bottom: 1px solid transparent;
         padding: 0;
 
@@ -73,7 +73,7 @@
       width: $offscreen-size;
 
       .sidebar-inner {
-        .sidebar-logo {
+        .sidebar-logo-container {
           border-bottom: 1px solid $border-color;
           padding: 0 20px;
         }
@@ -124,31 +124,19 @@
 // @Sidebar Header
 // ---------------------------------------------------------
 
-.sidebar-logo {
+.sidebar-logo-container {
   border-bottom: 1px solid $border-color;
   border-right: 1px solid $border-color;
   line-height: 0;
   padding: 0 20px;
   transition: all 0.2s ease;
 
-  a {
-    display: inline-block;
-    width: 100%;
+  .sidebar-logo {
+      padding: 10px 5px;
 
-    .logo {
-      background-position: center left;
-      background-repeat: no-repeat;
-      display: inline-block;
-      min-height: calc(#{$header-height} - 1px);
-      width: 100%;
-      width: 70px;
-    }
-
-    .logo-text {
-      padding-left: 20px;
-      text-transform: capitalize;
-      color: $grey-800;
-    }
+      .logo {
+          width: 100%;
+      }
   }
 
   .mobile-toggle {
@@ -333,7 +321,7 @@
       width: $collapsed-size;
 
       .sidebar-inner {
-        .sidebar-logo {
+        .sidebar-logo-container {
           border-bottom: 1px solid transparent;
           padding: 0;
         }
@@ -369,7 +357,7 @@
         width: $offscreen-size;
 
         .sidebar-inner {
-          .sidebar-logo {
+          .sidebar-logo-container {
             border-bottom: 1px solid $border-color;
             padding: 0 20px;
           }
@@ -405,7 +393,7 @@
       width: $offscreen-size;
 
       .sidebar-inner {
-        .sidebar-logo {
+        .sidebar-logo-container {
           border-bottom: 1px solid $border-color;
           padding: 0 20px;
 

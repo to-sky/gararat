@@ -73,7 +73,15 @@ abstract class Product extends Model implements HasMedia, Buyable
                 $path = $product . '.show';
         }
 
-        return route($path, $this);
+        $params = $this;
+        if ($product == 'equipment' && $action == 'show') {
+            $params = [
+                'equipmentCategory' => $this->equipmentCategory->parent,
+                'equipment' => $this
+            ];
+        }
+
+        return route($path, $params);
     }
 
     /**

@@ -1,25 +1,12 @@
-<div class="sidebar-logo">
-    <div class="peers ai-c fxw-nw">
-        <div class="peer peer-greed">
-            <a class="sidebar-link td-n" href="{{ route('admin.dashboard') }}">
-                <div class="peers ai-c fxw-nw">
-                    <div class="peer">
-                        <div class="logo">
-                            <img src="{{ SettingService::getLogoUrl('header') }}" alt="logo" style="width: auto; height: 49px; padding-top: 13px;">
-                        </div>
-                    </div>
-                    <div class="peer peer-greed">
-                        <h5 class="lh-1 mB-0 logo-text">{{ auth()->user()->name }}</h5>
-                    </div>
-                </div>
+<div class="sidebar-logo-container">
+    <div class="sidebar-logo">
+        <img src="{{ SettingService::getLogoUrl('header') }}" alt="logo" class="logo">
+    </div>
+    <div class="peer">
+        <div class="mobile-toggle sidebar-toggle">
+            <a href="" class="td-n">
+                <i class="ti-arrow-circle-left"></i>
             </a>
-        </div>
-        <div class="peer">
-            <div class="mobile-toggle sidebar-toggle">
-                <a href="" class="td-n">
-                    <i class="ti-arrow-circle-left"></i>
-                </a>
-            </div>
         </div>
     </div>
 </div>

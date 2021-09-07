@@ -29,7 +29,7 @@
         <li>
             <a href="{{ route('admin.profile.edit', auth()->user()) }}" class="d-b td-n bgcH-grey-100 c-grey-700" title="Profile">
                 <i class="ti-user mR-10"></i>
-                <span>Profile</span>
+                <span>{{ auth()->user()->name }}</span>
             </a>
         </li>
 

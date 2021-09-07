@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Gararat'),
+    'name' => env('APP_NAME', 'Belmach'),
 
-    'site_name' => env('APP_SITE_NAME', 'Gararat.com'),
+    'site_name' => env('APP_SITE_NAME', 'Belmach.com'),
 
     /*
     |--------------------------------------------------------------------------

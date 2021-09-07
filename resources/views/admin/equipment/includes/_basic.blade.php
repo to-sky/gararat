@@ -15,24 +15,31 @@
 
 <div class="form-group row">
     <div class="col-md-4">
-        <label for="manufacturer">Manufacturer*</label>
-        <select name="manufacturer_id" id="manufacturer"
-                class="form-control select2-element @error('manufacturer_id') is-invalid @enderror"
-                autocomplete="off" data-placeholder="Select manufacturer" required>
-            @foreach ($manufacturers as $manufacturer)
-                {{ $manufacturer }}
-                <option value="{{ $manufacturer->id }}"
-                        @if (isset($item) && $item->manufacturer_id == $manufacturer->id
-                            || old('manufacturer_id') == $manufacturer->id
-                        ) selected @endif>
-                    {{ $manufacturer->name }}
-                </option>
-            @endforeach
-        </select>
+        <div class="form-group">
+            <label for="catalog">Equipment category*</label>
+            <select name="equipment_category_id" id="equipment_category"
+                    class="form-control select2-element"
+                    data-placeholder="Select category" required>
+                <option></option>
 
-        @error('manufacturer_id')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
+                @foreach($parentEquipmentCategories as $parentEquipmentCategory)
+                    <optgroup label="{{ $parentEquipmentCategory->name }}">
+                        @foreach($parentEquipmentCategory->childs as $child)
+                            <option value="{{ $child->id }}"
+                                    @if (isset($item) && $item->equipment_category_id == $child->id
+                                        || old('equipment_category_id') == $child->id
+                                    ) selected @endif>
+                                {{ $child->name }}
+                            </option>
+                        @endforeach
+                    </optgroup>
+                @endforeach
+            </select>
+
+            @error('equipment_category_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
     </div>
 
     <div class="col-md-8">
