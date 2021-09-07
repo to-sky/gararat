@@ -8,7 +8,7 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => env('APP_NAME', 'Gararat'),
+        'name' => env('APP_NAME', 'Belmach'),
 
         'source' => [
 
@@ -136,7 +136,7 @@ return [
 
             'from' => [
                 'address' => 'backup@gararat.com',
-                'name' => 'Gararat',
+                'name' => 'Belmach',
             ],
         ],
 
@@ -162,7 +162,7 @@ return [
      */
     'monitor_backups' => [
         [
-            'name' => env('APP_NAME', 'Gararat'),
+            'name' => env('APP_NAME', 'Belmach'),
             'disks' => ['local'],
             'health_checks' => [
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class => 1,

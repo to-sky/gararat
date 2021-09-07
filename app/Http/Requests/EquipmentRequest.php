@@ -47,7 +47,7 @@ class EquipmentRequest extends FormRequest
                 'required', Rule::unique('equipment')->ignore($this->equipment)
             ],
             'name_ar' => 'required',
-            'manufacturer_id' => 'required|integer',
+            'equipment_category_id' => 'required|integer',
             'equipment_group_id' => 'required|integer',
             'price' => 'required|numeric',
             'special_price' => 'nullable|numeric'
@@ -64,7 +64,7 @@ class EquipmentRequest extends FormRequest
         return [
             'name' => 'english name',
             'name_ar' => 'arabic name',
-            'manufacturer_id' => 'manufacturer',
+            'equipment_category_id' => 'equipment category',
             'equipment_group_id' => 'equipment group'
         ];
     }

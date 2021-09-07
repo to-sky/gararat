@@ -78,7 +78,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- insert content from modal --}}
+                            {{-- inserting content from modal --}}
                         </tbody>
                     </table>
                 </div>

@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\EquipmentGroup;
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class EquipmentGroupsTableSeeder extends Seeder

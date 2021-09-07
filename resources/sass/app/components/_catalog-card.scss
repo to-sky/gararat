@@ -1,0 +1,54 @@
+.catalog-card {
+    margin-bottom: $card_bottom_gap;
+    transition: $default_transition;
+    background: $white;
+
+    &:hover {
+        box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;
+
+        .catalog-card__title {
+            color: $secondary_color;
+        }
+    }
+}
+
+.catalog-card__image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid $border_color;
+}
+
+.catalog-card__image {
+    display: block;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: all .3s;
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.15);
+    }
+}
+
+.catalog-card__title {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: $primary_color_light;
+    font-weight: 500;
+
+    &:hover {
+        cursor: pointer;
+        color: $secondary_color
+    }
+}
+
+.catalog-card__description {
+    padding-top: 10px;
+    border-top: 1px solid $border_color;
+    text-align: justify;
+    font-size: 0.8rem;
+}

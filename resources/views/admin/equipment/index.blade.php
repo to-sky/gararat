@@ -18,6 +18,7 @@
                             <th>#</th>
                             <th>Image</th>
                             <th>Name</th>
+                            <th>Category</th>
                             <th>Price</th>
                             <th>Qty</th>
                             <th class="text-right">Actions</th>
@@ -30,7 +31,14 @@
                                 <td>
                                     <img src="{{ asset($item->getFirstMediaUrl('main_image', 'thumb')) }}" width="50">
                                 </td>
-                                <td width="45%">{{ $item->name }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>
+                                    @if($equipmentCategory = $item->equipmentCategory)
+                                        {{ $equipmentCategory->parent->name }}
+                                        <i class="fas fa-angle-right text-black-50"></i>
+                                        {{ $equipmentCategory->name }}
+                                    @endif
+                                </td>
                                 <td>{!! $item->displayPrice() !!}</td>
                                 <td>{{ $item->qty }}</td>
                                 <td>

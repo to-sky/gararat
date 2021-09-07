@@ -13,8 +13,8 @@
                 'mediaItem' => $mainImage
             ])
         @endif
-
     </div>
+
     <div class="col-md-8">
         <p class="mb-1">Additional images</p>
         @include('admin.includes._input-file', [

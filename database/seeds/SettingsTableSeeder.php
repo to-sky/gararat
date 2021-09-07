@@ -16,20 +16,23 @@ class SettingsTableSeeder extends Seeder
         Setting::set('youtube', 'https://www.youtube.com/channel/UCoBI2FCQzx4tMEUbMpVphJw');
         Setting::set('whatsapp', '00201016200599');
         Setting::set('email', 'sales@gararat.com');
-        Setting::set('phone', '+20-101-620-05-99');
+        Setting::set('phone', '+20-225412782');
         Setting::set('footer_address', 'Villa 318, Al Showaifat region, Al Tagamoa AL Khames, 90th st., New Cairo-Egypt');
         Setting::set('footer_address_ar', 'Villa 318, Al Showaifat region, Al Tagamoa AL Khames, 90th st., New Cairo-Egypt');
-        Setting::set('footer_slogan', 'GARARAT – the first e-hypermarket for agricultural tractors, equipment and spare parts!');
-        Setting::set('footer_slogan_ar', 'جرارات هو اول سوق إليكترونى للجرارات الزراعية و المعدات وقطع الغيار');
+        Setting::set('footer_slogan', 'Belmach – the first e-hypermarket for agricultural tractors, equipment and spare parts!');
+        Setting::set('footer_slogan_ar', 'جرارات هو أول سوق إليكترونى للجرارات الزراعية و المعدات وقطع الغيار');
         Setting::set('header_logo', 'images/header_logo.png');
         Setting::set('footer_logo', 'images/footer_logo.png');
+        Setting::set('instagram', 'https://www.instagram.com/gararat.belarus');
+        Setting::set('linkedin', 'https://www.linkedin.com/company/gararat-com');
+        Setting::set('twitter', 'https://twitter.com/GararatC');
 
         $menu = [
             [
                 'is_dynamic' => false,
-                'name' => 'Equipment',
-                'route' => 'equipment.index',
-                'route_group' => 'equipment.*'
+                'name' => 'Catalog',
+                'route' => 'catalog.index',
+                'route_group' => 'catalog.*'
             ],
             [
                 'is_dynamic' => false,

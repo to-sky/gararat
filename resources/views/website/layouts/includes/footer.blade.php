@@ -4,12 +4,12 @@
             {{-- First column --}}
             <div class="col-sm-6 col-lg-3 footer-top__column">
                 <a href="{{ route('home') }}">
-                    <img src="{{ SettingService::getLogoUrl('footer') }}" class="footer-top__logo" alt="Gararat Logo">
+                    <img src="{{ SettingService::getLogoUrl('footer') }}" class="footer-top__logo" alt="Logo">
                 </a>
 
                 <p class="footer-top__slogan">
                     @php($footerSlogan = isLocaleEn() ? 'footer_slogan' : 'footer_slogan_ar')
-                    @setting($footerSlogan, __('GARARAT – the first e-hypermarket for agricultural tractors, equipment and spare parts!'))
+                    @setting($footerSlogan)
                 </p>
             </div>
 
@@ -20,7 +20,7 @@
                 <div class="footer-top__social">
                     @if(setting('facebook'))
                         <div class="footer-top__social-item">
-                            <a href="{{ setting('facebook') }}" class="footer-top__social-icon facebook-mono-icon" 
+                            <a href="{{ setting('facebook') }}" class="footer-top__social-icon facebook-mono-icon"
                                target="_blank" data-social="facebook"
                             >
                                 <span class="footer-top__social-label">Facebook</span>
@@ -30,7 +30,7 @@
 
                     @if(setting('youtube'))
                         <div class="footer-top__social-item">
-                            <a href="{{ setting('youtube') }}" class="footer-top__social-icon youtube-mono-icon" 
+                            <a href="{{ setting('youtube') }}" class="footer-top__social-icon youtube-mono-icon"
                                target="_blank" data-social="youtube"
                             >
                                 <span class="footer-top__social-label">YouTube</span>
@@ -40,7 +40,7 @@
 
                     @if(setting('whatsapp'))
                         <div class="footer-top__social-item">
-                            <a href="https://api.whatsapp.com/send?phone={{ setting('whatsapp') }}" 
+                            <a href="https://api.whatsapp.com/send?phone={{ setting('whatsapp') }}"
                                class="footer-top__social-icon whatsapp-mono-icon" target="_blank" data-social="whatsapp"
                             >
                                 <span class="footer-top__social-label">WhatsApp</span>
@@ -50,7 +50,7 @@
 
                     @if(setting('instagram'))
                         <div class="footer-top__social-item">
-                            <a href="{{ setting('instagram') }}" class="footer-top__social-icon instagram-mono-icon" 
+                            <a href="{{ setting('instagram') }}" class="footer-top__social-icon instagram-mono-icon"
                                target="_blank" data-social="instagram"
                             >
                                 <span class="footer-top__social-label">Instagram</span>
@@ -60,7 +60,7 @@
 
                     @if(setting('twitter'))
                         <div class="footer-top__social-item">
-                            <a href="{{ setting('twitter') }}" class="footer-top__social-icon twitter-mono-icon" 
+                            <a href="{{ setting('twitter') }}" class="footer-top__social-icon twitter-mono-icon"
                                target="_blank" data-social="twitter"
                             >
                                 <span class="footer-top__social-label">Twitter</span>

@@ -12,7 +12,7 @@ header {
 }
 
 .header-main__logo-image {
-    height: 55px;
+    width: 150px;
 }
 
 // Menu
@@ -129,7 +129,7 @@ header {
 
 @include for-desktop {
     .header-main__logo-image {
-        height: 90px;
+        width: 200px;
     }
 
     .header__menu nav a {
