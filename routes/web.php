@@ -23,7 +23,9 @@ Route::group([
     Route::get('profile/{user:name}', 'UserController@profile')->name('profile.edit');
     Route::put('profile/{user}', 'UserController@update')->name('profile.update');
 
-    Route::resource('manufacturers', 'ManufacturerController', ['except' => ['show']]);
+    Route::resource('equipment-categories', 'EquipmentCategoryController', ['except' => ['show']])->parameters([
+        'equipment-categories' => 'equipmentCategory:id',
+    ]);
     Route::resource('equipment-groups', 'EquipmentGroupController', ['except' => ['show']]);
 
     Route::post('equipment/{equipment}/clone', 'EquipmentController@cloneEquipment')->name('equipment.clone');
@@ -73,8 +75,9 @@ Route::group(['middleware' => ['check.cart'], 'namespace' => 'Website'], functio
     Route::get('/search', 'PageController@search')->name('search');
     Route::get('/language/{locale}', 'PageController@languageChange')->name('language');
 
-    Route::get('/equipment', 'EquipmentController@index')->name('equipment.index');
-    Route::get('/equipment/{equipment:slug}', 'EquipmentController@show')->name('equipment.show');
+    Route::get('/catalog', 'CatalogController@index')->name('catalog.index');
+    Route::get('/catalog/{equipmentCategory}', 'CatalogController@category')->name('catalog.category');
+    Route::get('/catalog/{equipmentCategory}/{equipment}', 'CatalogController@equipment')->name('equipment.show');
 
     Route::get('/parts', 'PartController@index')->name('parts.index');
     Route::get('/parts/filter', 'PartController@filter')->name('parts.filter');

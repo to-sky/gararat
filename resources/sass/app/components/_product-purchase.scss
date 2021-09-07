@@ -5,6 +5,10 @@
   p {
     margin-bottom: 0;
   }
+
+  .product-price {
+      font-size: 1rem;
+  }
 }
 
 .product__purchase-top {
@@ -14,7 +18,7 @@
 .product-price {
   color: $secondary_color_muted;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.9rem;
 
   small {
     color: $muted_color;
@@ -31,7 +35,7 @@
     color: $success_color;
 }
 
-.in-stock-status {
+.in-stock-icon ~ .in-stock-status {
     padding: 0 6px;
 }
 
@@ -39,10 +43,4 @@
   font-size: 14px;
   line-height: 18px;
   color: $muted_color;
-}
-
-@include for-tablet-landscape {
-  .product-price {
-    font-size: 1.1rem;
-  }
 }

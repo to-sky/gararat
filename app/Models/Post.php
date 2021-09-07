@@ -32,12 +32,12 @@ class Post extends Model implements HasMedia
         });
 
         self::created(function($post) {
-            if($post->type !== self::TYPE_VIDEO) {
+            if(intval($post->type) !== self::TYPE_VIDEO) {
                 event(new PostCreated($post));
             }
         });
 
-        self::deleting(function ($post) {
+        self::deleting(function($post) {
             MediaService::destroy($post, ['thumbnail']);
         });
     }

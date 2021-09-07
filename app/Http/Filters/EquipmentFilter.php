@@ -12,8 +12,8 @@ class EquipmentFilter extends Filter
      * @param  array  $value
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    protected function manufacturers(array $value = []) : Builder
+    protected function equipment_categories(array $value = []) : Builder
     {
-        return $this->builder->whereIn('manufacturer_id', $value);
+        return $this->builder->whereIn('equipment_category_id', $value);
     }
 }

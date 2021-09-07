@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EquipmentRequest;
 use App\Models\{
-    Equipment, EquipmentGroup, Manufacturer
+    Equipment, EquipmentGroup, EquipmentCategory
 };
 use Exception;
 use Illuminate\Http\Response;
@@ -129,10 +129,10 @@ class EquipmentController extends Controller
      */
     public function generateParams()
     {
-        $manufacturers =  Manufacturer::all();
+        $parentEquipmentCategories =  EquipmentCategory::parentCategories()->get();
         $equipmentGroups = EquipmentGroup::all();
 
-        view()->share('manufacturers', $manufacturers);
+        view()->share('parentEquipmentCategories', $parentEquipmentCategories);
         view()->share('equipmentGroups', $equipmentGroups);
     }
 }

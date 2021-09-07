@@ -16,8 +16,8 @@
 }
 
 .footer-top__logo {
-    padding: $card_bottom_gap 0;
-    width: 150px;
+    padding: 20px 0 15px 0;
+    width: 200px;
 }
 
 .footer-top__slogan {
@@ -36,8 +36,8 @@
 }
 
 .footer-top__social-icon {
-    height: $social_icon_size;
-    width: $social_icon_size;
+    height: $social_icon_size_m;
+    width: $social_icon_size_m;
     display: inline-block;
     background-repeat: no-repeat;
     background-position: center;
@@ -166,5 +166,12 @@
 
     .footer-bottom__copyright-text {
         font-size: .9rem;
+    }
+}
+
+@include for-tablet-portrait {
+    .footer-top__social-icon {
+        height: $social_icon_size;
+        width: $social_icon_size;
     }
 }

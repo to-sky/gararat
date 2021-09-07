@@ -24,9 +24,7 @@
             </div>
 
             <div class="tab-pane fade" id="specification" role="tabpanel" aria-labelledby="specification-tab">
-                <div class="">
-                    @include('admin.equipment.includes._specifications-create')
-                </div>
+                @include('admin.equipment.includes._specifications-create')
             </div>
         </div>
 

@@ -63,7 +63,7 @@
             <div class="align-self-start">
                 <div class="header-main__logo">
                     <a href="{{ route('home') }}">
-                        <img src="{{ SettingService::getLogoUrl('header') }}" alt="Gararat Logo" class="header-main__logo-image">
+                        <img src="{{ SettingService::getLogoUrl('header') }}" alt="Logo" class="header-main__logo-image">
                     </a>
                 </div>
             </div>

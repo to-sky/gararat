@@ -21,7 +21,7 @@ class EquipmentImport implements ToCollection, WithHeadingRow
                 is_null($equipment['name'])
                 || is_null($equipment['name_ar'])
                 || is_null($equipment['price'])
-                || is_null($equipment['manufacturer_id'])
+                || is_null($equipment['equipment_category_id'])
                 || is_null($equipment['equipment_group_id'])
             ) {
                 return null;
