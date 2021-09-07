@@ -94,6 +94,69 @@
         </div>
         @endif
 
+
+
+        <section class="pb-0  pt-5">
+            <div class="container">
+                <div class="d-flex justify-content-between">
+                    <h2 class="page-title ">{{ __('On promotion') }}</h2>
+                </div>
+
+                <div class="row">
+                    @foreach(App\Models\Equipment::take(4)->get() as $equipment)
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="post mb-0">
+                                <div class="">
+                                    <a href="{{ route('equipment.show', ['equipmentCategory' => $equipment->equipmentCategory, 'equipment' => $equipment]) }}"
+                                       style="background-image: url('{{ asset($equipment->getFirstMediaUrl('main_image', 'medium')) }}'); transform: scale(1);"
+                                       class="post__image"></a>
+
+                                    <p class="border-top p-2">{{ $equipment->trans('name') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
+
+        <section class="pb-0 pt-5">
+            <div class="container">
+                <div class="d-flex justify-content-between">
+                    <h2 class="page-title ">{{ __('Best selling') }}</h2>
+                </div>
+
+                <div class="row">
+                    @foreach(App\Models\Part::take(4)->get() as $part)
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="post mb-0">
+                                <div class="">
+                                    <a href="{{ $part->path() }}"
+                                       style="background-image: url('{{ asset($part->getFirstMediaUrl('main_image', 'medium')) }}'); transform: scale(1);"
+                                       class="post__image"></a>
+
+                                    <p class="border-top p-2">{{ $part->trans('name') }}</p>
+                                    <p class="parts__item__producer-id py-2">{{ $part->producer_id }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
         <section class="pb-0">
             <div class="container">
                 <div class="d-flex justify-content-between">

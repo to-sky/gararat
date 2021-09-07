@@ -19,7 +19,9 @@
                         </div>
 
                         <div class="p-2">
-                            <h5 class="catalog-card__title">{{ $equipmentCategory->trans('name') }}</h5>
+                            <a href="{{ route('catalog.category', $equipmentCategory) }}">
+                                <h5 class="catalog-card__title">{{ $equipmentCategory->trans('name') }}</h5>
+                            </a>
                             @if($equipmentCategory->trans('description'))
                                 <p class="catalog-card__description">{{ $equipmentCategory->trans('description') }}</p>
                             @endif
