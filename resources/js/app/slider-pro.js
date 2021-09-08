@@ -12,6 +12,7 @@ export default (function () {
         thumbnailArrows: true,
         autoplay: false,
         loop: false,
-        aspectRatio: 1.6
+        aspectRatio: 1.6,
+        rightToLeft: $('body').hasClass('rtl')
     });
 }())
