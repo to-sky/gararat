@@ -19,7 +19,7 @@ class SettingService
     public static function storeLogo(UploadedFile $file, $fileName, $folderName = 'logos')
     {
         $path = $file->storeAs(
-            $folderName, $fileName . $file->extension(), 'public'
+            $folderName, implode('.', [$fileName, $file->extension()]), 'public'
         );
 
         Setting::set($fileName, $path);
@@ -32,9 +32,11 @@ class SettingService
      * @param $type
      * @return string
      */
-    public static function getLogoUrl($type)
+    public static function getLogoUrl($type, $logoName = null)
     {
-        $logoName = $type.'_logo';
+        if (! $logoName) {
+            $logoName = translate($type.'_logo');
+        }
 
         $fileExists = Storage::disk('public')->exists(setting($logoName));
 

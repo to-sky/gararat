@@ -10,11 +10,11 @@
 
         <div class="row">
             @foreach($equipmentCategories as $equipmentCategory)
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-3">
                     <div class="catalog-card shadow-sm" data-mh="catalog">
                         <div class="catalog-card__image-wrapper">
                             <a href="{{ route('catalog.category', $equipmentCategory) }}"
-                               style="background-image: url('{{ asset($equipmentCategory->getFirstMediaUrl('image', 'medium')) }}');"
+                               style="background-image: url('{{ asset($equipmentCategory->getFirstMediaUrl('image')) }}');"
                                class="catalog-card__image"></a>
                         </div>
 

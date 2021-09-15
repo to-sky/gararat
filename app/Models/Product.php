@@ -6,6 +6,7 @@ use App\Services\CartService;
 use App\Services\MediaService;
 use App\Traits\{Excludable, Filterable, Translatable};
 use Gloudemans\Shoppingcart\Contracts\Buyable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Spatie\Image\Manipulations;
@@ -218,5 +219,35 @@ abstract class Product extends Model implements HasMedia, Buyable
     public static function getProductByType($productType, $id)
     {
         return $productType === 'equipment' ? Equipment::find($id) : Part::find($id);
+    }
+
+    /**
+     * Get promotion items
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePromotion($query)
+    {
+        return $query->whereIsSpecial(1);
+    }
+
+    /**
+     * Get best selling items
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeBestSelling($query)
+    {
+        return $query->whereIsBestSelling(1);
+    }
+
+    public function scopePromotionAndBestSelling($query)
+    {
+        return $query->where('is_special', '=', 1)->where('is_best_selling', '=', 1);
+    }
+
+    public function scopePromotionOrBestSelling($query)
+    {
+        return $query->where('is_special', '=', 1)->orWhere('is_best_selling', '=', 1);
     }
 }

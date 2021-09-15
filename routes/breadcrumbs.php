@@ -43,6 +43,12 @@ Breadcrumbs::for('parts.show', function ($trail, $part) {
 });
 
 
+// Home > Promotions
+Breadcrumbs::for('promotions', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('Promotions'), route('promotions'));
+});
+
 // Home > Blog
 Breadcrumbs::for('blog', function ($trail) {
     $trail->parent('home');

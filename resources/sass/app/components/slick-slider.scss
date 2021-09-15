@@ -1,0 +1,18 @@
+.slick-list {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.slick-slide {
+    height: auto;
+    margin-left:  10px;
+    margin-right:  10px;
+}
+
+.slick-dots li:hover button:before {
+    color: #ff6969;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #fc0203;
+}

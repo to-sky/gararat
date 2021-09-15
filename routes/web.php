@@ -23,6 +23,7 @@ Route::group([
     Route::get('profile/{user:name}', 'UserController@profile')->name('profile.edit');
     Route::put('profile/{user}', 'UserController@update')->name('profile.update');
 
+    Route::put('equipment-categories/update-site-position', 'EquipmentCategoryController@updateSitePosition')->name('equipment-categories.update-site-position');
     Route::resource('equipment-categories', 'EquipmentCategoryController', ['except' => ['show']])->parameters([
         'equipment-categories' => 'equipmentCategory:id',
     ]);
@@ -101,6 +102,7 @@ Route::group(['middleware' => ['check.cart'], 'namespace' => 'Website'], functio
     Route::delete('/unsubscribe/{subscriber}', 'SubscribeController@destroy')->name('unsibscribe.destroy');
 
     Route::post('/apply-funding', 'PageController@applyFunding')->name('apply-funding');
+    Route::get('/promotions', 'PageController@promotions')->name('promotions');
 });
 
 

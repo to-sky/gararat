@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\DB;
 class Part extends Product
 {
     protected $fillable = [
-        'name', 'name_ar', 'price', 'slug', 'special_price', 'producer_id', 'is_special', 'qty', 'equipment_id'
+        'name', 'name_ar', 'price', 'slug', 'special_price', 'producer_id', 'is_special', 'qty', 'equipment_id',
+        'is_best_selling'
     ];
 
     protected $casts = [

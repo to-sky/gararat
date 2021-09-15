@@ -14,8 +14,9 @@ class Equipment extends Product
     ];
 
     protected $fillable = [
-        'name', 'name_ar', 'slug', 'description', 'description_ar', 'price', 'special_price', 'qty', 'is_special',
-        'equipment_group_id', 'main_specifications', 'specifications', 'equipment_category_id', 'site_position'
+        'name', 'name_ar', 'body', 'body_ar', 'slug', 'description', 'description_ar', 'price', 'special_price', 'qty',
+        'is_special', 'equipment_group_id', 'main_specifications', 'specifications', 'equipment_category_id', 'site_position',
+        'is_best_selling'
     ];
 
     protected static function boot()

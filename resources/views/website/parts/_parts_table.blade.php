@@ -4,7 +4,7 @@
             <div class="col-6 col-md-6 col-sm-4 d-flex flex-column flex-md-row justify-content-between parts__item">
                 <div class="parts__item__image-content">
                     <div class="parts__item__image-container mb-2">
-                        <a href="{{ route('parts.show', $part) }}" class="parts__item__image-link">
+                        <a href="{{ $part->path() }}" class="parts__item__image-link">
                             <img src="{{ $part->getFirstMediaUrl('main_image', 'medium') }}" class="parts__item__image">
                         </a>
                     </div>

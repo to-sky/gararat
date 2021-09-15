@@ -97,7 +97,7 @@ class EquipmentController extends Controller
      */
     public function updateSitePosition()
     {
-        $equipmentIds =  request('equipmentIds');
+        $equipmentIds = request('equipmentIds');
 
         Equipment::whereIn('id', $equipmentIds)->each(function ($item) use ($equipmentIds) {
             $item->update([
