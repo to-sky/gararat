@@ -20,17 +20,17 @@
                     @foreach($slides as $slide)
                         <div class="carousel-item
                             @if($loop->first) active @endif
-                            @if($slide->blackout) blackout @endif"
+                        @if($slide->blackout) blackout @endif"
                              @desktop
-                                style="background-image: url({{ asset($slide->getFirstMediaUrl('home_slide'))  }})"
+                             style="background-image: url({{ asset($slide->getFirstMediaUrl('home_slide'))  }})"
                              @elsedesktop
-                                style="background-image: url({{ asset($slide->getFirstMediaUrl('home_slide_mobile'))  }})"
+                             style="background-image: url({{ asset($slide->getFirstMediaUrl('home_slide_mobile'))  }})"
                              @enddesktop
                         >
 
                             @if($slide->trans('body'))
                                 <div class="carousel-caption">
-                                   {!! $slide->trans('body') !!}
+                                    {!! $slide->trans('body') !!}
                                 </div>
                             @endif
 
@@ -107,24 +107,26 @@
         @endisset
 
         {{-- All promotions section --}}
-        <section>
-            <div class="container">
-                <div class="d-flex justify-content-between">
-                    <h2 class="page-title ">{{ __('All promotions') }}</h2>
-                </div>
+        @if($promotions->isNotEmpty())
+            <section>
+                <div class="container">
+                    <div class="d-flex justify-content-between">
+                        <h2 class="page-title ">{{ __('All promotions') }}</h2>
+                    </div>
 
-                <div class="promotion-slider-container">
-                    <div class="slick-slider">
-                        @foreach($promotions as $product)
-                            @include('website.includes._product_promotion_item', compact('product'))
-                        @endforeach
-                        <div class="promotion__item px-2 shadow-sm d-flex justify-content-center align-items-center" data-mh="promotion">
-                            <a href="{{ route('promotions') }}" class="btn btn-outline-danger px-4 py-2">{{ __('See other') }}</a>
+                    <div class="promotion-slider-container">
+                        <div class="slick-slider">
+                            @foreach($promotions as $product)
+                                @include('website.includes._product_promotion_item', compact('product'))
+                            @endforeach
+                            <div class="promotion__item px-2 shadow-sm d-flex justify-content-center align-items-center" data-mh="promotion">
+                                <a href="{{ route('promotions') }}" class="btn btn-outline-danger px-4 py-2">{{ __('See other') }}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
 
         {{-- Body bottom section --}}
         @isset($body->bottom)
@@ -138,27 +140,29 @@
         @endisset
 
         {{-- Best selling section --}}
-        <section>
-            <div class="container">
-                <div class="d-flex justify-content-between">
-                    <h2 class="page-title ">{{ __('Best selling') }}</h2>
-                </div>
+        @if($bestSelling->isNotEmpty())
+            <section>
+                <div class="container">
+                    <div class="d-flex justify-content-between">
+                        <h2 class="page-title ">{{ __('Best selling') }}</h2>
+                    </div>
 
-                <div class="promotion-slider-container">
-                    <div class="slick-slider">
-                        @foreach($bestSelling as $product)
-                            @include('website.includes._product_promotion_item', compact('product'))
-                        @endforeach
+                    <div class="promotion-slider-container">
+                        <div class="slick-slider">
+                            @foreach($bestSelling as $product)
+                                @include('website.includes._product_promotion_item', compact('product'))
+                            @endforeach
 
-                        <div class="promotion__item px-2 shadow-sm d-flex justify-content-center align-items-center" data-mh="promotion">
-                            <a href="{{ setting('facebook') }}" class="btn btn-outline-danger px-4 py-2" target="_blank">
-                                <i class="fab fa-facebook-square px-1"></i>{{ __('Follow us on Facebook') }}
-                            </a>
+                            <div class="promotion__item px-2 shadow-sm d-flex justify-content-center align-items-center" data-mh="promotion">
+                                <a href="{{ setting('facebook') }}" class="btn btn-outline-danger px-4 py-2" target="_blank">
+                                    <i class="fab fa-facebook-square px-1"></i>{{ __('Follow us on Facebook') }}
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
 
         {{-- Blog section --}}
         <section>
@@ -234,7 +238,7 @@
                                 </div>
 
                                 @error('email')
-                                    <p class="d-block invalid-feedback mt-3">{{ $message }}</p>
+                                <p class="d-block invalid-feedback mt-3">{{ $message }}</p>
                                 @enderror
                             </div>
                         </form>
