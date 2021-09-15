@@ -2,3 +2,7 @@
   background: $white;
   border: $border-light;
 }
+
+.rtl .product-carousel .sp-rtl .sp-slides-container {
+    direction: ltr;
+}

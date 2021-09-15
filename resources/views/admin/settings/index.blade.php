@@ -21,25 +21,41 @@
                     <div class="card mb-3 rounded-0">
                         <div class="card-body">
                             <div class="form-group row">
-                                <div class="col-6">
-                                    <p>Header logo</p>
+                                <div class="col-3">
+                                    <p>Header logo english</p>
 
-                                    <div class="bgc-grey-100 border shadow-sm w-25">
-                                        <img src="{{ SettingService::getLogoUrl('header') }}" class="card-img rounded-0" alt="Footer logo">
+                                    <div class="bgc-grey-100 border shadow-sm w-50">
+                                        <img src="{{ SettingService::getLogoUrl('header', 'header_logo') }}" class="card-img rounded-0" alt="Footer logo">
                                     </div>
                                 </div>
 
-                                <div class="col-6">
-                                    <p>Footer logo</p>
+                                <div class="col-3">
+                                    <p>Footer logo english</p>
 
-                                    <div class="bgc-grey-100 border shadow-sm w-25">
-                                        <img src="{{ SettingService::getLogoUrl('footer') }}" class="card-img rounded-0" alt="Footer logo">
+                                    <div class="bgc-grey-100 border shadow-sm w-50">
+                                        <img src="{{ SettingService::getLogoUrl('footer', 'footer_logo') }}" class="card-img rounded-0" alt="Footer logo">
+                                    </div>
+                                </div>
+
+                                <div class="col-3">
+                                    <p>Header logo arabic</p>
+
+                                    <div class="bgc-grey-100 border shadow-sm w-50">
+                                        <img src="{{ SettingService::getLogoUrl('header', 'header_logo_ar') }}" class="card-img rounded-0" alt="Footer logo">
+                                    </div>
+                                </div>
+
+                                <div class="col-3">
+                                    <p>Footer logo arabic</p>
+
+                                    <div class="bgc-grey-100 border shadow-sm w-50">
+                                        <img src="{{ SettingService::getLogoUrl('footer', 'footer_logo_ar') }}" class="card-img rounded-0" alt="Footer logo">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-6">
+                                <div class="col-3">
                                     @include('admin.includes._input-file', [
                                         'name' => 'header_logo',
                                         'placeholder' => 'Select image',
@@ -48,9 +64,27 @@
                                     @include('admin.includes._image_following_formats')
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-3">
                                     @include('admin.includes._input-file', [
                                         'name' => 'footer_logo',
+                                        'placeholder' => 'Select images',
+                                        'formats' => '.jpg,.png,.tiff'
+                                    ])
+                                    @include('admin.includes._image_following_formats')
+                                </div>
+
+                                <div class="col-3">
+                                    @include('admin.includes._input-file', [
+                                        'name' => 'header_logo_ar',
+                                        'placeholder' => 'Select image',
+                                        'formats' => '.jpg,.png,.tiff'
+                                    ])
+                                    @include('admin.includes._image_following_formats')
+                                </div>
+
+                                <div class="col-3">
+                                    @include('admin.includes._input-file', [
+                                        'name' => 'footer_logo_ar',
                                         'placeholder' => 'Select images',
                                         'formats' => '.jpg,.png,.tiff'
                                     ])

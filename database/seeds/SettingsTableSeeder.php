@@ -42,6 +42,12 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'is_dynamic' => false,
+                'name' => 'Promotions',
+                'route' => 'promotions',
+                'route_group' => 'promotions'
+            ],
+            [
+                'is_dynamic' => false,
                 'name' => 'Blog',
                 'route' => 'posts.index',
                 'route_group' => 'posts.*'

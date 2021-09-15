@@ -21,9 +21,9 @@
                             <th class="text-right">Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="sortable">
                     @foreach($equipmentCategories as $equipmentCategory)
-                        <tr>
+                        <tr data-id="{{ $equipmentCategory->id }}">
                             <td>{{ $equipmentCategory->id }}</td>
                             <td>
                                 <img src="{{ asset($equipmentCategory->getFirstMediaUrl('image', 'thumb')) }}" width="50">
@@ -58,12 +58,29 @@
                     </tbody>
                 </table>
             </div>
-
-            <div class="mt-2 float-right">
-                {{ $equipmentCategories->links() }}
-            </div>
         </div>
     </div>
 
     @include('admin.includes.blocks.delete-item-modal', ['item' => 'equipment category'])
 @endsection
+
+@push('scripts')
+    <script>
+        // Add sortable plugin (Drag'n'Drop tr)
+        $( "#sortable" ).sortable({
+            update: function() {
+                let equipmentCategoryIds = $(this).find('tr').map(function(i, el) {
+                    return $(el).data('id');
+                });
+
+                $.ajax({
+                    type: 'PUT',
+                    url: '{{ route('admin.equipment-categories.update-site-position') }}',
+                    data: {
+                        equipmentCategoryIds: equipmentCategoryIds.toArray()
+                    }
+                });
+            }
+        });
+    </script>
+@endpush

@@ -24,7 +24,8 @@
             </div>
 
             <div class="form-group">
-                @include('admin.includes._body', ['item' => $page])
+                @php($bodyInclude = $page->isHome() ? '_homepage' : '')
+                @include('admin.includes._body' . $bodyInclude, ['item' => $page])
             </div>
 
             @if ($errors->any())

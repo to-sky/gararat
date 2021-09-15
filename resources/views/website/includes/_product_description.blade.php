@@ -1,4 +1,4 @@
-<div class="product__purchase shadow border-light-sm">
+<div class="product__purchase shadow-sm border-light-sm">
     <div class="product__purchase-top">
         <div class="row">
             <div class="col-8 col-sm-5 col-md-5 mb-3 mb-sm-0">

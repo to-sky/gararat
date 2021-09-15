@@ -18,7 +18,7 @@ class EquipmentCategoryController extends Controller
     public function index()
     {
         return view('admin.equipment-categories.index', [
-            'equipmentCategories' => EquipmentCategory::parentCategories()->paginate()
+            'equipmentCategories' => EquipmentCategory::parentCategories()->get()
         ]);
     }
 
@@ -84,5 +84,19 @@ class EquipmentCategoryController extends Controller
         $equipmentCategory->delete();
 
         return request()->ajax() ? response(['success' => true]) : back();
+    }
+
+    /**
+     * Update site position after Drag'n'Drop on the table
+     */
+    public function updateSitePosition()
+    {
+        $equipmentCategoryIds = request('equipmentCategoryIds');
+
+        EquipmentCategory::whereIn('id', $equipmentCategoryIds)->each(function ($item) use ($equipmentCategoryIds) {
+            $item->update([
+                'site_position' => array_search($item->id, $equipmentCategoryIds) + 1
+            ]);
+        });
     }
 }

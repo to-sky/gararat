@@ -151,6 +151,7 @@
     "Financing": "التمويل",
     "Filter": "منقي",
     "Promotion": "ترقية وظيفية",
+    "Promotions": "الترقيات",
     "Blog": "مدونة",
     "post": "بريد",
     "posts": "المشاركات",
@@ -163,5 +164,11 @@
     "Governorate": "المحافظة",
     "Select governorate": "حدد المحافظة",
     "Share": "شارك",
-    "Categories": "فئات"
+    "Categories": "فئات",
+    "Best selling": "أفضل مبيعات",
+    "See other": "انظر أخرى",
+    "All promotions": "كل الترقيات",
+    "Follow us on Facebook": "اتبعنا Facebook",
+    "Description": "وصف",
+    "Technical description": "الوصف الفني"
 }

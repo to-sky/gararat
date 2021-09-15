@@ -30,6 +30,8 @@ class PageController extends Controller
         return view('website.pages.home', [
             'page' => Page::getHomepage(),
             'slides' => Slide::all(),
+            'promotions' => ProductService::getPromotions()->shuffle(),
+            'bestSelling' => ProductService::getBestSelling()->shuffle(),
             'postTypes' => Post::getPublishedAndGrouped()->map(function ($item) {
                 return $item->sortByDesc('created_at')->take(3);
             })->sortKeys(),
@@ -103,6 +105,8 @@ class PageController extends Controller
     }
 
     /**
+     * Apply funding page
+     *
      * @param Request $request
      * @return RedirectResponse
      */
@@ -118,5 +122,24 @@ class PageController extends Controller
         session()->flash('success', __('Your message has been sent.'));
 
         return redirect()->back();
+    }
+
+
+    /**
+     * Promotions page
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View
+     * @throws \Throwable
+     */
+    public function promotions(Request $request)
+    {
+        $products = ProductService::getPromotionOrBestSelling($request->product_type)->paginate();
+
+        if ($request->ajax()) {
+            return view('website.includes._promotion_items', compact('products'))->render();
+        }
+
+        return view('website.pages.promotions', compact('products'));
     }
 }

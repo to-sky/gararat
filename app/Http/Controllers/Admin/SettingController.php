@@ -49,6 +49,16 @@ class SettingController extends Controller
             SettingService::storeLogo($request->file('footer_logo'), 'footer_logo');
         }
 
+        // Store header arabic logo
+        if (request()->hasFile('header_logo_ar')) {
+            SettingService::storeLogo($request->file('header_logo_ar'), 'header_logo_ar');
+        }
+
+        // Store footer arabic logo
+        if (request()->hasFile('footer_logo_ar')) {
+            SettingService::storeLogo($request->file('footer_logo_ar'), 'footer_logo_ar');
+        }
+
         SettingService::reindexMenuItems($request->menu);
 
         return redirect()->route('admin.settings');

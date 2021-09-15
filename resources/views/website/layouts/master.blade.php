@@ -12,6 +12,7 @@
     <meta name="description" content="@yield('description')">
 
     <!-- Styles -->
+    @yield('styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -28,14 +29,15 @@
     <meta name="google-site-verification" content="" />
 
     <!-- Icons & Colors -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicons/favicon-180.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicons/favicon-16.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicons/favicon-32.png') }}">
-
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicons/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicons/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicons/favicon-16x16.png') }}">
     <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="{{ asset('images/favicons/safari-pinned-tab.svg') }}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
     <meta name="application-name" content="{{ config('app.name', 'Belmach') }}"/>
-    <meta name="msapplication-TileColor" content="#191a1c">
-    <meta name="theme-color" content="#191a1c">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141675953-1"></script>

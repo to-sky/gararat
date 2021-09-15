@@ -31,3 +31,33 @@
         margin: 0 0 0 10px;
     }
 }
+
+.custom-tabs-secondary {
+    .nav-tabs {
+        background: white;
+        font-weight: 500;
+
+        .nav-item {
+            padding: 10px 0;
+
+            &:not(.dropdown) > .nav-link.active {
+                color: #222f3e;
+                border-bottom: none;
+                border-color: white;
+                background: white;
+            }
+        }
+
+        .nav-link {
+            border-radius: 0;
+            color: #666;
+
+            &:hover,
+            &:active {
+                border-color: transparent;
+                background: white;
+                color: #fc0203;
+            }
+        }
+    }
+}
