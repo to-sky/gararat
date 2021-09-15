@@ -28,6 +28,7 @@
                 <p class="mb-1">Image</p>
                 @include('admin.includes._input-file', [
                     'name' => 'image',
+                    'label' => '500x400',
                     'formats' => '.jpg,.png,.tiff'
                 ])
                 @include('admin.includes._image_following_formats')

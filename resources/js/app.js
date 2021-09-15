@@ -12,3 +12,4 @@ try {
 require('./app/cart');
 require('./app/main');
 require('./app/slider-pro');
+require('./app/slick-carousel');

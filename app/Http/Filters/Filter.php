@@ -56,8 +56,18 @@ abstract class Filter
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    protected function promotion() : Builder
+    public function promotion()
     {
-        return $this->builder->whereIsSpecial(1);
+        return $this->builder->promotion();
+    }
+
+    /**
+     * Get best selling items
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function bestSelling()
+    {
+        return $this->builder->isBestSelling();
     }
 }

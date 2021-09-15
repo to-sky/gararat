@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-2">
         <label for="specialPrice">Special Price</label>
         <div class="input-group mb-2">
             <div class="input-group-prepend">
@@ -69,6 +69,16 @@
             <label class="custom-control-label" for="isSpecial">Is special</label>
         </div>
     </div>
+
+    <div class="col pt-4 mt-2">
+        <div class="custom-control custom-switch mt-1">
+            <input type="hidden" name="is_best_selling" value="0">
+            <input type="checkbox" name="is_best_selling" class="custom-control-input" id="isBestSelling" value="1"
+                {{ isset($item) && $item->is_best_selling || old('is_best_selling') ? 'checked' : '' }}>
+            <label class="custom-control-label" for="isBestSelling">Best selling</label>
+        </div>
+    </div>
+
 </div>
 
 @include('admin.includes._product_images', ['item' => $item ?? null])

@@ -4,7 +4,7 @@ let fullConfig = {
         "advlist autolink image imagetools charmap print preview hr anchor pagebreak",
         "searchreplace wordcount visualblocks visualchars code fullscreen",
         "insertdatetime media nonbreaking save table directionality",
-        "emoticons template paste textpattern link"
+        "emoticons template paste textpattern link lists"
     ],
     contextmenu: "link media | cell row column deletetable",
     toolbar: "preview code | undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image media",

@@ -1,5 +1,10 @@
 @extends('website.layouts.master')
 
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
+@endsection
+
 @section('title', optional($page)->trans('title'))
 
 @section('description')
@@ -49,7 +54,7 @@
             </div>
         </div>
 
-        {{-- Main content --}}
+        {{-- Icons section --}}
         <section class="home-icons">
             <div class="container">
                 <div class="col-xl-10 offset-xl-1">
@@ -86,78 +91,77 @@
             </div>
         </section>
 
-        @if(optional($page)->trans('body'))
-        <div class="container">
-            <div class="p-5 bg-white">
-                {!! $page->trans('body') !!}
-            </div>
-        </div>
-        @endif
+        @php
+            $body = json_decode($page->trans('body'))
+        @endphp
 
+        {{-- Body top section --}}
+        @isset($body->top)
+            <section>
+                <div class="container">
+                    <div class="p-4 bg-white shadow-sm">
+                        {!! $body->top !!}
+                    </div>
+                </div>
+            </section>
+        @endisset
 
-
-        <section class="pb-0  pt-5">
+        {{-- All promotions section --}}
+        <section>
             <div class="container">
                 <div class="d-flex justify-content-between">
-                    <h2 class="page-title ">{{ __('On promotion') }}</h2>
+                    <h2 class="page-title ">{{ __('All promotions') }}</h2>
                 </div>
 
-                <div class="row">
-                    @foreach(App\Models\Equipment::take(4)->get() as $equipment)
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="post mb-0">
-                                <div class="">
-                                    <a href="{{ route('equipment.show', ['equipmentCategory' => $equipment->equipmentCategory, 'equipment' => $equipment]) }}"
-                                       style="background-image: url('{{ asset($equipment->getFirstMediaUrl('main_image', 'medium')) }}'); transform: scale(1);"
-                                       class="post__image"></a>
-
-                                    <p class="border-top p-2">{{ $equipment->trans('name') }}</p>
-                                </div>
-                            </div>
+                <div class="promotion-slider-container">
+                    <div class="slick-slider">
+                        @foreach($promotions as $product)
+                            @include('website.includes._product_promotion_item', compact('product'))
+                        @endforeach
+                        <div class="promotion__item px-2 shadow-sm d-flex justify-content-center align-items-center" data-mh="promotion">
+                            <a href="{{ route('promotions') }}" class="btn btn-outline-danger px-4 py-2">{{ __('See other') }}</a>
                         </div>
-                    @endforeach
+                    </div>
                 </div>
             </div>
         </section>
 
+        {{-- Body bottom section --}}
+        @isset($body->bottom)
+            <section>
+                <div class="container">
+                    <div class="p-4 bg-white shadow-sm">
+                        {!! $body->bottom !!}
+                    </div>
+                </div>
+            </section>
+        @endisset
 
-        <section class="pb-0 pt-5">
+        {{-- Best selling section --}}
+        <section>
             <div class="container">
                 <div class="d-flex justify-content-between">
                     <h2 class="page-title ">{{ __('Best selling') }}</h2>
                 </div>
 
-                <div class="row">
-                    @foreach(App\Models\Part::take(4)->get() as $part)
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="post mb-0">
-                                <div class="">
-                                    <a href="{{ $part->path() }}"
-                                       style="background-image: url('{{ asset($part->getFirstMediaUrl('main_image', 'medium')) }}'); transform: scale(1);"
-                                       class="post__image"></a>
+                <div class="promotion-slider-container">
+                    <div class="slick-slider">
+                        @foreach($bestSelling as $product)
+                            @include('website.includes._product_promotion_item', compact('product'))
+                        @endforeach
 
-                                    <p class="border-top p-2">{{ $part->trans('name') }}</p>
-                                    <p class="parts__item__producer-id py-2">{{ $part->producer_id }}</p>
-                                </div>
-                            </div>
+                        <div class="promotion__item px-2 shadow-sm d-flex justify-content-center align-items-center" data-mh="promotion">
+                            <a href="{{ setting('facebook') }}" class="btn btn-outline-danger px-4 py-2" target="_blank">
+                                <i class="fab fa-facebook-square px-1"></i>{{ __('Follow us on Facebook') }}
+                            </a>
                         </div>
-                    @endforeach
+                    </div>
                 </div>
             </div>
         </section>
 
-
-
-
-
-
-
-
-
-
-
-
-        <section class="pb-0">
+        {{-- Blog section --}}
+        <section>
             <div class="container">
                 <div class="d-flex justify-content-between">
                     <h2 class="page-title ">{{ __('Blog') }}</h2>
@@ -209,6 +213,7 @@
             </div>
         </section>
 
+        {{-- Subscribe form --}}
         <section class="subscribe-section" id="subscribe">
             <div class="container">
                 <div class="bg-white p-5 shadow-sm">

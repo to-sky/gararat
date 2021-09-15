@@ -1,7 +1,11 @@
 <!-- Basic Fields -->
+<div class="form-group">
+    @include('admin.includes._body')
+</div>
+
 <div class="form-group form-row">
     <div class="col-md-6">
-        <label for="description">Description</label>
+        <label for="description">Short description</label>
         <div class="input-group">
             <textarea rows="5" name="description" id="description" class="form-control" placeholder="English">{{ isset($item) ? $item->description : old('description') }}</textarea>
             <textarea rows="5" name="description_ar" class="form-control" placeholder="Arabic">{{ isset($item) ? $item->description_ar : old('description_ar') }}</textarea>
@@ -82,7 +86,7 @@
         </div>
     </div>
 
-    <div class="col-md-5">
+    <div class="col-md-4">
         <label for="specialPrice">Special Price</label>
         <div class="input-group mb-2">
             <div class="input-group-prepend">
@@ -119,6 +123,15 @@
             <input type="checkbox" name="is_special" class="custom-control-input" id="isSpecial" value="1"
                 {{ isset($item) && $item->is_special || old('is_special') ? 'checked' : '' }}>
             <label class="custom-control-label" for="isSpecial">Is special</label>
+        </div>
+    </div>
+
+    <div class="col pt-4 mt-2">
+        <div class="custom-control custom-switch mt-1">
+            <input type="hidden" name="is_best_selling" value="0">
+            <input type="checkbox" name="is_best_selling" class="custom-control-input" id="isBestSelling" value="1"
+                {{ isset($item) && $item->is_best_selling || old('is_best_selling') ? 'checked' : '' }}>
+            <label class="custom-control-label" for="isBestSelling">Best selling</label>
         </div>
     </div>
 </div>

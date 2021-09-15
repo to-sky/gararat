@@ -55,6 +55,7 @@
         "jquery.repeater": "^1.2.1",
         "select2": "^4.0.11",
         "select2-theme-bootstrap4": "^1.0.0",
+        "slick-carousel": "^1.8.1",
         "slider-pro": "^1.5.0"
     }
 }

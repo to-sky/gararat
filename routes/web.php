@@ -101,6 +101,7 @@ Route::group(['middleware' => ['check.cart'], 'namespace' => 'Website'], functio
     Route::delete('/unsubscribe/{subscriber}', 'SubscribeController@destroy')->name('unsibscribe.destroy');
 
     Route::post('/apply-funding', 'PageController@applyFunding')->name('apply-funding');
+    Route::get('/promotions', 'PageController@promotions')->name('promotions');
 });
 
 

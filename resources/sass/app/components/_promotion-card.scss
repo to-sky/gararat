@@ -1,0 +1,50 @@
+.promotion__item {
+    margin-bottom: $card_bottom_gap;
+    padding: $default_gap;
+    border: $border_light;
+    transition: 0.3s all ease;
+    background-color: $white;
+
+    &:hover {
+        box-shadow: $shadow !important;
+    }
+}
+
+.promotion__item__link {
+    margin-bottom: $card_bottom_gap;
+    height: 200px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.promotion__item__name,
+.promotion__item__producer-id {
+    font-size: .8rem;
+}
+
+.rtl .promotion__item__name {
+    font-size: 1rem;
+}
+
+.promotion__item__price {
+    font-weight: 500;
+    font-size: .85rem;
+}
+
+@include for-tablet-portrait {
+    .promotion__item__price {
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    .promotion__item__name,
+    .promotion__item__producer-id {
+        font-size: .9rem;
+    }
+
+    .rtl .promotion__item__name{
+        font-size: 1.2rem;
+    }
+}
