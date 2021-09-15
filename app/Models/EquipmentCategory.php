@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Services\MediaService;
 use App\Traits\Translatable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -17,7 +18,7 @@ class EquipmentCategory extends Model implements HasMedia
     use HasMediaTrait, Translatable;
 
     protected $fillable = [
-        'name', 'name_ar', 'description', 'description_ar', 'parent_id', 'slug'
+        'name', 'name_ar', 'description', 'description_ar', 'parent_id', 'slug', 'site_position'
     ];
 
     protected $guarded = [];
@@ -25,6 +26,10 @@ class EquipmentCategory extends Model implements HasMedia
     protected static function boot()
     {
         parent::boot();
+
+        static::addGlobalScope('order', function (Builder $builder) {
+            $builder->orderBy('site_position');
+        });
 
         self::saving(function($equipmentCategory) {
             if ($equipmentCategory->isParent()) {

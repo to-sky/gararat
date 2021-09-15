@@ -85,4 +85,18 @@ class EquipmentCategoryController extends Controller
 
         return request()->ajax() ? response(['success' => true]) : back();
     }
+
+    /**
+     * Update site position after Drag'n'Drop on the table
+     */
+    public function updateSitePosition()
+    {
+        $equipmentCategoryIds = request('equipmentCategoryIds');
+
+        EquipmentCategory::whereIn('id', $equipmentCategoryIds)->each(function ($item) use ($equipmentCategoryIds) {
+            $item->update([
+                'site_position' => array_search($item->id, $equipmentCategoryIds) + 1
+            ]);
+        });
+    }
 }
