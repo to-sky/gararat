@@ -18,7 +18,7 @@ class EquipmentCategoryController extends Controller
     public function index()
     {
         return view('admin.equipment-categories.index', [
-            'equipmentCategories' => EquipmentCategory::parentCategories()->paginate()
+            'equipmentCategories' => EquipmentCategory::parentCategories()->get()
         ]);
     }
 

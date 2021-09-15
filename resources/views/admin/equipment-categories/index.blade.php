@@ -58,10 +58,6 @@
                     </tbody>
                 </table>
             </div>
-
-            <div class="mt-2 float-right">
-                {{ $equipmentCategories->links() }}
-            </div>
         </div>
     </div>
 
