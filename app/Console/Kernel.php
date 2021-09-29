@@ -26,16 +26,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('cart:clean')->monthly();
-
-        $schedule->command('backup:run')
-            ->daily()->at('02:00')
-            ->after(function () {
-                Artisan::call('google-drive:upload-backup');
+        $schedule->command('backup:clean')->daily()->at('02:00');
+        $schedule->command('backup:run')->daily()->at('02:10')->after(function () {
+            Artisan::call('google-drive:upload-backup');
         });
 
-        $schedule->command('backup:clean')->daily()->at('03:00');
         $schedule->command('google-drive:clean')->weekly();
+
+        $schedule->command('cart:clean')->monthly();
     }
 
     /**
