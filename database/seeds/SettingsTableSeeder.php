@@ -15,7 +15,7 @@ class SettingsTableSeeder extends Seeder
         Setting::set('facebook', 'https://www.facebook.com/gararatcom');
         Setting::set('youtube', 'https://www.youtube.com/channel/UCoBI2FCQzx4tMEUbMpVphJw');
         Setting::set('whatsapp', '00201016200599');
-        Setting::set('email', 'sales@gararat.com');
+        Setting::set('email', 'sales@belmach.com');
         Setting::set('phone', '+20-225412782');
         Setting::set('footer_address', 'Villa 318, Al Showaifat region, Al Tagamoa AL Khames, 90th st., New Cairo-Egypt');
         Setting::set('footer_address_ar', 'Villa 318, Al Showaifat region, Al Tagamoa AL Khames, 90th st., New Cairo-Egypt');

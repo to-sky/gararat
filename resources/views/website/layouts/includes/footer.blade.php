@@ -109,8 +109,8 @@
 
                 <div class="footer-top__contact-item">
                     <i class="fas fa-envelope footer-top__contact-icon"></i>
-                    <a href="mailto:{{ setting('email', 'sales@gararat.com') }}" class="footer-top__contact-label align-self-baseline">
-                        @setting('email', 'sales@gararat.com')
+                    <a href="mailto:{{ setting('email', 'sales@belmach.com') }}" class="footer-top__contact-label align-self-baseline">
+                        @setting('email', 'sales@belmach.com')
                     </a>
                 </div>
             </div>

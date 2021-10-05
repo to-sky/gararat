@@ -84,8 +84,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'sales@gararat.com'),
-        'name' => env('MAIL_FROM_NAME', 'Gararat'),
+        'address' => env('MAIL_FROM_ADDRESS', 'sales@belmach.com'),
+        'name' => env('MAIL_FROM_NAME', 'Belmach'),
     ],
 
     /*
@@ -95,7 +95,7 @@ return [
     |
     */
     'to' => [
-        'sales' => 'sales@gararat.com'
+        'sales' => 'sales@belmach.com'
     ],
 
     /*

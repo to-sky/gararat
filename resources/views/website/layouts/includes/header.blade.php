@@ -8,9 +8,9 @@
                     <span class="ltr">@setting('phone', '+20-101-620-05-99')</span>
                 </a>
 
-                <a href="mailto:{{ setting('email', 'sales@gararat.com') }}" class="header-contact px-sm-3">
+                <a href="mailto:{{ setting('email', 'sales@belmach.com') }}" class="header-contact px-sm-3">
                     <i class="far fa-envelope align-middle"></i>
-                    <span>@setting('email', 'sales@gararat.com')</span>
+                    <span>@setting('email', 'sales@belmach.com')</span>
                 </a>
             </div>
 
